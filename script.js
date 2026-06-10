@@ -101,7 +101,7 @@ if (!prefersReducedMotion) {
     particlesWrap.className = 'hero-particles';
     heroEl.appendChild(particlesWrap);
 
-    const count = 18;
+    const count = window.matchMedia('(max-width: 900px)').matches ? 8 : 18;
     for (let i = 0; i < count; i++) {
       const span = document.createElement('span');
       const size = Math.random() * 4 + 2;
@@ -213,20 +213,6 @@ if (!prefersReducedMotion) {
       card.style.transform = '';
     });
   });
-}
-
-// ── Contador animado en stat-pills del hero ───
-function animateValue(el, from, to, duration) {
-  if (prefersReducedMotion) { el.textContent = to; return; }
-  const start = performance.now();
-  const update = (now) => {
-    const elapsed = now - start;
-    const progress = Math.min(elapsed / duration, 1);
-    const ease = 1 - Math.pow(1 - progress, 3);
-    el.textContent = Math.floor(from + (to - from) * ease);
-    if (progress < 1) requestAnimationFrame(update);
-  };
-  requestAnimationFrame(update);
 }
 
 // ── Formulario de contacto ─────────────────────
@@ -386,17 +372,17 @@ function initCarousel() {
     current = ((idx % slides.length) + slides.length) % slides.length;
     track.style.transform = `translateX(-${current * 100}%)`;
     updateDots();
-    // Reveal animation on active slide content
+    // Parallax interno: el contenido del slide entra escalonado
     if (!prefersReducedMotion) {
       const active = slides[current];
-      active.querySelectorAll('.cs-header, .cs-content, .cs-materials').forEach((el, i) => {
+      active.querySelectorAll('.cs-tag, .cs-title, .cs-meta, .cs-actions').forEach((el, i) => {
         el.style.opacity   = '0';
-        el.style.transform = 'translateY(16px)';
+        el.style.transform = 'translateX(26px)';
         requestAnimationFrame(() => {
-          el.style.transition = `opacity 400ms ${i * 80}ms var(--ease-out),
-                                 transform 400ms ${i * 80}ms var(--ease-out)`;
+          el.style.transition = `opacity 420ms ${i * 70}ms var(--ease-out),
+                                 transform 420ms ${i * 70}ms var(--ease-out)`;
           el.style.opacity   = '1';
-          el.style.transform = 'translateY(0)';
+          el.style.transform = 'translateX(0)';
         });
       });
     }
@@ -585,6 +571,35 @@ function initFilters() {
   updateCount(cards.length);
 }
 
+/** Píldora deslizante bajo el filtro activo (progressive enhancement) */
+function initFilterPill() {
+  const bar = document.querySelector('.filter-bar');
+  if (!bar || prefersReducedMotion) return;
+
+  const pill = document.createElement('span');
+  pill.className = 'filter-pill';
+  pill.setAttribute('aria-hidden', 'true');
+  bar.prepend(pill);
+  bar.classList.add('has-pill');
+
+  function movePill() {
+    const active = bar.querySelector('.filter-btn.active');
+    if (!active) return;
+    pill.style.left   = active.offsetLeft + 'px';
+    pill.style.top    = active.offsetTop + 'px';
+    pill.style.width  = active.offsetWidth + 'px';
+    pill.style.height = active.offsetHeight + 'px';
+  }
+
+  movePill();
+  window.addEventListener('resize', movePill);
+  bar.addEventListener('click', (e) => {
+    if (e.target.classList.contains('filter-btn')) requestAnimationFrame(movePill);
+  });
+  // Reposicionar cuando carguen las webfonts (cambian el ancho de los botones)
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(movePill);
+}
+
 // ══════════════════════════════════════════════
 //  KPIs — render + contadores animados
 // ══════════════════════════════════════════════
@@ -663,6 +678,7 @@ renderDirectorio();
 
 // Filtros (biblioteca.html)
 initFilters();
+initFilterPill();
 
 // Formulario de contacto
 const contactForm = document.getElementById('contact-form');
