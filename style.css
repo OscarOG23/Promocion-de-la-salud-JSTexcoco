@@ -387,13 +387,20 @@ button { font-family: var(--font-body); }
    ================================================ */
 .hero {
   position: relative;
-  background: var(--grad-hero);
+  background: linear-gradient(120deg, #2d1420 0%, #4a1628 35%, #691C32 60%, #3a1322 85%, #2d1420 100%);
+  background-size: 220% 220%;
+  animation: hero-breathe 20s ease-in-out infinite;
   color: var(--white);
   padding: 110px 0 90px;
   overflow: hidden;
   min-height: 580px;
   display: flex;
   align-items: center;
+}
+
+@keyframes hero-breathe {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
 }
 
 /* Fondo animado */
@@ -501,7 +508,7 @@ button { font-family: var(--font-body); }
   line-height: 1.03;
   color: var(--white);
   margin-bottom: 28px;
-  animation: fade-in-up var(--dur-enter) 80ms var(--ease-out) both;
+  animation: title-reveal 900ms 80ms var(--ease-out) both;
   letter-spacing: -.01em;
 }
 .hero-title em {
@@ -520,6 +527,11 @@ button { font-family: var(--font-body); }
   background: linear-gradient(90deg, var(--sand), transparent);
   opacity: .4;
   border-radius: 1px;
+}
+
+@keyframes title-reveal {
+  from { clip-path: inset(0 0 100% 0); transform: translateY(26px); opacity: 0; }
+  to   { clip-path: inset(0 0 -20% 0); transform: translateY(0);    opacity: 1; }
 }
 
 .hero-desc {
@@ -2405,6 +2417,29 @@ button { font-family: var(--font-body); }
   }
   .menu-toggle { display: flex; }
 
+  /* ── Premium móvil: animaciones más ágiles ── */
+  :root {
+    --dur-base:  150ms;
+    --dur-slow:  240ms;
+    --dur-enter: 360ms;
+  }
+
+  /* Áreas táctiles ≥ 44px */
+  .filter-btn   { min-height: 44px; }
+  .carousel-btn { width: 44px; height: 44px; }
+  .inav-link    { padding-top: 12px; padding-bottom: 12px; }
+
+  /* Menú móvil: entrada escalonada de links */
+  .nav-links.open > * { animation: nav-item-in 300ms var(--ease-out) both; }
+  .nav-links.open > *:nth-child(1) { animation-delay: 0ms; }
+  .nav-links.open > *:nth-child(2) { animation-delay: 40ms; }
+  .nav-links.open > *:nth-child(3) { animation-delay: 80ms; }
+  .nav-links.open > *:nth-child(4) { animation-delay: 120ms; }
+  .nav-links.open > *:nth-child(5) { animation-delay: 160ms; }
+  .nav-links.open > *:nth-child(6) { animation-delay: 200ms; }
+  .nav-links.open > *:nth-child(7) { animation-delay: 240ms; }
+  .nav-links.open > *:nth-child(8) { animation-delay: 280ms; }
+
   .qa-grid { grid-template-columns: repeat(2, 1fr); }
   .qa-card { border-right: none; border-bottom: 1px solid var(--gray-200); }
   .qa-card:nth-child(odd)  { border-right: 1px solid var(--gray-200); }
@@ -2441,6 +2476,86 @@ button { font-family: var(--font-body); }
   .top-bar-contact { display: none; }
   .alert-card { padding: 28px 24px; }
   .section-block { padding: 64px 0; }
+}
+
+/* ================================================
+   MICRO-INTERACCIONES PREMIUM
+   ================================================ */
+
+/* ── Cards: línea de acento superior + sombra doble al hover ── */
+.material-card, .subsec-card, .det-card, .directory-card {
+  position: relative;
+}
+.material-card::after, .subsec-card::after, .det-card::after, .directory-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  background: var(--nc-color, var(--crimson));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-base) var(--ease-out);
+  pointer-events: none;
+}
+.material-card:hover::after, .subsec-card:hover::after,
+.det-card:hover::after, .directory-card:hover::after {
+  transform: scaleX(1);
+}
+.material-card:hover, .subsec-card:hover, .det-card:hover, .directory-card:hover {
+  box-shadow: 0 2px 8px rgba(30,27,24,.06), 0 18px 44px rgba(30,27,24,.13);
+}
+
+/* ── Botones: feedback táctil al presionar ── */
+.btn:active, .filter-btn:active, .mc-btn:active,
+.cs-btn:active, .carousel-btn:active, .subsec-link:active {
+  transform: scale(.97);
+  transition-duration: 80ms;
+}
+
+/* ── Nav links: subrayado animado (solo escritorio) ── */
+@media (min-width: 901px) {
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 12px; right: 12px; bottom: 3px;
+    height: 2px;
+    border-radius: 1px;
+    background: var(--crimson);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--dur-base) var(--ease-out);
+  }
+  .nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); }
+}
+
+/* ── Píldora deslizante de filtros (posicionada por JS en Task 5) ── */
+.filter-bar { position: relative; }
+.filter-pill {
+  position: absolute;
+  background: var(--crimson);
+  border-radius: 99px;
+  z-index: 0;
+  pointer-events: none;
+  transition: left var(--dur-slow) var(--ease-spring),
+              width var(--dur-slow) var(--ease-spring),
+              top var(--dur-base) var(--ease-out),
+              height var(--dur-base) var(--ease-out);
+}
+.filter-bar .filter-btn { position: relative; z-index: 1; }
+.filter-bar.has-pill .filter-btn.active { background: transparent; color: var(--white); }
+
+/* ── Transiciones de página (View Transitions API) ── */
+@view-transition { navigation: auto; }
+::view-transition-old(root) { animation: vt-out 160ms var(--ease-out) both; }
+::view-transition-new(root) { animation: vt-in  220ms var(--ease-out) both; }
+@keyframes vt-out { to   { opacity: 0; } }
+@keyframes vt-in  { from { opacity: 0; } }
+
+/* ── Entrada escalonada del menú móvil (keyframe global) ── */
+@keyframes nav-item-in {
+  from { opacity: 0; transform: translateX(-12px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
 /* Estado vacío de grids generados desde datos */
