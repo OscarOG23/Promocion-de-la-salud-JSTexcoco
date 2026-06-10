@@ -24,7 +24,10 @@ Multi-page internal staff platform for the **Departamento de Promoción a la Sal
 └── assets/
     ├── img/logo-ps.png
     └── data/
-        └── campaigns.js  ← Array de campañas activas (actualizar aquí)
+        ├── campaigns.js    ← Campañas del carrusel (index)
+        ├── kpis.js         ← Números de indicadores (index + reportes)
+        ├── biblioteca.js   ← Materiales de la biblioteca
+        └── directorio.js   ← Unidades de psicología y nutrición
 ```
 
 ## Development
@@ -126,6 +129,11 @@ document.querySelectorAll('[data-page]').forEach(a => {
 12. **`initCarousel()`** — prev/next, dots, swipe táctil, arrastre mouse, teclado (←/→)
 13. **`initFilters()`** — `.filter-btn[data-cat]` filtra `.material-card[data-categoria]`, fade animado
 14. **`prefers-reduced-motion`** — desactiva toda animación si el usuario lo prefiere
+15. **`renderKPIs()` + `initKpiCounters()`** — KPI cards desde `kpis.js`, contadores animados al viewport
+16. **`renderBiblioteca()`** — material-cards desde `biblioteca.js` (corre ANTES de `initFilters`)
+17. **`renderDirectorio()`** — directory-cards desde `directorio.js` en grids `[data-dir]`
+18. **`initFilterPill()`** — píldora deslizante bajo el filtro activo (progressive enhancement vía clase `has-pill`)
+19. **View Transitions** — cross-fade entre páginas (CSS puro, con excepción explícita para reduced-motion)
 
 ## Cómo actualizar campañas
 
@@ -150,26 +158,23 @@ Valores válidos para `icono`: `"image"`, `"slides"`, `"video"`, `"doc"`, `"link
 
 ## Cómo añadir materiales a Biblioteca
 
-En `biblioteca.html`, copiar el bloque:
+Editar `assets/data/biblioteca.js` — añadir un objeto al array `BIBLIOTECA`:
 
-```html
-<article class="material-card reveal" data-categoria="CATEGORIA">
-  <div class="mc-cat CATEGORIA">Categoría</div>
-  <h3 class="mc-title">Título del material</h3>
-  <div class="mc-meta">
-    <span><strong>Tema</strong> Nombre del tema</span>
-    <span><strong>Público</strong> Personal de salud</span>
-    <span><strong>Modalidad</strong> Autoestudio</span>
-    <span><strong>Actualizado</strong> Ene 2025</span>
-  </div>
-  <a href="https://drive.google.com/..." class="mc-btn" target="_blank" rel="noopener">
-    Descargar ↓
-  </a>
-</article>
+```js
+{ titulo: "Título del material", categoria: "manuales",
+  tema: "Tema", publico: "Personal de salud",
+  modalidad: "Taller · 60 min",      // opcional
+  actualizado: "Ene 2025",           // opcional
+  url: "https://drive.google.com/...", accion: "Abrir en Drive" }
 ```
 
-Valores de `data-categoria` (deben coincidir con los `data-cat` de `.filter-btn`):
-`lineamientos` · `manuales` · `formatos` · `noms` · `graficos` · `presentaciones` · `docs`
+`categoria` válidas (coinciden con los `data-cat` de los filtros):
+`lineamientos` · `manuales` · `formatos` · `noms` · `grafico` · `presentacion` · `documentos`
+
+Para añadir una categoría NUEVA hay 3 puntos de contacto: `CAT_LABELS` en `script.js`, un `.filter-btn` en `biblioteca.html` y una regla de color `.mc-cat.X` en `style.css`.
+
+**KPIs:** editar `assets/data/kpis.js` (arrays `index` y `reportes` — un solo lugar para ambas páginas).
+**Directorio:** editar `assets/data/directorio.js` (`tipo: "psicologia" | "nutricion"`).
 
 ## Design system
 
@@ -209,9 +214,7 @@ Valores de `data-categoria` (deben coincidir con los `data-cat` de `.filter-btn`
     style="border-radius:12px; border:none;"></iframe>
   ```
 - **Contact form:** Conectar `handleForm()` a Formspree (`https://formspree.io/f/XXXX`).
-- **KPI numbers:** Actualizar números reales en `index.html#indicadores` y `reportes.html`.
-- **Directorio:** Reemplazar datos placeholder con unidades, nombres y horarios reales.
-- **Biblioteca links:** Reemplazar `href="#"` con URLs reales de Google Drive.
+- **Datos reales:** Reemplazar `url: "#"` en `assets/data/biblioteca.js`, números placeholder en `kpis.js` y unidades/horarios en `directorio.js`.
 - **Favicon:** Crear con `--crimson` / `--gold`.
 
 ## Deployment
