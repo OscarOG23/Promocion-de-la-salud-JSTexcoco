@@ -1802,7 +1802,7 @@ button { font-family: var(--font-body); }
 .material-card.hidden {
   display: none;
 }
-.material-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+.material-card:hover { box-shadow: 0 2px 8px rgba(30,27,24,.06), 0 18px 44px rgba(30,27,24,.13); transform: translateY(-3px); }
 
 .mc-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
 .mc-cat {
@@ -1968,7 +1968,7 @@ button { font-family: var(--font-body); }
   transition: box-shadow var(--dur-base) var(--ease-out),
               transform var(--dur-base) var(--ease-out);
 }
-.directory-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+.directory-card:hover { box-shadow: 0 2px 8px rgba(30,27,24,.06), 0 18px 44px rgba(30,27,24,.13); transform: translateY(-3px); }
 .dc-header { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; }
 .dc-icon {
   width: 44px; height: 44px;
@@ -2424,6 +2424,10 @@ button { font-family: var(--font-body); }
     --dur-enter: 360ms;
   }
 
+  /* El gradiente animado del hero repinta continuamente:
+     en móvil se desactiva para ahorrar batería */
+  .hero { animation: none; }
+
   /* Áreas táctiles ≥ 44px */
   .filter-btn   { min-height: 44px; }
   .carousel-btn { width: 44px; height: 44px; }
@@ -2482,11 +2486,13 @@ button { font-family: var(--font-body); }
    MICRO-INTERACCIONES PREMIUM
    ================================================ */
 
-/* ── Cards: línea de acento superior + sombra doble al hover ── */
-.material-card, .subsec-card, .det-card, .directory-card {
+/* ── Cards: línea de acento superior al hover ──
+   (.det-card y .subsec-card ya tienen su propio acento ::before;
+    su sombra doble se define en sus reglas :hover originales) ── */
+.material-card, .directory-card {
   position: relative;
 }
-.material-card::after, .subsec-card::after, .det-card::after, .directory-card::after {
+.material-card::after, .directory-card::after {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
@@ -2498,12 +2504,8 @@ button { font-family: var(--font-body); }
   transition: transform var(--dur-base) var(--ease-out);
   pointer-events: none;
 }
-.material-card:hover::after, .subsec-card:hover::after,
-.det-card:hover::after, .directory-card:hover::after {
+.material-card:hover::after, .directory-card:hover::after {
   transform: scaleX(1);
-}
-.material-card:hover, .subsec-card:hover, .det-card:hover, .directory-card:hover {
-  box-shadow: 0 2px 8px rgba(30,27,24,.06), 0 18px 44px rgba(30,27,24,.13);
 }
 
 /* ── Botones: feedback táctil al presionar ── */
@@ -2551,6 +2553,12 @@ button { font-family: var(--font-body); }
 ::view-transition-new(root) { animation: vt-in  220ms var(--ease-out) both; }
 @keyframes vt-out { to   { opacity: 0; } }
 @keyframes vt-in  { from { opacity: 0; } }
+
+/* Los pseudo-elementos de View Transitions no son alcanzados por el
+   kill-switch global de reduced-motion (* y *::before/::after) */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none !important; }
+}
 
 /* ── Entrada escalonada del menú móvil (keyframe global) ── */
 @keyframes nav-item-in {
