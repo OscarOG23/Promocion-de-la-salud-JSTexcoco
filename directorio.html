@@ -98,78 +98,10 @@
           <p>Centros de salud de la Jurisdicción Texcoco con psicólogo disponible. Horarios y modalidad de atención.</p>
         </div>
 
-        <div class="directory-grid">
-
-          <div class="directory-card">
-            <div class="dc-header">
-              <div class="dc-icon dc-psicologia">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-              </div>
-              <div>
-                <h3 class="dc-name">C.S. Texcoco</h3>
-                <span class="dc-zone">Zona Texcoco</span>
-              </div>
-            </div>
-            <div class="dc-details">
-              <div class="dc-row">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                <span>Lunes a viernes 8:00–14:00 h</span>
-              </div>
-              <div class="dc-row">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-                <span>Atención individual · Previa cita</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="directory-card">
-            <div class="dc-header">
-              <div class="dc-icon dc-psicologia">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-              </div>
-              <div>
-                <h3 class="dc-name">C.S. Chiautla</h3>
-                <span class="dc-zone">Zona Chiautla</span>
-              </div>
-            </div>
-            <div class="dc-details">
-              <div class="dc-row">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                <span>Martes y jueves 8:00–14:00 h</span>
-              </div>
-              <div class="dc-row">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-                <span>Atención individual y familiar</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="directory-card">
-            <div class="dc-header">
-              <div class="dc-icon dc-psicologia">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-              </div>
-              <div>
-                <h3 class="dc-name">C.S. Papalotla</h3>
-                <span class="dc-zone">Zona Papalotla</span>
-              </div>
-            </div>
-            <div class="dc-details">
-              <div class="dc-row">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                <span>Lunes, miércoles y viernes 8:00–14:00 h</span>
-              </div>
-              <div class="dc-row">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-                <span>Atención individual · Consulta abierta</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
+        <div class="directory-grid" data-dir="psicologia"></div>
 
         <p style="margin-top:1.5rem; font-size:.9rem; color:var(--gray-500)">
-          Actualiza este directorio cuando cambien los horarios o unidades disponibles editando el HTML directamente.
+          Para actualizar horarios o añadir unidades edita <code>assets/data/directorio.js</code>.
           ¿Falta una unidad? <a href="index.html#contacto" style="color:var(--purple)">Notifícanos →</a>
         </p>
       </div>
@@ -184,53 +116,7 @@
           <p>Centros de salud con nutriólogo disponible para consejería alimentaria y orientación nutricional.</p>
         </div>
 
-        <div class="directory-grid">
-
-          <div class="directory-card">
-            <div class="dc-header">
-              <div class="dc-icon dc-nutricion">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
-              </div>
-              <div>
-                <h3 class="dc-name">C.S. Texcoco</h3>
-                <span class="dc-zone">Zona Texcoco</span>
-              </div>
-            </div>
-            <div class="dc-details">
-              <div class="dc-row">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                <span>Lunes a viernes 9:00–13:00 h</span>
-              </div>
-              <div class="dc-row">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-                <span>Consejería individual · Previa cita</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="directory-card">
-            <div class="dc-header">
-              <div class="dc-icon dc-nutricion">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
-              </div>
-              <div>
-                <h3 class="dc-name">C.S. Atenco</h3>
-                <span class="dc-zone">Zona Atenco</span>
-              </div>
-            </div>
-            <div class="dc-details">
-              <div class="dc-row">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                <span>Martes y jueves 8:00–14:00 h</span>
-              </div>
-              <div class="dc-row">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-                <span>Talleres grupales y consejería</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
+        <div class="directory-grid" data-dir="nutricion"></div>
       </div>
     </section>
 
@@ -423,6 +309,7 @@
   <div id="site-footer"></div>
 
   <script src="assets/data/campaigns.js"></script>
+  <script src="assets/data/directorio.js"></script>
   <script src="components.js"></script>
   <script src="script.js"></script>
 </body>

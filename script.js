@@ -489,6 +489,46 @@ function renderBiblioteca() {
 }
 
 // ══════════════════════════════════════════════
+//  DIRECTORIO — render desde directorio.js
+// ══════════════════════════════════════════════
+
+function renderDirectorio() {
+  const grids = document.querySelectorAll('[data-dir]');
+  if (!grids.length) return;
+
+  const DC_ICONS = {
+    psicologia: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>`,
+    nutricion:  `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>`,
+  };
+  const ICON_CLOCK = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`;
+  const ICON_USER  = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>`;
+
+  grids.forEach(grid => {
+    const tipo  = grid.dataset.dir;
+    const items = (typeof DIRECTORIO !== 'undefined' ? DIRECTORIO : []).filter(u => u.tipo === tipo);
+    if (!items.length) {
+      grid.innerHTML = '<p class="empty-state">Sin unidades registradas por el momento.</p>';
+      return;
+    }
+    grid.innerHTML = items.map(u => `
+      <div class="directory-card">
+        <div class="dc-header">
+          <div class="dc-icon dc-${u.tipo}">${DC_ICONS[u.tipo] || ''}</div>
+          <div>
+            <h3 class="dc-name">${u.nombre}</h3>
+            <span class="dc-zone">${u.zona}</span>
+          </div>
+        </div>
+        <div class="dc-details">
+          <div class="dc-row">${ICON_CLOCK}<span>${u.horario}</span></div>
+          <div class="dc-row">${ICON_USER}<span>${u.atencion}</span></div>
+        </div>
+      </div>
+    `).join('');
+  });
+}
+
+// ══════════════════════════════════════════════
 //  FILTROS DE BIBLIOTECA
 // ══════════════════════════════════════════════
 
@@ -615,6 +655,9 @@ initCarousel();
 
 // Biblioteca — renderizar antes de initFilters
 renderBiblioteca();
+
+// Directorio (directorio.html)
+renderDirectorio();
 
 // Filtros (biblioteca.html)
 initFilters();
