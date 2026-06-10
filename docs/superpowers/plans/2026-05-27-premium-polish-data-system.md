@@ -829,17 +829,19 @@ git commit -m "feat: micro-interacciones premium, hero vivo y pulido móvil"
 
 ```js
     // Parallax interno: el contenido del slide entra escalonado
+    // NOTA (corregido en review): un solo rAF NO basta para que el navegador
+    // aplique el estado oculto — hay que forzar reflow entre reset y animación.
     if (!prefersReducedMotion) {
       const active = slides[current];
       active.querySelectorAll('.cs-tag, .cs-title, .cs-meta, .cs-actions').forEach((el, i) => {
+        el.style.transition = 'none';
         el.style.opacity   = '0';
         el.style.transform = 'translateX(26px)';
-        requestAnimationFrame(() => {
-          el.style.transition = `opacity 420ms ${i * 70}ms var(--ease-out),
-                                 transform 420ms ${i * 70}ms var(--ease-out)`;
-          el.style.opacity   = '1';
-          el.style.transform = 'translateX(0)';
-        });
+        void el.offsetWidth; // commit del estado oculto
+        el.style.transition = `opacity 420ms ${i * 70}ms var(--ease-out),
+                               transform 420ms ${i * 70}ms var(--ease-out)`;
+        el.style.opacity   = '1';
+        el.style.transform = 'translateX(0)';
       });
     }
 ```

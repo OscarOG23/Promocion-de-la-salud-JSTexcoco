@@ -376,14 +376,14 @@ function initCarousel() {
     if (!prefersReducedMotion) {
       const active = slides[current];
       active.querySelectorAll('.cs-tag, .cs-title, .cs-meta, .cs-actions').forEach((el, i) => {
+        el.style.transition = 'none';
         el.style.opacity   = '0';
         el.style.transform = 'translateX(26px)';
-        requestAnimationFrame(() => {
-          el.style.transition = `opacity 420ms ${i * 70}ms var(--ease-out),
-                                 transform 420ms ${i * 70}ms var(--ease-out)`;
-          el.style.opacity   = '1';
-          el.style.transform = 'translateX(0)';
-        });
+        void el.offsetWidth; // forzar reflow: el estado oculto debe aplicarse antes de animar
+        el.style.transition = `opacity 420ms ${i * 70}ms var(--ease-out),
+                               transform 420ms ${i * 70}ms var(--ease-out)`;
+        el.style.opacity   = '1';
+        el.style.transform = 'translateX(0)';
       });
     }
   }
@@ -594,7 +594,7 @@ function initFilterPill() {
   movePill();
   window.addEventListener('resize', movePill);
   bar.addEventListener('click', (e) => {
-    if (e.target.classList.contains('filter-btn')) requestAnimationFrame(movePill);
+    if (e.target.closest('.filter-btn')) requestAnimationFrame(movePill);
   });
   // Reposicionar cuando carguen las webfonts (cambian el ancho de los botones)
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(movePill);

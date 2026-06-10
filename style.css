@@ -2545,7 +2545,13 @@ button { font-family: var(--font-body); }
               height var(--dur-base) var(--ease-out);
 }
 .filter-bar .filter-btn { position: relative; z-index: 1; }
-.filter-bar.has-pill .filter-btn.active { background: transparent; color: var(--white); }
+.filter-bar.has-pill .filter-btn.active {
+  background: transparent;
+  color: var(--white);
+  transform: none;              /* la geometría de la píldora ignora transforms */
+  border-color: transparent;    /* sin anillo desfasado mientras la píldora viaja */
+  transition: color var(--dur-fast) 120ms var(--ease-out);
+}
 
 /* ── Transiciones de página (View Transitions API) ── */
 @view-transition { navigation: auto; }
