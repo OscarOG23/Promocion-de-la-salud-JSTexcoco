@@ -38,7 +38,7 @@
     {
       "id": 6,
       "subject": "Task 6: Documentación + verificación final",
-      "status": "pending",
+      "status": "completed",
       "blockedBy": [5],
       "description": "**Goal:** CLAUDE.md documenta kpis.js/biblioteca.js/directorio.js y nuevos behaviors; verificación integral de las 8 páginas; push a origin/master.\n\n**Files:** Modify CLAUDE.md\n\n**Verify:** 8 páginas con consola limpia; git push origin master.\n\n```json:metadata\n{\"files\": [\"CLAUDE.md\"], \"verifyCommand\": \"abrir las 8 páginas + git push origin master\", \"acceptanceCriteria\": [\"CLAUDE.md sección biblioteca apunta a biblioteca.js\", \"file structure incluye 4 data files\", \"behaviors 15-19 documentados\", \"pending integrations actualizado\", \"push exitoso\"]}\n```"
     }
