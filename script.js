@@ -64,7 +64,9 @@ sections.forEach(s => sectionObserver.observe(s));
 // ── Smooth scroll con offset dinámico ─────────
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', (e) => {
-    const target = document.querySelector(anchor.getAttribute('href'));
+    const href = anchor.getAttribute('href');
+    if (href === '#') return; // placeholder sin destino: evitar querySelector('#') inválido
+    const target = document.querySelector(href);
     if (!target) return;
     e.preventDefault();
     const offset = navbar.offsetHeight + 16;
