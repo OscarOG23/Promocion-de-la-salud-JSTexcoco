@@ -496,11 +496,71 @@ function initFilters() {
 }
 
 // ══════════════════════════════════════════════
+//  KPIs — render + contadores animados
+// ══════════════════════════════════════════════
+
+/** Formatea 8500 → "8 500" (separador de miles con espacio) */
+function formatKpi(n) {
+  return n.toLocaleString('es-MX').replace(/,/g, ' ');
+}
+
+/** Genera las kpi-cards desde KPIS (assets/data/kpis.js) */
+function renderKPIs() {
+  if (typeof KPIS === 'undefined') return;
+  document.querySelectorAll('[data-kpis]').forEach(grid => {
+    const items = KPIS[grid.dataset.kpis];
+    if (!items || !items.length) {
+      grid.innerHTML = '<p class="empty-state">Sin indicadores por el momento.</p>';
+      return;
+    }
+    grid.innerHTML = items.map(k => `
+      <div class="kpi-card" style="--kpi-color: var(--${k.color})">
+        <div class="kpi-number" data-target="${k.numero}" data-sufijo="${k.sufijo}">${formatKpi(k.numero)}${k.sufijo}</div>
+        <div class="kpi-label">${k.etiqueta}</div>
+        <div class="kpi-desc">${k.desc}</div>
+      </div>
+    `).join('');
+  });
+}
+
+/** Contador 0 → valor con easeOutExpo al entrar al viewport */
+function initKpiCounters() {
+  if (prefersReducedMotion) return; // los números ya muestran el valor final
+  const nums = document.querySelectorAll('.kpi-number[data-target]');
+  if (!nums.length) return;
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      io.unobserve(el);
+      const target = parseInt(el.dataset.target, 10);
+      const sufijo = el.dataset.sufijo || '';
+      const dur    = 1200;
+      const start  = performance.now();
+      const tick = (now) => {
+        const p    = Math.min((now - start) / dur, 1);
+        const ease = p === 1 ? 1 : 1 - Math.pow(2, -10 * p); // easeOutExpo
+        el.textContent = formatKpi(Math.round(target * ease)) + sufijo;
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    });
+  }, { threshold: 0.4 });
+
+  nums.forEach(n => io.observe(n));
+}
+
+// ══════════════════════════════════════════════
 //  ARRANQUE GLOBAL
 // ══════════════════════════════════════════════
 
 // Campanhas — renderizar antes de initCarousel
 renderCampaigns();
+
+// KPIs (index.html y reportes.html)
+renderKPIs();
+initKpiCounters();
 
 // Carrusel (index.html)
 initCarousel();

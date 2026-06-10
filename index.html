@@ -127,48 +127,10 @@
         <div class="section-header">
           <div class="section-tag crimson">Indicadores 2025</div>
           <h2>Cifras clave<br>de la jurisdicción</h2>
-          <p>Actualiza los números directamente en este HTML cuando cambien los datos.</p>
+          <p>Los números se actualizan en <code>assets/data/kpis.js</code>.</p>
         </div>
 
-        <div class="kpi-grid">
-
-          <div class="kpi-card" style="--kpi-color: var(--crimson)">
-            <div class="kpi-number">4</div>
-            <div class="kpi-label">Campañas activas</div>
-            <div class="kpi-desc">Nacionales y estatales 2025</div>
-          </div>
-
-          <div class="kpi-card" style="--kpi-color: var(--teal)">
-            <div class="kpi-number">45+</div>
-            <div class="kpi-label">Unidades médicas</div>
-            <div class="kpi-desc">Bajo responsabilidad jurisdiccional</div>
-          </div>
-
-          <div class="kpi-card" style="--kpi-color: var(--gold-dk)">
-            <div class="kpi-number">15</div>
-            <div class="kpi-label">Municipios</div>
-            <div class="kpi-desc">Atendidos en la jurisdicción</div>
-          </div>
-
-          <div class="kpi-card" style="--kpi-color: var(--purple)">
-            <div class="kpi-number">30+</div>
-            <div class="kpi-label">Materiales en biblioteca</div>
-            <div class="kpi-desc">Lineamientos, manuales y formatos</div>
-          </div>
-
-          <div class="kpi-card" style="--kpi-color: var(--crimson-dk)">
-            <div class="kpi-number">12</div>
-            <div class="kpi-label">Certificaciones 2025</div>
-            <div class="kpi-desc">Escuelas, ELHT y comunidades</div>
-          </div>
-
-          <div class="kpi-card" style="--kpi-color: var(--teal-dk)">
-            <div class="kpi-number">8</div>
-            <div class="kpi-label">Jornadas programadas</div>
-            <div class="kpi-desc">Pendientes en el trimestre</div>
-          </div>
-
-        </div>
+        <div class="kpi-grid" data-kpis="index"></div>
       </div>
     </section>
 
@@ -427,6 +389,7 @@
   <div id="site-footer"></div>
 
   <script src="assets/data/campaigns.js"></script>
+  <script src="assets/data/kpis.js"></script>
   <script src="components.js"></script>
   <script src="script.js"></script>
 </body>
