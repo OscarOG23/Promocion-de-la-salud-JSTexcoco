@@ -467,7 +467,8 @@ function renderBiblioteca() {
   const ICON_EXTERNAL = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`;
 
   grid.innerHTML = BIBLIOTECA.map(m => {
-    const ext  = m.url.startsWith('http');
+    const url  = m.url || '#';
+    const ext  = url.startsWith('http');
     const meta = [
       `<span><strong>Tema:</strong> ${m.tema}</span>`,
       `<span><strong>Público:</strong> ${m.publico}</span>`,
@@ -479,7 +480,7 @@ function renderBiblioteca() {
         <div class="mc-cat ${m.categoria}">${CAT_LABELS[m.categoria] || m.categoria}</div>
         <h3 class="mc-title">${m.titulo}</h3>
         <div class="mc-meta">${meta}</div>
-        <a href="${m.url}" class="mc-btn"${ext ? ' target="_blank" rel="noopener"' : ''}>
+        <a href="${url}" class="mc-btn"${ext ? ' target="_blank" rel="noopener noreferrer"' : ''}>
           ${ext ? ICON_EXTERNAL : ICON_DOWNLOAD}
           ${m.accion}
         </a>
@@ -602,7 +603,7 @@ function initKpiCounters() {
 //  ARRANQUE GLOBAL
 // ══════════════════════════════════════════════
 
-// Campanhas — renderizar antes de initCarousel
+// Campañas — renderizar antes de initCarousel
 renderCampaigns();
 
 // KPIs (index.html y reportes.html)
