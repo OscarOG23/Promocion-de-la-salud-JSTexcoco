@@ -1,0 +1,47 @@
+{
+  "planPath": "docs/superpowers/plans/2026-05-27-premium-polish-data-system.md",
+  "tasks": [
+    {
+      "id": 1,
+      "subject": "Task 1: kpis.js + renderKPIs + contadores animados",
+      "status": "pending",
+      "description": "**Goal:** Un solo archivo de datos para los KPIs de index y reportes, con contadores que animan al entrar al viewport.\n\n**Files:** Create assets/data/kpis.js · Modify index.html, reportes.html, script.js\n\n**Verify:** index.html y reportes.html muestran 6 KPI cards generadas, contadores animan al scroll, consola limpia.\n\n```json:metadata\n{\"files\": [\"assets/data/kpis.js\", \"index.html\", \"reportes.html\", \"script.js\"], \"verifyCommand\": \"python -m http.server 8080 → abrir /index.html y /reportes.html\", \"acceptanceCriteria\": [\"6 KPI cards generadas desde KPIS en ambas páginas\", \"contadores animan ~1.2s easeOutExpo\", \"8500 se muestra como 8 500\", \"reduced-motion muestra valores directos\"]}\n```"
+    },
+    {
+      "id": 2,
+      "subject": "Task 2: biblioteca.js + renderBiblioteca",
+      "status": "pending",
+      "blockedBy": [1],
+      "description": "**Goal:** Los 25 materiales viven en assets/data/biblioteca.js; la página los genera sola y los filtros siguen funcionando.\n\n**Files:** Create assets/data/biblioteca.js · Modify biblioteca.html, script.js, style.css (.empty-state)\n\n**Verify:** /biblioteca.html → 25 cards, filtro Manuales=3, Formatos=5, consola limpia.\n\n```json:metadata\n{\"files\": [\"assets/data/biblioteca.js\", \"biblioteca.html\", \"script.js\", \"style.css\"], \"verifyCommand\": \"abrir /biblioteca.html con server local\", \"acceptanceCriteria\": [\"25 cards generadas con mismos data-categoria\", \"filtros funcionan sin cambios\", \"contador muestra 25 recursos\", \"estado vacío si falta BIBLIOTECA\"]}\n```"
+    },
+    {
+      "id": 3,
+      "subject": "Task 3: directorio.js + renderDirectorio",
+      "status": "pending",
+      "blockedBy": [2],
+      "description": "**Goal:** Unidades de psicología (3) y nutrición (2) desde assets/data/directorio.js; sede y referencia externa quedan estáticas.\n\n**Files:** Create assets/data/directorio.js · Modify directorio.html, script.js\n\n**Verify:** /directorio.html → 3 cards psicología + 2 nutrición idénticas a las actuales.\n\n```json:metadata\n{\"files\": [\"assets/data/directorio.js\", \"directorio.html\", \"script.js\"], \"verifyCommand\": \"abrir /directorio.html con server local\", \"acceptanceCriteria\": [\"grids [data-dir] generados desde DIRECTORIO\", \"íconos dc-psicologia/dc-nutricion correctos\", \"secciones estáticas intactas\", \"estado vacío si falta DIRECTORIO\"]}\n```"
+    },
+    {
+      "id": 4,
+      "subject": "Task 4: CSS premium — hero vivo, micro-interacciones, móvil",
+      "status": "pending",
+      "blockedBy": [3],
+      "description": "**Goal:** Hero que respira, title-reveal clip-path, hover de cards con acento+sombra doble, :active scale, subrayado nav, View Transitions, duraciones móviles 60%, táctiles 44px, menú escalonado.\n\n**Files:** Modify style.css (regla .hero:388, .hero-title:497, bloque nuevo antes de UTILIDADES ~2446, media query 900px ~2406)\n\n**Verify:** index escritorio + DevTools 375px + reduced-motion.\n\n```json:metadata\n{\"files\": [\"style.css\"], \"verifyCommand\": \"inspección visual escritorio/375px/reduced-motion\", \"acceptanceCriteria\": [\"hero-breathe 20s\", \"title-reveal clip-path\", \"cards ::after scaleX + sombra doble\", \"botones :active scale(.97)\", \"nav-link::after subrayado escritorio\", \"@view-transition cross-fade\", \"móvil: duraciones 60%, táctiles 44px, nav-item-in escalonado\"]}\n```"
+    },
+    {
+      "id": 5,
+      "subject": "Task 5: JS premium — píldora filtros, parallax carrusel, partículas móviles",
+      "status": "pending",
+      "blockedBy": [4],
+      "description": "**Goal:** initFilterPill(), corrección del bug de goTo() (.cs-tag/.cs-title/.cs-meta/.cs-actions en vez de clases inexistentes), partículas 8 en móvil / 18 en escritorio.\n\n**Files:** Modify script.js (línea ~104 count, goTo ~390-402, nueva initFilterPill, arranque global)\n\n**Verify:** biblioteca → píldora desliza; index → carrusel anima contenido real; móvil → 8 partículas.\n\n```json:metadata\n{\"files\": [\"script.js\"], \"verifyCommand\": \"node --check script.js (si hay Node) + verificación en navegador\", \"acceptanceCriteria\": [\"partículas 8/18 según matchMedia 900px\", \"goTo anima clases existentes con translateX escalonado\", \"píldora se desliza al cambiar filtro\", \"sin JS el filtro activo conserva estilo (has-pill ausente)\", \"reduced-motion desactiva píldora\"]}\n```"
+    },
+    {
+      "id": 6,
+      "subject": "Task 6: Documentación + verificación final",
+      "status": "pending",
+      "blockedBy": [5],
+      "description": "**Goal:** CLAUDE.md documenta kpis.js/biblioteca.js/directorio.js y nuevos behaviors; verificación integral de las 8 páginas; push a origin/master.\n\n**Files:** Modify CLAUDE.md\n\n**Verify:** 8 páginas con consola limpia; git push origin master.\n\n```json:metadata\n{\"files\": [\"CLAUDE.md\"], \"verifyCommand\": \"abrir las 8 páginas + git push origin master\", \"acceptanceCriteria\": [\"CLAUDE.md sección biblioteca apunta a biblioteca.js\", \"file structure incluye 4 data files\", \"behaviors 15-19 documentados\", \"pending integrations actualizado\", \"push exitoso\"]}\n```"
+    }
+  ],
+  "lastUpdated": "2026-05-27T00:00:00Z"
+}
