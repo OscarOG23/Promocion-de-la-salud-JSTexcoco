@@ -441,6 +441,53 @@ function initCarousel() {
 }
 
 // ══════════════════════════════════════════════
+//  BIBLIOTECA — render desde biblioteca.js
+// ══════════════════════════════════════════════
+
+function renderBiblioteca() {
+  const grid = document.querySelector('.material-grid');
+  if (!grid) return;
+
+  if (typeof BIBLIOTECA === 'undefined' || !BIBLIOTECA.length) {
+    grid.innerHTML = '<p class="empty-state">Sin recursos por el momento.</p>';
+    return;
+  }
+
+  const CAT_LABELS = {
+    lineamientos: 'Lineamiento',
+    manuales:     'Manual',
+    formatos:     'Formato',
+    noms:         'NOM',
+    grafico:      'Material gráfico',
+    presentacion: 'Presentación',
+    documentos:   'Doc. oficial',
+  };
+
+  const ICON_DOWNLOAD = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>`;
+  const ICON_EXTERNAL = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`;
+
+  grid.innerHTML = BIBLIOTECA.map(m => {
+    const ext  = m.url.startsWith('http');
+    const meta = [
+      `<span><strong>Tema:</strong> ${m.tema}</span>`,
+      `<span><strong>Público:</strong> ${m.publico}</span>`,
+      m.modalidad   ? `<span><strong>Modalidad:</strong> ${m.modalidad}</span>` : '',
+      m.actualizado ? `<span><strong>Actualizado:</strong> ${m.actualizado}</span>` : '',
+    ].join('');
+    return `
+      <article class="material-card" data-categoria="${m.categoria}">
+        <div class="mc-cat ${m.categoria}">${CAT_LABELS[m.categoria] || m.categoria}</div>
+        <h3 class="mc-title">${m.titulo}</h3>
+        <div class="mc-meta">${meta}</div>
+        <a href="${m.url}" class="mc-btn"${ext ? ' target="_blank" rel="noopener"' : ''}>
+          ${ext ? ICON_EXTERNAL : ICON_DOWNLOAD}
+          ${m.accion}
+        </a>
+      </article>`;
+  }).join('');
+}
+
+// ══════════════════════════════════════════════
 //  FILTROS DE BIBLIOTECA
 // ══════════════════════════════════════════════
 
@@ -564,6 +611,9 @@ initKpiCounters();
 
 // Carrusel (index.html)
 initCarousel();
+
+// Biblioteca — renderizar antes de initFilters
+renderBiblioteca();
 
 // Filtros (biblioteca.html)
 initFilters();
