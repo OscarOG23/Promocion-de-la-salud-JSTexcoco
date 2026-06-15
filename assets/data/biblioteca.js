@@ -124,7 +124,7 @@ const BIBLIOTECA = [
 
   { titulo: "Programa Sectorial de Salud del Estado de México 2023–2029", categoria: "documentos",
     tema: "Política en salud", publico: "Personal directivo", actualizado: "2023",
-    url: "#", accion: "Ver en línea" },
+    url: "https://transparenciafiscal.edomex.gob.mx/sites/transparenciafiscal.edomex.gob.mx/files/files/Programas%20Sectoriales/2024-2029/ps-bienestar-social-24-29.pdf", accion: "Ver en línea" },
 
   { titulo: "Criterios de Certificación — Comunidades Saludables ISEM", categoria: "documentos",
     tema: "Entornos / Certificación", publico: "Responsables de programa", actualizado: "2024",
