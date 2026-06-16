@@ -22,8 +22,8 @@ const KPIS = {
   /* ── Tablero (reportes.html) ── */
   reportes: [
     { numero: 4,    sufijo: "",  etiqueta: "Campañas activas",       color: "crimson",    desc: "Nacionales y estatales 2025" },
-    { numero: 45,   sufijo: "+", etiqueta: "Unidades médicas",        color: "teal",       desc: "Bajo responsabilidad jurisdiccional" },
-    { numero: 15,   sufijo: "",  etiqueta: "Municipios atendidos",    color: "gold-dk",    desc: "Jurisdicción Sanitaria Texcoco" },
+    { numero: 62,   sufijo: "+", etiqueta: "Unidades médicas",        color: "teal",       desc: "Bajo responsabilidad jurisdiccional" },
+    { numero: 9,   sufijo: "",  etiqueta: "Municipios atendidos",    color: "gold-dk",    desc: "Jurisdicción Sanitaria Texcoco" },
     { numero: 12,   sufijo: "",  etiqueta: "Certificaciones 2025",    color: "purple",     desc: "Escuelas, ELHT y comunidades" },
     { numero: 320,  sufijo: "+", etiqueta: "Actividades realizadas",  color: "crimson-dk", desc: "Acumulado enero–mayo 2025" },
     { numero: 8500, sufijo: "+", etiqueta: "Personas beneficiadas",   color: "teal-dk",    desc: "Acumulado enero–mayo 2025" }
