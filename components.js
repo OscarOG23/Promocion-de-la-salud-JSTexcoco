@@ -130,8 +130,16 @@
         <a href="reportes.html">Reportes</a>
         <a href="directorio.html">Directorio</a>
       </div>
+      <div class="footer-links">
+        <span>Cda. Carretera Papalotla s/n, San Andrés Chiautla 1, 56030 Chiautla, Méx.</span>
+        <a href="tel:015959531884">01 595 95 3 18 84</a>
+        <a href="tel:015959531945">01 595 95 3 19 45</a>
+        <span>Ext. 94251</span>
+        <a href="mailto:comitepromociontex@gmail.com">comitepromociontex@gmail.com</a>
+        <a href="https://www.facebook.com/profile.php?id=100012254806363" target="_blank" rel="noopener">Facebook</a>
+      </div>
       <div class="footer-legal">
-        <span>© 2025 Jurisdicción Sanitaria Texcoco — ISEM</span>
+        <span>© 2025 Promoción a la Salud — Jurisdicción Sanitaria Texcoco</span>
         <span>Gobierno del Estado de México</span>
       </div>
     </div>
