@@ -1821,6 +1821,17 @@ button { font-family: var(--font-body); }
 .mc-cat.presentacion  { background: var(--crimson-lt);  color: var(--crimson); }
 .mc-cat.documentos    { background: var(--gray-100);    color: var(--gray-600); }
 
+/* ── Categorías de talleres ── */
+.mc-cat.alimentacion          { background: var(--gold-lt);           color: var(--gold-dk); }
+.mc-cat.actividad             { background: var(--teal-lt);           color: var(--teal); }
+.mc-cat.salud-sexual          { background: var(--crimson-lt);        color: var(--crimson); }
+.mc-cat.entornos-fisicos      { background: rgba(35,91,78,.08);       color: var(--teal-dk); }
+.mc-cat.entornos-psicosociales{ background: var(--purple-lt);         color: var(--purple); }
+.mc-cat.infancia              { background: rgba(188,149,92,.12);     color: var(--gold-dk); }
+.mc-cat.diversidad            { background: rgba(92,61,143,.10);      color: var(--purple); }
+.mc-cat.derecho-salud         { background: var(--gray-100);          color: var(--gray-800); }
+.mc-cat.participacion         { background: rgba(159,34,65,.06);      color: var(--crimson-dk); }
+
 .mc-title {
   font-size: 15px;
   font-weight: 500;

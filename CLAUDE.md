@@ -10,14 +10,15 @@ Multi-page internal staff platform for the **Departamento de Promoción a la Sal
 
 ```
 /
-├── index.html          ← Portal (hero + carousel + KPIs + 8 nav-cards)
-├── promocion.html      ← Promoción de la Salud (9 determinantes + subsecciones)
-├── adicciones.html     ← Adicciones (prevención, tamizajes, capacitación)
-├── salud-mental.html   ← Salud Mental (bienestar, suicidio, violencia, infancias)
-├── entornos.html       ← Entornos Saludables (escuelas, comunidades, ELHT)
-├── biblioteca.html     ← Biblioteca con filtros (26+ material-cards)
-├── reportes.html       ← Reportes e Indicadores (KPIs + tablas descargables)
-├── directorio.html     ← Directorio de Atención (unidades + psicología/nutrición)
+├── index.html               ← Portal (hero + carousel + KPIs + 8 nav-cards)
+├── promocion.html           ← Promoción de la Salud (9 determinantes + subsecciones)
+├── adicciones.html          ← Adicciones (prevención, tamizajes, capacitación)
+├── salud-mental.html        ← Salud Mental (bienestar, suicidio, violencia, infancias)
+├── entornos.html            ← Entornos Saludables (escuelas, comunidades, ELHT)
+├── biblioteca.html          ← Biblioteca con filtros (26+ material-cards)
+├── reportes.html            ← Reportes e Indicadores (KPIs + tablas descargables)
+├── directorio.html          ← Directorio de Atención (unidades + psicología/nutrición)
+├── recursos-psicologia.html ← Recursos de Psicología (catálogo de materiales clínicos)
 ├── style.css           ← Compartido — todos los componentes
 ├── script.js           ← Comportamientos compartidos + carousel + filtros
 ├── components.js       ← Navbar + footer como template literals (inyectados via JS)
@@ -27,7 +28,10 @@ Multi-page internal staff platform for the **Departamento de Promoción a la Sal
         ├── campaigns.js    ← Campañas del carrusel (index)
         ├── kpis.js         ← Números de indicadores (index + reportes)
         ├── biblioteca.js   ← Materiales de la biblioteca
-        └── directorio.js   ← Unidades de psicología y nutrición
+        ├── directorio.js   ← Unidades de psicología y nutrición
+        ├── talleres.js     ← Catálogo de talleres comunitarios (recursos-psicologia, promocion)
+        ├── formularios.js  ← Formularios y formatos clínicos descargables
+        └── psicologia.js   ← Recursos especializados de psicología
 ```
 
 ## Development
@@ -134,6 +138,9 @@ document.querySelectorAll('[data-page]').forEach(a => {
 17. **`renderDirectorio()`** — directory-cards desde `directorio.js` en grids `[data-dir]`
 18. **`initFilterPill()`** — píldora deslizante bajo el filtro activo (progressive enhancement vía clase `has-pill`)
 19. **View Transitions** — cross-fade entre páginas (CSS puro, con excepción explícita para reduced-motion)
+20. **`renderTalleres()`** — genera material-cards del catálogo de talleres desde `talleres.js`
+21. **`renderFormularios()`** — genera tarjetas de formularios descargables desde `formularios.js`
+22. **`renderPsicologia()`** — genera tarjetas de recursos de psicología desde `psicologia.js`
 
 ## Cómo actualizar campañas
 
@@ -176,6 +183,25 @@ Para añadir una categoría NUEVA hay 3 puntos de contacto: `CAT_LABELS` en `scr
 **KPIs:** editar `assets/data/kpis.js` (arrays `index` y `reportes` — un solo lugar para ambas páginas).
 **Directorio:** editar `assets/data/directorio.js` (`tipo: "psicologia" | "nutricion"`).
 
+## Cómo actualizar talleres / formularios / psicología
+
+**Talleres:** editar `assets/data/talleres.js` — añadir un objeto al array `TALLERES`:
+
+```js
+{ titulo: "Título del taller", categoria: "alimentacion",
+  tema: "Subtema", publico: "Población objetivo",
+  modalidad: "Taller · 90 min",   // opcional
+  actualizado: "Jun 2025",        // opcional
+  url: "https://www.canva.com/design/ID/view", accion: "Ver en Canva" }
+```
+
+`categoria` válidas (coinciden con `.mc-cat.*` en `style.css`):
+`alimentacion` · `actividad` · `salud-sexual` · `entornos-fisicos` · `entornos-psicosociales` · `infancia` · `diversidad` · `derecho-salud` · `participacion`
+
+**Formularios:** editar `assets/data/formularios.js` — el array `FORMULARIOS`. Misma estructura que `BIBLIOTECA` con campos `titulo`, `categoria`, `tema`, `publico`, `url`, `accion`.
+
+**Psicología:** editar `assets/data/psicologia.js` — el array `PSICOLOGIA`. Misma estructura. Las URLs actuales son `"#"` y están marcadas `/* PENDIENTE */`; sustituir cuando se tengan los links reales.
+
 ## Design system
 
 ```css
@@ -216,6 +242,9 @@ Para añadir una categoría NUEVA hay 3 puntos de contacto: `CAT_LABELS` en `scr
 - **Contact form:** Conectar `handleForm()` a Formspree (`https://formspree.io/f/XXXX`).
 - **Datos reales:** Reemplazar `url: "#"` en `assets/data/biblioteca.js`, números placeholder en `kpis.js` y unidades/horarios en `directorio.js`.
 - **Favicon:** Crear con `--crimson` / `--gold`.
+- **URLs de talleres (Canva):** Las URLs del catálogo de talleres usan el patrón `https://www.canva.com/design/ID/view`. Verificar que el token de compartir esté activo (modo "Cualquier persona con el enlace puede ver") antes de publicar.
+- **Archivos filesusr.com (Wix CDN):** Algunas URLs de `biblioteca.js` y `talleres.js` apuntan a `*.filesusr.com` (CDN de Wix). Esos archivos dejan de ser accesibles si se cancela la cuenta de Wix — re-alojar en Google Drive o servidor propio antes del despliegue definitivo.
+- **Recursos de psicología:** Las URLs en `assets/data/psicologia.js` están todas en `"#" /* PENDIENTE */`; reemplazar cuando se tengan los links de Drive/Canva correspondientes.
 
 ## Deployment
 
