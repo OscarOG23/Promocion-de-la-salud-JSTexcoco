@@ -144,6 +144,13 @@ document.querySelectorAll('[data-page]').forEach(a => {
 23. **`renderCampaignsGrid()`** — genera `.subsec-card` en `promocion.html#campanas` desde el MISMO `CAMPAIGNS` que el carrusel (fuente única, no duplicar)
 24. **`renderContacto()`** — rellena la sección de contacto (`index.html`) desde `window.CONTACTO`
 25. **`initTallerDeepLinks()`** — los enlaces `[data-filter]` (det-cards) activan el filtro del catálogo de talleres
+26. **`initFilters()` honra `?cat=`** — `biblioteca.html?cat=formatos` (o cualquier categoría) aplica el filtro al cargar, para deep-links desde otras páginas
+
+### Conexiones clave (mapa de navegación)
+
+- **Inicio = centro de mando:** el strip de accesos rápidos (`.qa-grid`, 8 atajos) lleva a lo que el personal más usa: Catálogo de Talleres, Enviar reporte mensual, Biblioteca de Formatos, Recursos de Psicología, Determinantes, Directorio, Indicadores, Jornadas.
+- **Hub de reportes:** las secciones de evidencias de promoción, adicciones, salud-mental y entornos enlazan a `reportes.html#formularios` (captura mensual única).
+- **Catálogo de talleres:** las 9 det-cards (`data-filter`) y `promocion.html#talleres` comparten las 9 categorías; el filtro se activa por deep-link.
 
 ## Fuentes únicas (DRY — editar en un solo lugar)
 

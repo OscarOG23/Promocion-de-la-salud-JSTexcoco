@@ -519,10 +519,9 @@ function renderTalleres() {
           ${ICON_EXTERNAL}
           Abrir presentación
         </a>
-        <a href="${t.complementos || '#'}" class="mc-btn" style="margin-top:.5rem;background:var(--off-white);color:var(--charcoal);border:1px solid rgba(0,0,0,.1);"${compExt ? ' target="_blank" rel="noopener noreferrer"' : ''}${!t.complementos ? ' title="Agrega aquí un enlace de Drive en assets/data/talleres.js (campo complementos)"' : ''}>
-          ${ICON_FOLDER}
-          ${t.complementos ? 'Complementos' : 'Agregar complementos'}
-        </a>
+        ${t.complementos
+          ? `<a href="${t.complementos}" class="mc-btn" style="margin-top:.5rem;background:var(--off-white);color:var(--charcoal);border:1px solid rgba(0,0,0,.1);"${compExt ? ' target="_blank" rel="noopener noreferrer"' : ''}>${ICON_FOLDER} Complementos</a>`
+          : `<span class="mc-btn" style="margin-top:.5rem;background:var(--off-white);color:var(--text-muted);border:1px dashed rgba(0,0,0,.18);cursor:default" title="Agrega un enlace de Drive en assets/data/talleres.js (campo complementos)">${ICON_FOLDER} Complementos (pendiente)</span>`}
       </article>`;
   }).join('');
 }
@@ -668,8 +667,16 @@ function initFilters() {
     });
   });
 
-  // Inicializar con conteo total
-  updateCount(cards.length);
+  // Deep-link: ?cat=formatos aplica el filtro al cargar (enlaces desde otras páginas)
+  const initialCat = new URLSearchParams(window.location.search).get('cat');
+  const initialBtn = initialCat && buttons.find(b => b.dataset.cat === initialCat);
+  if (initialBtn) {
+    buttons.forEach(b => b.classList.remove('active'));
+    initialBtn.classList.add('active');
+    applyFilter(initialCat);
+  } else {
+    updateCount(cards.length);
+  }
 }
 
 /** Píldora deslizante bajo el filtro activo (progressive enhancement) */

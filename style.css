@@ -2700,6 +2700,13 @@ html { scroll-behavior: smooth; }
   }
 }
 
+/* Accesos rápidos: 8 tarjetas en 2 filas → divisores limpios en escritorio */
+@media (min-width: 901px) {
+  .qa-grid .qa-card { border-bottom: 1px solid var(--gray-200); }
+  .qa-grid .qa-card:nth-child(4n) { border-right: none; }
+  .qa-grid .qa-card:nth-last-child(-n+4) { border-bottom: none; }
+}
+
 @media (max-width: 580px) {
   /* Título del hero mejor proporcionado en pantallas chicas */
   .hero-title { font-size: clamp(33px, 8.6vw, 60px); line-height: 1.08; }
