@@ -519,13 +519,25 @@ function renderTalleres() {
           ${ICON_EXTERNAL}
           Abrir presentación
         </a>
-        ${t.complementos ? `
-        <a href="${t.complementos}" class="mc-btn" style="margin-top:.5rem;background:var(--off-white);color:var(--charcoal);border:1px solid rgba(0,0,0,.1);"${compExt ? ' target="_blank" rel="noopener noreferrer"' : ''}>
+        <a href="${t.complementos || '#'}" class="mc-btn" style="margin-top:.5rem;background:var(--off-white);color:var(--charcoal);border:1px solid rgba(0,0,0,.1);"${compExt ? ' target="_blank" rel="noopener noreferrer"' : ''}${!t.complementos ? ' title="Agrega aquí un enlace de Drive en assets/data/talleres.js (campo complementos)"' : ''}>
           ${ICON_FOLDER}
-          Complementos
-        </a>` : ''}
+          ${t.complementos ? 'Complementos' : 'Agregar complementos'}
+        </a>
       </article>`;
   }).join('');
+}
+
+// Deep-link: los determinantes (#talleres data-filter) activan el filtro del catálogo
+function initTallerDeepLinks() {
+  const links = document.querySelectorAll('[data-filter]');
+  if (!links.length) return;
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      const cat = link.dataset.filter;
+      const btn = document.querySelector(`.filter-btn[data-cat="${cat}"]`);
+      if (btn) btn.click();
+    });
+  });
 }
 
 // ══════════════════════════════════════════════
@@ -800,11 +812,52 @@ function renderFormularios() {
 }
 
 // ══════════════════════════════════════════════
+//  CAMPAÑAS (grid) — misma fuente que el carrusel: campaigns.js
+//  Se usa en promocion.html#campanas para no duplicar info.
+// ══════════════════════════════════════════════
+
+function renderCampaignsGrid() {
+  const grid = document.getElementById('campanas-grid');
+  if (!grid) return;
+  if (typeof CAMPAIGNS === 'undefined' || !CAMPAIGNS.length) {
+    grid.innerHTML = '<p class="empty-state">Sin campañas activas.</p>';
+    return;
+  }
+  const ICON = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>`;
+  grid.innerHTML = CAMPAIGNS.map(c => `
+    <div class="subsec-card">
+      <div class="subsec-icon">${ICON}</div>
+      <h3>${c.titulo}</h3>
+      <p>${c.objetivo}</p>
+      <a href="index.html#campanas" class="subsec-link">Ver campaña y materiales →</a>
+    </div>`).join('');
+}
+
+// ══════════════════════════════════════════════
+//  CONTACTO — fuente única: window.CONTACTO (definido en components.js)
+//  Rellena la sección de contacto (index.html) para no duplicar datos.
+// ══════════════════════════════════════════════
+
+function renderContacto() {
+  const C = window.CONTACTO;
+  if (!C) return;
+  const set = (id, html) => { const el = document.getElementById(id); if (el) el.innerHTML = html; };
+  set('c-direccion', C.direccion);
+  set('c-telefonos', `<a href="tel:${C.tel1Link}">${C.tel1}</a> · <a href="tel:${C.tel2Link}">${C.tel2}</a> · Ext. ${C.ext}`);
+  set('c-email', `<a href="mailto:${C.email}">${C.email}</a>`);
+  set('c-facebook', `<a href="${C.facebook}" target="_blank" rel="noopener">Facebook · Promoción a la Salud Texcoco</a>`);
+}
+
+// ══════════════════════════════════════════════
 //  ARRANQUE GLOBAL
 // ══════════════════════════════════════════════
 
 // Campañas — renderizar antes de initCarousel
 renderCampaigns();
+renderCampaignsGrid();
+
+// Datos de contacto (fuente única en components.js)
+renderContacto();
 
 // KPIs (index.html y reportes.html)
 renderKPIs();
@@ -831,6 +884,9 @@ renderFormularios();
 // Filtros (biblioteca.html y promocion.html)
 initFilters();
 initFilterPill();
+
+// Deep-link de determinantes → filtro del catálogo de talleres
+initTallerDeepLinks();
 
 // Formulario de contacto
 const contactForm = document.getElementById('contact-form');

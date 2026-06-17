@@ -5,8 +5,11 @@
    pégalo al final de su categoría y edita los campos.
 
    categoria válidas (deben coincidir con los filtros):
-     lineamientos | manuales | formatos | noms |
+     formatos | lineamientos | manuales | noms |
      grafico | presentacion | documentos
+
+   El orden de este array define el orden en que se ven con el filtro
+   "Todos". FORMATOS va primero por ser lo más usado por el personal.
 
    "modalidad" y "actualizado" son opcionales (omite el campo si no aplica).
    "url": pega el link de Google Drive / PDF. Usa "#" si aún no hay link.
@@ -15,51 +18,11 @@
 
 const BIBLIOTECA = [
 
-  /* ── LINEAMIENTOS ── */
-  { titulo: "Lineamiento de Promoción a la Salud 2024", categoria: "lineamientos",
-    tema: "Promoción general", publico: "Personal de salud", actualizado: "Ene 2024",
-    url: "#", accion: "Descargar" }, /* PENDIENTE */
-
-  { titulo: "Lineamiento SINBA 2025 — Indicadores de Promoción", categoria: "lineamientos",
-    tema: "SINBA / Indicadores", publico: "Responsables de unidad", actualizado: "Ene 2025",
-    url: "#", accion: "Descargar" }, /* PENDIENTE */
-
-  { titulo: "Lineamiento Estatal de Entornos Saludables 2024", categoria: "lineamientos",
-    tema: "Entornos saludables", publico: "Responsables de programa", actualizado: "Mar 2024",
-    url: "#", accion: "Descargar" }, /* PENDIENTE */
-
-  /* ── MANUALES ── */
-  { titulo: "Manual de Procedimientos — Escuela Saludable", categoria: "manuales",
-    tema: "Certificación escolar", publico: "Responsable del programa", actualizado: "Feb 2024",
-    url: "#", accion: "Descargar" }, /* PENDIENTE */
-
-  { titulo: "Manual Operativo de Adicciones 2025", categoria: "manuales",
-    tema: "Adicciones", publico: "Personal operativo", actualizado: "Ene 2025",
-    url: "#", accion: "Descargar" }, /* PENDIENTE */
-
-  { titulo: "Manual de Orientación Alimentaria — NOM-043", categoria: "manuales",
-    tema: "Alimentación saludable", publico: "Personal de salud y público general", actualizado: "2023",
-    url: "https://www.gob.mx/cms/uploads/attachment/file/138258/NOM-043-servicios-basicos-salud-educacion-alimentaria.pdf",
-    accion: "Ver en línea" },
-
-  { titulo: "Guías de Práctica Clínica — Nutrición (IMSS)", categoria: "manuales",
-    tema: "Nutrición / Práctica clínica", publico: "Personal de salud", actualizado: "Vigente",
-    url: "https://www.imss.gob.mx/guias_practicaclinica?field_categoria_gs_value=25",
-    accion: "Ver en línea" },
-
   /* ── FORMATOS ── */
   { titulo: "Formatos SINBA 2023 — Colección completa", categoria: "formatos",
     tema: "SINBA / Captura", publico: "Responsables de unidad", actualizado: "2023",
     url: "https://drive.google.com/drive/folders/1vm_W1E-GuLbPx9OFbvLRqyjY_Lxh1wn6",
     accion: "Abrir en Drive" },
-
-  { titulo: "Lista de asistencia — Actividades educativas", categoria: "formatos",
-    tema: "Evidencias / Registros", publico: "Personal promotor", actualizado: "Ene 2025",
-    url: "#", accion: "Descargar" }, /* PENDIENTE */
-
-  { titulo: "Formato de tamizaje de adicciones — AUDIT / CAGE", categoria: "formatos",
-    tema: "Adicciones / Tamizaje", publico: "Personal de salud", actualizado: "2024",
-    url: "#", accion: "Descargar" }, /* PENDIENTE */
 
   { titulo: "Metas por unidad 2025 — Hoja de cálculo", categoria: "formatos",
     tema: "Metas / Planeación", publico: "Responsables de unidad", actualizado: "Ene 2025",
@@ -100,6 +63,42 @@ const BIBLIOTECA = [
     tema: "Expediente clínico / Primer nivel", publico: "Personal de salud", actualizado: "May 2021",
     url: "https://ddsisem.edomex.gob.mx/bvirtual/descargar_archivo.php?cve_formato=1642",
     accion: "Descargar" },
+
+  { titulo: "Lista de asistencia — Actividades educativas", categoria: "formatos",
+    tema: "Evidencias / Registros", publico: "Personal promotor", actualizado: "Ene 2025",
+    url: "#", accion: "Descargar" }, /* PENDIENTE */
+
+  { titulo: "Formato de tamizaje de adicciones — AUDIT / CAGE", categoria: "formatos",
+    tema: "Adicciones / Tamizaje", publico: "Personal de salud", actualizado: "2024",
+    url: "#", accion: "Descargar" }, /* PENDIENTE */
+
+  /* ── LINEAMIENTOS ── */
+  { titulo: "Lineamiento SINBA 2025 — Indicadores de Promoción", categoria: "lineamientos",
+    tema: "SINBA / Indicadores", publico: "Responsables de unidad", actualizado: "Ene 2025",
+    url: "#", accion: "Descargar" }, /* PENDIENTE */
+
+  { titulo: "Lineamiento Estatal de Entornos Saludables 2024", categoria: "lineamientos",
+    tema: "Entornos saludables", publico: "Responsables de programa", actualizado: "Mar 2024",
+    url: "#", accion: "Descargar" }, /* PENDIENTE */
+
+  /* ── MANUALES ── */
+  { titulo: "Manual de Procedimientos — Escuela Saludable", categoria: "manuales",
+    tema: "Certificación escolar", publico: "Responsable del programa", actualizado: "Feb 2024",
+    url: "#", accion: "Descargar" }, /* PENDIENTE */
+
+  { titulo: "Manual Operativo de Adicciones 2025", categoria: "manuales",
+    tema: "Adicciones", publico: "Personal operativo", actualizado: "Ene 2025",
+    url: "#", accion: "Descargar" }, /* PENDIENTE */
+
+  { titulo: "Manual de Orientación Alimentaria — NOM-043", categoria: "manuales",
+    tema: "Alimentación saludable", publico: "Personal de salud y público general", actualizado: "2023",
+    url: "https://www.gob.mx/cms/uploads/attachment/file/138258/NOM-043-servicios-basicos-salud-educacion-alimentaria.pdf",
+    accion: "Ver en línea" },
+
+  { titulo: "Guías de Práctica Clínica — Nutrición (IMSS)", categoria: "manuales",
+    tema: "Nutrición / Práctica clínica", publico: "Personal de salud", actualizado: "Vigente",
+    url: "https://www.imss.gob.mx/guias_practicaclinica?field_categoria_gs_value=25",
+    accion: "Ver en línea" },
 
   /* ── NOMs ── */
   { titulo: "NOM-043-SSA2-2012 — Educación alimentaria", categoria: "noms",

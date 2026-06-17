@@ -6,14 +6,27 @@
    ================================================ */
 
 (function () {
+  /* ── 0. DATOS DE CONTACTO — FUENTE ÚNICA ──
+     Edita SOLO aquí: footer, top-bar y la sección de contacto (index)
+     se actualizan automáticamente. */
+  const CONTACTO = {
+    direccion: 'Cda. Carretera Papalotla s/n, San Andrés Chiautla 1, 56030 Chiautla, Méx.',
+    tel1: '01 595 95 3 18 84', tel1Link: '015959531884',
+    tel2: '01 595 95 3 19 45', tel2Link: '015959531945',
+    ext: '94251',
+    email: 'comitepromociontex@gmail.com',
+    facebook: 'https://www.facebook.com/profile.php?id=100012254806363',
+  };
+  window.CONTACTO = CONTACTO;
+
   /* ── 1. HTML del navbar ── */
   const TOP_BAR = `
   <div class="top-bar">
     <div class="container top-bar-inner">
       <span><strong>ISEM</strong> — Instituto de Salud del Estado de México</span>
-      <a href="tel:5959531884" class="top-bar-contact">
+      <a href="tel:${CONTACTO.tel1Link}" class="top-bar-contact">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.3 19.79 19.79 0 01.22 2.62 2 2 0 012.2.5H5.1a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.41a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-        595 953 1884 · 595 953 1945
+        ${CONTACTO.tel1} · ${CONTACTO.tel2}
       </a>
     </div>
   </div>`;
@@ -132,12 +145,12 @@
         <a href="recursos-psicologia.html">Recursos psicología</a>
       </div>
       <div class="footer-links">
-        <span>Cda. Carretera Papalotla s/n, San Andrés Chiautla 1, 56030 Chiautla, Méx.</span>
-        <a href="tel:015959531884">01 595 95 3 18 84</a>
-        <a href="tel:015959531945">01 595 95 3 19 45</a>
-        <span>Ext. 94251</span>
-        <a href="mailto:comitepromociontex@gmail.com">comitepromociontex@gmail.com</a>
-        <a href="https://www.facebook.com/profile.php?id=100012254806363" target="_blank" rel="noopener">Facebook</a>
+        <span>${CONTACTO.direccion}</span>
+        <a href="tel:${CONTACTO.tel1Link}">${CONTACTO.tel1}</a>
+        <a href="tel:${CONTACTO.tel2Link}">${CONTACTO.tel2}</a>
+        <span>Ext. ${CONTACTO.ext}</span>
+        <a href="mailto:${CONTACTO.email}">${CONTACTO.email}</a>
+        <a href="${CONTACTO.facebook}" target="_blank" rel="noopener">Facebook</a>
       </div>
       <div class="footer-legal">
         <span>© 2025 Promoción a la Salud — Jurisdicción Sanitaria Texcoco</span>
