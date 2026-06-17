@@ -2621,3 +2621,92 @@ button { font-family: var(--font-body); }
 
 .programs-grid .program-card:nth-child(6),
 .resources-grid .resource-card:nth-child(6) { --stagger: 300ms; }
+
+/* ================================================
+   PREMIUM / DELUXE POLISH  (paleta institucional)
+   Capa final de refinamiento: profundidad, cristal,
+   tipografía balanceada y alineación móvil. No cambia
+   colores de marca; solo eleva la sensación de calidad.
+   ================================================ */
+
+/* ── Anclas alineadas bajo el navbar sticky (deep-links/inline-nav) ── */
+html { scroll-behavior: smooth; }
+:where(section[id], [id^="det"], [id]) { scroll-margin-top: calc(var(--nav-h) + 18px); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* Quita el flash gris del tap en móvil (sensación más nativa/premium) */
+* { -webkit-tap-highlight-color: transparent; }
+
+/* ── Tipografía premium: balance de líneas en títulos ── */
+.section-header h2, .hero-title, .page-hero h1, .ph-title {
+  text-wrap: balance;
+}
+.section-header p, .ph-desc, .subsec-card p, .det-card p, .mc-title {
+  text-wrap: pretty;
+}
+
+/* ── Sombras en capas (ambiental + clave) = más profundidad/deluxe ── */
+:root {
+  --shadow:    0 1px 2px rgba(30,27,24,.04), 0 4px 16px rgba(30,27,24,.07);
+  --shadow-md: 0 2px 6px rgba(30,27,24,.05), 0 14px 34px rgba(30,27,24,.11);
+  --shadow-lg: 0 4px 10px rgba(30,27,24,.06), 0 26px 56px rgba(30,27,24,.16);
+}
+
+/* ── Navbar: cristal más rico (blur + saturación) ── */
+.navbar {
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+}
+
+/* ── Hover premium de tarjetas: solo en dispositivos con puntero real
+   (evita el "hover pegado" tras un tap en móvil) ── */
+@media (hover: hover) and (pointer: fine) {
+  .material-card:hover, .det-card:hover,
+  .subsec-card:hover, .directory-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+  }
+  .kpi-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+}
+
+/* ── Etiqueta dorada con degradado deluxe ── */
+.section-tag.gold {
+  background: linear-gradient(135deg, var(--gold-lt), color-mix(in srgb, var(--gold) 16%, transparent));
+  color: var(--gold-dk);
+}
+
+/* ── Botón primario: barrido de brillo al hover (gloss premium) ── */
+.btn-primary::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.22) 50%, transparent 70%);
+  transform: translateX(-130%);
+  transition: transform var(--dur-slow) var(--ease-out);
+  pointer-events: none;
+}
+.btn-primary:hover::after { transform: translateX(130%); }
+
+/* ════════ AFINADO MÓVIL ════════ */
+@media (max-width: 900px) {
+  /* Áreas táctiles cómodas en enlaces de tarjetas */
+  .det-link, .subsec-link, .mc-btn {
+    min-height: 44px;
+    align-items: center;
+  }
+  /* Indicio visual de que la barra de filtros se desliza */
+  .filter-bar {
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 14px, #000 calc(100% - 14px), transparent 100%);
+            mask-image: linear-gradient(90deg, transparent 0, #000 14px, #000 calc(100% - 14px), transparent 100%);
+  }
+}
+
+@media (max-width: 580px) {
+  /* Título del hero mejor proporcionado en pantallas chicas */
+  .hero-title { font-size: clamp(33px, 8.6vw, 60px); line-height: 1.08; }
+  /* Respiro y alineación del encabezado de sección */
+  .section-header { padding-inline: 6px; }
+  .section-header h2 { line-height: 1.12; }
+  /* Las tarjetas de determinantes apilan sus 2 enlaces a lo ancho */
+  .det-links { gap: 8px; }
+  .det-link { flex: 1 1 auto; justify-content: center; }
+}
