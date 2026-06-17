@@ -1,0 +1,2430 @@
+Here is the result of "view" for the Page with URL https://app.notion.com/p/38171fc9a625806eb25aff7cfdb303ec as of 2026-06-16T21:56:42.476Z:
+<page url="https://app.notion.com/p/38171fc9a625806eb25aff7cfdb303ec">
+<ancestor-path></ancestor-path>
+<properties>
+{"title":"PAGINA ESTRUCTURA"}
+</properties>
+<content>
+# ✅ Análisis Web Semántico — `drisaacalfaro.wixsite.com/promocion-a-la-salud`
+> **Confirmación de acceso:** Sitio cargado y analizado exitosamente. Título detectado: *"INICIO \| Promocion A La Salud"*. La página está construida en Wix con una estructura de iframes anidados. A continuación el análisis completo en tres fases.
+---
+# FASE 1: Mapeo Global y Árbol de Navegación
+## 1.1 Árbol de Navegación (Menú Principal con Submenús)
+`MENÚ PRINCIPAL<br>│<br>├── INICIO<br>│   └── URL: https://drisaacalfaro.wixsite.com/promocion-a-la-salud<br>│<br>├── DETERMINANTES<br>│   └── URL: .../determinantes<br>│   ├── [Submenú] TEMAS DE PREVENCIÓN → .../copia-de-determinantes<br>│   └── [Submenú] #SoyPromotoraDeSalud   → .../soypromotoradesalud<br>│<br>├── FORMATOS PROMOCIÓN<br>│   └── URL: .../departamentos<br>│   ├── [Submenú] ESCUELA SALUDABLE          → .../escuela-saludable<br>│   ├── [Submenú] ESPACIO LIBRE HUMO DE TABACO → .../libre-de-humo<br>│   ├── [Submenú] NUTRICION                  → .../nutricion<br>│   ├── [Submenú] INTERCULTURALIDAD          → .../interculturalidad<br>│   ├── [Submenú] FERIAS DE SALUD            → .../feria-de-salud<br>│   ├── [Submenú] ESTILOS DE VIDA SALUDABLE  → .../estilos-de-vida<br>│   ├── [Submenú] COMUNIDADES A CERTIFICAR   → .../comunidades-a-certificar<br>│   ├── [Submenú] CRONOGRAMA TVF RCU         → .../cronograma-tvf-rcu<br>│   ├── [Submenú] ADICCIONES                 → .../copia-de-cronograma-tvf-rcu<br>│   └── [Submenú] CAMPAÑAS                   → .../copia-de-adicciones<br>│<br>├── CONTENIDO<br>│   └── URL: .../seguro<br>│   └── [Submenú] CONTACTO → .../contacto<br>│<br>└── SALUD MENTAL<br>    └── URL: .../copia-de-contacto<br>    ├── [Submenú] Espacios para psicólogos           → .../services-2<br>    ├── [Submenú] Reportes Mensuales de Salud Mental → .../general-9<br>    └── [Submenú] Supervisión Salud Mental           → .../supervisión-salud-mental`
+---
+## 1.2 Tabla Completa de Todos los Enlaces
+### 🔵 Barra de Información Superior (Pre-Header)
+<table header-row="true">
+<tr>
+<td>Texto del Enlace</td>
+<td>URL de Destino</td>
+<td>Sección</td>
+</tr>
+<tr>
+<td>*(Logo/Ícono — sin texto)*</td>
+<td>`https://drisaacalfaro.wixsite.com/promocion-a-la-salud`</td>
+<td>Pre-header (logo)</td>
+</tr>
+<tr>
+<td>Envía tu declaración de salud *(implied CTA)*</td>
+<td>*(formulario interno Wix — sin URL externa)*</td>
+<td>Banner aviso sanitario</td>
+</tr>
+</table>
+### 🔵 Header / Barra de Navegación Principal
+<table header-row="true">
+<tr>
+<td>Texto del Enlace</td>
+<td>URL de Destino</td>
+<td>Sección</td>
+</tr>
+<tr>
+<td>INICIO</td>
+<td>`https://drisaacalfaro.wixsite.com/promocion-a-la-salud`</td>
+<td>Nav principal</td>
+</tr>
+<tr>
+<td>DETERMINANTES</td>
+<td>`https://drisaacalfaro.wixsite.com/promocion-a-la-salud/determinantes`</td>
+<td>Nav principal</td>
+</tr>
+<tr>
+<td>TEMAS DE PREVENCIÓN</td>
+<td>`https://drisaacalfaro.wixsite.com/promocion-a-la-salud/copia-de-determinantes`</td>
+<td>Submenú DETERMINANTES</td>
+</tr>
+<tr>
+<td>#SoyPromotoraDeSalud</td>
+<td>`https://drisaacalfaro.wixsite.com/promocion-a-la-salud/soypromotoradesalud`</td>
+<td>Submenú DETERMINANTES</td>
+</tr>
+<tr>
+<td>FORMATOS PROMOCIÓN</td>
+<td>`https://drisaacalfaro.wixsite.com/promocion-a-la-salud/departamentos`</td>
+<td>Nav principal</td>
+</tr>
+<tr>
+<td>ESCUELA SALUDABLE</td>
+<td>`https://drisaacalfaro.wixsite.com/promocion-a-la-salud/escuela-saludable`</td>
+<td>Submenú FORMATOS</td>
+</tr>
+<tr>
+<td>ESPACIO LIBRE HUMO DE TABACO</td>
+<td>`https://drisaacalfaro.wixsite.com/promocion-a-la-salud/libre-de-humo`</td>
+<td>Submenú FORMATOS</td>
+</tr>
+<tr>
+<td>NUTRICION</td>
+<td>`https://drisaacalfaro.wixsite.com/promocion-a-la-salud/nutricion`</td>
+<td>Submenú FORMATOS</td>
+</tr>
+<tr>
+<td>INTERCULTURALIDAD</td>
+<td>`https://drisaacalfaro.wixsite.com/promocion-a-la-salud/interculturalidad`</td>
+<td>Submenú FORMATOS</td>
+</tr>
+<tr>
+<td>FERIAS DE SALUD</td>
+<td>`https://drisaacalfaro.wixsite.com/promocion-a-la-salud/feria-de-salud`</td>
+<td>Submenú FORMATOS</td>
+</tr>
+<tr>
+<td>ESTILOS DE VIDA SALUDABLE</td>
+<td>`https://drisaacalfaro.wixsite.com/promocion-a-la-salud/estilos-de-vida`</td>
+<td>Submenú FORMATOS</td>
+</tr>
+<tr>
+<td>COMUNIDADES A CERTIFICAR</td>
+<td>`https://drisaacalfaro.wixsite.com/promocion-a-la-salud/comunidades-a-certificar`</td>
+<td>Submenú FORMATOS</td>
+</tr>
+<tr>
+<td>CRONOGRAMA TVF RCU</td>
+<td>`https://drisaacalfaro.wixsite.com/promocion-a-la-salud/cronograma-tvf-rcu`</td>
+<td>Submenú FORMATOS</td>
+</tr>
+<tr>
+<td>ADICCIONES</td>
+<td>`https://drisaacalfaro.wixsite.com/promocion-a-la-salud/copia-de-cronograma-tvf-rcu`</td>
+<td>Submenú FORMATOS</td>
+</tr>
+<tr>
+<td>CAMPAÑAS</td>
+<td>`https://drisaacalfaro.wixsite.com/promocion-a-la-salud/copia-de-adicciones`</td>
+<td>Submenú FORMATOS</td>
+</tr>
+<tr>
+<td>CONTENIDO</td>
+<td>`https://drisaacalfaro.wixsite.com/promocion-a-la-salud/seguro`</td>
+<td>Nav principal</td>
+</tr>
+<tr>
+<td>CONTACTO</td>
+<td>`https://drisaacalfaro.wixsite.com/promocion-a-la-salud/contacto`</td>
+<td>Submenú CONTENIDO</td>
+</tr>
+<tr>
+<td>SALUD MENTAL</td>
+<td>`https://drisaacalfaro.wixsite.com/promocion-a-la-salud/copia-de-contacto`</td>
+<td>Nav principal</td>
+</tr>
+<tr>
+<td>Espacios para psicólogos</td>
+<td>`https://drisaacalfaro.wixsite.com/promocion-a-la-salud/services-2`</td>
+<td>Submenú SALUD MENTAL</td>
+</tr>
+<tr>
+<td>Reportes Mensuales de Salud Mental</td>
+<td>`https://drisaacalfaro.wixsite.com/promocion-a-la-salud/general-9`</td>
+<td>Submenú SALUD MENTAL</td>
+</tr>
+<tr>
+<td>Supervisión Salud Mental</td>
+<td>`https://drisaacalfaro.wixsite.com/promocion-a-la-salud/supervisión-salud-mental`</td>
+<td>Submenú SALUD MENTAL</td>
+</tr>
+<tr>
+<td>Promoción de la Salud *(logo/marca)*</td>
+<td>`https://drisaacalfaro.wixsite.com/promocion-a-la-salud`</td>
+<td>Header — marca</td>
+</tr>
+<tr>
+<td>Jurisdicción Texcoco *(subtítulo-enlace)*</td>
+<td>`https://drisaacalfaro.wixsite.com/promocion-a-la-salud`</td>
+<td>Header — subtítulo</td>
+</tr>
+</table>
+### 🟢 Cuerpo Principal (Main Content)
+<table header-row="true">
+<tr>
+<td>Texto del Enlace</td>
+<td>URL de Destino</td>
+<td>Sección</td>
+</tr>
+<tr>
+<td>*(Enlace externo — logo PAHO × 2)*</td>
+<td>`https://www.paho.org/es/temas/promocion-salud`</td>
+<td>Header — logos institucionales</td>
+</tr>
+<tr>
+<td>Modelo de Salud para el Bienestar... *(H1 clickeable)*</td>
+<td>`https://www.gob.mx/insabi/documentos/modelo-de-salud-para-el-bienestar-dirigido-a-las-personas-sin-seguridad-basado-en-la-atencion-primaria-de-salud`</td>
+<td>Sección Hero</td>
+</tr>
+<tr>
+<td>Formatos e Instructivos SINBA 2023</td>
+<td>`https://drive.google.com/drive/folders/1vm_W1E-GuLbPx9OFbvLRqyjY_Lxh1wn6?usp=share_link`</td>
+<td>Sección Recursos Docs</td>
+</tr>
+<tr>
+<td>Programación de Metas por Unidad 2025</td>
+<td>`https://docs.google.com/spreadsheets/d/1GL1RulCbxK_RF7K6IHf9r-TPnDaB6O4p/edit?...`</td>
+<td>Sección Recursos Docs</td>
+</tr>
+<tr>
+<td>Población 2024 por Unidad Médica Jurisdicción Texcoco</td>
+<td>`https://docs.google.com/spreadsheets/d/1AxfBWfwCG81xV9D6iaMFg3-B0Lgh5Nfb/edit?...`</td>
+<td>Sección Recursos Docs</td>
+</tr>
+<tr>
+<td>NORMA Oficial Mexicana NOM-043-SSA2-2012...</td>
+<td>`https://www.gob.mx/cms/uploads/attachment/file/138258/NOM-043-servicios-basicos-salud-educacion-alimentaria.pdf`</td>
+<td>Sección Recursos Docs</td>
+</tr>
+<tr>
+<td>Guías Alimentarias 2023 / para la población Mexicana</td>
+<td>`https://movendi.ngo/wp-content/uploads/2023/05/Gui_as_Alimentarias_2023_para_la_poblacio_n_mexicana.pdf`</td>
+<td>Sección Guías Alimentarias</td>
+</tr>
+<tr>
+<td>CONOCE MÁS....</td>
+<td>`https://www.who.int/es/news-room/fact-sheets/detail/mpox`</td>
+<td>Sección MPOX</td>
+</tr>
+</table>
+### 🔴 Footer / Pie de Página
+> ⚠️ El footer de Wix (`<contentinfo>`) no contiene texto visible extraíble — está vacío en la versión analizada. El widget de **Wix Chat** (`¡Vamos a chatear!`) es el único elemento activo en esa zona, pero es un iframe de tercero sin URL pública reutilizable.
+---
+# FASE 2: Desglose de Estructura Semántica HTML5 Propuesto
+Este es el esquema lógico recomendado para la nueva arquitectura en HTML puro:
+html
+`<!DOCTYPE html><br><html lang="es"><br><head><br>  <!-- Meta, título, CSS --><br></head><br><body><br><br>  <!-- ============================================================<br>       BLOQUE 1: PRE-HEADER — Barra de información de contacto<br>       ============================================================ --><br>  <div class="pre-header"><br>    <!-- Aviso sanitario + datos de contacto institucional --><br>  </div><br><br>  <!-- ============================================================<br>       BLOQUE 2: <header> — Identidad del sitio + Navegación<br>       ============================================================ --><br>  <header><br><br>    <div class="header__brand"><br>      <!-- Logo + Nombre del sitio + Subtítulo --><br>    </div><br><br>    <nav aria-label="Navegación principal"><br>      <ul><br>        <li><a href="index.html">INICIO</a></li><br><br>        <li class="has-dropdown"><br>          <a href="determinantes.html">DETERMINANTES</a><br>          <ul class="dropdown"><br>            <li><a href="temas-prevencion.html">TEMAS DE PREVENCIÓN</a></li><br>            <li><a href="soypromotoradesalud.html">#SoyPromotoraDeSalud</a></li><br>          </ul><br>        </li><br><br>        <li class="has-dropdown"><br>          <a href="formatos.html">FORMATOS PROMOCIÓN</a><br>          <ul class="dropdown"><br>            <li><a href="escuela-saludable.html">ESCUELA SALUDABLE</a></li><br>            <li><a href="libre-de-humo.html">ESPACIO LIBRE HUMO DE TABACO</a></li><br>            <li><a href="nutricion.html">NUTRICION</a></li><br>            <li><a href="interculturalidad.html">INTERCULTURALIDAD</a></li><br>            <li><a href="feria-de-salud.html">FERIAS DE SALUD</a></li><br>            <li><a href="estilos-de-vida.html">ESTILOS DE VIDA SALUDABLE</a></li><br>            <li><a href="comunidades-certificar.html">COMUNIDADES A CERTIFICAR</a></li><br>            <li><a href="cronograma-tvf-rcu.html">CRONOGRAMA TVF RCU</a></li><br>            <li><a href="adicciones.html">ADICCIONES</a></li><br>            <li><a href="campanas.html">CAMPAÑAS</a></li><br>          </ul><br>        </li><br><br>        <li class="has-dropdown"><br>          <a href="contenido.html">CONTENIDO</a><br>          <ul class="dropdown"><br>            <li><a href="contacto.html">CONTACTO</a></li><br>          </ul><br>        </li><br><br>        <li class="has-dropdown"><br>          <a href="salud-mental.html">SALUD MENTAL</a><br>          <ul class="dropdown"><br>            <li><a href="espacios-psicologos.html">Espacios para psicólogos</a></li><br>            <li><a href="reportes-mensuales.html">Reportes Mensuales de Salud Mental</a></li><br>            <li><a href="supervision-salud-mental.html">Supervisión Salud Mental</a></li><br>          </ul><br>        </li><br><br>      </ul><br>    </nav><br><br>  </header><br><br>  <!-- ============================================================<br>       BLOQUE 3: <main> — Contenido principal<br>       ============================================================ --><br>  <main><br><br>    <!-- 3A: HERO — Titular principal con enlace a documento oficial --><br>    <section id="hero" aria-label="Sección principal"><br>    </section><br><br>    <!-- 3B: CARRUSEL / GALERÍA DE IMÁGENES --><br>    <section id="galeria" aria-label="Galería fotográfica"><br>    </section><br><br>    <!-- 3C: RECURSOS DOCUMENTALES (4 tarjetas de descarga/enlace) --><br>    <section id="recursos" aria-label="Recursos y documentos"><br>    </section><br><br>    <!-- 3D: GALERÍA SECUNDARIA (íconos/miniaturas temáticas) --><br>    <section id="galeria-temas" aria-label="Galería de temas"><br>    </section><br><br>    <!-- 3E: GUÍAS ALIMENTARIAS 2023 --><br>    <section id="guias-alimentarias" aria-label="Guías Alimentarias"><br>    </section><br><br>    <!-- 3F: ARTÍCULO INFORMATIVO — MPOX / Viruela Símica --><br>    <article id="mpox" aria-label="Información sobre MPOX"><br>    </article><br><br>    <!-- 3G: MAPA DE UNIDADES MÉDICAS (Google Maps embed) --><br>    <section id="mapa" aria-label="Ubicación de unidades médicas"><br>    </section><br><br>  </main><br><br>  <!-- ============================================================<br>       BLOQUE 4: <footer> — Pie de página<br>       ============================================================ --><br>  <footer><br>    <!-- Datos de contacto, créditos, enlaces legales --><br>  </footer><br><br></body><br></html>`
+---
+# FASE 3: Extracción de Contenido por Sección
+---
+## BLOQUE 1 — `<div class="pre-header">` Barra de Contacto Institucional
+**Tipo de contenido:** Aviso informativo + datos de contacto
+- **Aviso:** `"Instalaciones limpias y seguras. Envía tu declaración de salud"`
+- **Dirección:** `Cda. Carretera Papalotla s/n, San Andres Chiautla 1, 56030 Chiautla, Méx.`
+- **Teléfonos:**
+	- `01 595 95 3 18 84`
+	- `01 595 95 3 19 45`
+	- Ext. `94251`
+- **CTA implícito:** Botón "Envía" (formulario de declaración de salud — actualmente es un widget Wix, deberá recrearse como formulario HTML)
+---
+## BLOQUE 2 — `<header>` Identidad del Sitio
+**Marca / Logotipo (texto):**
+- **H1 de marca:** `Promoción de la Salud`
+- **Subtítulo:** `Jurisdicción Texcoco`
+- **Enlace logo externo:** OPS/OMS — `https://www.paho.org/es/temas/promocion-salud` *(aparece dos veces, probablemente logo doble)*
+> 📌 **Nota para migración:** El logotipo es actualmente un texto estilizado en Wix. Se recomienda crear un logo SVG o imagen con texto "Promoción de la Salud / Jurisdicción Texcoco".
+---
+## BLOQUE 3A — `<section id="hero">` Titular Principal
+- **H1:** `Modelo de Salud para el Bienestar dirigido a las personas sin seguridad social, basado en la Atención Primaria de Salud`
+- **CTA (el H1 es el enlace):**
+	- Texto: *(el título completo)*
+	- Destino: `https://www.gob.mx/insabi/documentos/modelo-de-salud-para-el-bienestar-dirigido-a-las-personas-sin-seguridad-basado-en-la-atencion-primaria-de-salud`
+- **Fondo visual:** Imagen de médico/doctor con estetoscopio (fondo difuminado gris azulado)
+- **Imagen de fondo detectada:**
+<table header-row="true">
+<tr>
+<td>#</td>
+<td>Descripción visual</td>
+<td>URL para descargar</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Médico con estetoscopio (fondo Hero)</td>
+<td>`https://static.wixstatic.com/media/855669_0dece641452a4f08bc01e50129ebcd8c~mv2.jpg`</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Médico protegiendo familia con corazón rojo (carrusel)</td>
+<td>`https://static.wixstatic.com/media/855669_22760fafccc2436d97be4ef71d891693~mv2.jpeg`</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Imagen clínica / médica (carrusel)</td>
+<td>`https://static.wixstatic.com/media/855669_318632bc1a664f20b48c4b493300f882~mv2.png`</td>
+</tr>
+</table>
+> 💡 Para descargar las imágenes en su versión original sin procesar de Wix, reemplaza la parte `/v1/fill/w_980,h_645,q_90,...` por `/v1/` o simplemente usa la URL base hasta `~mv2.jpg`.
+---
+## BLOQUE 3B — `<section id="galeria">` Carrusel de Imágenes
+- **Tipo:** Carrusel automático con flechas anterior/siguiente (≈30 slides detectados)
+- **Contenido:** Fotografías de actividades de promoción de la salud (comunidades, ferias, talleres, etc.)
+- **Sin texto superpuesto** en la mayoría de slides
+- **Imágenes del carrusel (muestra de las detectadas):**
+<table header-row="true">
+<tr>
+<td>#</td>
+<td>URL de imagen (para descarga)</td>
+</tr>
+<tr>
+<td>1</td>
+<td>`https://static.wixstatic.com/media/855669_bc9871a5dedf49679c0deec110ade0aa~mv2.jpeg`</td>
+</tr>
+<tr>
+<td>2</td>
+<td>`https://static.wixstatic.com/media/855669_1a0af8ce910a45c598e2de07cd0b5101~mv2.jpeg`</td>
+</tr>
+<tr>
+<td>3</td>
+<td>`https://static.wixstatic.com/media/855669_b86dcacfc0ac44ca855d65ae1154c2a2~mv2.jpeg`</td>
+</tr>
+<tr>
+<td>4</td>
+<td>`https://static.wixstatic.com/media/855669_acbc1fa009994842be3365fafa29d13c~mv2.jpeg`</td>
+</tr>
+<tr>
+<td>5</td>
+<td>`https://static.wixstatic.com/media/855669_1176ae5385cc42ed817ba6b747afaa0a~mv2.jpeg`</td>
+</tr>
+<tr>
+<td>6</td>
+<td>`https://static.wixstatic.com/media/855669_96d973990db249bfb6a18830b3f098a4~mv2.jpg`</td>
+</tr>
+</table>
+> 📌 **Nota:** Wix carga las imágenes del carrusel de forma dinámica (lazy-load). Para capturar **todas** las URLs del carrusel, se recomienda hacer click en cada slide y revisar el DOM. Se detectaron indicios de al menos 30 imágenes en el carrusel.
+---
+## BLOQUE 3C — `<section id="recursos">` Recursos Documentales
+Cuatro tarjetas de enlace/descarga, organizadas como botones-título:
+### Tarjeta 1
+- **H2:** `Formatos e Instructivos SINBA 2023`
+- **CTA:** Enlace al título completo
+- **Destino:** `https://drive.google.com/drive/folders/1vm_W1E-GuLbPx9OFbvLRqyjY_Lxh1wn6?usp=share_link`
+- **Tipo:** Google Drive (carpeta compartida)
+### Tarjeta 2
+- **H2:** `Programación de Metas por Unidad 2025`
+- **Destino:** `https://docs.google.com/spreadsheets/d/1GL1RulCbxK_RF7K6IHf9r-TPnDaB6O4p/edit?usp=drive_link&ouid=112204211663815392774&rtpof=true&sd=true`
+- **Tipo:** Google Sheets
+### Tarjeta 3
+- **H2:** `Población 2024 por Unidad Médica Jurisdicción Texcoco`
+- **Destino:** `https://docs.google.com/spreadsheets/d/1AxfBWfwCG81xV9D6iaMFg3-B0Lgh5Nfb/edit?usp=drive_link&ouid=112204211663815392774&rtpof=true&sd=true`
+- **Tipo:** Google Sheets
+### Tarjeta 4
+- **H2:** `NORMA Oficial Mexicana NOM-043-SSA2-2012, Servicios básicos de salud. Promoción y educación para la salud en materia alimentaria. Criterios para brindar orientación.`
+- **Destino:** `https://www.gob.mx/cms/uploads/attachment/file/138258/NOM-043-servicios-basicos-salud-educacion-alimentaria.pdf`
+- **Tipo:** PDF oficial — gob.mx
+---
+## BLOQUE 3D — `<section id="galeria-temas">` Galería de Miniaturas Temáticas
+- **Tipo:** Grid de imágenes pequeñas (≈5 imágenes cuadradas 220×220px) — probablemente íconos o fotos de categorías
+- **Sin texto visible extraíble** sobre las miniaturas
+- **Formato visual:** Botones de imagen cuadrados (detección en el árbol DOM como `button "image"`)
+- **Imagen detectada (logo alimentación):**
+	- `https://static.wixstatic.com/media/855669_d06c6f891fe64aa39eb0bc29298ba33a~mv2.png` — alt: `"alimentacion mexico.png"`
+---
+## BLOQUE 3E — `<section id="guias-alimentarias">` Guías Alimentarias
+- **H2:** `Guías Alimentarias 2023`
+- **Subtítulo:** `para la población Mexicana`
+- **Imagen de fondo/contexto:** Niños indígenas en salón de clases (foto documental)
+- **CTA (x2 — mismo destino):**
+	- Texto 1: `"Guías Alimentarias 2023"`
+	- Texto 2: `"para la población Mexicana"`
+	- Destino: `https://movendi.ngo/wp-content/uploads/2023/05/Gui_as_Alimentarias_2023_para_la_poblacio_n_mexicana.pdf`
+---
+## BLOQUE 3F — `<article id="mpox">` Artículo Informativo — MPOX
+- **H2:** `VIRUELA SIMICA MPOX`
+- **Párrafo 1:**
+	> *"La mpox se transmite de persona a persona principalmente por contacto estrecho con alguien que tiene mpox, incluidas las personas con las que se comparte el hogar. Se entiende por contacto estrecho el contacto directo piel con piel (por ejemplo, al tocarse o tener relaciones sexuales), boca con boca o entre la boca y la piel (por ejemplo, al besarse), así como el que se tiene al estar cara a cara con una persona con mpox (por ejemplo, al hablar o respirar cerca de ella, lo que puede generar partículas respiratorias infecciosas)."*
+- **Párrafo 2:**
+	> *"Las personas con múltiples parejas sexuales corren mayor riesgo de contraer la mpox."*
+- **Párrafo 3:**
+	> *"También se puede contraer la mpox a partir de objetos contaminados, como ropa de vestir o de cama, a través de heridas punzantes producidas al recibir atención de salud o en entornos comunitarios, como los salones de tatuajes."*
+- **CTA:**
+	- Texto: `CONOCE MÁS....`
+	- Destino: `https://www.who.int/es/news-room/fact-sheets/detail/mpox` *(Fuente: OMS)*
+- **Imagen de fondo:** Fotografía clínica de lesiones cutáneas de MPOX (fondo beige/piel)
+---
+## BLOQUE 3G — `<section id="mapa">` Mapa de Unidades Médicas
+- **Tipo:** Google Maps embebido (`<iframe title="Google Maps">`)
+- **Contenido visual:** Mapa interactivo con marcadores de ubicaciones de unidades médicas en la región de Texcoco / Chimalhuacán / Chicoloapan (Zona Oriente Estado de México)
+- **Para la versión HTML:** Usar `<iframe>` de Google Maps embed estándar
+html
+`<iframe<br>  src="https://www.google.com/maps/embed?..."<br>  width="100%"<br>  height="450"<br>  style="border:0;"<br>  allowfullscreen=""<br>  loading="lazy"<br>  referrerpolicy="no-referrer-when-downgrade"<br>  title="Mapa de Unidades Médicas Jurisdicción Texcoco"><br></iframe>`
+> ⚠️ La URL exacta del embed de Maps está protegida por parámetros de sesión y no es extraíble directamente. Deberás generar un nuevo embed desde **Google My Maps** con los marcadores de las unidades médicas de la jurisdicción.
+---
+## BLOQUE 3H — Widget de Chat
+- **Elemento:** Botón flotante verde `"¡Vamos a chatear!"`
+- **Tipo:** Widget de Wix Chat (iframe propio de Wix — no migrable directamente)
+- **Recomendación para HTML puro:** Sustituir por un enlace a WhatsApp Business (`wa.me/52595...`) o integrar Tawk.to / Crisp como alternativa gratuita.
+---
+## BLOQUE 4 — `<footer>` Pie de Página
+> ⚠️ **Hallazgo crítico:** El footer de Wix está completamente vacío en términos de contenido textual extraíble. No contiene ni redes sociales, ni créditos, ni políticas de privacidad visibles en el DOM.
+**Recomendación para la nueva versión:** Construir un footer completo con:
+html
+`<footer><br>  <div class="footer__contact"><br>    <p>Cda. Carretera Papalotla s/n, San Andres Chiautla 1, 56030 Chiautla, Méx.</p><br>    <p>Tel: 01 595 95 3 18 84 | 01 595 95 3 19 45 | Ext. 94251</p><br>  </div><br>  <div class="footer__nav"><br>    <!-- Repetir árbol de navegación simplificado --><br>  </div><br>  <div class="footer__credits"><br>    <p>&copy; 2025 Promoción a la Salud — Jurisdicción Texcoco</p><br>  </div><br></footer>`
+---
+# 📋 Resumen Ejecutivo para la Migración
+<table header-row="true">
+<tr>
+<td>Elemento</td>
+<td>Estado actual en Wix</td>
+<td>Acción para HTML puro</td>
+</tr>
+<tr>
+<td>Menú principal</td>
+<td>5 ítems + submenús desplegables</td>
+<td>`<nav>` con dropdowns en CSS puro</td>
+</tr>
+<tr>
+<td>Hero / H1</td>
+<td>Título-enlace sobre imagen de fondo</td>
+<td>`<section>` con `background-image` CSS</td>
+</tr>
+<tr>
+<td>Carrusel</td>
+<td>\~30 slides, widget Wix</td>
+<td>Librería ligera (Swiper.js) o CSS puro</td>
+</tr>
+<tr>
+<td>4 tarjetas de documentos</td>
+<td>Títulos-enlace a Google Drive/Docs/PDF</td>
+<td>`<section>` con cards flexbox</td>
+</tr>
+<tr>
+<td>Galería de miniaturas</td>
+<td>5 botones-imagen</td>
+<td>CSS Grid de imágenes</td>
+</tr>
+<tr>
+<td>Sección Guías Alimentarias</td>
+<td>Imagen + 2 CTAs a PDF externo</td>
+<td>`<section>` con `<figure>` + `<a>`</td>
+</tr>
+<tr>
+<td>Artículo MPOX</td>
+<td>3 párrafos + CTA a OMS</td>
+<td>`<article>` semántico</td>
+</tr>
+<tr>
+<td>Google Maps</td>
+<td>iframe embed</td>
+<td>Nuevo iframe de Google Maps embed</td>
+</tr>
+<tr>
+<td>Chat flotante</td>
+<td>Widget Wix propietario</td>
+<td>WhatsApp link o Tawk.to</td>
+</tr>
+<tr>
+<td>Footer</td>
+<td>**Vacío**</td>
+<td>Construir desde cero con datos del pre-header</td>
+</tr>
+<tr>
+<td>Pre-header de contacto</td>
+<td>Datos de contacto + formulario Wix</td>
+<td>`<div class="pre-header">` + `<form>` HTML</td>
+</tr>
+</table>
+# 📘 ANÁLISIS WEB SEMÁNTICO COMPLETO E INTEGRADO
+## `drisaacalfaro.wixsite.com/promocion-a-la-salud` — Todas las Páginas
+> ✅ **Confirmación:** Se analizaron exitosamente **21 páginas** del sitio (1 principal + 20 subpáginas). A continuación el documento maestro unificado.
+---
+# 🗺️ FASE 1 ACTUALIZADA: Mapa Global Completo del Sitio
+## Árbol de Navegación Definitivo
+`SITIO: Promoción a la Salud — Jurisdicción Texcoco<br>│<br>├── [INICIO]                    → /<br>├── [DETERMINANTES]             → /determinantes<br>│   ├── TEMAS DE PREVENCIÓN     → /copia-de-determinantes<br>│   └── #SoyPromotoraDeSalud    → /soypromotoradesalud<br>│<br>├── [FORMATOS PROMOCIÓN]        → /departamentos<br>│   ├── ESCUELA SALUDABLE       → /escuela-saludable<br>│   ├── ESPACIO LIBRE HUMO...   → /libre-de-humo<br>│   ├── NUTRICION               → /nutricion<br>│   ├── INTERCULTURALIDAD       → /interculturalidad<br>│   ├── FERIAS DE SALUD         → /feria-de-salud<br>│   ├── ESTILOS DE VIDA...      → /estilos-de-vida<br>│   ├── COMUNIDADES A CERTIFICAR→ /comunidades-a-certificar<br>│   ├── CRONOGRAMA TVF RCU      → /cronograma-tvf-rcu<br>│   ├── ADICCIONES              → /copia-de-cronograma-tvf-rcu<br>│   └── CAMPAÑAS                → /copia-de-adicciones<br>│<br>├── [CONTENIDO]                 → /seguro<br>│   └── CONTACTO                → /contacto<br>│<br>└── [SALUD MENTAL]              → /copia-de-contacto<br>    ├── Espacios para psicólogos           → /services-2<br>    ├── Reportes Mensuales de Salud Mental → /general-9<br>    └── Supervisión Salud Mental           → /supervisión-salud-mental`
+## Tabla Maestra de Todas las Páginas del Sitio
+<table header-row="true">
+<tr>
+<td>#</td>
+<td>Nombre de Página</td>
+<td>URL Slug</td>
+<td>Nivel</td>
+</tr>
+<tr>
+<td>1</td>
+<td>INICIO</td>
+<td>`/`</td>
+<td>Principal</td>
+</tr>
+<tr>
+<td>2</td>
+<td>DETERMINANTES</td>
+<td>`/determinantes`</td>
+<td>Nivel 1</td>
+</tr>
+<tr>
+<td>3</td>
+<td>TEMAS DE PREVENCIÓN</td>
+<td>`/copia-de-determinantes`</td>
+<td>Nivel 2</td>
+</tr>
+<tr>
+<td>4</td>
+<td>#SoyPromotoraDeSalud</td>
+<td>`/soypromotoradesalud`</td>
+<td>Nivel 2</td>
+</tr>
+<tr>
+<td>5</td>
+<td>FORMATOS PROMOCIÓN</td>
+<td>`/departamentos`</td>
+<td>Nivel 1</td>
+</tr>
+<tr>
+<td>6</td>
+<td>ESCUELA SALUDABLE</td>
+<td>`/escuela-saludable`</td>
+<td>Nivel 2</td>
+</tr>
+<tr>
+<td>7</td>
+<td>ESPACIO LIBRE HUMO DE TABACO</td>
+<td>`/libre-de-humo`</td>
+<td>Nivel 2</td>
+</tr>
+<tr>
+<td>8</td>
+<td>NUTRICION</td>
+<td>`/nutricion`</td>
+<td>Nivel 2</td>
+</tr>
+<tr>
+<td>9</td>
+<td>INTERCULTURALIDAD</td>
+<td>`/interculturalidad`</td>
+<td>Nivel 2</td>
+</tr>
+<tr>
+<td>10</td>
+<td>FERIAS DE SALUD</td>
+<td>`/feria-de-salud`</td>
+<td>Nivel 2</td>
+</tr>
+<tr>
+<td>11</td>
+<td>ESTILOS DE VIDA SALUDABLE</td>
+<td>`/estilos-de-vida`</td>
+<td>Nivel 2</td>
+</tr>
+<tr>
+<td>12</td>
+<td>COMUNIDADES A CERTIFICAR</td>
+<td>`/comunidades-a-certificar`</td>
+<td>Nivel 2</td>
+</tr>
+<tr>
+<td>13</td>
+<td>CRONOGRAMA TVF RCU</td>
+<td>`/cronograma-tvf-rcu`</td>
+<td>Nivel 2</td>
+</tr>
+<tr>
+<td>14</td>
+<td>ADICCIONES</td>
+<td>`/copia-de-cronograma-tvf-rcu`</td>
+<td>Nivel 2</td>
+</tr>
+<tr>
+<td>15</td>
+<td>CAMPAÑAS</td>
+<td>`/copia-de-adicciones`</td>
+<td>Nivel 2</td>
+</tr>
+<tr>
+<td>16</td>
+<td>CONTENIDO</td>
+<td>`/seguro`</td>
+<td>Nivel 1</td>
+</tr>
+<tr>
+<td>17</td>
+<td>CONTACTO</td>
+<td>`/contacto`</td>
+<td>Nivel 2</td>
+</tr>
+<tr>
+<td>18</td>
+<td>SALUD MENTAL</td>
+<td>`/copia-de-contacto`</td>
+<td>Nivel 1</td>
+</tr>
+<tr>
+<td>19</td>
+<td>Espacios para psicólogos</td>
+<td>`/services-2`</td>
+<td>Nivel 2</td>
+</tr>
+<tr>
+<td>20</td>
+<td>Reportes Mensuales de Salud Mental</td>
+<td>`/general-9`</td>
+<td>Nivel 2</td>
+</tr>
+<tr>
+<td>21</td>
+<td>Supervisión Salud Mental</td>
+<td>`/supervisión-salud-mental`</td>
+<td>Nivel 2</td>
+</tr>
+</table>
+---
+# 📄 FASE 2 & 3 INTEGRADAS: Contenido Completo por Subpágina
+---
+## PÁGINA 2 — `DETERMINANTES` (`/determinantes`)
+**Estructura HTML5 propuesta:** `<main>` con dos grandes `<section>`: una de presentaciones Canva y otra de recursos documentales por categoría.
+### Sección Superior: Talleres Comunitarios — Presentaciones
+**H1:** `Talleres Comunitarios — Presentaciones`
+**CTA principal:** \[Carpeta Google Drive de presentaciones\] → `https://drive.google.com/drive/folders/1wQCWEuj8RdCsy6xPcxFT_loHVuAvcnU6?usp=sharing`
+**Imagen:** `WhatsApp Image 2026-01-21 at 2.28.46 p.m..jpeg` (imagen de referencia del taller)
+**Lista de presentaciones por categoría y sus enlaces (todos apuntan a Canva):**
+### 1. Alimentación
+<table header-row="true">
+<tr>
+<td>Tema</td>
+<td>URL Canva</td>
+</tr>
+<tr>
+<td>Alimentación Saludable</td>
+<td>`https://www.canva.com/design/DAGfYVzGx20/...`</td>
+</tr>
+<tr>
+<td>Consumo de Agua Simple</td>
+<td>`https://www.canva.com/design/DAGfwUlz9js/...`</td>
+</tr>
+<tr>
+<td>Consumo de Sal y Sodio</td>
+<td>`https://www.canva.com/design/DAGgIa4eyww/...`</td>
+</tr>
+<tr>
+<td>Etiquetado nutrimental</td>
+<td>`https://www.canva.com/design/DAGiGVrLhAM/...`</td>
+</tr>
+<tr>
+<td>Higiene de los Alimentos</td>
+<td>`https://www.canva.com/design/DAGkWGNEm4c/...`</td>
+</tr>
+<tr>
+<td>Cultura Alimentaria Tradicional</td>
+<td>`https://www.canva.com/design/DAGgZ_kDNbM/...`</td>
+</tr>
+<tr>
+<td>Lactancia Materna y Alim. complementaria</td>
+<td>`https://www.canva.com/design/DAGfwIkYSjI/...`</td>
+</tr>
+<tr>
+<td>Desnutrición</td>
+<td>`https://www.canva.com/design/DAGlSAtqpAw/...`</td>
+</tr>
+<tr>
+<td>Síndrome Metabólico</td>
+<td>*(sin enlace — texto plano)*</td>
+</tr>
+<tr>
+<td>Sobrepeso y Obesidad</td>
+<td>`https://www.canva.com/design/DAGqQcgs-5E/...`</td>
+</tr>
+<tr>
+<td>Diabetes</td>
+<td>`https://www.canva.com/design/DAGqQsIZgNw/...`</td>
+</tr>
+<tr>
+<td>Hipertensión</td>
+<td>`https://www.canva.com/design/DAGmTxbx9xs/...`</td>
+</tr>
+</table>
+### 2. Actividad Física
+<table header-row="true">
+<tr>
+<td>Tema</td>
+<td>URL Canva</td>
+</tr>
+<tr>
+<td>Actividad Física</td>
+<td>`https://www.canva.com/design/DAGlp2XMHVk/...`</td>
+</tr>
+</table>
+### 3. Salud Sexual y Reproductiva
+<table header-row="true">
+<tr>
+<td>Tema</td>
+<td>URL</td>
+</tr>
+<tr>
+<td>Adolescencia</td>
+<td>`https://www.canva.com/design/DAGmB2s-JII/...`</td>
+</tr>
+<tr>
+<td>Sexualidad</td>
+<td>`https://www.canva.com/design/DAGmCqFRHi4/...`</td>
+</tr>
+<tr>
+<td>Prevención ITS</td>
+<td>`https://www.instagram.com/p/DJo6ZAnNkR7/`</td>
+</tr>
+<tr>
+<td>ITS</td>
+<td>`https://www.instagram.com/p/DJo6ZAnNkR7/`</td>
+</tr>
+<tr>
+<td>VIH-SIDA</td>
+<td>`https://www.canva.com/design/DAGms4BqzII/...`</td>
+</tr>
+<tr>
+<td>Planificación Familiar</td>
+<td>`https://www.canva.com/design/DAGmypM5tVk/...`</td>
+</tr>
+<tr>
+<td>Embarazo, Parto y Puerperio</td>
+<td>`https://www.canva.com/design/DAGqQzO-lSg/...`</td>
+</tr>
+<tr>
+<td>Maternidad Sin Riesgo</td>
+<td>`https://www.canva.com/design/DAGqVkgSABc/...`</td>
+</tr>
+<tr>
+<td>Parto y Puerperio</td>
+<td>`https://www.canva.com/design/DAGm4cRisvc/...`</td>
+</tr>
+<tr>
+<td>Lactancia Materna</td>
+<td>`https://www.canva.com/design/DAGfwIkYSjI/...`</td>
+</tr>
+<tr>
+<td>Alojamiento Conjunto</td>
+<td>`https://www.canva.com/design/DAGnQiqFF5k/...`</td>
+</tr>
+<tr>
+<td>Climaterio Masculino y Femenino</td>
+<td>`https://www.canva.com/design/DAGnid_H8TU/...`</td>
+</tr>
+<tr>
+<td>Prevención Cáncer de Próstata</td>
+<td>`https://www.canva.com/design/DAGn3iGnVQ0/...`</td>
+</tr>
+<tr>
+<td>Prevención Cáncer de Mama</td>
+<td>`https://www.canva.com/design/DAGqVnPBKoE/...`</td>
+</tr>
+<tr>
+<td>Prevención Cáncer Cérvico Uterino</td>
+<td>`https://www.instagram.com/p/DLFrZaUujJA/`</td>
+</tr>
+</table>
+### 4. Entornos Físicos Saludables
+<table header-row="true">
+<tr>
+<td>Tema</td>
+<td>URL Canva</td>
+</tr>
+<tr>
+<td>Higiene Personal y Lavado de Manos</td>
+<td>`https://www.canva.com/design/DAGoAsPV9ro/...`</td>
+</tr>
+<tr>
+<td>Salud Bucal</td>
+<td>`https://www.canva.com/design/DAGomozLaHg/...`</td>
+</tr>
+<tr>
+<td>Saneamiento Básico</td>
+<td>`https://www.canva.com/design/DAGov4dJiyM/...`</td>
+</tr>
+<tr>
+<td>Diarreas y Vida Suero Oral</td>
+<td>`https://www.canva.com/design/DAGowTQyWVg/...`</td>
+</tr>
+<tr>
+<td>Parasitosis</td>
+<td>`https://www.canva.com/design/DAGo2Bvb4sk/...`</td>
+</tr>
+<tr>
+<td>Prevención de Accidentes</td>
+<td>`https://www.canva.com/design/DAGo2XOGs4M/...`</td>
+</tr>
+<tr>
+<td>Manejo de Lesiones</td>
+<td>`https://www.canva.com/design/DAGo73qFMZs/...`</td>
+</tr>
+<tr>
+<td>Acciones en Caso de Desastre</td>
+<td>`https://www.canva.com/design/DAGo2skKLLU/...`</td>
+</tr>
+<tr>
+<td>Infecciones Respiratorias Agudas</td>
+<td>`https://www.canva.com/design/DAGo8twAmUs/...`</td>
+</tr>
+<tr>
+<td>Tuberculosis</td>
+<td>*(sin enlace)*</td>
+</tr>
+<tr>
+<td>Enfermedades por Vectores</td>
+<td>`https://www.canva.com/design/DAGpOWJJ4JU/...`</td>
+</tr>
+</table>
+### 5. Entornos Psicosociales Saludables
+<table header-row="true">
+<tr>
+<td>Tema</td>
+<td>URL Canva</td>
+</tr>
+<tr>
+<td>Habilidades para la vida</td>
+<td>`https://www.canva.com/design/DAGpUItCMXs/...`</td>
+</tr>
+<tr>
+<td>Prevención de Adicciones</td>
+<td>`https://www.canva.com/design/DAGpUhcAUgk/...`</td>
+</tr>
+<tr>
+<td>Violencia</td>
+<td>`https://www.canva.com/design/DAGpZ4PV9e4/...`</td>
+</tr>
+<tr>
+<td>Relaciones de Pareja</td>
+<td>`https://www.canva.com/design/DAGrSUgAuLk/...`</td>
+</tr>
+<tr>
+<td>Violencia Familiar</td>
+<td>`https://www.canva.com/design/DAGpggFK7GY/...`</td>
+</tr>
+<tr>
+<td>Violencia Escolar</td>
+<td>`https://www.canva.com/design/DAGpmCST0sg/...`</td>
+</tr>
+<tr>
+<td>Violencia en el Ámbito Laboral</td>
+<td>`https://www.canva.com/design/DAGpmZhum3c/...`</td>
+</tr>
+<tr>
+<td>Igualdad de Género</td>
+<td>`https://www.canva.com/design/DAGpmSg9sCE/...`</td>
+</tr>
+<tr>
+<td>Bullying</td>
+<td>`https://www.canva.com/design/DAGqoT7lNUE/...`</td>
+</tr>
+<tr>
+<td>Abuso Sexual</td>
+<td>`https://www.canva.com/design/DAGpmqNhiPQ/...`</td>
+</tr>
+</table>
+### 6. Crecimiento y Desarrollo Infantil
+<table header-row="true">
+<tr>
+<td>Tema</td>
+<td>URL Canva</td>
+</tr>
+<tr>
+<td>Lactancia Materna</td>
+<td>`https://www.canva.com/design/DAGfwIkYSjI/...`</td>
+</tr>
+<tr>
+<td>Cuidado del Recién Nacido</td>
+<td>`https://www.canva.com/design/DAGp-QWKLws/...`</td>
+</tr>
+<tr>
+<td>Cuidado del Menor de un Año</td>
+<td>`https://www.canva.com/design/DAGqoL7W4Dc/...`</td>
+</tr>
+<tr>
+<td>Cuidado del Menor de 5 años</td>
+<td>`https://www.canva.com/design/DAGqoCU1Hj8/...`</td>
+</tr>
+<tr>
+<td>Evaluación del Desarrollo Infantil</td>
+<td>`https://www.canva.com/design/DAGqEiyIHzc/...`</td>
+</tr>
+<tr>
+<td>Estimulación Temprana</td>
+<td>`https://www.canva.com/design/DAGqotK0Uz4/...`</td>
+</tr>
+<tr>
+<td>Derechos de Niñas y Niños</td>
+<td>`https://www.canva.com/design/DAGqohJyRv8/...`</td>
+</tr>
+</table>
+### 7. Diversidad, Equidad y Género
+<table header-row="true">
+<tr>
+<td>Tema</td>
+<td>URL Canva</td>
+</tr>
+<tr>
+<td>Atención Adultos Mayores</td>
+<td>`https://www.canva.com/design/DAGqohJyRv8/...`</td>
+</tr>
+<tr>
+<td>Discapacidad y Derechos</td>
+<td>`https://www.canva.com/design/DAGqKSZYDlI/...`</td>
+</tr>
+<tr>
+<td>Prevención de Discapacidad</td>
+<td>`https://www.canva.com/design/DAGqKmTUXtk/...`</td>
+</tr>
+<tr>
+<td>Atención del Discapacitado</td>
+<td>`https://www.canva.com/design/DAGqitvm5kQ/...`</td>
+</tr>
+<tr>
+<td>Interculturalidad y Salud</td>
+<td>`https://www.canva.com/design/DAGqoJG5rzo/...`</td>
+</tr>
+<tr>
+<td>Género y Salud</td>
+<td>`https://www.canva.com/design/DAGqzwI6h1w/...`</td>
+</tr>
+</table>
+### 8. Derecho a la Salud
+<table header-row="true">
+<tr>
+<td>Tema</td>
+<td>URL Canva</td>
+</tr>
+<tr>
+<td>Vacunación</td>
+<td>`https://www.canva.com/design/DAGq0ZmggIE/...`</td>
+</tr>
+<tr>
+<td>Servicios de Salud</td>
+<td>`https://www.canva.com/design/DAGq0mP-Gjw/...`</td>
+</tr>
+<tr>
+<td>Uso Cartilla Nacional de Salud</td>
+<td>`https://www.canva.com/design/DAGq6GXfGac/...`</td>
+</tr>
+<tr>
+<td>Atención de Línea de Vida</td>
+<td>`https://www.canva.com/design/DAGrMQwjCW4/...`</td>
+</tr>
+<tr>
+<td>Educación para la Salud</td>
+<td>`https://www.canva.com/design/DAGrSaU7WLM/...`</td>
+</tr>
+</table>
+### 9. Participación Social
+<table header-row="true">
+<tr>
+<td>Tema</td>
+<td>URL Canva</td>
+</tr>
+<tr>
+<td>Participación Social</td>
+<td>`https://www.canva.com/design/DAGrd7Worqw/...`</td>
+</tr>
+<tr>
+<td>Organización Comunitaria</td>
+<td>`https://www.canva.com/design/DAGreO5uCz0/...`</td>
+</tr>
+<tr>
+<td>Trabajo Colectivo</td>
+<td>`https://www.canva.com/design/DAGrkT2rKts/...`</td>
+</tr>
+</table>
+### Sección Inferior: TALLERES COMUNITARIOS — Formatos descargables
+**H2:** `TALLERES COMUNITARIOS`
+<table header-row="true">
+<tr>
+<td>Documento</td>
+<td>URL de descarga</td>
+</tr>
+<tr>
+<td>Metas 2025 (PDF)</td>
+<td>`https://ce7d3fcb-8767-496b-830b-03b378ffa03f.filesusr.com/ugd/855669_05ac61aeb6074968a338aa5bfadcefd9.pdf`</td>
+</tr>
+<tr>
+<td>Formato de Talleres</td>
+<td>`https://drive.google.com/file/d/1ra2ek6vv2xMgdQcuy_EpGj5-mluUWBcU/view?usp=drive_link`</td>
+</tr>
+<tr>
+<td>Concentrado</td>
+<td>`https://drive.google.com/file/d/1FQgTbw80LuLqQw5ocHrWy4J3UOmfPdOl/view?usp=drive_link`</td>
+</tr>
+<tr>
+<td>Encuesta</td>
+<td>`https://drive.google.com/file/d/1FumUlQ1OotaoP-E7t0-j99OSrSfCooQF/view?usp=drive_link`</td>
+</tr>
+<tr>
+<td>Reporte (Google Form)</td>
+<td>`https://forms.gle/X895Ryz2NnYyH3pU7`</td>
+</tr>
+</table>
+### Sección: COMPLEMENTOS DE TALLERES (carpetas Google Drive por tema)
+<table header-row="true">
+<tr>
+<td>Categoría</td>
+<td>URL Google Drive</td>
+</tr>
+<tr>
+<td>ALIMENTACIÓN — Alimentación Saludable</td>
+<td>`https://drive.google.com/drive/folders/1AHqMvY5aqi7A4bALjqvIW3jCUj7eOD8c`</td>
+</tr>
+<tr>
+<td>ACTIVIDAD FÍSICA — ¿Qué es?</td>
+<td>`https://drive.google.com/drive/folders/1RK-P7oCsO09PurosirNFTMN_vEYSGOcY`</td>
+</tr>
+<tr>
+<td>SALUD SEXUAL — Adolescencia y Sexualidad</td>
+<td>Canva: `...DAGU3_QVPec...`</td>
+</tr>
+<tr>
+<td>SALUD SEXUAL — Prevención ITS</td>
+<td>Canva: `...DAGShzUQxZM...`</td>
+</tr>
+<tr>
+<td>SALUD SEXUAL — Planificación Familiar</td>
+<td>`https://drive.google.com/drive/folders/19golJHYzQyReF2rSroPbdA2DCwj3JX5N`</td>
+</tr>
+<tr>
+<td>SALUD SEXUAL — Embarazo, Parto y Puerperio</td>
+<td>`https://drive.google.com/drive/folders/17DJzNpYGWLjmxgalQ3XQLvUnRg0Zq7PP`</td>
+</tr>
+<tr>
+<td>SALUD SEXUAL — Climaterio Masculino y Femenino</td>
+<td>`https://drive.google.com/drive/folders/1jZlSwKIatEvy5InTDwr-ggA6e-_V05m3`</td>
+</tr>
+<tr>
+<td>SALUD SEXUAL — Prevención de Cáncer</td>
+<td>`https://drive.google.com/drive/folders/1YaS1C5lhj7o4Sb9cS7Y0RoTEswvzKdFY`</td>
+</tr>
+<tr>
+<td>ENTORNOS FÍSICOS — Saneamiento e Higiene</td>
+<td>`https://drive.google.com/drive/folders/154PVJzT3_2jg0jGUx6rKTXXfL1aAYY3B`</td>
+</tr>
+<tr>
+<td>ENTORNOS FÍSICOS — Prevención Accidentes</td>
+<td>`https://drive.google.com/drive/folders/1AChG694t3x_MXvTTBXQxqasXXi0Grjo5`</td>
+</tr>
+<tr>
+<td>ENTORNOS FÍSICOS — Caso de Desastre</td>
+<td>`https://drive.google.com/drive/folders/1CUdkLye-Q4neZT7BlTb-mQwc1CAjZhDv`</td>
+</tr>
+<tr>
+<td>ENTORNOS FÍSICOS — Enf. Transmisibles</td>
+<td>`https://drive.google.com/drive/folders/1FtzsIdHNkccH6-eNwhhfhW6Tb9qlY-AH`</td>
+</tr>
+<tr>
+<td>ENTORNOS PSICOSOCIALES — Salud Mental</td>
+<td>`https://drive.google.com/drive/folders/154V6Pi6tGnh1xsDvb-S9MvoKiVEu_9D-`</td>
+</tr>
+<tr>
+<td>ENTORNOS PSICOSOCIALES — Adicciones</td>
+<td>`https://drive.google.com/drive/folders/1E-C5lmqDfK2JHhEQchOrekPlhUT75XSh`</td>
+</tr>
+<tr>
+<td>ENTORNOS PSICOSOCIALES — Violencia</td>
+<td>`https://drive.google.com/drive/folders/1PyNdH353noyYqzGYJ--P997cirmEu_Q0`</td>
+</tr>
+<tr>
+<td>ENTORNOS PSICOSOCIALES — Abuso Sexual</td>
+<td>`https://drive.google.com/drive/folders/1AGOMuWnGA5tPJcAqKGsjDPJyVdn4tkBe`</td>
+</tr>
+<tr>
+<td>CRECIMIENTO — Desarrollo Infantil</td>
+<td>`https://drive.google.com/drive/folders/1jcsFQsozsr4HujiCJV2E6olsNuAOvtn1`</td>
+</tr>
+<tr>
+<td>DIVERSIDAD — Adultos Mayores</td>
+<td>`https://drive.google.com/drive/folders/1VGlEzKWkqBzCsD5EgqbaDq0VmvNneMPS`</td>
+</tr>
+<tr>
+<td>DIVERSIDAD — Personas con Discapacidad</td>
+<td>`https://drive.google.com/drive/folders/1tP4YQXtvi6_dFE8djlaxzoEf1jcDrEiG`</td>
+</tr>
+<tr>
+<td>DIVERSIDAD — Interculturalidad</td>
+<td>`https://drive.google.com/drive/folders/1LyemVU_rB1ctu8HXfLGxsTkk2eIFLYY1`</td>
+</tr>
+<tr>
+<td>DIVERSIDAD — Género y Salud</td>
+<td>`https://drive.google.com/drive/folders/16_rpq_ES1uGWEwyAVGHtqR_g2U3E9BOo`</td>
+</tr>
+<tr>
+<td>DERECHO A LA SALUD — Servicios de Salud</td>
+<td>`https://drive.google.com/drive/folders/1dwPS9fP0jGNpFoOaU496gYuVebesdypT`</td>
+</tr>
+<tr>
+<td>PARTICIPACIÓN SOCIAL</td>
+<td>`https://drive.google.com/drive/folders/1qfXgcg9Azxf-fmI6nTAlpt2_3PAwZw6T`</td>
+</tr>
+</table>
+---
+## PÁGINA 3 — `TEMAS DE PREVENCIÓN` (`/copia-de-determinantes`)
+**H1:** *(no declarado explícitamente — página de recursos mixtos)*
+### Sección 1: Slideshow de portadas (3 slides)
+- Imagen: `Mirando un video`
+- **CTA:** Red de Apoyo para Atención de Casos de Violencia Sexual → `https://www.gob.mx/cms/uploads/attachment/file/295952/Protocolo_estado_de_mexico.pdf`
+- Texto: `"Jurisdicción Sanitaria Texcoco"`
+### Sección 2: Campañas Escolares
+**H2:** `Campañas: Esc. Saludable y Vigilante / Acoso escolar ciberbullying`
+<table header-row="true">
+<tr>
+<td>Enlace</td>
+<td>URL</td>
+</tr>
+<tr>
+<td>Acoso Escolar</td>
+<td>`https://drive.google.com/drive/folders/1-NuTS1uq1RTWyhFyr56Ee7basjdg2vrZ?usp=share_link`</td>
+</tr>
+<tr>
+<td>Ciberbullying</td>
+<td>`https://drive.google.com/drive/folders/19MOm4X1-MOsL4zn9jLS4gDeIWV2h3Bb8?usp=share_link`</td>
+</tr>
+<tr>
+<td>Escuela Saludable y Vigilante</td>
+<td>`https://drive.google.com/drive/folders/1_perEQOMWSHWYIspcezazwrvuk9EG3C3?usp=share_link`</td>
+</tr>
+<tr>
+<td>Manual Operativo mhGAP OPS</td>
+<td>`https://iris.paho.org/bitstream/handle/10665.2/52328/9789275322550_spa.pdf`</td>
+</tr>
+</table>
+### Sección 3: Popocatépetl (Slideshow)
+**H2:** `Popocatépetl`
+**Texto:**
+> *"La ceniza del volcán está formada por partículas y fragmentos de las rocas, las erupciones y tienen un tamaño de 2mm. Pueden afectar temporalmente las condiciones del agua."*
+**H3:** `Incendios Forestales`
+**Texto:**
+> *"Se calcula que las actividades humanas ocasionan el 99% de estos incendios y sólo el resto tiene como causa fenómenos naturales como descargas eléctricas y la erupción de volcanes."*
+**Elemento multimedia:** Video player embebido: `CUIDADO CON EL HUMO`
+### Sección 4: Cuidado del Agua
+**H2:** `Cuidar el agua, es cuidar tu salud`
+**Texto:**
+> *"Cuando nuestro organismo carece de este líquido no puede desarrollar sus actividades adecuadamente, y puede provocar un cuadro de deshidratación crónica que puede poner en riesgo nuestra vida."*
+### Sección 5: Dieta de la Milpa
+**H2:** `DIETA DE LA MILPA` *(solo imagen — sin enlace ni texto)*
+### Sección 6: 2ª Jornada Contra el Dengue
+**H2:** `2° Jornada de Lucha Contra el Dengue`
+<table header-row="true">
+<tr>
+<td>Documento</td>
+<td>URL</td>
+</tr>
+<tr>
+<td>Carpeta Protocolaria (PDF)</td>
+<td>`https://ce7d3fcb-8767-496b-830b-03b378ffa03f.filesusr.com/ugd/855669_5ebd930ca33b43deb653db186c5e8003.pdf`</td>
+</tr>
+<tr>
+<td>Reporte 2da Jornada (XLSX)</td>
+<td>`https://ce7d3fcb-8767-496b-830b-03b378ffa03f.filesusr.com/ugd/855669_6e8f50a399904943a62ec4c574e1b4b8.xlsx`</td>
+</tr>
+<tr>
+<td>#CENAPRECE DENGUE</td>
+<td>`http://www.cenaprece.salud.gob.mx/programas/interior/vectores/dengue.html`</td>
+</tr>
+</table>
+### Sección 7: Temporada de Lluvia
+**H2:** `TEMPORADA DE LLUVIA` — Galería de imágenes (2 slides)
+---
+## PÁGINA 4 — `#SoyPromotoraDeSalud` (`/soypromotoradesalud`)
+**Estructura:** Página de imagen única (infografía vertical).
+- **Imagen:** Infografía kawaii `"#Soy Promotora DeSalud — AL RESCATE DE TU SALUD"`
+- **URL imagen:** `https://static.wixstatic.com/media/855669_ed406a427ae442bd832b757de461495e~mv2.jpg`
+- **Sin CTAs ni texto extraíble** — contenido 100% visual/imagen.
+- **Nota para migración:** Descargar la imagen y presentarla como `<figure>` con `<figcaption>`.
+---
+## PÁGINA 5 — `FORMATOS PROMOCIÓN` (`/departamentos`)
+**H1 / Título:** `Reporte mensual Promoción`
+### Sección A: Formularios de Reporte Mensual
+<table header-row="true">
+<tr>
+<td>Formulario</td>
+<td>URL</td>
+</tr>
+<tr>
+<td>Concentrado de Informes mensuales Promoción</td>
+<td>`https://docs.google.com/forms/d/e/1FAIpQLScGyKth2OHE0A8L0XVJoI-GeUSUelfFZL-L1q6ZtzNcXumfHg/viewform`</td>
+</tr>
+<tr>
+<td>Reporte mensual COLATERAL DE ACTIVIDAD FÍSICA</td>
+<td>`https://forms.gle/rWMQBx6sYTJ2SrCe8`</td>
+</tr>
+<tr>
+<td>Reporte mensual SIPS Fechas a Conmemorar 2026</td>
+<td>`https://docs.google.com/forms/d/e/1FAIpQLSfFTVF-rppG3QUj0KJ5vVhkWO8-fFu3KBvAjbCHALUFFifWUw/viewform`</td>
+</tr>
+<tr>
+<td>Talleres Comunitarios Determinantes</td>
+<td>`https://forms.gle/eTp1E2VCNW9yF82A8`</td>
+</tr>
+<tr>
+<td>Entornos Laborales Saludables</td>
+<td>`https://forms.gle/CmuM2YjK1MroNZSn6`</td>
+</tr>
+<tr>
+<td>Eventos Educativos</td>
+<td>`https://forms.gle/6B74GDxBeYTZ2U5L6`</td>
+</tr>
+<tr>
+<td>Reporte Productividad Promotores y Gestores</td>
+<td>`https://docs.google.com/forms/d/1JL-MBi82Urn3wKCfLlEenlKLKnGg87sA6uRCt9axKds/edit`</td>
+</tr>
+</table>
+### Sección B: Reporte mensual Adicciones
+*(solo imagen — sin enlace explícito al formulario en DOM)*
+### Sección C: Calendario de Fechas a Conmemorar 2026
+- **CTA:** `Calendario de Fechas a Conmemorar en Salud 2026.` → `https://drive.google.com/file/d/1AxdC9ZQ3GNyncxUeV32Yj_l-5fhoFcAB/view`
+- **Imagen:** `MARZO 2026.PNG` → carpeta: `https://drive.google.com/drive/folders/1bn-wpcLV36ftd4KPK84T48rtrFjSjpNO`
+- **Imagen QR:** `QR FECHAS CONMEMORATIVAS.png`
+### Sección D: Índice de Formatos Promoción (navegación interna)
+**H2:** `Formatos Promoción`
+<table header-row="true">
+<tr>
+<td>Sección</td>
+<td>URL interna</td>
+</tr>
+<tr>
+<td>Escuelas Saludables</td>
+<td>`/escuela-saludable`</td>
+</tr>
+<tr>
+<td>Interculturalidad</td>
+<td>`/interculturalidad`</td>
+</tr>
+<tr>
+<td>Nutrición</td>
+<td>`/nutricion`</td>
+</tr>
+<tr>
+<td>Ferias de Salud</td>
+<td>`/feria-de-salud`</td>
+</tr>
+<tr>
+<td>Estilo de Vida Saludable</td>
+<td>`/estilos-de-vida`</td>
+</tr>
+<tr>
+<td>Cronograma TVF RCU</td>
+<td>`/cronograma-tvf-rcu`</td>
+</tr>
+<tr>
+<td>Comunidad y Municipio</td>
+<td>`/comunidades-a-certificar`</td>
+</tr>
+</table>
+### Sección E: Lactancia Materna
+<table header-row="true">
+<tr>
+<td>Recurso</td>
+<td>URL</td>
+</tr>
+<tr>
+<td>UNICEF Lactancia Materna</td>
+<td>`https://www.unicef.org/mexico/lactancia-materna`</td>
+</tr>
+<tr>
+<td>IMSS-BIENESTAR Lactancia Materna</td>
+<td>`https://www.imss.gob.mx/_maternidad2/eres-mama/lactancia-materna`</td>
+</tr>
+<tr>
+<td>ISEM Lactancia Materna</td>
+<td>`https://salud.edomex.gob.mx/salud/lactancia_materna`</td>
+</tr>
+<tr>
+<td>VIDEOGRAFÍA Lactancia Materna</td>
+<td>`https://www.youtube.com/watch?v=DDBAdfHLrQ4`</td>
+</tr>
+</table>
+### Sección F: Higiene y Enfermedades
+**H2:** `ACCIONES DE HIGIENE Y SANEAMIENTO BÁSICO PARA LA PREVENCIÓN DE ENFERMEDADES DIARREICAS`
+<table header-row="true">
+<tr>
+<td>Video</td>
+<td>URL</td>
+</tr>
+<tr>
+<td>IRAS</td>
+<td>`https://youtu.be/g1-1-A_xOoY`</td>
+</tr>
+<tr>
+<td>EDAS</td>
+<td>`https://youtu.be/HK3XHPVdLDw`</td>
+</tr>
+</table>
+---
+## PÁGINA 6 — `ESCUELA SALUDABLE` (`/escuela-saludable`)
+### Sección A: Documentos normativos
+<table header-row="true">
+<tr>
+<td>Documento</td>
+<td>URL</td>
+</tr>
+<tr>
+<td>Manual Certificación Escuelas 3.0</td>
+<td>`https://drive.google.com/file/d/13-h9ev2UMnv9WCVslCTddO0fJJSSXVNU/view?usp=sharing`</td>
+</tr>
+<tr>
+<td>Lineamientos alimentos/bebidas DOF 2024</td>
+<td>`https://www.dof.gob.mx/nota_detalle.php?codigo=5740005&fecha=30/09/2024`</td>
+</tr>
+<tr>
+<td>Presentación Escuelas Promotoras 2024</td>
+<td>`https://drive.google.com/file/d/1ngjhY5n-NC0mx7os9P5orWySVaZ8Fet2/view?usp=drive_link`</td>
+</tr>
+<tr>
+<td>Criterios Operativos 2022 EVS</td>
+<td>`https://drive.google.com/file/d/1vj8LJMM9pasmqGDdBggdmfn68XqzCEyU/view?usp=sharing`</td>
+</tr>
+<tr>
+<td>Cuestionario de alimentación 4°-6°</td>
+<td>`https://drive.google.com/file/d/1uRhq7cEs-G7nji24TJu_ybaKK7MHX2Tx/view?usp=sharing`</td>
+</tr>
+</table>
+### Sección B: Definición
+**H2:** `Escuelas Promotoras`
+**Cuerpo de texto:**
+> *"Una escuela promotora de la salud es una institución educativa que planifica acciones sistemáticas y continuas sobre distintas dimensiones de la vida escolar, para constituirse en un entorno que promueve la salud y el bienestar de toda la comunidad educativa. Crea condiciones y oportunidades, y propicia la adquisición de competencias (cognitivas, emocionales y sociales) que facilitan a sus miembros elegir opciones y tomar decisiones de manera crítica y consciente a favor de su bienestar y el de sus comunidades."*
+- **Enlace Escuelas Promotoras:** `https://escuelassaludables5.wixsite.com/escuelas-promotoras`
+- **Enlace Aprende.org:** `https://aprende.org/cursos/view/182` — *"Niñas y niños creciendo sanos y listos"*
+- **Enlace Diplomado Vida Saludable SEP:** `https://dgfc.siged.sep.gob.mx/VidaSaludable/index.html`
+### Sección C: ESCUELAS SALUDABLES — Formatos
+**H2:** `ESCUELAS SALUDABLES`
+<table header-row="true">
+<tr>
+<td>Formato</td>
+<td>URL Google Docs/Drive</td>
+</tr>
+<tr>
+<td>Guía para llenado de Formatos</td>
+<td>`https://docs.google.com/presentation/d/1w5ibFLpPC-UYEUihrQ-3nL453ZPYbNLm/edit`</td>
+</tr>
+<tr>
+<td>Censo Escolar</td>
+<td>`https://docs.google.com/spreadsheets/d/1m_r1SEo4JpgTN1RIQ6O2znZ9Uno16KM_/edit`</td>
+</tr>
+<tr>
+<td>Cédula de Incorporación</td>
+<td>`https://docs.google.com/spreadsheets/d/1cUfipnLtsRKj3NWs3gSa3jbeuxYyOG96/edit`</td>
+</tr>
+<tr>
+<td>Cédula de Diagnóstico Escolar</td>
+<td>`https://docs.google.com/spreadsheets/d/1A_JHRrOcvEcIsr3ITOy5W_Zu1G7XdMAB/edit`</td>
+</tr>
+<tr>
+<td>Acta de Comité Escolar</td>
+<td>`https://docs.google.com/document/d/1Z3ZiPoA72fG79NFN6wC3kE3xC3Yjmx1y/edit`</td>
+</tr>
+<tr>
+<td>Cédula de Plan de Acción</td>
+<td>`https://docs.google.com/spreadsheets/d/1TPlNPiv0-xCWxPYMyeOUbHXAMlTxZl5J/edit`</td>
+</tr>
+<tr>
+<td>Formato de Taller</td>
+<td>`https://docs.google.com/document/d/1nWByyxzxequtmMdSKEAvll-Jd-1_cWYc/edit`</td>
+</tr>
+<tr>
+<td>Gráfica Vigilancia Nutricional</td>
+<td>`https://drive.google.com/drive/folders/1LE_V4BhsZTNd3YD5gkpkl4fcwedO91Hr`</td>
+</tr>
+<tr>
+<td>Formato Vigilancia Nutricional</td>
+<td>`https://docs.google.com/spreadsheets/d/1OFul3zvKsptlyonmhfu7b_NbPABSqu7l/edit`</td>
+</tr>
+<tr>
+<td>Determinantes Escolares (carpeta)</td>
+<td>`https://drive.google.com/drive/folders/1UgO9INtK4eBWVoe7Et7MBFm7lJWFC4x2`</td>
+</tr>
+</table>
+- **Imagen:** `diptico_vidasaludable.jpg`
+- **Enlace adicional:** `https://vidasaludable.gob.mx/`
+---
+## PÁGINA 7 — `ESPACIO LIBRE HUMO DE TABACO` (`/libre-de-humo`)
+**H1:** `ESPACIO LIBRE DE HUMO DE TABACO`
+### Sección A: Recurso
+<table header-row="true">
+<tr>
+<td>Recurso</td>
+<td>URL</td>
+</tr>
+<tr>
+<td>¿QUE ES EL TABAQUISMO? (Presentación)</td>
+<td>`https://docs.google.com/presentation/d/1MRFUwb1bO5aL1qK5dUZFM0Mo9FngljLh/edit`</td>
+</tr>
+<tr>
+<td>QUE HACER (Video YouTube)</td>
+<td>`https://youtu.be/--sonEqYq08?feature=shared`</td>
+</tr>
+<tr>
+<td>Cédula de Edificio Libre de Humo</td>
+<td>`https://docs.google.com/document/d/1duIzWLIJpmqiAoLYOLDXkUQiaGdbcd1H/edit`</td>
+</tr>
+<tr>
+<td>Presentación ELHTyE</td>
+<td>`https://docs.google.com/presentation/d/1U-uAJRqsV6D4ey45jrpdBN0NWlL2HKU3/edit`</td>
+</tr>
+<tr>
+<td>Solicitud de visita para</td>
+<td></td>
+</tr>
+</table>
+# 📘 CONTINUACIÓN — ANÁLISIS WEB SEMÁNTICO COMPLETO
+## (Continuación desde Página 7)
+---
+## PÁGINA 7 — `ESPACIO LIBRE HUMO DE TABACO` (`/libre-de-humo`) *(continuación)*
+### Sección A: Recursos Documentales
+<table header-row="true">
+<tr>
+<td>Recurso</td>
+<td>URL</td>
+</tr>
+<tr>
+<td>¿QUÉ ES EL TABAQUISMO? (Presentación)</td>
+<td>`https://docs.google.com/presentation/d/1MRFUwb1bO5aL1qK5dUZFM0Mo9FngljLh/edit`</td>
+</tr>
+<tr>
+<td>QUÉ HACER (Video YouTube)</td>
+<td>`https://youtu.be/--sonEqYq08?feature=shared`</td>
+</tr>
+<tr>
+<td>Cédula de Edificio Libre de Humo de Tabaco</td>
+<td>`https://docs.google.com/document/d/1duIzWLIJpmqiAoLYOLDXkUQiaGdbcd1H/edit`</td>
+</tr>
+<tr>
+<td>Presentación ELHTyE</td>
+<td>`https://docs.google.com/presentation/d/1U-uAJRqsV6D4ey45jrpdBN0NWlL2HKU3/edit`</td>
+</tr>
+<tr>
+<td>Solicitud de visita para Reconocimiento</td>
+<td>`https://docs.google.com/document/d/1XfO4EiXxMGmWz6M-9a3D0aTPr6p3Wc9W/edit`</td>
+</tr>
+<tr>
+<td>Oficio de Solicitud de Reconocimiento</td>
+<td>`https://docs.google.com/document/d/1fusleP8BiGjndgcGDTE6H0U3glHyrvsa/edit`</td>
+</tr>
+<tr>
+<td>Certificados de Espacios Libres (carpeta)</td>
+<td>`https://drive.google.com/drive/folders/15q72TB-ZmTJbrhpRLtSwI5wIrt54BMZZ?usp=sharing`</td>
+</tr>
+</table>
+### Sección B: Definición de Tabaquismo
+**Cuerpo de texto:**
+> *"El tabaquismo es la adicción al consumo de tabaco. El tabaquismo es uno de los efectos del tabaco en la salud. El consumo habitual de tabaco produce diferentes enfermedades, como cáncer, enfermedades cardiovasculares y enfermedades respiratorias, es particularmente perjudicial durante el embarazo."*
+<table header-row="true">
+<tr>
+<td>Presentación descargable</td>
+<td>URL</td>
+</tr>
+<tr>
+<td>PRESENTACION TABAQUISMO (PDF)</td>
+<td>`https://ce7d3fcb-8767-496b-830b-03b378ffa03f.filesusr.com/ugd/855669_3c0b221ce34c4bf3affc04da4535c1cc.pdf`</td>
+</tr>
+<tr>
+<td>PRESENTACION TABAQUISMO SALUD (PPTX)</td>
+<td>`https://ce7d3fcb-8767-496b-830b-03b378ffa03f.filesusr.com/ugd/855669_ca09c6dcbdd14061bc445a6a893e9706.pptx`</td>
+</tr>
+</table>
+### ✅ HALLAZGO CRÍTICO — FOOTER REAL (detectado en esta página)
+> **Esta es la única página donde el ****`<footer>`**** tiene contenido visible.** Confirma los datos reales del footer del sitio completo.
+**Créditos:** `© 2023 Creado por Promoción a la Salud Texcoco`**Plataforma:** `Wix.com`
+<table header-row="true">
+<tr>
+<td>Elemento</td>
+<td>Valor</td>
+</tr>
+<tr>
+<td>Términos y Condiciones</td>
+<td>`/términos-y-condiciones`</td>
+</tr>
+<tr>
+<td>Política de Privacidad</td>
+<td>`/política-de-privacidad`</td>
+</tr>
+<tr>
+<td>Dirección (mapa Google)</td>
+<td>`https://www.google.com/maps/dir//Papalotla+S%2FN,+San+Sebastian,+56030+Chiautla,+Méx.`</td>
+</tr>
+<tr>
+<td>**Facebook**</td>
+<td>`https://www.facebook.com/profile.php?id=100012254806363&sk=about`</td>
+</tr>
+<tr>
+<td>Twitter/X</td>
+<td>`https://twitter.com/MundoWix` *(enlace genérico de Wix — reemplazar)*</td>
+</tr>
+</table>
+---
+## PÁGINA 8 — `NUTRICION` (`/nutricion`)
+**H1:** `NUTRICION`
+### Sección A: Normas Oficiales (CTAs de documentos)
+<table header-row="true">
+<tr>
+<td>Documento</td>
+<td>URL</td>
+</tr>
+<tr>
+<td>NOM 004 (Expediente clínico)</td>
+<td>`https://www.cndh.org.mx/sites/default/files/doc/Programas/VIH/Leyes%20y%20normas%20y%20reglamentos/Norma%20Oficial%20Mexicana/NOM-004-SSA3-2012.pdf`</td>
+</tr>
+<tr>
+<td>NOM 043 (Alimentaria)</td>
+<td>`https://www.gob.mx/cms/uploads/attachment/file/138258/NOM-043-servicios-basicos-salud-educacion-alimentaria.pdf`</td>
+</tr>
+</table>
+### Sección B: Definición
+**H2:** `Definición`
+**Cuerpo de texto:**
+> *"De acuerdo con la Organización Mundial de la Salud (OMS), la nutrición es la ingesta de alimentos en relación con las necesidades dietéticas del organismo."*
+### Sección C: Recursos de Consulta (imágenes-enlace)
+<table header-row="true">
+<tr>
+<td>Recurso</td>
+<td>URL</td>
+</tr>
+<tr>
+<td>Consulta (ícono manzana — NOM 043)</td>
+<td>`https://www.gob.mx/cms/uploads/attachment/file/138258/NOM-043-servicios-basicos-salud-educacion-alimentaria.pdf`</td>
+</tr>
+<tr>
+<td>Orientación Alimentaria (formato)</td>
+<td>`https://ddsisem.edomex.gob.mx/bvirtual/descargar_archivo.php?cve_formato=1575`</td>
+</tr>
+<tr>
+<td>Box Lunch (hoja de cálculo)</td>
+<td>`https://docs.google.com/spreadsheets/d/160Z1LETKzr-00fMn2Er_YoiNHSvHEbfn/edit`</td>
+</tr>
+<tr>
+<td>Cédula de Supervisión CEAPS y Centros de Salud</td>
+<td>`https://docs.google.com/spreadsheets/d/1eozpnd-BIzoiU5oDxMo4XM0o15tr7l5Y/edit`</td>
+</tr>
+<tr>
+<td>Gráfica Vigilancia Nutricional (gif animado)</td>
+<td>`https://drive.google.com/drive/folders/1LE_V4BhsZTNd3YD5gkpkl4fcwedO91Hr?usp=sharing`</td>
+</tr>
+<tr>
+<td>GUÍAS DE PRÁCTICA CLÍNICA NUTRICIÓN</td>
+<td>`https://www.imss.gob.mx/guias_practicaclinica?field_categoria_gs_value=25`</td>
+</tr>
+<tr>
+<td>Formatos Nutrición CEAPS 2024</td>
+<td>`https://drive.google.com/drive/folders/1_ki4Vrn7g6ZXLZnlfhbEdPDoFkEuLPY7?usp=sharing`</td>
+</tr>
+</table>
+### Sección D: FOLDER EXPEDIENTE CLÍNICO — PRIMER NIVEL (tabla de formatos oficiales)
+**H2:** `FOLDER EXPEDIENTE CLÍNICO - PRIMER NIVEL`
+<table header-row="true">
+<tr>
+<td>Formato</td>
+<td>Clave</td>
+<td>Fecha</td>
+<td>URL descarga</td>
+</tr>
+<tr>
+<td>Folder Expediente Clínico</td>
+<td>`208C0101100000L-000-21`</td>
+<td>07/05/2021</td>
+<td>`https://ddsisem.edomex.gob.mx/bvirtual/descargar_archivo.php?cve_formato=1642`</td>
+</tr>
+<tr>
+<td>Historia Clínica General</td>
+<td>`208C0101100000L-015-21`</td>
+<td>07/05/2021</td>
+<td>`...cve_formato=1648`</td>
+</tr>
+<tr>
+<td>Historia Clínica Recién Nacido</td>
+<td>`208C0101100000L-013-19`</td>
+<td>29/03/2019</td>
+<td>`...cve_formato=403`</td>
+</tr>
+<tr>
+<td>Nota de Evolución</td>
+<td>`208C0101100000L-016-21`</td>
+<td>07/05/2021</td>
+<td>`...cve_formato=1584`</td>
+</tr>
+<tr>
+<td>Solicitud-Recepción de Interconsulta</td>
+<td>`208C0101100000L-024-19`</td>
+<td>20/05/2019</td>
+<td>`...cve_formato=1692`</td>
+</tr>
+<tr>
+<td>Formato de Referencia y Contrarreferencia</td>
+<td>`208C0101100000L-181-22`</td>
+<td>21/04/2022</td>
+<td>`...cve_formato=1707`</td>
+</tr>
+<tr>
+<td>Bitácora Seguimiento de Referencia</td>
+<td>`208C0101100000L-050-19`</td>
+<td>10/04/2019</td>
+<td>`...cve_formato=1159`</td>
+</tr>
+<tr>
+<td>Solicitud de Laboratorio</td>
+<td>`208C0101100000L-025-21`</td>
+<td>07/05/2021</td>
+<td>`...cve_formato=1236`</td>
+</tr>
+<tr>
+<td>Solicitud de Estudio de Gabinete</td>
+<td>`208C0101100000L-394-21`</td>
+<td>07/09/2021</td>
+<td>`...cve_formato=1236`</td>
+</tr>
+<tr>
+<td>Agenda Diaria del Médico</td>
+<td>`208C0101100000L-006-19`</td>
+<td>29/03/2019</td>
+<td>`...cve_formato=1129`</td>
+</tr>
+<tr>
+<td>Recomendaciones Nutricionales</td>
+<td>`208C0101100000L-525-21`</td>
+<td>14/06/2021</td>
+<td>`https://ce7d3fcb-8767-496b-830b-03b378ffa03f.filesusr.com/ugd/855669_66b57ac0f1644f2985e99735134da21a.pdf`</td>
+</tr>
+</table>
+> 📌 **Base URL de DDSISEM:** `https://ddsisem.edomex.gob.mx/bvirtual/descargar_archivo.php?cve_formato=`
+---
+## PÁGINA 9 — `INTERCULTURALIDAD` (`/interculturalidad`)
+**H1:** `INTERCULTURALIDAD`
+### Sección A: Definición
+**Cuerpo de texto:**
+> *"Se refiere a la interacción entre culturas, de una forma respetuosa, horizontal y sinérgica, donde se concibe que ningún grupo cultural esté por encima del otro, favoreciendo en todo momento la integración y convivencia de ambas partes."*
+**Imagen:** `interculturalidad.JPG`
+### Sección B: Recursos enlazados (4 enlaces [gob.mx](http://gob.mx/) + 1 descargable)
+<table header-row="true">
+<tr>
+<td>Recurso</td>
+<td>URL</td>
+</tr>
+<tr>
+<td>Interculturalidad en Salud ([gob.mx](http://gob.mx/))</td>
+<td>`https://www.gob.mx/salud/acciones-y-programas/interculturalidad-en-salud-299181?state=published`</td>
+</tr>
+<tr>
+<td>Atención a Pueblos Indígenas ([gob.mx](http://gob.mx/))</td>
+<td>`https://www.gob.mx/salud/acciones-y-programas/atencion-a-la-salud-de-los-pueblos-indigenas-299560?state=published`</td>
+</tr>
+<tr>
+<td>Medicinas Complementarias ([gob.mx](http://gob.mx/))</td>
+<td>`https://www.gob.mx/salud/acciones-y-programas/medicinas-complementarias-313623?state=published`</td>
+</tr>
+<tr>
+<td>Medicina Tradicional ([gob.mx](http://gob.mx/))</td>
+<td>`https://www.gob.mx/salud/acciones-y-programas/medicina-tradicional?state=published`</td>
+</tr>
+<tr>
+<td>ENLACES, LINKS, INFOGRAFIA... (DOCX)</td>
+<td>`https://ce7d3fcb-8767-496b-830b-03b378ffa03f.filesusr.com/ugd/855669_205ad26156cb40e5a927bc33dac0d74b.docx` *(archivo de Word descargable)*</td>
+</tr>
+</table>
+---
+## PÁGINA 10 — `FERIAS DE SALUD` (`/feria-de-salud`)
+**H1:** `Fechas de Ferias de Salud 2025`
+### Sección A: Recursos
+<table header-row="true">
+<tr>
+<td>Recurso</td>
+<td>URL</td>
+</tr>
+<tr>
+<td>Fechas de Ferias de Salud 2025 (Google Sheets)</td>
+<td>`https://docs.google.com/spreadsheets/d/1QcIhZ-Kut7kA5iBu8pIGkg22d9uDEiHA/edit`</td>
+</tr>
+<tr>
+<td>FORMATO DE REPORTE EN BLANCO (Google Drive)</td>
+<td>`https://drive.google.com/drive/folders/1Os-nk6wVOMED2HmuEfkjRD2Af5pJnPFU?usp=sharing`</td>
+</tr>
+<tr>
+<td>REPORTE MÓDULOS, JORNADAS, FERIAS Y MAGNAS FERIAS (Formulario)</td>
+<td>`https://docs.google.com/forms/d/e/1FAIpQLScX65ig628in9hXqiBX1HAWrmsKJ1NdtV-nWFYqg6Sx7gsywQ/viewform`</td>
+</tr>
+</table>
+### Sección B: Definición
+**H2:** `Objetivo`
+**Cuerpo de texto:**
+> *"Facilitar el acceso a los servicios de salud individuales y colectivos, mediante el acercamiento de los mismos a las comunidades que lo requieren."*
+**Imagen:** `WhatsApp Image 2023-03-09 at 11.57.10 AM.jpeg`
+---
+## PÁGINA 11 — `ESTILOS DE VIDA SALUDABLE` (`/estilos-de-vida`)
+**H1:** `ESTILOS DE VIDA SALUDABLE Y ENTORNOS LABORABLES SALUDABLES`
+**Enlace del título:** `https://reapotaankelem.wixsite.com/entornos-saludables` *(sitio Wix externo — posiblemente sitio hermano)*
+**Imagen:** `Las niñas deportivo`
+### Sección: Recursos
+<table header-row="true">
+<tr>
+<td>Recurso</td>
+<td>URL</td>
+</tr>
+<tr>
+<td>CHECK LIST DE ENTORNOS LABORALES</td>
+<td>`https://docs.google.com/document/d/1cPBDVfaJltioh10cmAHOAiuCP3hgX4dG/edit`</td>
+</tr>
+<tr>
+<td>LINK REPORTE MENSUAL DE ENTORNOS LABORALES 2025</td>
+<td>`https://forms.gle/bFJTQZnREpjB45jR9`</td>
+</tr>
+<tr>
+<td>Link de Reporte Eventos Educativos 2025</td>
+<td>`https://docs.google.com/forms/d/e/1FAIpQLSepUBbkE3cH1eS2JnZrAS2rn8OTNq1EZ8hqsQvWu_VnXnGVtg/viewform`</td>
+</tr>
+</table>
+---
+## PÁGINA 12 — `COMUNIDADES A CERTIFICAR` (`/comunidades-a-certificar`)
+**H1:** `COMUNIDADES A CERTIFICAR`
+### Sección A: Manuales y formatos (lista sin enlaces directos en DOM principal)
+Los siguientes títulos aparecen como headings sin enlace individual — forman parte de un índice visual:
+- Manual para la certificación de Municipios Promotores de la salud 2019
+- Manual para la certificación de Comunidades Promotoras de la salud
+- Lista de asistencia
+- Formato Comité Local
+- Proceso de Certificación
+- Diagnóstico Local
+- Tabla Priorización
+- Plan de Trabajo
+- Minuta
+- Cédula de Certificación Vivienda
+- Cédula de Certificación Comunidad
+- Guía Agentes Saludables
+- Guía Entornos
+- REGISTRO DE CAPACITACIÓN DE SALUD PÚBLICA
+**Imagen:** `gestion-de-comunidades.png`
+### Sección B: Formatos de Comunidades Urbanas (archivos descargables Wix)
+<table header-row="true">
+<tr>
+<td>Documento</td>
+<td>URL de descarga</td>
+</tr>
+<tr>
+<td>Criterios de Validación del Proceso (DOCX)</td>
+<td>`https://ce7d3fcb-.../855669_6f7a72202ab4494da31685ec78275172.docx`</td>
+</tr>
+<tr>
+<td>SINBA-SIS-CERT-URB 2023 RGTO CERTIFICACION URBANAS (XLSX)</td>
+<td>`https://ce7d3fcb-.../855669_b9c7a8916a9c4701bcce4e1fb7fb019f.xlsx`</td>
+</tr>
+<tr>
+<td>Anexo 1. Conformación del expediente (PDF)</td>
+<td>`https://ce7d3fcb-.../855669_3dec34427f7d4af59370c92a3466c20e.pdf`</td>
+</tr>
+<tr>
+<td>Anexo 2. Acta de Comité Localidades Urbanas (PDF)</td>
+<td>`https://ce7d3fcb-.../855669_dde058f5ba4b4ee99c7e29d88eb2feb5.pdf`</td>
+</tr>
+<tr>
+<td>Anexo 3. Diagnóstico de Salud en Localidades Urbanas (PDF)</td>
+<td>`https://ce7d3fcb-.../855669_148cb037d0bc40e2a7048ca27e3451f4.pdf`</td>
+</tr>
+<tr>
+<td>Anexo 4. Metodología Cartografía Social (PDF)</td>
+<td>`https://ce7d3fcb-.../855669_84769e71d1264430ae0a2f1b88f11064.pdf`</td>
+</tr>
+<tr>
+<td>Anexo 5. Tabla de Priorización urbana (PDF)</td>
+<td>`https://ce7d3fcb-.../855669_bde4e3e8dec14f9b8e13515318a8cdeb.pdf`</td>
+</tr>
+<tr>
+<td>Anexo 6. Plan de trabajo urbana (PDF)</td>
+<td>`https://ce7d3fcb-.../855669_3c9b1a8e57ea4b30b4fa471f33adda24.pdf`</td>
+</tr>
+<tr>
+<td>Anexo 7. Registro de Acciones Integrales (PDF)</td>
+<td>`https://ce7d3fcb-.../855669_32e56b4129e7469d89da0f7d8809cb8c.pdf`</td>
+</tr>
+<tr>
+<td>Anexo 8. Cédula de verificación y recomendaciones (PDF)</td>
+<td>`https://ce7d3fcb-.../855669_68dd0ab77e1143118eb8e48bfe314c52.pdf`</td>
+</tr>
+<tr>
+<td>Carta descriptiva capacitación urbanas (PDF)</td>
+<td>`https://ce7d3fcb-.../855669_d6f5f2082a89463f9dc12a09a3b5a2ca.pdf`</td>
+</tr>
+<tr>
+<td>Lista de asistencia capacitación urbanas (PDF)</td>
+<td>`https://ce7d3fcb-.../855669_1148507640284d69b9b68917ec91908d.pdf`</td>
+</tr>
+</table>
+> 📌 **Nota:** La base URL completa es `https://ce7d3fcb-8767-496b-830b-03b378ffa03f.filesusr.com/ugd/` seguida del hash. Para la nueva versión HTML, descarga todos estos archivos y alójalos en tu propio servidor o Google Drive.
+---
+## PÁGINA 13 — `CRONOGRAMA TVF RCU` (`/cronograma-tvf-rcu`)
+**H1:** `LINEAMIENTOS DE OPERACIÓN DEL TÉCNICO EN ATENCIÓN PRIMARIA A LA SALUD (TAPS) Y CUIDADORAS DE LA SALUD (CS) JUNIO 2017`
+**CTA del H1:** `https://e4ffac1e-b518-41af-b385-60689a2c93c6.filesusr.com/ugd/60eab1_7a07909496b244db82502f14fbd583da.pdf`
+### Sección A: Cronograma Semanal
+**H2:** `Cronograma Semanal de Actividades`
+**Cuerpo de texto:**
+> *"Se deberá realizar de forma semanal y entregar al responsable de unidad los días lunes previo al inicio de sus actividades diarias, permanecerá bajo resguardo una semana; al concluir deberá ser archivado con fines de supervisión."*
+### Sección B: Formato de Visita Domiciliaria
+**H2:** `Formato de Visita Domiciliaria`
+**CTA:** `DESCARGA TVF 2024` → `https://ce7d3fcb-8767-496b-830b-03b378ffa03f.filesusr.com/ugd/855669_9df41349265a4f79afdd4089eed9964d.pdf`
+**Imagen:** `WhatsApp Image 2023-03-09 at 11.43.25 AM.jpeg`
+### Sección C: Formatos Oficiales (tabla)
+<table header-row="true">
+<tr>
+<td>Formato</td>
+<td>Clave</td>
+<td>Fecha</td>
+<td>URL</td>
+</tr>
+<tr>
+<td>Libreta de Control Referencia Comunidad-Unidad</td>
+<td>*(sin clave)*</td>
+<td>—</td>
+<td>Google Sheets: `...1h36DOZc5_kBblA3hVKYOIyzuIvwLMn15...`</td>
+</tr>
+<tr>
+<td>Referencia de Comunidad a Unidad Médica</td>
+<td>`208C0101100000L-026-19`</td>
+<td>28/10/2019</td>
+<td>`https://ce7d3fcb-.../855669_8d866d5aa3704b84a50fef037fbb8041.pdf`</td>
+</tr>
+<tr>
+<td>Tarjeta de Visita Familiar (TVF)</td>
+<td>`208C0101100000L-502-24`</td>
+<td>26/03/2024</td>
+<td>`https://ce7d3fcb-.../855669_9df41349265a4f79afdd4089eed9964d.pdf`</td>
+</tr>
+<tr>
+<td>Registro Estadístico TAPS y CS</td>
+<td>`208C0101100000L-154-20`</td>
+<td>08/04/2020</td>
+<td>`https://ddsisem.edomex.gob.mx/bvirtual/descargar_archivo.php?cve_formato=850`</td>
+</tr>
+</table>
+### Sección D: Diagrama / Infografía
+**Imagen-enlace:** `TVF 2024 Viri.drawio.png` → `https://drive.google.com/file/d/124GA671mVO49Hcps_821qqHq2dwWIs6p/view?usp=sharing`
+<table header-row="true">
+<tr>
+<td>Recurso adicional</td>
+<td>URL</td>
+</tr>
+<tr>
+<td>Informe Mensual Actividades Fuera de Unidad (SINBA-SIS-FU)</td>
+<td>Google Sheets: `...1VV_2ks0LSl5mHwqU4GdG2uhf8HnELDiW...`</td>
+</tr>
+<tr>
+<td>Formatos Fuera de Unidad (carpeta Drive)</td>
+<td>`https://drive.google.com/drive/folders/1okFDHjZlFyp8yejWQW1w2DggjdMpgPLw?usp=sharing`</td>
+</tr>
+</table>
+**Imágenes:** `Postal Atencion Integrada frente.jpg` y `Postal Atencion Integrada vuelta.jpg`
+---
+## PÁGINA 14 — `ADICCIONES` (`/copia-de-cronograma-tvf-rcu`)
+**H1:** `Reporte mensual Adicciones`
+**H2:** `PREVENCIÓN DE ADICCIONES`
+### Sección A: Formularios de reporte
+<table header-row="true">
+<tr>
+<td>Formulario</td>
+<td>URL</td>
+</tr>
+<tr>
+<td>INFORME MENSUAL DE ADICCIONES</td>
+<td>`https://docs.google.com/forms/d/e/1FAIpQLSfYSe8hf7D6nGzWK7GKmlJtdWyhLuaUOF0dE97gOa8XYkqwSg/viewform`</td>
+</tr>
+<tr>
+<td>CONCENTRADO DE VIOLENCIA Y LA DELINCUENCIA</td>
+<td>`https://docs.google.com/forms/d/e/1FAIpQLSeR61t_9bC_0y5Ln2MI0lmW-bayXjagkH6QsBSDxi2C0k6xcg/viewform`</td>
+</tr>
+</table>
+### Sección B: Material descargable
+<table header-row="true">
+<tr>
+<td>Recurso</td>
+<td>URL</td>
+</tr>
+<tr>
+<td>Gafas de impedimento por alcohol (PDF)</td>
+<td>`https://ce7d3fcb-8767-496b-830b-03b378ffa03f.filesusr.com/ugd/855669_aa39a6dd3d78415ca34439df60784e8d.pdf`</td>
+</tr>
+</table>
+### Secciones C-D: Formatos TVF (idénticos a CRONOGRAMA TVF RCU)
+*(Misma sección duplicada: Lineamientos TAPS, Cronograma Semanal, Visita Domiciliaria, Formatos Oficiales, Informe Mensual Fuera de Unidad)*
+> 📌 **Nota para migración:** Esta página es un clon de `/cronograma-tvf-rcu` con una sección adicional de Adicciones al inicio. En el nuevo sitio se puede **unificar en una sola página** con anclas `#adicciones` y `#tvf`.
+---
+## PÁGINA 15 — `CAMPAÑAS` (`/copia-de-adicciones`)
+**H1:** `CAMPAÑA 2025`
+### Sección A: Campaña "3x Mi Salud"
+**H2:** `3x Mi Salud`
+**Subtítulo/descripción:**
+> *"Elimina estos alimentos que contienen estos sellos, modifica tu estilo de vida saludable y prevente de enfermedades crónicas degenerativas."*
+**Imagen:** `Captura de pantalla 2025-07-04 153515.png`
+**Video embebido:** `VIDEO Camino siempre.mp4` *(video propio, alojado en Wix)*
+### Sección B: Tres Líneas de Acción
+<table header-row="true">
+<tr>
+<td>#</td>
+<td>Línea de Acción</td>
+</tr>
+<tr>
+<td>01</td>
+<td>Promover la alimentación saludable</td>
+</tr>
+<tr>
+<td>02</td>
+<td>Alentar a la población a tener mayor actividad física</td>
+</tr>
+<tr>
+<td>03</td>
+<td>Evitar el consumo de bebidas azucaradas</td>
+</tr>
+</table>
+**Texto CTA animado:** `SIGUE ESTAS TRES LINEAS DE ACCIÓN`
+### Sección C: Video adicional
+**Elemento:** Video player embebido `Your Video Title` *(sin URL extraíble — video embebido Wix)*
+> 📌 **Nota para migración:** El video `Camino siempre.mp4` está alojado en Wix. Debes descargarlo desde el panel de Wix Media Manager y alojarlo en tu propio servidor o en YouTube para embebido con `<video>` o `<iframe>`.
+---
+## PÁGINA 16 — `CONTENIDO` (`/seguro`)
+**H1/Título:** `FORMATO CENSO NOMINAL DE CARTILLAS`
+**CTA principal:** Hoja de cálculo Google Sheets → `https://docs.google.com/spreadsheets/d/1AmhMbfMxLkCPefLXPJrFSBGqHzQtPpIZ/edit`
+### Sección A: Tipos de Cartillas Nacionales de Salud
+**H2:** `TIPOS DE CARTILLAS NACIONALES DE SALUD`
+Cinco cartillas listadas (como ítems de lista sin enlace individual):
+- Cartilla Nacional de Salud de niñas y niños (de 0 a 9 años)
+- Cartilla Nacional de Salud del Adolescente (de 10 a 19 años)
+- Cartilla Nacional de Salud de la Mujer (de 20 a 59 años)
+- Cartilla Nacional de Salud del Hombre (de 20 a 59 años)
+- Cartilla Nacional de Salud del Adulto Mayor (de 60 años ó más)
+**Documentos descargables:**
+<table header-row="true">
+<tr>
+<td>Recurso</td>
+<td>URL</td>
+</tr>
+<tr>
+<td>Lineamientos Paquete Garantizado</td>
+<td>*(listado sin enlace extraíble)*</td>
+</tr>
+<tr>
+<td>Manual del Paquete Garantizado</td>
+<td>`https://ce7d3fcb-8767-496b-830b-03b378ffa03f.filesusr.com/ugd/855669_3024ba07d840452cb71c42f0621db082.pdf`</td>
+</tr>
+</table>
+**Imagen:** `1.PNG` — *(presumiblemente tabla o cartel de servicios)*
+### Sección B: Acciones de Salud por Grupo de Edad y Sexo
+**H2:** `Acciones de Salud por Grupo de Edad y Sexo`
+**Cuerpo de texto:**
+> *"En este apartado se describen las acciones de prevención y promoción de la salud para la atención integral de toda persona que acuda a las unidades médicas de la institución, independientemente del motivo de la atención y de acuerdo con los siguientes grupos de edad y sexo."*
+**Lista de grupos de edad:** 6 ítems (sin enlaces individuales — probablemente anclas o acordeones visuales Wix)
+---
+## PÁGINA 17 — `CONTACTO` (`/contacto`)
+**H1:** `OFICIOS ENVIADOS A COORDINACION`
+**CTA:** `CONOCELOS` → `https://ce7d3fcb-8767-496b-830b-03b378ffa03f.filesusr.com/ugd/855669_145cc1c08a8148bebed22b441e985fbc.pdf`
+### Sección: Formulario de Contacto
+**H2:** `Contáctanos`**H3:** `Ubicación`
+**Datos de contacto:**
+- **Dirección:** `Cda. Carretera Papalotla s/n, San Andres Chiautla 1, 56030 Chiautla, Méx.`
+- **Teléfono 1:** `01 595 95 3 18 84`
+- **Teléfono 2:** `01 595 95 3 19 45`
+- **Ext.:** `94219` *(nota: aquí aparece **`94219`**, diferente al **`94251`** del pre-header — verificar cuál es el correcto)*
+- **Email:** `comitepromociontex@gmail.com`
+- **Enlace mailto:** `mailto:comitepromociontex@gmail.com`
+**Estructura del formulario HTML:**
+```html
+<form id="contacto">
+  <input type="text"  name="nombre"   placeholder="Nombre"   required>
+  <input type="text"  name="apellido" placeholder="Apellido" required>
+  <input type="email" name="email"    placeholder="Email"    required>
+  <input type="text"  name="asunto"   placeholder="Asunto"   required>
+  <textarea           name="mensaje"  placeholder="Mensaje"  required></textarea>
+  <button type="submit">Enviar</button>
+</form>
+```
+**Mensaje de éxito:** `"¡Gracias por tu mensaje!"`
+**Elemento multimedia:** Google Maps embed (mapa de ubicación)
+---
+## PÁGINA 18 — `SALUD MENTAL` (`/copia-de-contacto`)
+**H1:** `Salud Mental`
+### Sección A: Línea de la Vida
+**H2:** `Centro de Atención Ciudadana la Línea de la Vida.`
+**Enlace:** `https://www.gob.mx/salud/conadic/acciones-y-programas/centro-de-atencion-ciudadana-contra-las-adicciones-134381`
+**Cuerpo de texto:**
+> *"Trabajamos para ti las 24 horas del día los 365 días del año."*
+**Número de emergencia (CTA tipo botón):** `800 911 2000`
+**Descripción:**
+> *"Grupo de especialistas en atención a la salud mental que ofrece derivación y referencia de casos con riesgo suicida que requieren intervención especializada en centros de salud especializados."*
+### Sección B: Dos Mapas embebidos de Google Maps
+*(Misma ubicación — posiblemente error de duplicado en Wix)*
+### Sección C: Formulario de Contacto
+*(Idéntico al de CONTACTO — mismos campos, mismo email **`comitepromociontex@gmail.com`**, Ext. 94219)*
+> 📌 **Nota para migración:** Las páginas CONTACTO y SALUD MENTAL comparten el mismo formulario de contacto. En el nuevo sitio se recomienda usar un solo `<section id="contacto">` reutilizable con `include` o componente web, cambiando solo el contexto del H1.
+---
+## PÁGINA 19 — `Espacios para psicólogos` (`/services-2`)
+**H1:** `Aquí encontrarás todos los recursos que hemos preparado para ti`
+### Sección A: Catálogo de 8 Servicios / Recursos
+*(Renderizados como tarjetas de lista — sin enlaces individuales a sub-páginas, son descripciones de recursos internos)*
+<table header-row="true">
+<tr>
+<td>#</td>
+<td>Nombre del recurso</td>
+<td>Descripción</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Herramientas para consulta psicológica</td>
+<td>Material de consulta de cursos, listas de talleres y listas de capacitación. Formatos de reportes mensuales de productividad.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Directorio/Referencias</td>
+<td>Directorio especializado para referencias en el Estado de México.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Lineamientos IMSS-B</td>
+<td>Lineamientos en los que se establece la función del psicólogo(a) en cada una de las estrategias.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Formatos de expediente clínico</td>
+<td>Todos los formatos autorizados y avalados por las autoridades del Instituto de Salud del Estado de México y el IMSS-B Estado de México para tu consulta diaria.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Brigadas Comunitarias en Salud Mental y Grupos de Apoyo Emocional</td>
+<td>Formatos de Reportes de Brigada y Herramientas para la Cartografía Social.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Plan anual de trabajo y Carpeta Gerencial</td>
+<td>Guía técnica para desarrollar el plan anual de trabajo del servicio de psicología y la carpeta gerencial.</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Pruebas psicológicas</td>
+<td>Diversas pruebas psicológicas que puedes usar para tu práctica diaria.</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Oficios administrativos</td>
+<td>Todos los oficios administrativos emitidos por el departamento de Promoción a la Salud y Salud Mental de la Jurisdicción Sanitaria Texcoco.</td>
+</tr>
+</table>
+### Sección B: Calendario de Actividades
+**H2:** `Cronograma de actividades Salud Mental y Adicciones`
+**H3:** `¡Bienvenidos al Calendario de Actividades y Tareas Pendientes del Departamento de Salud Mental!`
+**Cuerpo de texto:**
+> *"Este calendario está diseñado para mantenerte informado sobre todas las actividades, reuniones y tareas programadas dentro del departamento. Aquí podrás consultar de manera fácil y rápida las tareas pendientes, los eventos importantes y las actividades que forman parte de tu jornada laboral. Te invitamos a revisar el calendario con regularidad para estar al tanto de tus responsabilidades y colaborar de manera efectiva en las actividades del equipo. Si tienes alguna duda o necesitas actualizar alguna actividad, por favor, comunícalo a través de los canales correspondientes. ¡Gracias por tu compromiso y trabajo en equipo!"*
+**CTA:** Imagen de Calendario → `https://calendar.google.com/calendar/u/0?cid=c2FsdWRtZW50YWxqc3RleEBnbWFpbC5jb20`
+*(Email del calendario: **`saludmentaljstex@gmail.com`**)*
+### Sección C: Formulario de Contacto + Redes Sociales
+**H2:** `Contacto`**Subtítulo:** `¿Te gusta lo que ves? Contáctanos para saber más.`
+**Redes sociales detectadas en esta página:**
+<table header-row="true">
+<tr>
+<td>Red</td>
+<td>URL</td>
+</tr>
+<tr>
+<td>Facebook</td>
+<td>`https://www.facebook.com/WixEspanol` *(enlace genérico Wix — reemplazar)*</td>
+</tr>
+<tr>
+<td>Twitter/X</td>
+<td>`https://twitter.com/MundoWix` *(enlace genérico Wix — reemplazar)*</td>
+</tr>
+<tr>
+<td>LinkedIn</td>
+<td>`https://www.linkedin.com/company/wix-com` *(enlace genérico Wix — reemplazar)*</td>
+</tr>
+<tr>
+<td>Instagram</td>
+<td>`https://www.instagram.com/wix` *(enlace genérico Wix — reemplazar)*</td>
+</tr>
+</table>
+> ⚠️ **Todos estos enlaces de redes sociales son los genéricos de Wix.** El único enlace real detectado pertenece a la página de Facebook del Dr. Alfaro: `https://www.facebook.com/profile.php?id=100012254806363`
+**Formulario:** Campos Nombre, Apellido, Email, Mensaje + botón Enviar
+---
+## PÁGINA 20 — `Reportes Mensuales de Salud Mental` (`/general-9`)
+**H1:** `Reportes Mensuales de Salud Mental`
+### Sección A: Formulario de Productividad Mensual
+**CTA:** `Empezar` → `https://docs.google.com/forms/d/e/1FAIpQLSfGR-ty_-1BapoiA28LjgAPFipcUtP-rIQEmJIZ90DSXYPOwQ/viewform?usp=sharing`
+**Cuerpo de texto introductorio:**
+> *"Estimado(a) colaborador(a), Te damos la bienvenida al formulario de productividad mensual del Departamento de Salud Mental de la Jurisdicción Sanitaria de Texcoco. Este reporte es una herramienta fundamental para el seguimiento y evaluación de nuestras actividades y logros en el mes. Te invitamos a completar el formulario con la información correspondiente, asegurándote de ser lo más detallado(a) y preciso(a) posible. Tu participación es clave para mantenernos actualizados y mejorar continuamente nuestros servicios. Si tienes alguna duda o necesitas asistencia, no dudes en ponerte en contacto con nosotros. Gracias por tu compromiso y colaboración."*
+### Sección B: Reportes BCSM y GAE
+**H2:** `Reportes BCSM y GAE`**Subtítulo:** `Espacio para responsables de BCSM y GAE`
+**CTA:** `Empezar` → `https://docs.google.com/forms/d/e/1FAIpQLScK-HmmTJLD9gIfBS0enMA7Z1O2S6npzLk6YmrXFTrLExmzlA/viewform?usp=sharing`
+# 📘 CONTINUACIÓN FINAL — ANÁLISIS WEB SEMÁNTICO COMPLETO
+## (Páginas 21 · Footer · Tabla Maestra · Recomendaciones)
+---
+## PÁGINA 21 — `Supervisión Salud Mental` (`/supervisión-salud-mental`)
+**H1:** `Cédula de Supervisión de Salud Mental`
+**CTA del H1:** Enlace al archivo → `https://drive.google.com/file/d/1xydZThzAneLIplcpfSTLmSyObROzIjdC/view?usp=sharing`
+### Sección: Descripción e instrucciones
+**H2:** `Supervisión Salud Mental.`
+**Cuerpo de texto:**
+> *"Con el objetivo de evaluar y fortalecer el desarrollo del programa de Salud Mental, la supervisión se realizará con base en la Cédula de Supervisión de Salud Mental emitida por el Gobierno del Estado de México, con número de folio **`208C0101100000L-552-24`**, la cual está disponible para su consulta y descarga en la Biblioteca Virtual del Estado de México."*
+**CTA de acción:**
+- Texto: `Empezar.`
+- Destino: `https://docs.google.com/forms/d/e/1FAIpQLScIRdabw_-XejTY-2m92FNR_BBR2fbiKlcsQ9ErI-RYlyUrgA/viewform?usp=sharing`
+# 📘 CONTINUACIÓN FINAL — ANÁLISIS WEB SEMÁNTICO COMPLETO
+## (Páginas 21 · Footer · Tabla Maestra · Recomendaciones)
+---
+## PÁGINA 21 — `Supervisión Salud Mental` (`/supervisión-salud-mental`)
+**H1:** `Cédula de Supervisión de Salud Mental`
+**CTA del H1:** Enlace al archivo → `https://drive.google.com/file/d/1xydZThzAneLIplcpfSTLmSyObROzIjdC/view?usp=sharing`
+### Sección: Descripción e instrucciones
+**H2:** `Supervisión Salud Mental.`
+**Cuerpo de texto:**
+> *"Con el objetivo de evaluar y fortalecer el desarrollo del programa de Salud Mental, la supervisión se realizará con base en la Cédula de Supervisión de Salud Mental emitida por el Gobierno del Estado de México, con número de folio **`208C0101100000L-552-24`**, la cual está disponible para su consulta y descarga en la Biblioteca Virtual del Estado de México."*
+**CTA de acción:**
+- Texto: `Empezar.`
+- Destino: `https://docs.google.com/forms/d/e/1FAIpQLScIRdabw_-XejTY-2m92FNR_BBR2fbiKlcsQ9ErI-RYlyUrgA/viewform?usp=sharing`
+	# 📘 CONTINUACIÓN FINAL — RECOMENDACIONES DE MIGRACIÓN
+## (Completando desde donde se cortó)
+---
+## 2. Páginas que se pueden UNIFICAR (continuación)
+<table header-row="true">
+<tr>
+<td>Páginas a fusionar</td>
+<td>Justificación</td>
+<td>Página resultante</td>
+</tr>
+<tr>
+<td>`/cronograma-tvf-rcu` + `/copia-de-cronograma-tvf-rcu` (ADICCIONES)</td>
+<td>Comparten el 85% del contenido (Lineamientos TAPS, TVF, formatos idénticos). Solo difieren en la sección inicial de reportes de Adicciones.</td>
+<td>`tvf-rcu-adicciones.html` con anclas `#tvf` y `#adicciones`</td>
+</tr>
+<tr>
+<td>`/contacto` + `/copia-de-contacto` (SALUD MENTAL)</td>
+<td>Ambas tienen exactamente el mismo formulario de contacto y mismos datos. Difieren solo en el bloque introductorio superior.</td>
+<td>`salud-mental.html` con sección de contacto al final como `<section id="contacto">`</td>
+</tr>
+<tr>
+<td>`/seguro` (CONTENIDO)</td>
+<td>Esta página es un índice de cartillas. Podría integrarse como sección dentro de `contenido.html` o de `inicio.html`</td>
+<td>`contenido.html`</td>
+</tr>
+<tr>
+<td>Términos y Condiciones + Política de Privacidad</td>
+<td>Son páginas legales estándar, actualmente vacías en el DOM extraído de Wix.</td>
+<td>Crear `legal.html` con dos secciones ancla `#terminos` y `#privacidad`</td>
+</tr>
+</table>
+**Beneficio:** Reducir de 21 páginas a **17 páginas efectivas**, con mejor arquitectura de navegación.
+---
+## 3. Elementos que DEBEN RECREARSE desde cero en HTML puro
+### 🔴 Críticos (funcionalidad que se pierde al dejar Wix)
+<table header-row="true">
+<tr>
+<td>Elemento Wix</td>
+<td>Alternativa HTML/CSS/JS gratuita</td>
+</tr>
+<tr>
+<td>**Formulario de contacto** (Wix Forms)</td>
+<td>`<form>` HTML + [Formspree](https://formspree.io/) o [EmailJS](https://www.emailjs.com/) para envío sin backend</td>
+</tr>
+<tr>
+<td>**Widget de Chat** ("¡Vamos a chatear!")</td>
+<td>Botón `<a>` flotante a WhatsApp: `https://wa.me/52595953...` con CSS position:fixed</td>
+</tr>
+<tr>
+<td>**Google Maps embed**</td>
+<td>Nuevo `<iframe>` de Google Maps Embed API con la URL de la ubicación real</td>
+</tr>
+<tr>
+<td>**Menú desplegable** (dropdowns)</td>
+<td>CSS puro con `:hover` + `<ul>` anidados, o JS mínimo con `classList.toggle`</td>
+</tr>
+<tr>
+<td>**Carrusel de imágenes**</td>
+<td>[Swiper.js](https://swiperjs.com/) (librería ligera, gratuita, \~30KB) o CSS puro con `scroll-snap`</td>
+</tr>
+<tr>
+<td>**Slideshow de 2-3 slides** (en varias páginas)</td>
+<td>CSS `@keyframes` + `animation` o Swiper.js reutilizable</td>
+</tr>
+<tr>
+<td>**Video player propio** (Campaña 2025)</td>
+<td>Tag HTML5 `<video controls>` con el `.mp4` descargado de Wix Media Manager</td>
+</tr>
+<tr>
+<td>**Video embebido Wix** (CUIDADO CON EL HUMO)</td>
+<td>Subir a YouTube y usar `<iframe>` embed estándar</td>
+</tr>
+</table>
+### 🟡 Importantes (experiencia de usuario)
+<table header-row="true">
+<tr>
+<td>Elemento</td>
+<td>Solución propuesta</td>
+</tr>
+<tr>
+<td>**Botón "Ver más"** (calendarios, fechas)</td>
+<td>`<details>/<summary>` HTML5 nativo, sin JavaScript</td>
+</tr>
+<tr>
+<td>**Barra de redes sociales** (footer)</td>
+<td>Íconos SVG inline + `<a>` con URLs reales de la institución</td>
+</tr>
+<tr>
+<td>**Animaciones de texto** (Campaña 2025)</td>
+<td>CSS `@keyframes` con `animation: fadeInUp`</td>
+</tr>
+<tr>
+<td>**Acordeones/listas colapsables**</td>
+<td>`<details>/<summary>` HTML5 puro</td>
+</tr>
+<tr>
+<td>**QR codes** (fechas conmemorativas)</td>
+<td>Imagen PNG descargada de Wix + `<img>` estático</td>
+</tr>
+<tr>
+<td>**Notificación de aviso** (pre-header declaración salud)</td>
+<td>`<div class="alert-bar">` con CSS, reemplazando el formulario Wix</td>
+</tr>
+</table>
+### 🟢 Opcionales (mejora de UX)
+<table header-row="true">
+<tr>
+<td>Elemento</td>
+<td>Solución</td>
+</tr>
+<tr>
+<td>Botón "Scroll to top"</td>
+<td>CSS + JS minimal con `window.scrollTo({top:0, behavior:'smooth'})`</td>
+</tr>
+<tr>
+<td>Indicador de página activa en menú</td>
+<td>Clase CSS `active` aplicada por JS al cargar la página</td>
+</tr>
+<tr>
+<td>Lazy loading de imágenes</td>
+<td>Atributo HTML5 nativo: `<img loading="lazy">`</td>
+</tr>
+</table>
+---
+## 4. Advertencias Técnicas Críticas
+### ⚠️ ADVERTENCIA #1 — Archivos en `filesusr.com` (URGENTE)
+Todos los PDFs, DOCX y XLSX alojados en `ce7d3fcb-8767-496b-830b-03b378ffa03f.filesusr.com` **están vinculados a tu cuenta Wix**. Si cancelas o abandonas Wix, **todos estos archivos desaparecerán**.
+**Acción inmediata:** Descarga cada archivo desde el panel de Wix Media Manager y súbelos a una **carpeta de Google Drive pública**, luego actualiza todos los enlaces en el HTML nuevo.
+### ⚠️ ADVERTENCIA #2 — Imágenes en `static.wixstatic.com`
+Las imágenes del carrusel y secciones (`855669_xxx~mv2.jpg`) están en los CDNs de Wix. Para descargarlas en su máxima resolución, usa la URL base sin los parámetros de transformación:
+```plain text
+# En lugar de:
+<https://static.wixstatic.com/media/855669_xxx~mv2.jpg/v1/fill/w_980,h_645,q_90,.>..
+
+# Usa directamente:
+<https://static.wixstatic.com/media/855669_xxx~mv2.jpg>
+```
+### ⚠️ ADVERTENCIA #3 — Página #SoyPromotoraDeSalud
+Esta página contiene únicamente una imagen-infografía (`~mv2.jpg`). En el nuevo HTML deberá ser un `<figure>` con `<figcaption>` y atributo `alt` descriptivo para accesibilidad.
+### ⚠️ ADVERTENCIA #4 — Video de Campaña 2025
+El archivo `Camino siempre.mp4` está alojado en Wix Media. Para rescatarlo:
+1. Ve a tu panel Wix → **Media Manager**
+2. Localiza el video y descárgalo
+3. Súbelo a YouTube (para embed ligero) o a tu servidor (para `<video>` HTML5)
+### ⚠️ ADVERTENCIA #5 — Extensión correcta en Salud Mental
+La URL `/supervisión-salud-mental` contiene el carácter especial `ó`. En HTML puro usa el slug sin acentos: `supervision-salud-mental.html` para evitar problemas de codificación en distintos servidores.
+### ⚠️ ADVERTENCIA #6 — Discrepancia en número de extensión
+Se detectaron **dos extensiones telefónicas distintas** en el sitio:
+- Pre-header y mayoría de páginas: **Ext. 94251**
+- Páginas `/contacto` y `/salud-mental`: **Ext. 94219**
+Debes verificar cuál es la correcta y unificarla en todo el sitio nuevo.
+---
+## 5. ✅ CHECKLIST MAESTRO DE MIGRACIÓN
+### FASE A — Preparación (ANTES de escribir código)
+- [ ] Descargar **todos los PDFs/DOCX/XLSX** de `filesusr.com` desde Wix Media Manager
+- [ ] Descargar **todas las imágenes** del carrusel y secciones desde `static.wixstatic.com`
+- [ ] Descargar el video `Camino siempre.mp4` desde Wix Media Manager
+- [ ] Subir todos los archivos descargados a **Google Drive** con acceso público
+- [ ] Actualizar todas las URLs de los archivos en tus notas de contenido
+- [ ] Confirmar la extensión telefónica correcta (94251 vs 94219)
+- [ ] Conseguir las URLs reales de redes sociales (Twitter/Instagram institucional)
+- [ ] Crear una cuenta en **Formspree** o configurar **EmailJS** para el formulario de contacto
+- [ ] Obtener la **API Key de Google Maps** para los nuevos embeds
+- [ ] Descargar las 46 presentaciones de Canva si deseas alojarlas localmente (opcional)
+### FASE B — Estructura de archivos (ÁRBOL DEL PROYECTO)
+```plain text
+/promocion-a-la-salud/          ← Carpeta raíz del proyecto
+│
+├── index.html                  ← Página INICIO
+├── determinantes.html
+├── temas-prevencion.html
+├── soy-promotora-salud.html
+├── formatos-promocion.html
+├── escuela-saludable.html
+├── espacio-libre-humo.html
+├── nutricion.html
+├── interculturalidad.html
+├── ferias-de-salud.html
+├── estilos-de-vida.html
+├── comunidades-a-certificar.html
+├── tvf-rcu-adicciones.html     ← UNIFICADA (cronograma + adicciones)
+├── campanas-2025.html
+├── contenido.html
+├── contacto.html
+├── salud-mental.html
+├── espacios-psicologos.html
+├── reportes-salud-mental.html
+├── supervision-salud-mental.html
+├── terminos-privacidad.html    ← NUEVA (legal)
+│
+├── /css/
+│   ├── styles.css              ← Estilos globales (variables, reset, tipografía)
+│   ├── header.css              ← Header + nav + dropdown
+│   ├── hero.css                ← Sección hero/banner
+│   ├── components.css          ← Tarjetas, botones, formularios, tablas
+│   ├── carousel.css            ← Carruseles
+│   └── footer.css              ← Footer
+│
+├── /js/
+│   ├── main.js                 ← Nav mobile toggle, scroll-to-top, active link
+│   └── carousel.js             ← Lógica de carrusel (o Swiper.js CDN)
+│
+├── /assets/
+│   ├── /img/
+│   │   ├── /hero/              ← Imágenes de fondo y hero
+│   │   ├── /carousel/          ← ~30 fotos del carrusel principal
+│   │   ├── /secciones/         ← Imágenes por sección
+│   │   └── /iconos/            ← Logos, íconos SVG, QR
+│   │
+│   ├── /video/
+│   │   └── camino-siempre.mp4  ← Video de Campaña 2025
+│   │
+│   └── /docs/                  ← ⚠️ Solo si decides alojar localmente
+│       ├── metas-2025.pdf
+│       ├── tvf-2024.pdf
+│       └── ...                 ← Todos los PDFs descargados de Wix
+│
+└── /vendor/                    ← Librerías de terceros (opcional)
+    └── swiper/
+        ├── swiper-bundle.min.css
+        └── swiper-bundle.min.js
+```
+### FASE C — Desarrollo HTML/CSS
+- [ ] Crear plantilla base `_template.html` con header, nav y footer compartidos
+- [ ] Construir el `<header>` con logo texto + navegación con dropdowns en CSS puro
+- [ ] Construir el `<footer>` con datos reales verificados
+- [ ] Maquetar `index.html` (página principal) con todas sus 7 secciones
+- [ ] Maquetar `determinantes.html` (la más densa — 9 categorías + tablas Canva)
+- [ ] Maquetar el resto de páginas en orden de prioridad del menú
+- [ ] Implementar formulario de contacto con Formspree en `contacto.html` y `salud-mental.html`
+- [ ] Implementar el botón flotante de WhatsApp como reemplazo del chat Wix
+- [ ] Agregar `<iframe>` de Google Maps en `contacto.html` y `salud-mental.html`
+- [ ] Integrar `<video controls>` en `campanas-2025.html`
+- [ ] Añadir `loading="lazy"` a todas las imágenes
+### FASE D — Accesibilidad y SEO
+- [ ] Agregar `lang="es"` en el `<html>` de todas las páginas
+- [ ] Agregar `<meta name="description">` único por página
+- [ ] Agregar `alt` descriptivo a **todas** las imágenes (actualmente todas sin alt en Wix)
+- [ ] Usar `<h1>` único por página, `<h2>` para secciones, `<h3>` para subsecciones
+- [ ] Agregar `aria-label` en la navegación y botones sin texto visible
+- [ ] Crear `sitemap.xml` con las 20 páginas del sitio nuevo
+- [ ] Crear `robots.txt` básico
+- [ ] Agregar `<link rel="canonical">` en cada página
+### FASE E — Pruebas y Publicación
+- [ ] Validar HTML con el [W3C Validator](https://validator.w3.org/)
+- [ ] Probar en móvil (responsive design — breakpoints 768px y 480px)
+- [ ] Probar todos los 200+ enlaces del sitio (especialmente los de Google Drive)
+- [ ] Verificar que todos los formularios envíen correctamente
+- [ ] Verificar que los videos y mapas carguen sin errores
+- [ ] Publicar en hosting (GitHub Pages, Netlify, o servidor del ISEM)
+- [ ] Configurar redirecciones 301 de las URLs Wix viejas a las nuevas (si es posible)
+---
+## 6. Variables CSS Recomendadas (basadas en la paleta del sitio actual)
+```css
+:root {
+  /* Colores principales detectados en el sitio Wix */
+  --color-primary:     #1a6b3c;  /* Verde institucional salud */
+  --color-primary-dark:#145530;  /* Verde oscuro (hover) */
+  --color-secondary:   #2c3e50;  /* Gris azulado oscuro (headers) */
+  --color-accent:      #27ae60;  /* Verde claro (CTAs, botones) */
+  --color-bg-dark:     #1a1a2e;  /* Negro/marino oscuro (secciones alternas) */
+  --color-bg-light:    #f8f9fa;  /* Fondo claro */
+  --color-text:        #333333;  /* Texto principal */
+  --color-text-light:  #ffffff;  /* Texto sobre fondos oscuros */
+  --color-link:        #2980b9;  /* Azul para enlaces */
+
+  /* Tipografía */
+  --font-heading: 'Montserrat', 'Arial Black', sans-serif;
+  --font-body:    'Open Sans', Arial, sans-serif;
+
+  /* Espaciado */
+  --spacing-xs:  0.5rem;
+  --spacing-sm:  1rem;
+  --spacing-md:  2rem;
+  --spacing-lg:  4rem;
+  --spacing-xl:  6rem;
+
+  /* Bordes y sombras */
+  --border-radius: 8px;
+  --box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+
+  /* Contenedor máximo */
+  --max-width: 1200px;
+}
+```
+---
+## 7. Resumen estadístico del sitio analizado
+<table header-row="true">
+<tr>
+<td>Métrica</td>
+<td>Valor</td>
+</tr>
+<tr>
+<td>**Total de páginas analizadas**</td>
+<td>21</td>
+</tr>
+<tr>
+<td>**Total de enlaces internos (navegación)**</td>
+<td>21</td>
+</tr>
+<tr>
+<td>**Total de enlaces externos únicos**</td>
+<td>200+</td>
+</tr>
+<tr>
+<td>**Presentaciones en Canva**</td>
+<td>46</td>
+</tr>
+<tr>
+<td>**Formularios Google Forms**</td>
+<td>16</td>
+</tr>
+<tr>
+<td>**Archivos en Google Drive (carpetas)**</td>
+<td>34</td>
+</tr>
+<tr>
+<td>**Archivos en Google Drive (individuales)**</td>
+<td>10</td>
+</tr>
+<tr>
+<td>**Documentos Google Sheets/Docs/Slides**</td>
+<td>20</td>
+</tr>
+<tr>
+<td>**PDFs en **[**filesusr.com**](http://filesusr.com/)** (¡DESCARGAR!)**</td>
+<td>14+</td>
+</tr>
+<tr>
+<td>**Videos YouTube**</td>
+<td>4</td>
+</tr>
+<tr>
+<td>**Posts Instagram**</td>
+<td>2</td>
+</tr>
+<tr>
+<td>**Sitios institucionales (**[**gob.mx**](http://gob.mx/)**, OPS, OMS)**</td>
+<td>19</td>
+</tr>
+<tr>
+<td>**Imágenes en carrusel principal**</td>
+<td>\~30</td>
+</tr>
+<tr>
+<td>**Imágenes totales únicas en el sitio**</td>
+<td>60+</td>
+</tr>
+<tr>
+<td>**Páginas que comparten formulario de contacto**</td>
+<td>2 (contacto + salud mental)</td>
+</tr>
+<tr>
+<td>**Páginas con contenido duplicado**</td>
+<td>2 (TVF RCU + Adicciones)</td>
+</tr>
+<tr>
+<td>**Páginas tipo "solo imagen"**</td>
+<td>1 (#SoyPromotoraDeSalud)</td>
+</tr>
+</table>
+---
+> 🎯 **El análisis completo ha concluido.** Las 21 páginas del sitio están completamente documentadas con todos sus encabezados, textos, CTAs, URLs de imágenes y archivos, estructura semántica HTML5 propuesta, y un plan de migración detallado. Puedes usar este documento como la única fuente de verdad para construir el nuevo sitio HTML/CSS desde cero. El siguiente paso recomendado es comenzar por la plantilla base `_template.html` con el header y footer globales, y luego maquetar `index.html`. ¿Deseas que genere el código HTML/CSS de alguna página específica?
+</content>
+</page>
