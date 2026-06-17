@@ -711,6 +711,60 @@ function initKpiCounters() {
 }
 
 // ══════════════════════════════════════════════
+//  FORMULARIOS DE REPORTE MENSUAL
+// ══════════════════════════════════════════════
+
+const FORM_AREA_LABELS = {
+  'promocion':    'Promoción a la Salud',
+  'adicciones':   'Adicciones',
+  'salud-mental': 'Salud Mental',
+  'entornos':     'Entornos Saludables',
+  'ferias':       'Ferias y Jornadas',
+};
+
+function renderFormularios() {
+  const grid = document.getElementById('formularios-grid');
+  if (!grid) return;
+
+  if (typeof FORMULARIOS === 'undefined' || !FORMULARIOS.length) {
+    grid.innerHTML = '<p class="empty-state">Sin formularios por el momento.</p>';
+    return;
+  }
+
+  const ICON_EXTERNAL = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`;
+
+  // Agrupar por área manteniendo el orden de las áreas del mapa
+  const order = Object.keys(FORM_AREA_LABELS);
+  const byArea = {};
+  FORMULARIOS.forEach(f => {
+    if (!byArea[f.area]) byArea[f.area] = [];
+    byArea[f.area].push(f);
+  });
+
+  const html = order
+    .filter(area => byArea[area] && byArea[area].length)
+    .map(area => {
+      const label = FORM_AREA_LABELS[area] || area;
+      const cards = byArea[area].map(f => `
+        <div class="subsec-card">
+          <h3>${f.titulo}</h3>
+          <p style="font-size:.85rem;color:var(--gray-500);margin:.25rem 0 .75rem">
+            Periodicidad: <strong>${f.periodicidad}</strong>
+          </p>
+          <a href="${f.url}" target="_blank" rel="noopener" class="subsec-link">
+            ${ICON_EXTERNAL} Abrir formulario →
+          </a>
+        </div>`).join('');
+      return `
+        <h3 style="margin:2rem 0 1rem;font-size:1rem;color:var(--gray-700);font-family:var(--font-body);font-weight:500">${label}</h3>
+        <div class="subsec-grid">${cards}</div>`;
+    })
+    .join('');
+
+  grid.innerHTML = html;
+}
+
+// ══════════════════════════════════════════════
 //  ARRANQUE GLOBAL
 // ══════════════════════════════════════════════
 
@@ -732,6 +786,9 @@ renderTalleres();
 
 // Directorio (directorio.html)
 renderDirectorio();
+
+// Formularios de reporte mensual (reportes.html)
+renderFormularios();
 
 // Filtros (biblioteca.html y promocion.html)
 initFilters();
