@@ -57,5 +57,18 @@ const CAMPAIGNS = [
       { tipo: 'Solicitar formatos', url: 'contacto', icono: 'mail' }
     ],
     evidenciaSugerida: 'Tamizaje aplicado + foto + lista de asistencia'
+  },
+  {
+    id: '3x-mi-salud',
+    titulo: '3x Mi Salud',
+    objetivo: 'Elimina los alimentos con sellos de advertencia, modifica tu estilo de vida y prevén enfermedades crónicas degenerativas con tres líneas de acción: alimentación saludable, más actividad física y evitar bebidas azucaradas.',
+    poblacion: 'Población general y familias',
+    vigencia: '2025-12-31',
+    color: 'crimson',
+    materiales: [
+      { tipo: 'Alimentación saludable', url: 'promocion.html#alimentacion', icono: 'link' },
+      { tipo: 'Actividad física', url: 'promocion.html#actividad', icono: 'link' }
+    ],
+    evidenciaSugerida: 'Foto de actividad + lista de asistencia'
   }
 ];
