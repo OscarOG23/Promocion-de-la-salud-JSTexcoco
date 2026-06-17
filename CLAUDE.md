@@ -141,6 +141,16 @@ document.querySelectorAll('[data-page]').forEach(a => {
 20. **`renderTalleres()`** — genera material-cards del catálogo de talleres desde `talleres.js`
 21. **`renderFormularios()`** — genera tarjetas de formularios descargables desde `formularios.js`
 22. **`renderPsicologia()`** — genera tarjetas de recursos de psicología desde `psicologia.js`
+23. **`renderCampaignsGrid()`** — genera `.subsec-card` en `promocion.html#campanas` desde el MISMO `CAMPAIGNS` que el carrusel (fuente única, no duplicar)
+24. **`renderContacto()`** — rellena la sección de contacto (`index.html`) desde `window.CONTACTO`
+25. **`initTallerDeepLinks()`** — los enlaces `[data-filter]` (det-cards) activan el filtro del catálogo de talleres
+
+## Fuentes únicas (DRY — editar en un solo lugar)
+
+- **Datos de contacto** (dirección, teléfonos, email, Facebook): objeto `CONTACTO` al inicio de `components.js`. Alimenta el footer, la barra superior (top-bar) y, vía `window.CONTACTO` + `renderContacto()`, la sección de contacto de `index.html`. **Editar solo `CONTACTO`.**
+- **Campañas**: array `CAMPAIGNS` en `assets/data/campaigns.js`. Alimenta el carrusel de `index.html` (`renderCampaigns`) y las tarjetas de `promocion.html#campanas` (`renderCampaignsGrid`).
+- **KPIs**: `assets/data/kpis.js` (index + reportes).
+- **Determinantes = Catálogo**: las 9 `det-card` de `promocion.html#determinantes` son las mismas 9 categorías del catálogo de talleres; su botón "Ver talleres" filtra el catálogo vía `data-filter`.
 
 ## Cómo actualizar campañas
 
