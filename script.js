@@ -477,6 +477,58 @@ function renderBiblioteca() {
 }
 
 // ══════════════════════════════════════════════
+//  TALLERES COMUNITARIOS — render desde talleres.js
+// ══════════════════════════════════════════════
+
+const TALLER_CAT_LABELS = {
+  alimentacion:          'Alimentación',
+  actividad:             'Actividad Física',
+  'salud-sexual':        'Salud Sexual y Reproductiva',
+  'entornos-fisicos':    'Entornos Físicos',
+  'entornos-psicosociales': 'Entornos Psicosociales',
+  infancia:              'Crecimiento Infantil',
+  diversidad:            'Diversidad y Género',
+  'derecho-salud':       'Derecho a la Salud',
+  participacion:         'Participación Social',
+};
+
+function renderTalleres() {
+  const grid = document.getElementById('talleres-grid');
+  if (!grid) return;
+
+  if (typeof TALLERES === 'undefined' || !TALLERES.length) {
+    grid.innerHTML = '<p class="empty-state">Sin talleres por el momento.</p>';
+    return;
+  }
+
+  const ICON_EXTERNAL = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`;
+  const ICON_FOLDER   = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>`;
+
+  grid.innerHTML = TALLERES.map(t => {
+    const cat  = t.categoria || '';
+    const ext  = t.url && t.url.startsWith('http');
+    const compExt = t.complementos && t.complementos.startsWith('http');
+    return `
+      <article class="material-card" data-categoria="${cat}">
+        <div class="mc-cat ${cat}">${TALLER_CAT_LABELS[cat] || cat}</div>
+        <h3 class="mc-title">${t.tema}</h3>
+        <div class="mc-meta">
+          <span><strong>Categoría:</strong> ${TALLER_CAT_LABELS[cat] || cat}</span>
+        </div>
+        <a href="${t.url || '#'}" class="mc-btn"${ext ? ' target="_blank" rel="noopener noreferrer"' : ''}>
+          ${ICON_EXTERNAL}
+          Abrir presentación
+        </a>
+        ${t.complementos ? `
+        <a href="${t.complementos}" class="mc-btn" style="margin-top:.5rem;background:var(--off-white);color:var(--charcoal);border:1px solid rgba(0,0,0,.1);"${compExt ? ' target="_blank" rel="noopener noreferrer"' : ''}>
+          ${ICON_FOLDER}
+          Complementos
+        </a>` : ''}
+      </article>`;
+  }).join('');
+}
+
+// ══════════════════════════════════════════════
 //  DIRECTORIO — render desde directorio.js
 // ══════════════════════════════════════════════
 
@@ -675,10 +727,13 @@ initCarousel();
 // Biblioteca — renderizar antes de initFilters
 renderBiblioteca();
 
+// Talleres comunitarios (promocion.html) — renderizar antes de initFilters
+renderTalleres();
+
 // Directorio (directorio.html)
 renderDirectorio();
 
-// Filtros (biblioteca.html)
+// Filtros (biblioteca.html y promocion.html)
 initFilters();
 initFilterPill();
 
