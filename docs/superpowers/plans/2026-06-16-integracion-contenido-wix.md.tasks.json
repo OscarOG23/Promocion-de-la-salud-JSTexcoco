@@ -1,0 +1,67 @@
+{
+  "planPath": "docs/superpowers/plans/2026-06-16-integracion-contenido-wix.md",
+  "tasks": [
+    {
+      "id": 0,
+      "subject": "Task 0: Footer real + datos de contacto",
+      "status": "pending",
+      "description": "Reemplazar footer y datos de contacto placeholder por datos institucionales reales.\n\n```json:metadata\n{\"files\": [\"components.js\", \"index.html\"], \"verifyCommand\": \"abrir index.html en navegador; grep -n 'MundoWix\\\\|WixEspanol' *.js\", \"acceptanceCriteria\": [\"footer con direccion/telefonos/email/facebook real\", \"sin enlaces genericos Wix\", \"index #contacto con mapa real\"]}\n```"
+    },
+    {
+      "id": 1,
+      "subject": "Task 1: Campaña 3x Mi Salud en carrusel",
+      "status": "pending",
+      "description": "Añadir campaña real 3x Mi Salud al array CAMPAIGNS.\n\n```json:metadata\n{\"files\": [\"assets/data/campaigns.js\"], \"verifyCommand\": \"abrir index.html, navegar carrusel\", \"acceptanceCriteria\": [\"objeto id 3x-mi-salud\", \"slide navegable\"]}\n```"
+    },
+    {
+      "id": 2,
+      "subject": "Task 2: Catálogo de Talleres en promocion.html",
+      "status": "pending",
+      "description": "Crear catalogo filtrable de 46 presentaciones (talleres.js) + conectar det-cards a recursos reales.\n\n```json:metadata\n{\"files\": [\"assets/data/talleres.js\", \"promocion.html\", \"script.js\", \"style.css\"], \"verifyCommand\": \"abrir promocion.html, probar filtros; grep -c 'canva.com\\\\|drive.google' assets/data/talleres.js\", \"acceptanceCriteria\": [\"~46 entradas/9 categorias\", \"seccion #talleres filtrable\", \"det-cards con enlaces reales\", \"inline-nav Talleres\"]}\n```"
+    },
+    {
+      "id": 3,
+      "subject": "Task 3: Hub de reportes mensuales en reportes.html",
+      "status": "pending",
+      "description": "Añadir captura de reportes (16 Google Forms) + calendario conmemorativo.\n\n```json:metadata\n{\"files\": [\"assets/data/formularios.js\", \"reportes.html\", \"script.js\"], \"verifyCommand\": \"abrir reportes.html\", \"acceptanceCriteria\": [\"~16 forms por area\", \"seccion captura reporte mensual\", \"calendario fechas conmemorables\"]}\n```"
+    },
+    {
+      "id": 4,
+      "subject": "Task 4: Formatos y manuales reales en entornos.html",
+      "status": "pending",
+      "description": "Poblar Escuela Saludable, Comunidades, ELHT, Unidades/TVF con formatos reales.\n\n```json:metadata\n{\"files\": [\"entornos.html\"], \"verifyCommand\": \"abrir entornos.html; grep -c 'href=\\\"#\\\"' entornos.html\", \"acceptanceCriteria\": [\"escuela con manual+formatos+enlaces SEP\", \"comunidades con anexos\", \"ELHT tabaquismo+checklist\", \"TVF/TAPS\"]}\n```"
+    },
+    {
+      "id": 5,
+      "subject": "Task 5: Contenido real en adicciones.html",
+      "status": "pending",
+      "description": "Conectar 2 forms, material gafas alcohol y formatos TVF.\n\n```json:metadata\n{\"files\": [\"adicciones.html\"], \"verifyCommand\": \"abrir adicciones.html\", \"acceptanceCriteria\": [\"2 google forms\", \"material gafas alcohol\", \"TVF enlazado a entornos\"]}\n```"
+    },
+    {
+      "id": 6,
+      "subject": "Task 6: Línea de la Vida y recursos en salud-mental.html",
+      "status": "pending",
+      "description": "Destacar Linea de la Vida + supervision/reportes/calendario reales + enlace a psicologia.\n\n```json:metadata\n{\"files\": [\"salud-mental.html\"], \"verifyCommand\": \"abrir salud-mental.html\", \"acceptanceCriteria\": [\"banner Linea de la Vida 800 911 2000\", \"forms productividad/BCSM/supervision\", \"calendario\", \"enlace recursos-psicologia\"]}\n```"
+    },
+    {
+      "id": 7,
+      "subject": "Task 7: Página nueva recursos-psicologia.html",
+      "status": "pending",
+      "description": "Crear hub privado de psicologos con 8 categorias (psicologia.js).\n\n```json:metadata\n{\"files\": [\"recursos-psicologia.html\", \"assets/data/psicologia.js\", \"script.js\", \"components.js\", \"directorio.html\"], \"verifyCommand\": \"abrir recursos-psicologia.html\", \"acceptanceCriteria\": [\"plantilla estandar\", \"8 tarjetas desde psicologia.js\", \"calendario\", \"enlazada desde footer/directorio/salud-mental\"]}\n```"
+    },
+    {
+      "id": 8,
+      "subject": "Task 8: Expansión de biblioteca + directorio formatos",
+      "status": "pending",
+      "description": "Reemplazar placeholders biblioteca por URLs reales, añadir formatos, #SoyPromotora como grafico.\n\n```json:metadata\n{\"files\": [\"assets/data/biblioteca.js\", \"assets/data/directorio.js\", \"directorio.html\"], \"verifyCommand\": \"abrir biblioteca.html; grep -c 'url: \\\"#\\\"' assets/data/biblioteca.js\", \"acceptanceCriteria\": [\"url reales donde existan\", \"+8 formatos nuevos\", \"#SoyPromotora grafico\", \"referencia/contrarreferencia en directorio\"]}\n```"
+    },
+    {
+      "id": 9,
+      "subject": "Task 9: Verificación final + docs",
+      "status": "pending",
+      "blockedBy": [0, 1, 2, 3, 4, 5, 6, 7, 8],
+      "description": "Barrido de placeholders, prueba de navegacion, actualizar CLAUDE.md.\n\n```json:metadata\n{\"files\": [\"CLAUDE.md\"], \"verifyCommand\": \"grep -rn 'href=\\\"#\\\"' *.html; grep -rn 'url: \\\"#\\\"' assets/data/*.js\", \"acceptanceCriteria\": [\"solo placeholders PENDIENTE quedan\", \"navegacion 9 paginas ok\", \"CLAUDE.md actualizado\"]}\n```"
+    }
+  ],
+  "lastUpdated": "2026-06-16"
+}
