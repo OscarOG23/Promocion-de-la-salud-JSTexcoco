@@ -571,6 +571,41 @@ function renderDirectorio() {
 }
 
 // ══════════════════════════════════════════════
+//  RECURSOS PARA PSICÓLOGOS
+// ══════════════════════════════════════════════
+
+function renderPsicologia() {
+  const grid = document.getElementById('psicologia-grid');
+  if (!grid) return;
+
+  const data = typeof PSICOLOGIA !== 'undefined' ? PSICOLOGIA : [];
+  if (!data.length) {
+    grid.innerHTML = '<p class="empty-state">Sin recursos registrados por el momento.</p>';
+    return;
+  }
+
+  grid.innerHTML = data.map(item => {
+    const links = item.recursos.map(r => {
+      if (r.url && r.url !== '#') {
+        return `<a href="${r.url}" class="subsec-link" target="_blank" rel="noopener">${r.label} →</a>`;
+      }
+      return `<a href="#" class="subsec-link" style="opacity:.5;pointer-events:none;cursor:default">${r.label} (próximamente)</a>`;
+    }).join('');
+
+    return `
+      <div class="subsec-card">
+        <div class="subsec-icon" style="background: var(--purple-lt); color: var(--purple)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <h3>${item.titulo}</h3>
+        <p>${item.descripcion}</p>
+        ${links}
+      </div>
+    `;
+  }).join('');
+}
+
+// ══════════════════════════════════════════════
 //  FILTROS DE BIBLIOTECA
 // ══════════════════════════════════════════════
 
@@ -786,6 +821,9 @@ renderTalleres();
 
 // Directorio (directorio.html)
 renderDirectorio();
+
+// Recursos para psicólogos (recursos-psicologia.html)
+renderPsicologia();
 
 // Formularios de reporte mensual (reportes.html)
 renderFormularios();

@@ -129,6 +129,7 @@
         <a href="biblioteca.html">Biblioteca</a>
         <a href="reportes.html">Reportes</a>
         <a href="directorio.html">Directorio</a>
+        <a href="recursos-psicologia.html">Recursos psicología</a>
       </div>
       <div class="footer-links">
         <span>Cda. Carretera Papalotla s/n, San Andrés Chiautla 1, 56030 Chiautla, Méx.</span>
