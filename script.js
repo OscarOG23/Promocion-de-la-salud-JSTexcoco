@@ -297,6 +297,10 @@ function renderCampaigns() {
     link: `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>`,
     ext:  `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`,
     mail: `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>`,
+    slides: `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>`,
+    video: `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>`,
+    image: `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>`,
+    doc:  `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>`,
   };
 
   track.innerHTML = CAMPAIGNS.map(c => `
@@ -831,13 +835,19 @@ function renderCampaignsGrid() {
     return;
   }
   const ICON = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>`;
-  grid.innerHTML = CAMPAIGNS.map(c => `
-    <div class="subsec-card">
+  grid.innerHTML = CAMPAIGNS.map(c => {
+    // Materiales reales de la campaña (misma fuente que el carrusel)
+    const mats = (c.materiales || []).map(m => `
+      <a href="${m.url}" class="subsec-link"${m.url.startsWith('http') ? ' target="_blank" rel="noopener"' : ''}>${m.tipo} →</a>`).join('');
+    return `
+    <div class="subsec-card" style="--nc-color: var(--${c.color === 'gold' ? 'gold' : c.color})">
       <div class="subsec-icon">${ICON}</div>
       <h3>${c.titulo}</h3>
       <p>${c.objetivo}</p>
-      <a href="index.html#campanas" class="subsec-link">Ver campaña y materiales →</a>
-    </div>`).join('');
+      <p style="font-size:.85rem;color:var(--text-muted);margin:.5rem 0 .75rem"><strong>Población:</strong> ${c.poblacion}</p>
+      ${mats}
+    </div>`;
+  }).join('');
 }
 
 // ══════════════════════════════════════════════

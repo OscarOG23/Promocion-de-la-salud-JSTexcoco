@@ -128,9 +128,10 @@ const BIBLIOTECA = [
     tema: "Salud mental", publico: "Adolescentes y adultos", modalidad: "Distribución en unidades",
     url: "#", accion: "Descargar" }, /* PENDIENTE */
 
-  { titulo: "Tríptico — Viruela Símica (MPOX) · Campaña 2025", categoria: "grafico",
-    tema: "MPOX / Campaña", publico: "Población general", modalidad: "Distribución",
-    url: "#", accion: "Descargar" }, /* PENDIENTE */
+  { titulo: "Material gráfico — Enfermedades por Vectores (Paludismo) · Campaña 2025", categoria: "grafico",
+    tema: "Vectores / Paludismo", publico: "Población general", modalidad: "Distribución / taller comunitario",
+    url: "https://drive.google.com/drive/folders/1FtzsIdHNkccH6-eNwhhfhW6Tb9qlY-AH",
+    accion: "Abrir en Drive" },
 
   { titulo: "Rotafolio — Factores de riesgo para adicciones", categoria: "grafico",
     tema: "Adicciones", publico: "Adolescentes de 10–19 años", modalidad: "Taller presencial",

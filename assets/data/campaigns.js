@@ -7,17 +7,20 @@
 
 const CAMPAIGNS = [
   {
-    id: 'mpox',
-    titulo: 'Viruela Símica (MPOX)',
-    objetivo: 'Prevenir la transmisión del virus mpox mediante información, detección oportuna y reducción de conductas de riesgo en la población.',
-    poblacion: 'Población general; mayor riesgo en adultos con múltiples contactos',
+    id: 'paludismo',
+    titulo: 'Paludismo (Malaria)',
+    objetivo: 'Prevenir la transmisión del paludismo mediante el control del mosquito vector, la eliminación de criaderos en la vivienda y su entorno, y la detección y tratamiento oportuno de casos febriles.',
+    poblacion: 'Población de localidades con presencia del vector; viajeros y personas con fiebre de origen desconocido',
     vigencia: '2025-12-31',
-    color: 'crimson',
+    color: 'teal',
     materiales: [
-      { tipo: 'Información OMS', url: 'https://www.who.int/es/news-room/fact-sheets/detail/mpox', icono: 'ext' },
-      { tipo: 'Solicitar materiales', url: '#contacto', icono: 'mail' }
+      /* Determinante 4 — Entornos Físicos Saludables → taller "Enfermedades por Vectores"
+         El parámetro ?cat= abre el catálogo ya filtrado en esa categoría. */
+      { tipo: 'Taller: Enfermedades por Vectores', url: 'promocion.html?cat=entornos-fisicos#talleres', icono: 'slides' },
+      { tipo: 'Material de apoyo (Drive)', url: 'https://drive.google.com/drive/folders/1FtzsIdHNkccH6-eNwhhfhW6Tb9qlY-AH', icono: 'link' },
+      { tipo: 'Información OMS', url: 'https://www.who.int/es/news-room/fact-sheets/detail/malaria', icono: 'ext' }
     ],
-    evidenciaSugerida: 'Foto de actividad + lista de asistencia + bitácora de plática'
+    evidenciaSugerida: 'Lista de asistencia + foto del taller + registro de viviendas con eliminación de criaderos'
   },
   {
     id: 'alimentacion',
