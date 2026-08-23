@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Salud Mental — Promoción a la Salud · Jurisdicción Sanitaria Texcoco</title>
   <meta name="description" content="Promoción del bienestar, prevención del suicidio, violencia, estrés y atención en infancias y adolescencia. Jurisdicción Sanitaria Texcoco.">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="mask-icon" href="assets/img/favicon.svg" color="#9F2241">
+  <meta name="theme-color" content="#9F2241">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -14,7 +17,7 @@
 
   <div id="site-nav"></div>
 
-  <main>
+  <main id="main" tabindex="-1">
 
     <!-- ════════ HERO DE PÁGINA ════════ -->
     <div class="page-hero" style="--ph-color: var(--purple)">
@@ -76,7 +79,7 @@
             </div>
             <h3>Resiliencia comunitaria</h3>
             <p>Talleres para fortalecer la resiliencia en comunidades afectadas por situaciones de emergencia o estrés crónico.</p>
-            <a href="#" class="subsec-link">Descargar materiales →</a><!-- PENDIENTE -->
+            <span class="subsec-link is-pending">Próximamente</span>
           </div>
 
           <div class="subsec-card">
@@ -108,7 +111,7 @@
             </div>
             <h3>Señales de alerta</h3>
             <p>Cómo identificar señales de riesgo en adolescentes y adultos. Material para personal de salud, docentes y familiares.</p>
-            <a href="#" class="subsec-link">Descargar material →</a><!-- PENDIENTE -->
+            <span class="subsec-link is-pending">Próximamente</span>
           </div>
 
           <div class="subsec-card">
@@ -116,7 +119,8 @@
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.3 19.79 19.79 0 01.22 2.62 2 2 0 012.2.5H5.1a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.41a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
             </div>
             <h3>Líneas de crisis</h3>
-            <p><strong>Línea de la Vida:</strong> <a href="tel:8009112000">800 911 2000</a> (24 h, gratuita)<br><strong>SAPTEL:</strong> 55 5259-8121 (24 h)<br>Grupo de especialistas en atención a la salud mental con derivación a centros especializados.</p>
+            <div data-dir="referencia" data-dir-tema="crisis" data-dir-formato="compacto"></div>
+            <p>Derivación a centros especializados en salud mental.</p>
             <a href="https://www.gob.mx/salud/conadic/acciones-y-programas/centro-de-atencion-ciudadana-contra-las-adicciones-134381" class="subsec-link" target="_blank" rel="noopener">Centro de Atención Ciudadana →</a>
           </div>
 
@@ -126,7 +130,7 @@
             </div>
             <h3>Protocolo de actuación</h3>
             <p>Pasos de acción cuando se detecta riesgo suicida. Evaluación, contención, referencia y seguimiento.</p>
-            <a href="#" class="subsec-link">Descargar protocolo →</a><!-- PENDIENTE -->
+            <span class="subsec-link is-pending">Próximamente</span>
           </div>
 
           <div class="subsec-card">
@@ -135,7 +139,7 @@
             </div>
             <h3>Capacitación gatekeeper</h3>
             <p>Formación para identificar y apoyar a personas en riesgo. Materiales para la capacitación en primeros auxilios psicológicos.</p>
-            <a href="#" class="subsec-link">Ver presentación →</a><!-- PENDIENTE -->
+            <span class="subsec-link is-pending">Próximamente</span>
           </div>
 
           <div class="subsec-card">
@@ -144,7 +148,7 @@
             </div>
             <h3>Cartel Línea de la Vida</h3>
             <p>Material gráfico oficial para colocar en salas de espera de unidades médicas, escuelas y espacios comunitarios.</p>
-            <a href="biblioteca.html?cat=grafico" class="subsec-link">Descargar cartel →</a>
+            <a href="biblioteca.html?tipo=grafico" class="subsec-link">Descargar cartel →</a>
           </div>
 
           <div class="subsec-card">
@@ -153,7 +157,7 @@
             </div>
             <h3>NOM-046 — Violencia y suicidio</h3>
             <p>Marco normativo para la atención de violencia familiar, sexual y del intento de suicidio en unidades de salud.</p>
-            <a href="biblioteca.html?cat=noms" class="subsec-link">Ver NOM →</a>
+            <a href="biblioteca.html?tipo=nom" class="subsec-link">Ver NOM →</a>
           </div>
 
         </div>
@@ -175,7 +179,7 @@
             </div>
             <h3>Tamizaje de violencia familiar</h3>
             <p>Instrumento para la detección de violencia en consulta. Formato oficial NOM-046 para unidades de primer nivel.</p>
-            <a href="biblioteca.html?cat=formatos" class="subsec-link">Descargar formato →</a>
+            <a href="biblioteca.html?tipo=formato" class="subsec-link">Descargar formato →</a>
           </div>
           <div class="subsec-card">
             <div class="subsec-icon" style="background: var(--purple-lt); color: var(--purple)">
@@ -191,7 +195,7 @@
             </div>
             <h3>Material psicoeducativo</h3>
             <p>Trípticos y carteles sobre tipos de violencia, ciclo de la violencia y cómo pedir ayuda. Para salas de espera.</p>
-            <a href="biblioteca.html?cat=grafico" class="subsec-link">Descargar material →</a>
+            <a href="biblioteca.html?tipo=grafico" class="subsec-link">Descargar material →</a>
           </div>
         </div>
       </div>
@@ -212,7 +216,7 @@
             </div>
             <h3>Técnicas de manejo del estrés</h3>
             <p>Respiración diafragmática, mindfulness breve y técnicas de relajación muscular progresiva. Material listo para talleres.</p>
-            <a href="#" class="subsec-link">Descargar materiales →</a><!-- PENDIENTE -->
+            <span class="subsec-link is-pending">Próximamente</span>
           </div>
           <div class="subsec-card">
             <div class="subsec-icon" style="background: var(--purple-lt); color: var(--purple)">
@@ -220,7 +224,7 @@
             </div>
             <h3>Autocuidado para personal de salud</h3>
             <p>El desgaste profesional (burnout) afecta la calidad de atención. Recursos de autocuidado para personal de salud.</p>
-            <a href="#" class="subsec-link">Descargar materiales →</a><!-- PENDIENTE -->
+            <span class="subsec-link is-pending">Próximamente</span>
           </div>
           <div class="subsec-card">
             <div class="subsec-icon" style="background: var(--purple-lt); color: var(--purple)">
@@ -228,7 +232,7 @@
             </div>
             <h3>Taller: Manejo de emociones</h3>
             <p>Presentación de 90 minutos para grupos comunitarios. Identificación de emociones, regulación y comunicación asertiva.</p>
-            <a href="biblioteca.html?cat=presentacion" class="subsec-link">Ver presentación →</a>
+            <a href="biblioteca.html?tipo=presentacion" class="subsec-link">Ver presentación →</a>
           </div>
         </div>
       </div>
@@ -249,7 +253,7 @@
             </div>
             <h3>Desarrollo socioemocional</h3>
             <p>Materiales para promover habilidades socioemocionales en niñas y niños de 0 a 12 años desde las unidades médicas.</p>
-            <a href="#" class="subsec-link">Descargar materiales →</a><!-- PENDIENTE -->
+            <span class="subsec-link is-pending">Próximamente</span>
           </div>
           <div class="subsec-card">
             <div class="subsec-icon" style="background: var(--purple-lt); color: var(--purple)">
@@ -265,7 +269,7 @@
             </div>
             <h3>Adolescentes en crisis</h3>
             <p>Protocolo de atención a adolescentes con ideación suicida, autolesiones o crisis emocional en unidades de salud.</p>
-            <a href="#" class="subsec-link">Descargar protocolo →</a><!-- PENDIENTE -->
+            <span class="subsec-link is-pending">Próximamente</span>
           </div>
         </div>
       </div>
@@ -280,64 +284,14 @@
           <p>Captura de productividad, BCSM/GAE, supervisión y registro de actividades del programa de Salud Mental.</p>
         </div>
 
-        <div class="subsec-grid" style="margin-bottom: 2rem">
+        <div data-evidencias="salud-mental"></div>
 
-          <div class="subsec-card">
-            <div class="subsec-icon" style="background: var(--purple-lt); color: var(--purple)">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
-            </div>
-            <h3>Reporte de productividad mensual (SM)</h3>
-            <p>Formulario mensual del Departamento de Salud Mental. Complétalo con la información detallada de tus actividades y logros del mes.</p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfGR-ty_-1BapoiA28LjgAPFipcUtP-rIQEmJIZ90DSXYPOwQ/viewform" class="subsec-link" target="_blank" rel="noopener">Capturar reporte →</a>
-          </div>
-
-          <div class="subsec-card">
-            <div class="subsec-icon" style="background: var(--purple-lt); color: var(--purple)">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-            </div>
-            <h3>Reportes BCSM y GAE</h3>
-            <p>Espacio exclusivo para responsables de BCSM y GAE. Registra los datos del período correspondiente.</p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLScK-HmmTJLD9gIfBS0enMA7Z1O2S6npzLk6YmrXFTrLExmzlA/viewform" class="subsec-link" target="_blank" rel="noopener">Capturar BCSM/GAE →</a>
-          </div>
-
-          <div class="subsec-card">
-            <div class="subsec-icon" style="background: var(--purple-lt); color: var(--purple)">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
-            <h3>Cédula de Supervisión de Salud Mental</h3>
-            <p>Cédula emitida por el Gobierno del Estado de México (folio 208C0101100000L-552-24). Descarga, revisa y envía el formulario de supervisión.</p>
-            <a href="https://drive.google.com/file/d/1xydZThzAneLIplcpfSTLmSyObROzIjdC/view" class="subsec-link" target="_blank" rel="noopener">Descargar cédula →</a>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLScIRdabw_-XejTY-2m92FNR_BBR2fbiKlcsQ9ErI-RYlyUrgA/viewform" class="subsec-link" target="_blank" rel="noopener" style="margin-top:0.4rem">Enviar supervisión →</a>
-          </div>
-
-          <div class="subsec-card">
-            <div class="subsec-icon" style="background: var(--purple-lt); color: var(--purple)">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-            </div>
-            <h3>Evidencia mínima requerida</h3>
-            <p><strong>Actividad grupal:</strong> Lista de asistencia + foto + bitácora.<br><strong>Tamizaje:</strong> Formato + nota de seguimiento + foto.</p>
-            <a href="biblioteca.html?cat=formatos" class="subsec-link">Descargar formatos →</a>
-          </div>
-
-          <div class="subsec-card">
-            <div class="subsec-icon" style="background: var(--purple-lt); color: var(--purple)">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            </div>
-            <h3>Calendario de actividades — Salud Mental</h3>
-            <p>Consulta el cronograma de actividades, reuniones y tareas pendientes del Departamento de Salud Mental. Revísalo con regularidad para estar al tanto de tus responsabilidades.</p>
-            <a href="https://calendar.google.com/calendar/u/0?cid=c2FsdWRtZW50YWxqc3RleEBnbWFpbC5jb20" class="subsec-link" target="_blank" rel="noopener">Abrir calendario →</a>
-          </div>
-
-          <div class="subsec-card">
-            <div class="subsec-icon" style="background: var(--purple-lt); color: var(--purple)">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-            </div>
-            <h3>Recursos para psicólogos</h3>
-            <p>Materiales, protocolos, formatos y lineamientos específicos para psicólogos que trabajan en la jurisdicción. Acceso al catálogo completo de recursos.</p>
-            <a href="recursos-psicologia.html" class="subsec-link">Ver recursos →</a>
-          </div>
-
-        </div>
+        <div class="material-grid" data-recursos data-programa="salud-mental"
+             data-tipo="formulario formato enlace"></div>
+        <p class="section-crosslink">
+          <a href="biblioteca.html?tipo=formato">Formatos de evidencia</a> ·
+          <a href="recursos-psicologia.html">Recursos para psicólogos</a>
+        </p>
 
         <div class="report-table">
           <div class="report-header">
@@ -395,7 +349,7 @@
 
   <div id="site-footer"></div>
 
-  <script src="assets/data/campaigns.js"></script>
+  <script src="assets/data/recursos.js"></script>
   <script src="components.js"></script>
   <script src="script.js"></script>
 </body>

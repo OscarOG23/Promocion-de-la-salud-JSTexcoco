@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Promoción de la Salud — Jurisdicción Sanitaria Texcoco</title>
   <meta name="description" content="Determinantes sociales, paquete garantizado, material educativo, campañas, estilos de vida, alimentación, actividad física y evidencias.">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="mask-icon" href="assets/img/favicon.svg" color="#9F2241">
+  <meta name="theme-color" content="#9F2241">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -14,7 +17,7 @@
 
   <div id="site-nav"></div>
 
-  <main>
+  <main id="main" tabindex="-1">
 
     <!-- ════════ HERO DE PÁGINA ════════ -->
     <div class="page-hero" style="--ph-color: var(--crimson)">
@@ -215,24 +218,36 @@
         </div>
 
         <div class="filter-bar-wrap">
-          <div class="filter-bar">
-            <button class="filter-btn active" data-cat="all">Todos</button>
-            <button class="filter-btn" data-cat="alimentacion">Alimentación</button>
-            <button class="filter-btn" data-cat="actividad">Actividad Física</button>
-            <button class="filter-btn" data-cat="salud-sexual">Salud Sexual</button>
-            <button class="filter-btn" data-cat="entornos-fisicos">Entornos Físicos</button>
-            <button class="filter-btn" data-cat="entornos-psicosociales">Entornos Psicosociales</button>
-            <button class="filter-btn" data-cat="infancia">Infancia</button>
-            <button class="filter-btn" data-cat="diversidad">Diversidad</button>
-            <button class="filter-btn" data-cat="derecho-salud">Derecho a la Salud</button>
-            <button class="filter-btn" data-cat="participacion">Participación Social</button>
+          <div class="filter-search">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <label class="visually-hidden" for="buscador">Buscar en el catálogo de talleres</label>
+            <input type="search" id="buscador" placeholder="Buscar un taller…" autocomplete="off">
+          </div>
+          <div class="filter-group">
+            <span class="filter-label" id="lbl-determinante">Determinante</span>
+            <div class="filter-bar" role="group" aria-labelledby="lbl-determinante">
+              <button class="filter-btn" data-faceta="tema" data-valor="alimentacion"           aria-pressed="false">Alimentación</button>
+              <button class="filter-btn" data-faceta="tema" data-valor="actividad"              aria-pressed="false">Actividad Física</button>
+              <button class="filter-btn" data-faceta="tema" data-valor="salud-sexual"           aria-pressed="false">Salud Sexual</button>
+              <button class="filter-btn" data-faceta="tema" data-valor="entornos-fisicos"       aria-pressed="false">Entornos Físicos</button>
+              <button class="filter-btn" data-faceta="tema" data-valor="entornos-psicosociales" aria-pressed="false">Entornos Psicosociales</button>
+              <button class="filter-btn" data-faceta="tema" data-valor="infancia"               aria-pressed="false">Infancia</button>
+              <button class="filter-btn" data-faceta="tema" data-valor="diversidad"             aria-pressed="false">Diversidad</button>
+              <button class="filter-btn" data-faceta="tema" data-valor="derecho-salud"          aria-pressed="false">Derecho a la Salud</button>
+              <button class="filter-btn" data-faceta="tema" data-valor="participacion"          aria-pressed="false">Participación Social</button>
+            </div>
           </div>
           <p class="filter-count-wrap">
-            <span class="filter-count">…</span> disponibles
+            <span class="filter-count" role="status">…</span> disponibles
+            <button type="button" class="filter-clear">Quitar filtros</button>
           </p>
         </div>
 
-        <div id="talleres-grid" class="material-grid"><!-- JS rellena --></div>
+        <div class="material-grid" data-recursos data-tipo="taller"><!-- JS rellena --></div>
+        <p class="filter-empty empty-state" hidden>
+          Ningún taller coincide con esa búsqueda.
+          <button type="button" class="filter-clear">Ver todo el catálogo</button>
+        </p>
       </div>
     </section>
 
@@ -252,7 +267,7 @@
             </div>
             <h3>Cartilla Nacional de Salud</h3>
             <p>Acciones preventivas por grupo de edad. Niñas/niños, adolescentes, mujeres, hombres y adultos mayores.</p>
-            <a href="#" class="subsec-link">Descargar cartillas →</a><!-- PENDIENTE -->
+            <span class="subsec-link is-pending">Próximamente</span>
           </div>
 
           <div class="subsec-card">
@@ -261,7 +276,7 @@
             </div>
             <h3>Tamizajes preventivos</h3>
             <p>Tamizaje de obesidad, hipertensión, diabetes y dislipidemias según etapa de vida y grupos de riesgo.</p>
-            <a href="#" class="subsec-link">Ver formatos →</a><!-- PENDIENTE -->
+            <span class="subsec-link is-pending">Próximamente</span>
           </div>
 
           <div class="subsec-card">
@@ -270,7 +285,7 @@
             </div>
             <h3>Consejerías y orientación</h3>
             <p>Consejería nutricional, anticoncepción, lactancia materna, actividad física y salud mental integrada.</p>
-            <a href="#" class="subsec-link">Ver materiales →</a><!-- PENDIENTE -->
+            <span class="subsec-link is-pending">Próximamente</span>
           </div>
 
         </div>
@@ -293,7 +308,7 @@
             </div>
             <h3>Rotafolios y carteles</h3>
             <p>Material visual para pláticas en comunidades, ferias de salud y actividades grupales en unidades médicas.</p>
-            <a href="biblioteca.html?cat=grafico" class="subsec-link">Ver en Biblioteca →</a>
+            <a href="biblioteca.html?tipo=grafico" class="subsec-link">Ver en Biblioteca →</a>
           </div>
 
           <div class="subsec-card">
@@ -302,7 +317,7 @@
             </div>
             <h3>Presentaciones para talleres</h3>
             <p>Diapositivas descargables por tema: alimentación, actividad física, tabaquismo, salud mental y adicciones.</p>
-            <a href="biblioteca.html?cat=presentacion" class="subsec-link">Ver presentaciones →</a>
+            <a href="biblioteca.html?tipo=presentacion" class="subsec-link">Ver presentaciones →</a>
           </div>
 
           <div class="subsec-card">
@@ -311,7 +326,7 @@
             </div>
             <h3>Instructivos y guías</h3>
             <p>Guías paso a paso para aplicar cada acción preventiva, desde el diagnóstico hasta el registro de evidencias.</p>
-            <a href="biblioteca.html?cat=manuales" class="subsec-link">Ver guías →</a>
+            <a href="biblioteca.html?tipo=manual" class="subsec-link">Ver guías →</a>
           </div>
 
         </div>
@@ -345,7 +360,7 @@
             </div>
             <h3>Bienestar integral</h3>
             <p>El bienestar no es solo ausencia de enfermedad. Materiales para promover el equilibrio físico, emocional y social.</p>
-            <a href="#" class="subsec-link">Descargar materiales →</a><!-- PENDIENTE -->
+            <span class="subsec-link is-pending">Próximamente</span>
           </div>
           <div class="subsec-card">
             <div class="subsec-icon">
@@ -353,7 +368,7 @@
             </div>
             <h3>Hidratación y sueño</h3>
             <p>Importancia del consumo de agua simple, higiene del sueño y descanso adecuado en la salud general.</p>
-            <a href="#" class="subsec-link">Descargar materiales →</a><!-- PENDIENTE -->
+            <span class="subsec-link is-pending">Próximamente</span>
           </div>
           <div class="subsec-card">
             <div class="subsec-icon">
@@ -419,7 +434,7 @@
             </div>
             <h3>Recomendaciones OMS</h3>
             <p>Niños: 60 min/día · Adultos: 150 min/semana moderada o 75 min intensa. Materiales de difusión actualizados.</p>
-            <a href="#" class="subsec-link">Descargar materiales →</a><!-- PENDIENTE -->
+            <span class="subsec-link is-pending">Próximamente</span>
           </div>
           <div class="subsec-card">
             <div class="subsec-icon">
@@ -435,7 +450,7 @@
             </div>
             <h3>Activación para adultos mayores</h3>
             <p>Ejercicios de bajo impacto, balance y fuerza adaptados a adultos mayores para realizarse en comunidad.</p>
-            <a href="#" class="subsec-link">Descargar rutinas →</a><!-- PENDIENTE -->
+            <span class="subsec-link is-pending">Próximamente</span>
           </div>
         </div>
       </div>
@@ -449,32 +464,7 @@
           <h2>Registro de<br>evidencias</h2>
           <p>Formatos y procedimientos para registrar las actividades realizadas. La evidencia sólida es clave para los reportes.</p>
         </div>
-        <div class="subsec-grid">
-          <div class="subsec-card">
-            <div class="subsec-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-            </div>
-            <h3>Lista de asistencia</h3>
-            <p>Formato oficial de lista de asistencia para actividades educativas grupales. Descarga el formato Word o PDF.</p>
-            <a href="biblioteca.html?cat=formatos" class="subsec-link">Descargar formato →</a>
-          </div>
-          <div class="subsec-card">
-            <div class="subsec-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-            </div>
-            <h3>Bitácora de actividades</h3>
-            <p>Registro cronológico de actividades por unidad médica. Incluye fecha, tipo de actividad, lugar y participantes.</p>
-            <a href="biblioteca.html?cat=formatos" class="subsec-link">Descargar formato →</a>
-          </div>
-          <div class="subsec-card">
-            <div class="subsec-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.3 19.79 19.79 0 01.22 2.62 2 2 0 012.2.5H5.1a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.41a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-            </div>
-            <h3>Enviar evidencias</h3>
-            <p>¿Ya tienes fotos, listas de asistencia y registros? Captura tu reporte mensual con los formularios oficiales por área.</p>
-            <a href="reportes.html#formularios" class="subsec-link">Ir a formularios de reporte →</a>
-          </div>
-        </div>
+        <div data-evidencias="promocion"></div>
       </div>
     </section>
 
@@ -483,7 +473,7 @@
   <div id="site-footer"></div>
 
   <script src="assets/data/campaigns.js"></script>
-  <script src="assets/data/talleres.js"></script>
+  <script src="assets/data/recursos.js"></script>
   <script src="components.js"></script>
   <script src="script.js"></script>
 </body>

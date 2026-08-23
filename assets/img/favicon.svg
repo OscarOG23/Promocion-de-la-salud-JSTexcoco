@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Promoción a la Salud">
+  <defs>
+    <linearGradient id="ps" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9F2241"/>
+      <stop offset="1" stop-color="#691C32"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#ps)"/>
+  <!-- Franja dorada: el secundario de la paleta institucional -->
+  <rect x="0" y="52" width="64" height="4" fill="#BC955C"/>
+  <text x="32" y="41" text-anchor="middle"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="30" font-weight="600" fill="#FFFFFF" letter-spacing="1">PS</text>
+</svg>

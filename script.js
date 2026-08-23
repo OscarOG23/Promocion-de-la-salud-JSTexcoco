@@ -18,29 +18,93 @@ function updateScrollProgress() {
 
 // ── Navbar: scroll effect + clase activa ───────
 const navbar  = document.getElementById('navbar');
+const heroBg  = document.querySelector('.hero-bg-pattern');
+
+// Un solo oyente para todo lo que depende del scroll, agrupado en un
+// frame: antes había dos y el paralaje escribía `transform` en cada
+// evento, forzando un recálculo de estilo por evento.
+let scrollPendiente = false;
 window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 20);
-  updateScrollProgress();
+  if (scrollPendiente) return;
+  scrollPendiente = true;
+  requestAnimationFrame(() => {
+    const y = window.scrollY;
+    navbar.classList.toggle('scrolled', y > 20);
+    updateScrollProgress();
+    if (heroBg && !prefersReducedMotion) {
+      heroBg.style.transform = `translateY(${y * 0.18}px)`;
+    }
+    scrollPendiente = false;
+  });
 }, { passive: true });
 
-// ── Mobile menu toggle ─────────────────────────
-const menuToggle = document.getElementById('menu-toggle');
-const navLinks   = document.getElementById('nav-links');
+// ── Menú: hamburguesa + desplegables ───────────
+const menuToggle  = document.getElementById('menu-toggle');
+const navLinks    = document.getElementById('nav-links');
+const dropToggles = [...document.querySelectorAll('.dropdown-toggle')];
+
+/** Cierra el menú móvil dejando el estado ARIA sincronizado. */
+function closeMenu() {
+  navLinks.classList.remove('open');
+  menuToggle.classList.remove('active');
+  menuToggle.setAttribute('aria-expanded', 'false');
+}
+
+/** Cierra todos los desplegables salvo el indicado. */
+function closeDropdowns(except) {
+  dropToggles.forEach(t => {
+    if (t === except) return;
+    t.setAttribute('aria-expanded', 'false');
+    t.parentElement.classList.remove('open');
+  });
+}
 
 menuToggle.addEventListener('click', () => {
   const isOpen = navLinks.classList.toggle('open');
   menuToggle.classList.toggle('active', isOpen);
-  menuToggle.setAttribute('aria-expanded', isOpen);
+  menuToggle.setAttribute('aria-expanded', String(isOpen));
+  if (!isOpen) closeDropdowns();
+});
+
+// Los desplegables responden al clic (táctil y teclado), no solo al hover:
+// en tabletas > 900px el hover no existe y el menú quedaba inalcanzable.
+dropToggles.forEach(toggle => {
+  toggle.addEventListener('click', () => {
+    const willOpen = toggle.getAttribute('aria-expanded') !== 'true';
+    closeDropdowns(toggle);
+    toggle.setAttribute('aria-expanded', String(willOpen));
+    toggle.parentElement.classList.toggle('open', willOpen);
+  });
+});
+
+// Escape cierra lo abierto y devuelve el foco al control que lo abrió
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Escape') return;
+  const openToggle = dropToggles.find(t => t.getAttribute('aria-expanded') === 'true');
+  if (openToggle) {
+    closeDropdowns();
+    openToggle.focus();
+    return;
+  }
+  if (navLinks.classList.contains('open')) {
+    closeMenu();
+    menuToggle.focus();
+  }
 });
 
 // Cerrar al hacer clic fuera
 document.addEventListener('click', (e) => {
-  if (!navbar.contains(e.target)) {
-    navLinks.classList.remove('open');
-    menuToggle.classList.remove('active');
-    menuToggle.setAttribute('aria-expanded', false);
-  }
+  if (navbar.contains(e.target)) return;
+  closeMenu();
+  closeDropdowns();
 });
+
+// En móvil, dejar abierto el apartado de la página actual
+const activeToggle = document.querySelector('.dropdown-toggle.active');
+if (activeToggle && window.matchMedia('(max-width: 900px)').matches) {
+  activeToggle.setAttribute('aria-expanded', 'true');
+  activeToggle.parentElement.classList.add('open');
+}
 
 // ── Active nav link en scroll ──────────────────
 const sections = document.querySelectorAll('section[id]');
@@ -62,7 +126,9 @@ const sectionObserver = new IntersectionObserver((entries) => {
 sections.forEach(s => sectionObserver.observe(s));
 
 // ── Smooth scroll con offset dinámico ─────────
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+// El skip link se excluye: necesita la navegación nativa para
+// que el foco llegue de verdad al <main>, no solo el scroll.
+document.querySelectorAll('a[href^="#"]:not(.skip-link)').forEach(anchor => {
   anchor.addEventListener('click', (e) => {
     const href = anchor.getAttribute('href');
     if (href === '#') return; // placeholder sin destino: evitar querySelector('#') inválido
@@ -72,8 +138,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     const offset = navbar.offsetHeight + 16;
     const top = target.getBoundingClientRect().top + window.scrollY - offset;
     window.scrollTo({ top, behavior: 'smooth' });
-    navLinks.classList.remove('open');
-    menuToggle.classList.remove('active');
+    closeMenu();
+    closeDropdowns();
   });
 });
 
@@ -88,14 +154,6 @@ if (scrollHint) {
 
 // ── Parallax en el hero (sutil) ────────────────
 if (!prefersReducedMotion) {
-  const heroBg = document.querySelector('.hero-bg-pattern');
-  if (heroBg) {
-    window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      heroBg.style.transform = `translateY(${y * 0.18}px)`;
-    }, { passive: true });
-  }
-
   // Partículas flotantes en el hero
   const heroEl = document.querySelector('.hero');
   if (heroEl) {
@@ -174,15 +232,19 @@ function createRevealObserver() {
 
 // Añadir clase reveal a todos los elementos animables
 function initRevealElements() {
+  // Estos selectores apuntaban a componentes que ya no existen
+  // (.content-card, .program-card, .sm-card, .resource-card,
+  // .alert-card, .sij-placeholder): la animación de entrada solo
+  // alcanzaba a .section-header, .ci-item y .qa-card.
+  // Se excluyen a propósito .material-card y .directory-card: su
+  // visibilidad la gobierna el filtro, que escribe opacity en línea.
   const selectors = [
-    '.content-card',
-    '.program-card',
-    '.sm-card',
-    '.resource-card',
     '.section-header',
-    '.alert-card',
+    '.nav-card',
+    '.det-card',
+    '.subsec-card',
+    '.ev-paso',
     '.ci-item',
-    '.sij-placeholder',
   ];
   selectors.forEach(sel => {
     document.querySelectorAll(sel).forEach(el => {
@@ -194,26 +256,6 @@ function initRevealElements() {
   document.querySelectorAll('.qa-card').forEach((el, i) => {
     el.classList.add('reveal');
     el.dataset.delay = i * 50;
-  });
-}
-
-initRevealElements();
-createRevealObserver();
-
-// ── Hover 3D tilt en program cards ────────────
-if (!prefersReducedMotion) {
-  document.querySelectorAll('.program-card').forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const rect   = card.getBoundingClientRect();
-      const cx     = rect.left + rect.width  / 2;
-      const cy     = rect.top  + rect.height / 2;
-      const dx     = (e.clientX - cx) / (rect.width  / 2);
-      const dy     = (e.clientY - cy) / (rect.height / 2);
-      card.style.transform = `translateY(-4px) rotateX(${-dy * 4}deg) rotateY(${dx * 4}deg)`;
-    });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-    });
   });
 }
 
@@ -433,113 +475,552 @@ function initCarousel() {
 }
 
 // ══════════════════════════════════════════════
-//  BIBLIOTECA — render desde biblioteca.js
+//  RECURSOS — índice único (assets/data/recursos.js)
+//  Sustituye a renderBiblioteca / renderTalleres /
+//  renderFormularios / renderPsicologia: los cuatro
+//  producían la misma .material-card desde silos distintos.
 // ══════════════════════════════════════════════
 
-function renderBiblioteca() {
-  const grid = document.querySelector('.material-grid');
-  if (!grid) return;
-
-  if (typeof BIBLIOTECA === 'undefined' || !BIBLIOTECA.length) {
-    grid.innerHTML = '<p class="empty-state">Sin recursos por el momento.</p>';
-    return;
-  }
-
-  const CAT_LABELS = {
-    lineamientos: 'Lineamiento',
-    manuales:     'Manual',
-    formatos:     'Formato',
-    noms:         'NOM',
-    grafico:      'Material gráfico',
-    presentacion: 'Presentación',
-    documentos:   'Doc. oficial',
-  };
-
-  const ICON_DOWNLOAD = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>`;
-  const ICON_EXTERNAL = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`;
-
-  grid.innerHTML = BIBLIOTECA.map(m => {
-    const url  = m.url || '#';
-    const ext  = url.startsWith('http');
-    const meta = [
-      `<span><strong>Tema:</strong> ${m.tema}</span>`,
-      `<span><strong>Público:</strong> ${m.publico}</span>`,
-      m.modalidad   ? `<span><strong>Modalidad:</strong> ${m.modalidad}</span>` : '',
-      m.actualizado ? `<span><strong>Actualizado:</strong> ${m.actualizado}</span>` : '',
-    ].join('');
-    return `
-      <article class="material-card" data-categoria="${m.categoria}">
-        <div class="mc-cat ${m.categoria}">${CAT_LABELS[m.categoria] || m.categoria}</div>
-        <h3 class="mc-title">${m.titulo}</h3>
-        <div class="mc-meta">${meta}</div>
-        <a href="${url}" class="mc-btn"${ext ? ' target="_blank" rel="noopener noreferrer"' : ''}>
-          ${ext ? ICON_EXTERNAL : ICON_DOWNLOAD}
-          ${m.accion}
-        </a>
-      </article>`;
-  }).join('');
-}
-
-// ══════════════════════════════════════════════
-//  TALLERES COMUNITARIOS — render desde talleres.js
-// ══════════════════════════════════════════════
-
-const TALLER_CAT_LABELS = {
-  alimentacion:          'Alimentación',
-  actividad:             'Actividad Física',
-  'salud-sexual':        'Salud Sexual y Reproductiva',
-  'entornos-fisicos':    'Entornos Físicos',
-  'entornos-psicosociales': 'Entornos Psicosociales',
-  infancia:              'Crecimiento Infantil',
-  diversidad:            'Diversidad y Género',
-  'derecho-salud':       'Derecho a la Salud',
-  participacion:         'Participación Social',
+const PROGRAMA_LABELS = {
+  transversal:    'Transversal',
+  promocion:      'Promoción',
+  adicciones:     'Adicciones',
+  'salud-mental': 'Salud Mental',
+  entornos:       'Entornos',
 };
 
-function renderTalleres() {
-  const grid = document.getElementById('talleres-grid');
-  if (!grid) return;
+const TIPO_LABELS = {
+  formato:      'Formato',
+  normativa:    'Lineamiento',
+  nom:          'NOM',
+  manual:       'Manual',
+  grafico:      'Material gráfico',
+  presentacion: 'Presentación',
+  documento:    'Doc. oficial',
+  taller:       'Taller',
+  formulario:   'Formulario',
+  enlace:       'Sitio externo',
+};
 
-  if (typeof TALLERES === 'undefined' || !TALLERES.length) {
-    grid.innerHTML = '<p class="empty-state">Sin talleres por el momento.</p>';
+const TEMA_LABELS = {
+  // Los 9 determinantes sociales (= las 9 det-card de promocion.html)
+  alimentacion:             'Alimentación',
+  actividad:                'Actividad Física',
+  'salud-sexual':           'Salud Sexual y Reproductiva',
+  'entornos-fisicos':       'Entornos Físicos',
+  'entornos-psicosociales': 'Entornos Psicosociales',
+  infancia:                 'Crecimiento Infantil',
+  diversidad:               'Diversidad y Género',
+  'derecho-salud':          'Derecho a la Salud',
+  participacion:            'Participación Social',
+  // Entornos saludables
+  escuelas:     'Escuelas',
+  comunidades:  'Comunidades',
+  laborales:    'Espacios laborales',
+  unidades:     'Unidades de salud',
+  // Otros
+  psicologia: 'Psicología',
+  ferias:     'Ferias de salud',
+};
+
+const ICON_DOWNLOAD = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>`;
+const ICON_EXTERNAL = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`;
+const ICON_FOLDER   = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>`;
+const ICON_CLOCK    = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>`;
+
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const temasDe = r => r.tema || [];
+const etiquetaTema = t => TEMA_LABELS[t] || t;
+
+/** Minúsculas y sin acentos: «cedula» debe encontrar «Cédula». */
+function normaliza(s) {
+  return String(s ?? '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
+
+/** Texto plano sobre el que busca el campo de búsqueda. */
+function textoBuscable(r) {
+  return normaliza([
+    r.titulo, r.descripcion, r.subtema, r.publico, r.modalidad,
+    PROGRAMA_LABELS[r.programa], TIPO_LABELS[r.tipo],
+    ...temasDe(r).map(etiquetaTema),
+  ].filter(Boolean).join(' '));
+}
+
+/** Todas las palabras de la consulta deben aparecer (en cualquier orden). */
+function coincideTexto(texto, consulta) {
+  const palabras = normaliza(consulta).split(/\s+/).filter(Boolean);
+  return palabras.every(p => texto.includes(p));
+}
+
+/**
+ * Una tarjeta de recurso.
+ * `estado: 'pendiente'` NO produce un enlace: antes se renderizaba
+ * href="#", que parecía funcional y no llevaba a ninguna parte.
+ */
+function recursoCard(r) {
+  const ext       = /^https?:/i.test(r.url || '');
+  const pendiente = r.estado === 'pendiente';
+
+  const meta = [
+    r.subtema     ? `<span><strong>Materia:</strong> ${esc(r.subtema)}</span>` : '',
+    temasDe(r).length ? `<span><strong>Tema:</strong> ${temasDe(r).map(t => esc(etiquetaTema(t))).join(' · ')}</span>` : '',
+    r.publico     ? `<span><strong>Público:</strong> ${esc(r.publico)}</span>` : '',
+    r.modalidad   ? `<span><strong>Modalidad:</strong> ${esc(r.modalidad)}</span>` : '',
+    r.actualizado ? `<span><strong>Actualizado:</strong> ${esc(r.actualizado)}</span>` : '',
+  ].join('');
+
+  // aria-label descriptivo: la lista de enlaces del lector de pantalla
+  // era 40 entradas idénticas de «Descargar PDF».
+  const accion = pendiente
+    ? `<span class="mc-btn is-pending">${ICON_CLOCK} Próximamente</span>`
+    : `<a href="${esc(r.url)}" class="mc-btn" aria-label="${esc(r.accion)}: ${esc(r.titulo)}"${ext ? ' target="_blank" rel="noopener noreferrer"' : ''}>
+           ${ext ? ICON_EXTERNAL : ICON_DOWNLOAD} ${esc(r.accion)}
+         </a>`;
+
+  const complementos = r.complementos
+    ? `<a href="${esc(r.complementos)}" class="mc-btn outline mc-btn-sec" aria-label="Complementos: ${esc(r.titulo)}" target="_blank" rel="noopener noreferrer">${ICON_FOLDER} Complementos</a>`
+    : '';
+
+  return `
+      <article class="material-card"
+               data-programa="${esc(r.programa)}"
+               data-tipo="${esc(r.tipo)}"
+               data-tema="${esc(temasDe(r).join(' '))}"
+               data-buscar="${esc(textoBuscable(r))}">
+        <div class="mc-cat ${esc(r.tipo)}">${esc(TIPO_LABELS[r.tipo] || r.tipo)}</div>
+        <h3 class="mc-title">${esc(r.titulo)}</h3>
+        ${r.descripcion ? `<p class="mc-desc">${esc(r.descripcion)}</p>` : ''}
+        <div class="mc-meta">${meta}</div>
+        ${accion}
+        ${complementos}
+      </article>`;
+}
+
+/**
+ * Rellena cada rejilla `[data-recursos]`. Las facetas se declaran
+ * en el HTML, así que una página de programa pide solo lo suyo:
+ *   <div class="material-grid" data-recursos data-programa="entornos"
+ *        data-tema="escuelas" data-limite="6"></div>
+ */
+function renderRecursos() {
+  const grids = document.querySelectorAll('[data-recursos]');
+  if (!grids.length) return;
+
+  if (typeof RECURSOS === 'undefined' || !RECURSOS.length) {
+    grids.forEach(g => { g.innerHTML = '<p class="empty-state">Sin recursos por el momento.</p>'; });
     return;
   }
 
-  const ICON_EXTERNAL = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`;
-  const ICON_FOLDER   = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>`;
+  grids.forEach(grid => {
+    const f = grid.dataset;
+    const tipos = f.tipo ? f.tipo.split(/\s+/) : null;
+    const temas = f.tema ? f.tema.split(/\s+/) : null;
 
-  grid.innerHTML = TALLERES.map(t => {
-    const cat  = t.categoria || '';
-    const ext  = t.url && t.url.startsWith('http');
-    const compExt = t.complementos && t.complementos.startsWith('http');
-    return `
-      <article class="material-card" data-categoria="${cat}">
-        <div class="mc-cat ${cat}">${TALLER_CAT_LABELS[cat] || cat}</div>
-        <h3 class="mc-title">${t.tema}</h3>
-        <div class="mc-meta">
-          <span><strong>Categoría:</strong> ${TALLER_CAT_LABELS[cat] || cat}</span>
-        </div>
-        <a href="${t.url || '#'}" class="mc-btn"${ext ? ' target="_blank" rel="noopener noreferrer"' : ''}>
-          ${ICON_EXTERNAL}
-          Abrir presentación
-        </a>
-        ${t.complementos
-          ? `<a href="${t.complementos}" class="mc-btn" style="margin-top:.5rem;background:var(--off-white);color:var(--charcoal);border:1px solid rgba(0,0,0,.1);"${compExt ? ' target="_blank" rel="noopener noreferrer"' : ''}>${ICON_FOLDER} Complementos</a>`
-          : `<span class="mc-btn" style="margin-top:.5rem;background:var(--off-white);color:var(--text-muted);border:1px dashed rgba(0,0,0,.18);cursor:default" title="Agrega un enlace de Drive en assets/data/talleres.js (campo complementos)">${ICON_FOLDER} Complementos (pendiente)</span>`}
-      </article>`;
-  }).join('');
+    let items = RECURSOS.filter(r =>
+      (!f.programa || r.programa === f.programa) &&
+      (!tipos || tipos.includes(r.tipo)) &&
+      (!temas || temas.some(t => temasDe(r).includes(t)))
+    );
+
+    const total  = items.length;
+    const limite = parseInt(f.limite, 10);
+    const recortado = limite > 0 && total > limite;
+    if (recortado) items = items.slice(0, limite);
+
+    grid.innerHTML = items.map(recursoCard).join('') ||
+      '<p class="empty-state">Sin recursos en este apartado todavía.</p>';
+
+    // Divulgación progresiva: en vez de volcar 62 tarjetas, se muestran
+    // las más usadas y se enlaza el resto ya filtrado en la Biblioteca.
+    const previo = grid.nextElementSibling;
+    if (previo && previo.classList.contains('grid-more')) previo.remove();
+    if (recortado) {
+      const params = new URLSearchParams();
+      if (f.programa) params.set('programa', f.programa);
+      if (f.tipo)     params.set('tipo', f.tipo);
+      if (f.tema)     params.set('tema', f.tema);
+      const mas = document.createElement('p');
+      mas.className = 'grid-more';
+      mas.innerHTML = `<a href="biblioteca.html?${params}" class="grid-more-link">
+        Ver los ${total} recursos de este apartado en la Biblioteca →</a>`;
+      grid.after(mas);
+    }
+  });
 }
 
-// Deep-link: los determinantes (#talleres data-filter) activan el filtro del catálogo
-function initTallerDeepLinks() {
-  const links = document.querySelectorAll('[data-filter]');
-  if (!links.length) return;
-  links.forEach(link => {
-    link.addEventListener('click', () => {
-      const cat = link.dataset.filter;
-      const btn = document.querySelector(`.filter-btn[data-cat="${cat}"]`);
-      if (btn) btn.click();
+// ══════════════════════════════════════════════
+//  BUSCADOR GLOBAL
+//  Un solo punto de entrada a los 178 recursos, desde
+//  cualquier página. Antes había que saber en qué
+//  programa vivía un material para poder encontrarlo.
+// ══════════════════════════════════════════════
+
+/** Atajos que se ofrecen con el campo vacío (descubrimiento). */
+const BUSQUEDA_SUGERENCIAS = [
+  { texto: 'Formatos',          url: 'biblioteca.html?tipo=formato' },
+  { texto: 'Catálogo de talleres', url: 'biblioteca.html?tipo=taller' },
+  { texto: 'Reporte mensual',   url: 'reportes.html#formularios' },
+  { texto: 'Escuelas',          url: 'biblioteca.html?programa=entornos&tema=escuelas' },
+  { texto: 'NOMs',              url: 'biblioteca.html?tipo=nom' },
+  { texto: 'Psicología',        url: 'recursos-psicologia.html' },
+];
+
+const ORDEN_PROGRAMAS = ['transversal', 'promocion', 'adicciones', 'salud-mental', 'entornos'];
+const MAX_POR_PROGRAMA = 5;
+
+function initBuscadorGlobal() {
+  const dlg = document.getElementById('search-dialog');
+  const btn = document.getElementById('nav-search-btn');
+  if (!dlg || !btn) return;
+
+  // Sin índice cargado no hay nada que buscar: se retira el botón
+  // en vez de dejar un control que no hace nada.
+  if (typeof RECURSOS === 'undefined' || !RECURSOS.length) {
+    btn.remove();
+    dlg.remove();
+    return;
+  }
+
+  // En Mac el atajo es Cmd, no Ctrl: la etiqueta debe decir la verdad
+  const esMac = /Mac|iPhone|iPad/i.test(navigator.platform || navigator.userAgent || '');
+  if (esMac) {
+    const kbd = btn.querySelector('.nsb-kbd');
+    if (kbd) kbd.textContent = '⌘ K';
+    btn.setAttribute('aria-keyshortcuts', 'Meta+K');
+  }
+
+  const input    = dlg.querySelector('#buscador-global');
+  const salida   = dlg.querySelector('#sd-results');
+  const estadoEl = dlg.querySelector('.sd-status');
+  const cerrar   = dlg.querySelector('.sd-close');
+
+  // El texto buscable se calcula una vez, no en cada pulsación
+  const INDICE = RECURSOS.map(r => ({ r, texto: textoBuscable(r) }));
+
+  function sugerencias() {
+    estadoEl.textContent = '';
+    salida.innerHTML = `
+      <p class="sd-hint">Escribe para buscar entre ${RECURSOS.length} recursos, o empieza por aquí:</p>
+      <div class="sd-chips">
+        ${BUSQUEDA_SUGERENCIAS.map(s =>
+          `<a href="${s.url}" class="sd-chip">${esc(s.texto)}</a>`).join('')}
+      </div>`;
+  }
+
+  function fila(r) {
+    const ext = /^https?:/i.test(r.url || '');
+    const pendiente = r.estado === 'pendiente';
+    const tipo = `<span class="sd-tipo ${esc(r.tipo)}">${esc(TIPO_LABELS[r.tipo] || r.tipo)}</span>`;
+    const cuerpo = `${tipo}<span class="sd-titulo">${esc(r.titulo)}</span>`;
+    return pendiente
+      ? `<span class="sd-hit is-pending" aria-disabled="true">${cuerpo}<span class="sd-nota">Próximamente</span></span>`
+      : `<a class="sd-hit" href="${esc(r.url)}"${ext ? ' target="_blank" rel="noopener noreferrer"' : ''}>
+           ${cuerpo}${ext ? '<span class="sd-nota">Abre en pestaña nueva</span>' : ''}
+         </a>`;
+  }
+
+  function buscar(consulta) {
+    if (!consulta) { sugerencias(); return; }
+
+    const hits = INDICE.filter(x => coincideTexto(x.texto, consulta)).map(x => x.r);
+
+    if (!hits.length) {
+      estadoEl.textContent = 'Sin resultados';
+      salida.innerHTML = `
+        <p class="sd-hint">Nada coincide con «${esc(consulta)}».
+        Prueba con menos palabras o revisa la
+        <a href="biblioteca.html">Biblioteca completa</a>.</p>`;
+      return;
+    }
+
+    // Lo que coincide en el título va antes que lo que solo coincide
+    // en la descripción o el público.
+    const enTitulo = r => coincideTexto(normaliza(r.titulo), consulta) ? 0 : 1;
+    hits.sort((a, b) => enTitulo(a) - enTitulo(b));
+
+    const grupos = ORDEN_PROGRAMAS
+      .map(p => [p, hits.filter(r => r.programa === p)])
+      .filter(([, rs]) => rs.length);
+
+    estadoEl.textContent = `${hits.length} resultado${hits.length !== 1 ? 's' : ''}`;
+    salida.innerHTML = grupos.map(([p, rs]) => {
+      const extra = rs.length - MAX_POR_PROGRAMA;
+      return `
+      <section class="sd-group">
+        <h2 class="sd-group-title">${esc(PROGRAMA_LABELS[p] || p)} <span>${rs.length}</span></h2>
+        ${rs.slice(0, MAX_POR_PROGRAMA).map(fila).join('')}
+        ${extra > 0
+          ? `<a class="sd-hit sd-more" href="biblioteca.html?programa=${p}&q=${encodeURIComponent(consulta)}">
+               Ver los ${rs.length} de ${esc(PROGRAMA_LABELS[p] || p)} →</a>`
+          : ''}
+      </section>`;
+    }).join('') +
+      `<a class="sd-all" href="biblioteca.html?q=${encodeURIComponent(consulta)}">
+         Ver los ${hits.length} resultados en la Biblioteca →</a>`;
+  }
+
+  function abrir() {
+    if (!dlg.open) dlg.showModal();
+    buscar(input.value.trim());
+    input.focus();
+    input.select();
+  }
+
+  btn.addEventListener('click', abrir);
+  cerrar.addEventListener('click', () => dlg.close());
+
+  // Ctrl/⌘+K desde cualquier sitio; «/» solo si no se está escribiendo
+  document.addEventListener('keydown', (e) => {
+    const escribiendo = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)
+                        || document.activeElement.isContentEditable;
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); abrir(); return; }
+    if (e.key === '/' && !escribiendo && !dlg.open) { e.preventDefault(); abrir(); }
+  });
+
+  let t;
+  input.addEventListener('input', () => {
+    clearTimeout(t);
+    t = setTimeout(() => buscar(input.value.trim()), 140);
+  });
+
+  // Flechas para recorrer resultados. Son enlaces reales, así que
+  // Enter los abre sin código extra y Escape lo cierra <dialog>.
+  dlg.addEventListener('keydown', (e) => {
+    if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
+    const hits = [...salida.querySelectorAll('a.sd-hit, a.sd-chip')];
+    if (!hits.length) return;
+    e.preventDefault();
+    const i = hits.indexOf(document.activeElement);
+    if (e.key === 'ArrowDown') hits[i < 0 ? 0 : Math.min(i + 1, hits.length - 1)].focus();
+    else if (i <= 0) input.focus();
+    else hits[i - 1].focus();
+  });
+
+  // Clic en el backdrop cierra (el <dialog> ocupa toda la ventana)
+  dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+
+  sugerencias();
+}
+
+// ══════════════════════════════════════════════
+//  FILTROS FACETADOS + BÚSQUEDA
+// ══════════════════════════════════════════════
+
+/**
+ * Filtra por programa / tipo / tema y texto libre.
+ * El estado va a la URL, así que se puede compartir un enlace
+ * filtrado y el botón «atrás» del navegador lo deshace.
+ */
+function initFiltros() {
+  const bar = document.querySelector('.filter-bar-wrap');
+  if (!bar) return;
+
+  const cards    = [...document.querySelectorAll('.material-card')];
+  const botones  = [...bar.querySelectorAll('.filter-btn[data-faceta]')];
+  const buscador = document.getElementById('buscador');
+  const countEl  = document.querySelector('.filter-count');
+  const vacio    = document.querySelector('.filter-empty');
+
+  // Compatibilidad: `?cat=` era el parámetro anterior. El personal puede
+  // tener enlaces guardados o impresos, así que se sigue aceptando.
+  const CAT_LEGADO = {
+    formatos: 'formato', lineamientos: 'normativa', manuales: 'manual',
+    noms: 'nom', grafico: 'grafico', presentacion: 'presentacion',
+    documentos: 'documento',
+  };
+
+  const params = new URLSearchParams(location.search);
+  const catViejo = params.get('cat');
+  const estado = {
+    programa: params.get('programa') || '',
+    tipo:     params.get('tipo') || CAT_LEGADO[catViejo] || '',
+    tema:     params.get('tema') || (catViejo && !CAT_LEGADO[catViejo] ? catViejo : ''),
+    q:        params.get('q')        || '',
+  };
+
+  function coincide(card) {
+    const d = card.dataset;
+    if (estado.programa && d.programa !== estado.programa) return false;
+    if (estado.tipo     && d.tipo     !== estado.tipo)     return false;
+    if (estado.tema     && !d.tema.split(' ').includes(estado.tema)) return false;
+    if (estado.q && !coincideTexto(d.buscar, estado.q)) return false;
+    return true;
+  }
+
+  function aplicar({ animar = true } = {}) {
+    let visibles = 0;
+    cards.forEach((card, i) => {
+      if (coincide(card)) {
+        visibles++;
+        card.hidden = false;
+        if (animar && !prefersReducedMotion) {
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(10px)';
+          setTimeout(() => {
+            card.style.transition = 'opacity 280ms var(--ease-out), transform 280ms var(--ease-out)';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+          }, (visibles % 8) * 40);
+        }
+      } else {
+        card.hidden = true;
+        card.style.opacity = card.style.transform = card.style.transition = '';
+      }
     });
+
+    // Región `role="status"`: sin esto, quien usa lector de pantalla
+    // no recibía ninguna confirmación de que la lista había cambiado.
+    if (countEl) countEl.textContent = `${visibles} recurso${visibles !== 1 ? 's' : ''}`;
+    if (vacio) vacio.hidden = visibles > 0;
+
+    botones.forEach(b => {
+      const activo = (estado[b.dataset.faceta] || '') === b.dataset.valor;
+      b.classList.toggle('active', activo);
+      b.setAttribute('aria-pressed', String(activo));
+    });
+
+    const url = new URLSearchParams();
+    Object.entries(estado).forEach(([k, v]) => { if (v) url.set(k, v); });
+    history.replaceState(null, '', url.toString() ? `?${url}` : location.pathname);
+  }
+
+  botones.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const { faceta, valor } = btn.dataset;
+      estado[faceta] = estado[faceta] === valor ? '' : valor;  // volver a pulsar quita el filtro
+      aplicar();
+    });
+  });
+
+  if (buscador) {
+    buscador.value = estado.q;
+    let t;
+    buscador.addEventListener('input', () => {
+      clearTimeout(t);
+      t = setTimeout(() => { estado.q = buscador.value.trim(); aplicar({ animar: false }); }, 160);
+    });
+  }
+
+  // Hay dos: el de la barra de conteo y el del estado vacío
+  document.querySelectorAll('.filter-clear').forEach(limpiar => {
+    limpiar.addEventListener('click', () => {
+      Object.keys(estado).forEach(k => { estado[k] = ''; });
+      if (buscador) buscador.value = '';
+      aplicar();
+    });
+  });
+
+  aplicar({ animar: false });
+}
+
+/** Píldora deslizante bajo el filtro activo (mejora progresiva).
+ *  Una por grupo de facetas: cada barra tiene su propio activo. */
+function initFilterPill() {
+  if (prefersReducedMotion) return;
+
+  document.querySelectorAll('.filter-bar').forEach(bar => {
+    const pill = document.createElement('span');
+    pill.className = 'filter-pill';
+    pill.setAttribute('aria-hidden', 'true');
+    bar.prepend(pill);
+    bar.classList.add('has-pill');
+
+    function movePill() {
+      const active = bar.querySelector('.filter-btn.active');
+      if (!active) { pill.style.opacity = '0'; return; }
+      pill.style.opacity = '1';
+      pill.style.left   = active.offsetLeft + 'px';
+      pill.style.top    = active.offsetTop + 'px';
+      pill.style.width  = active.offsetWidth + 'px';
+      pill.style.height = active.offsetHeight + 'px';
+    }
+
+    movePill();
+    window.addEventListener('resize', movePill);
+    // Cualquier botón puede cambiar el activo de esta barra (p. ej. «Quitar filtros»)
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('.filter-btn, .filter-clear')) requestAnimationFrame(movePill);
+    });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(movePill);
+  });
+}
+
+/**
+ * Deep-link desde las 9 det-card de promocion.html: si el catálogo
+ * está en la misma página se filtra en el sitio; si no, el href
+ * lleva a biblioteca.html ya filtrado.
+ */
+function initTallerDeepLinks() {
+  document.querySelectorAll('[data-filter]').forEach(link => {
+    link.addEventListener('click', () => {
+      const btn = document.querySelector(`.filter-btn[data-faceta="tema"][data-valor="${link.dataset.filter}"]`);
+      if (btn && !btn.classList.contains('active')) btn.click();
+    });
+  });
+}
+// ══════════════════════════════════════════════
+//  EVIDENCIAS — un solo flujo, parametrizado
+//  Estaba escrito 5 veces (promocion, adicciones,
+//  salud-mental, entornos, reportes) con redacciones
+//  distintas y —peor— destinos contradictorios:
+//  «Enviar evidencias» llevaba a reportes#formularios
+//  en dos páginas y a index#contacto en las otras dos.
+// ══════════════════════════════════════════════
+
+/** Regla general del departamento (la que estaba en reportes.html). */
+const EVIDENCIA_BASE = [
+  'Lista de asistencia firmada',
+  'Fotografía de la actividad',
+  'Bitácora o registro de la plática',
+];
+
+/** Solo los programas cuyo requisito es realmente distinto. */
+const EVIDENCIA_POR_PROGRAMA = {
+  entornos: [
+    '<strong>Escuela:</strong> foto + acta de asistencia + formato de diagnóstico',
+    '<strong>ELHT:</strong> cédula + foto del cartel instalado',
+    '<strong>Comunidad:</strong> foto + lista de líderes + formato de seguimiento',
+  ],
+};
+
+/** Fecha de corte: aplica a todos, pero solo se decía en reportes.html. */
+const EVIDENCIA_CORTE = 'El reporte mensual se cierra el <strong>último día hábil del mes</strong>.';
+
+function renderEvidencias() {
+  const bloques = document.querySelectorAll('[data-evidencias]');
+  if (!bloques.length) return;
+
+  const ICON_LISTA = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>`;
+  const ICON_DESC  = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>`;
+  const ICON_ENVIO = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>`;
+
+  bloques.forEach(bloque => {
+    const programa = bloque.dataset.evidencias;
+    const lista = EVIDENCIA_POR_PROGRAMA[programa] || EVIDENCIA_BASE;
+    const etiqueta = PROGRAMA_LABELS[programa] || '';
+    const qFormatos = 'biblioteca.html?tipo=formato' +
+      (programa && programa !== 'todos' ? `&programa=${encodeURIComponent(programa)}` : '');
+
+    bloque.innerHTML = `
+      <ol class="ev-pasos">
+        <li class="ev-paso">
+          <div class="ev-icon">${ICON_LISTA}</div>
+          <h3>Qué documentar</h3>
+          <ul class="ev-lista">${lista.map(x => `<li>${x}</li>`).join('')}</ul>
+        </li>
+        <li class="ev-paso">
+          <div class="ev-icon">${ICON_DESC}</div>
+          <h3>Con qué formato</h3>
+          <p>Descarga el formato oficial${etiqueta ? ' de ' + esc(etiqueta) : ''} desde la Biblioteca.</p>
+          <a href="${qFormatos}" class="subsec-link">Ver formatos</a>
+        </li>
+        <li class="ev-paso">
+          <div class="ev-icon">${ICON_ENVIO}</div>
+          <h3>Dónde enviarlo</h3>
+          <p>Captura tu reporte con el formulario oficial de tu área. ${EVIDENCIA_CORTE}</p>
+          <a href="reportes.html#formularios" class="subsec-link">Ir a formularios de reporte</a>
+        </li>
+      </ol>`;
   });
 }
 
@@ -554,6 +1035,7 @@ function renderDirectorio() {
   const DC_ICONS = {
     psicologia: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>`,
     nutricion:  `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>`,
+    referencia: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.3 19.79 19.79 0 01.22 2.62 2 2 0 012.2.5H5.1a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.41a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>`,
   };
   const ICON_CLOCK = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`;
   const ICON_USER  = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>`;
@@ -562,11 +1044,28 @@ function renderDirectorio() {
 
   grids.forEach(grid => {
     const tipo  = grid.dataset.dir;
-    const items = data.filter(u => u.tipo === tipo);
+    // `data-dir-tema` acota los servicios externos (crisis | adicciones |
+    // violencia) para que cada programa muestre los suyos sin repetirlos.
+    const temas = grid.dataset.dirTema ? grid.dataset.dirTema.split(/\s+/) : null;
+    const items = data.filter(u =>
+      u.tipo === tipo && (!temas || temas.some(t => (u.tema || []).includes(t))));
     if (!items.length) {
       grid.innerHTML = '<p class="empty-state">Sin unidades registradas por el momento.</p>';
       return;
     }
+    // Variante compacta: para incrustar los teléfonos dentro de una
+    // tarjeta existente sin repetir los datos en el HTML.
+    if (grid.dataset.dirFormato === 'compacto') {
+      // El número va en su propio campo: derivarlo del texto producía
+      // `tel:` con los dígitos de «24 h» pegados al final.
+      grid.innerHTML = `<ul class="dir-compacto">` + items.map(u => `
+        <li><strong>${u.nombre}</strong> — ${
+          u.telefono
+            ? `<a href="tel:${u.telefono}">${u.horario || u.telefono}</a>`
+            : (u.horario || '')}</li>`).join('') + `</ul>`;
+      return;
+    }
+
     grid.innerHTML = items.map(u => `
       <div class="directory-card">
         <div class="dc-header">
@@ -583,133 +1082,6 @@ function renderDirectorio() {
       </div>
     `).join('');
   });
-}
-
-// ══════════════════════════════════════════════
-//  RECURSOS PARA PSICÓLOGOS
-// ══════════════════════════════════════════════
-
-function renderPsicologia() {
-  const grid = document.getElementById('psicologia-grid');
-  if (!grid) return;
-
-  const data = typeof PSICOLOGIA !== 'undefined' ? PSICOLOGIA : [];
-  if (!data.length) {
-    grid.innerHTML = '<p class="empty-state">Sin recursos registrados por el momento.</p>';
-    return;
-  }
-
-  grid.innerHTML = data.map(item => {
-    const links = item.recursos.map(r => {
-      if (r.url && r.url !== '#') {
-        return `<a href="${r.url}" class="subsec-link" target="_blank" rel="noopener">${r.label} →</a>`;
-      }
-      return `<a href="#" class="subsec-link" style="opacity:.5;pointer-events:none;cursor:default">${r.label} (próximamente)</a>`;
-    }).join('');
-
-    return `
-      <div class="subsec-card">
-        <div class="subsec-icon" style="background: var(--purple-lt); color: var(--purple)">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-        </div>
-        <h3>${item.titulo}</h3>
-        <p>${item.descripcion}</p>
-        ${links}
-      </div>
-    `;
-  }).join('');
-}
-
-// ══════════════════════════════════════════════
-//  FILTROS DE BIBLIOTECA
-// ══════════════════════════════════════════════
-
-function initFilters() {
-  const filterBar = document.querySelector('.filter-bar');
-  if (!filterBar) return;
-
-  const buttons = [...filterBar.querySelectorAll('.filter-btn')];
-  const cards   = [...document.querySelectorAll('.material-card')];
-  const countEl = document.querySelector('.filter-count');
-
-  function updateCount(visible) {
-    if (countEl) countEl.textContent = `${visible} recurso${visible !== 1 ? 's' : ''}`;
-  }
-
-  function applyFilter(cat) {
-    let visible = 0;
-    cards.forEach((card, i) => {
-      const matches = cat === 'all' || card.dataset.categoria === cat;
-      if (matches) {
-        visible++;
-        card.hidden = false;
-        if (!prefersReducedMotion) {
-          card.style.opacity   = '0';
-          card.style.transform = 'translateY(10px)';
-          const delay = (i % 8) * 40;
-          setTimeout(() => {
-            card.style.transition = `opacity 280ms var(--ease-out), transform 280ms var(--ease-out)`;
-            card.style.opacity    = '1';
-            card.style.transform  = 'translateY(0)';
-          }, delay);
-        }
-      } else {
-        card.hidden = true;
-        card.style.opacity   = '';
-        card.style.transform = '';
-        card.style.transition = '';
-      }
-    });
-    updateCount(visible);
-  }
-
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      buttons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      applyFilter(btn.dataset.cat);
-    });
-  });
-
-  // Deep-link: ?cat=formatos aplica el filtro al cargar (enlaces desde otras páginas)
-  const initialCat = new URLSearchParams(window.location.search).get('cat');
-  const initialBtn = initialCat && buttons.find(b => b.dataset.cat === initialCat);
-  if (initialBtn) {
-    buttons.forEach(b => b.classList.remove('active'));
-    initialBtn.classList.add('active');
-    applyFilter(initialCat);
-  } else {
-    updateCount(cards.length);
-  }
-}
-
-/** Píldora deslizante bajo el filtro activo (progressive enhancement) */
-function initFilterPill() {
-  const bar = document.querySelector('.filter-bar');
-  if (!bar || prefersReducedMotion) return;
-
-  const pill = document.createElement('span');
-  pill.className = 'filter-pill';
-  pill.setAttribute('aria-hidden', 'true');
-  bar.prepend(pill);
-  bar.classList.add('has-pill');
-
-  function movePill() {
-    const active = bar.querySelector('.filter-btn.active');
-    if (!active) return;
-    pill.style.left   = active.offsetLeft + 'px';
-    pill.style.top    = active.offsetTop + 'px';
-    pill.style.width  = active.offsetWidth + 'px';
-    pill.style.height = active.offsetHeight + 'px';
-  }
-
-  movePill();
-  window.addEventListener('resize', movePill);
-  bar.addEventListener('click', (e) => {
-    if (e.target.closest('.filter-btn')) requestAnimationFrame(movePill);
-  });
-  // Reposicionar cuando carguen las webfonts (cambian el ancho de los botones)
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(movePill);
 }
 
 // ══════════════════════════════════════════════
@@ -766,60 +1138,6 @@ function initKpiCounters() {
   }, { threshold: 0.4 });
 
   nums.forEach(n => io.observe(n));
-}
-
-// ══════════════════════════════════════════════
-//  FORMULARIOS DE REPORTE MENSUAL
-// ══════════════════════════════════════════════
-
-const FORM_AREA_LABELS = {
-  'promocion':    'Promoción a la Salud',
-  'adicciones':   'Adicciones',
-  'salud-mental': 'Salud Mental',
-  'entornos':     'Entornos Saludables',
-  'ferias':       'Ferias y Jornadas',
-};
-
-function renderFormularios() {
-  const grid = document.getElementById('formularios-grid');
-  if (!grid) return;
-
-  if (typeof FORMULARIOS === 'undefined' || !FORMULARIOS.length) {
-    grid.innerHTML = '<p class="empty-state">Sin formularios por el momento.</p>';
-    return;
-  }
-
-  const ICON_EXTERNAL = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`;
-
-  // Agrupar por área manteniendo el orden de las áreas del mapa
-  const order = Object.keys(FORM_AREA_LABELS);
-  const byArea = {};
-  FORMULARIOS.forEach(f => {
-    if (!byArea[f.area]) byArea[f.area] = [];
-    byArea[f.area].push(f);
-  });
-
-  const html = order
-    .filter(area => byArea[area] && byArea[area].length)
-    .map(area => {
-      const label = FORM_AREA_LABELS[area] || area;
-      const cards = byArea[area].map(f => `
-        <div class="subsec-card">
-          <h3>${f.titulo}</h3>
-          <p style="font-size:.85rem;color:var(--gray-500);margin:.25rem 0 .75rem">
-            Periodicidad: <strong>${f.periodicidad}</strong>
-          </p>
-          <a href="${f.url}" target="_blank" rel="noopener" class="subsec-link">
-            ${ICON_EXTERNAL} Abrir formulario →
-          </a>
-        </div>`).join('');
-      return `
-        <h3 style="margin:2rem 0 1rem;font-size:1rem;color:var(--gray-700);font-family:var(--font-body);font-weight:500">${label}</h3>
-        <div class="subsec-grid">${cards}</div>`;
-    })
-    .join('');
-
-  grid.innerHTML = html;
 }
 
 // ══════════════════════════════════════════════
@@ -883,28 +1201,31 @@ initKpiCounters();
 // Carrusel (index.html)
 initCarousel();
 
-// Biblioteca — renderizar antes de initFilters
-renderBiblioteca();
-
-// Talleres comunitarios (promocion.html) — renderizar antes de initFilters
-renderTalleres();
+// Recursos — índice único. Rellena toda rejilla [data-recursos]
+// (biblioteca, talleres, formularios, psicología, entornos).
+// Debe correr ANTES de initFiltros: este lee las tarjetas ya puestas.
+renderRecursos();
 
 // Directorio (directorio.html)
 renderDirectorio();
 
-// Recursos para psicólogos (recursos-psicologia.html)
-renderPsicologia();
+// Bloque de evidencias (mismo flujo en las 5 páginas que lo repetían)
+renderEvidencias();
 
-// Formularios de reporte mensual (reportes.html)
-renderFormularios();
+// Buscador global (todas las páginas con el navbar)
+initBuscadorGlobal();
 
-// Filtros (biblioteca.html y promocion.html)
-initFilters();
+// Filtros facetados + búsqueda
+initFiltros();
 initFilterPill();
 
 // Deep-link de determinantes → filtro del catálogo de talleres
 initTallerDeepLinks();
 
 // Formulario de contacto
+// Animaciones de entrada: al final, cuando ya existe todo lo generado
+initRevealElements();
+createRevealObserver();
+
 const contactForm = document.getElementById('contact-form');
 if (contactForm) contactForm.addEventListener('submit', handleForm);

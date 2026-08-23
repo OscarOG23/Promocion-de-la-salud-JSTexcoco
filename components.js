@@ -31,9 +31,63 @@
     </div>
   </div>`;
 
-  const CHEVRON = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>`;
+  const CHEVRON = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>`;
+  const LUPA    = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>`;
+
+  /* ── 1b. Menús desplegables — fuente única ──
+     Editar aquí añade/quita elementos del menú y mantiene
+     automáticamente el cableado de accesibilidad (aria-expanded,
+     aria-controls) que necesita el acordeón móvil. */
+  const NAV_MENUS = [
+    { page: 'promocion', label: 'Promoción de la Salud', items: [
+      ['determinantes', 'Determinantes Sociales'],
+      ['paquete',       'Paquete Garantizado'],
+      ['material',      'Material Educativo'],
+      ['campanas',      'Campañas'],
+      ['estilos',       'Estilos de Vida'],
+      ['alimentacion',  'Alimentación'],
+      ['actividad',     'Actividad Física'],
+      ['evidencias',    'Evidencias'],
+    ]},
+    { page: 'adicciones', label: 'Adicciones', items: [
+      ['prevencion',   'Prevención'],
+      ['riesgo',       'Factores de Riesgo'],
+      ['tamizajes',    'Tamizajes'],
+      ['capacitacion', 'Capacitación'],
+      ['evidencias',   'Evidencias'],
+      ['reportes',     'Reportes'],
+    ]},
+    { page: 'salud-mental', label: 'Salud Mental', items: [
+      ['bienestar',  'Promoción del Bienestar'],
+      ['suicidio',   'Prevención del Suicidio'],
+      ['violencia',  'Violencia'],
+      ['estres',     'Estrés y Ansiedad'],
+      ['infancias',  'Infancias y Adolescencia'],
+      ['evidencias', 'Evidencias y Reportes'],
+    ]},
+    { page: 'entornos', label: 'Entornos Saludables', items: [
+      ['escuelas',    'Escuelas'],
+      ['comunidades', 'Comunidades'],
+      ['laborales',   'Espacios Laborales (ELHT)'],
+      ['unidades',    'Unidades de Salud'],
+      ['evidencias',  'Evidencias'],
+    ]},
+  ];
+
+  const dropdown = ({ page, label, items }) => `
+        <div class="nav-dropdown">
+          <button class="nav-link dropdown-toggle" data-page="${page}"
+                  aria-expanded="false" aria-controls="dd-${page}">
+            ${label} ${CHEVRON}
+          </button>
+          <div class="dropdown-menu" id="dd-${page}">
+            ${items.map(([hash, text]) =>
+              `<a href="${page}.html#${hash}" class="dropdown-item">${text}</a>`).join('\n            ')}
+          </div>
+        </div>`;
 
   const NAV_HTML = `
+  <a href="#main" class="skip-link">Saltar al contenido</a>
   ${TOP_BAR}
   <header class="navbar" id="navbar">
     <div class="container navbar-inner">
@@ -51,73 +105,40 @@
       <nav class="nav-links" id="nav-links">
         <a href="index.html" class="nav-link" data-page="index">Inicio</a>
 
-        <div class="nav-dropdown">
-          <button class="nav-link dropdown-toggle" data-page="promocion">
-            Promoción de la Salud ${CHEVRON}
-          </button>
-          <div class="dropdown-menu">
-            <a href="promocion.html#determinantes" class="dropdown-item">Determinantes Sociales</a>
-            <a href="promocion.html#paquete"        class="dropdown-item">Paquete Garantizado</a>
-            <a href="promocion.html#material"       class="dropdown-item">Material Educativo</a>
-            <a href="promocion.html#campanas"       class="dropdown-item">Campañas</a>
-            <a href="promocion.html#estilos"        class="dropdown-item">Estilos de Vida</a>
-            <a href="promocion.html#alimentacion"   class="dropdown-item">Alimentación</a>
-            <a href="promocion.html#actividad"      class="dropdown-item">Actividad Física</a>
-            <a href="promocion.html#evidencias"     class="dropdown-item">Evidencias</a>
-          </div>
-        </div>
-
-        <div class="nav-dropdown">
-          <button class="nav-link dropdown-toggle" data-page="adicciones">
-            Adicciones ${CHEVRON}
-          </button>
-          <div class="dropdown-menu">
-            <a href="adicciones.html#prevencion"    class="dropdown-item">Prevención</a>
-            <a href="adicciones.html#riesgo"        class="dropdown-item">Factores de Riesgo</a>
-            <a href="adicciones.html#tamizajes"     class="dropdown-item">Tamizajes</a>
-            <a href="adicciones.html#capacitacion"  class="dropdown-item">Capacitación</a>
-            <a href="adicciones.html#evidencias"    class="dropdown-item">Evidencias</a>
-            <a href="adicciones.html#reportes"      class="dropdown-item">Reportes</a>
-          </div>
-        </div>
-
-        <div class="nav-dropdown">
-          <button class="nav-link dropdown-toggle" data-page="salud-mental">
-            Salud Mental ${CHEVRON}
-          </button>
-          <div class="dropdown-menu">
-            <a href="salud-mental.html#bienestar"   class="dropdown-item">Promoción del Bienestar</a>
-            <a href="salud-mental.html#suicidio"    class="dropdown-item">Prevención del Suicidio</a>
-            <a href="salud-mental.html#violencia"   class="dropdown-item">Violencia</a>
-            <a href="salud-mental.html#estres"      class="dropdown-item">Estrés y Ansiedad</a>
-            <a href="salud-mental.html#infancias"   class="dropdown-item">Infancias y Adolescencia</a>
-            <a href="salud-mental.html#evidencias"  class="dropdown-item">Evidencias y Reportes</a>
-          </div>
-        </div>
-
-        <div class="nav-dropdown">
-          <button class="nav-link dropdown-toggle" data-page="entornos">
-            Entornos Saludables ${CHEVRON}
-          </button>
-          <div class="dropdown-menu">
-            <a href="entornos.html#escuelas"        class="dropdown-item">Escuelas</a>
-            <a href="entornos.html#comunidades"     class="dropdown-item">Comunidades</a>
-            <a href="entornos.html#laborales"       class="dropdown-item">Espacios Laborales (ELHT)</a>
-            <a href="entornos.html#unidades"        class="dropdown-item">Unidades de Salud</a>
-            <a href="entornos.html#evidencias"      class="dropdown-item">Evidencias</a>
-          </div>
-        </div>
+${NAV_MENUS.map(dropdown).join('')}
 
         <a href="biblioteca.html"  class="nav-link" data-page="biblioteca">Biblioteca</a>
         <a href="reportes.html"    class="nav-link" data-page="reportes">Reportes</a>
         <a href="directorio.html"  class="nav-link" data-page="directorio">Directorio</a>
       </nav>
 
+      <button class="nav-search-btn" id="nav-search-btn"
+              aria-label="Buscar recursos" aria-keyshortcuts="Control+K">
+        ${LUPA}
+        <span class="nsb-text">Buscar recursos</span>
+        <kbd class="nsb-kbd">Ctrl K</kbd>
+      </button>
+
       <button class="menu-toggle" id="menu-toggle" aria-label="Menú" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
-  </header>`;
+  </header>
+
+  <!-- Buscador global: un solo punto de entrada a los 178 recursos.
+       <dialog> nativo → foco atrapado y Escape sin código propio. -->
+  <dialog class="search-dialog" id="search-dialog"
+          aria-label="Buscar en el catálogo de recursos">
+    <div class="sd-head">
+      ${LUPA}
+      <label class="visually-hidden" for="buscador-global">Buscar recursos</label>
+      <input type="search" id="buscador-global" autocomplete="off"
+             placeholder="Buscar formatos, talleres, lineamientos…">
+      <button type="button" class="sd-close" aria-label="Cerrar buscador">Esc</button>
+    </div>
+    <p class="sd-status" role="status"></p>
+    <div class="sd-results" id="sd-results"></div>
+  </dialog>`;
 
   /* ── 2. HTML del footer ── */
   const FOOTER_HTML = `

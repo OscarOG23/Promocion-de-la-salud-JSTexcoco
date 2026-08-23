@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Adicciones — Promoción a la Salud · Jurisdicción Sanitaria Texcoco</title>
   <meta name="description" content="Prevención de adicciones: factores de riesgo, tamizajes, capacitación, material educativo y reportes de la Jurisdicción Sanitaria Texcoco.">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="mask-icon" href="assets/img/favicon.svg" color="#9F2241">
+  <meta name="theme-color" content="#9F2241">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -14,7 +17,7 @@
 
   <div id="site-nav"></div>
 
-  <main>
+  <main id="main" tabindex="-1">
 
     <!-- ════════ HERO DE PÁGINA ════════ -->
     <div class="page-hero" style="--ph-color: var(--teal)">
@@ -100,7 +103,7 @@
             </div>
             <h3>Factores de riesgo individuales</h3>
             <p>Baja autoestima, impulsividad, antecedentes familiares de consumo, inicio temprano y trastornos de salud mental.</p>
-            <a href="#" class="subsec-link">Ver presentación →</a><!-- PENDIENTE -->
+            <span class="subsec-link is-pending">Próximamente</span>
           </div>
 
           <div class="subsec-card">
@@ -109,7 +112,7 @@
             </div>
             <h3>Factores de protección</h3>
             <p>Vínculos familiares sólidos, habilidades sociales, participación escolar y comunitaria, y acceso a actividades recreativas.</p>
-            <a href="#" class="subsec-link">Ver presentación →</a><!-- PENDIENTE -->
+            <span class="subsec-link is-pending">Próximamente</span>
           </div>
 
           <div class="subsec-card">
@@ -141,7 +144,7 @@
             </div>
             <h3>AUDIT — Alcohol</h3>
             <p>Alcohol Use Disorders Identification Test. Detección de consumo de riesgo, perjudicial y dependencia al alcohol.</p>
-            <a href="biblioteca.html?cat=formatos" class="subsec-link">Descargar formato →</a>
+            <a href="biblioteca.html?tipo=formato" class="subsec-link">Descargar formato →</a>
           </div>
 
           <div class="subsec-card">
@@ -150,7 +153,7 @@
             </div>
             <h3>CAGE — Tamizaje rápido</h3>
             <p>4 preguntas para detección rápida de problemas con el alcohol. Aplicable en primera consulta.</p>
-            <a href="biblioteca.html?cat=formatos" class="subsec-link">Descargar formato →</a>
+            <a href="biblioteca.html?tipo=formato" class="subsec-link">Descargar formato →</a>
           </div>
 
           <div class="subsec-card">
@@ -159,7 +162,7 @@
             </div>
             <h3>ASSIST — Múltiples sustancias</h3>
             <p>Alcohol, Smoking and Substance Involvement Screening Test. Para detección de consumo de múltiples sustancias.</p>
-            <a href="biblioteca.html?cat=formatos" class="subsec-link">Descargar formato →</a>
+            <a href="biblioteca.html?tipo=formato" class="subsec-link">Descargar formato →</a>
           </div>
 
           <div class="subsec-card">
@@ -168,7 +171,7 @@
             </div>
             <h3>Instrucciones de aplicación</h3>
             <p>Guía de aplicación e interpretación de tamizajes para personal de salud no especializado.</p>
-            <a href="#" class="subsec-link">Descargar guía →</a><!-- PENDIENTE -->
+            <span class="subsec-link is-pending">Próximamente</span>
           </div>
 
           <div class="subsec-card">
@@ -186,7 +189,7 @@
             </div>
             <h3>Registro de tamizajes</h3>
             <p>Hoja de registro mensual de tamizajes aplicados por unidad médica. Requerida para el reporte SINBA.</p>
-            <a href="biblioteca.html?cat=formatos" class="subsec-link">Descargar formato →</a>
+            <a href="biblioteca.html?tipo=formato" class="subsec-link">Descargar formato →</a>
           </div>
 
           <!-- RE-ALOJAR: archivo en cuenta Wix -->
@@ -219,7 +222,7 @@
             </div>
             <h3>Presentaciones de capacitación</h3>
             <p>Módulos de capacitación en adicciones para personal médico, enfermería y promotores de salud.</p>
-            <a href="biblioteca.html?cat=presentacion" class="subsec-link">Ver presentaciones →</a>
+            <a href="biblioteca.html?tipo=presentacion" class="subsec-link">Ver presentaciones →</a>
           </div>
           <div class="subsec-card">
             <div class="subsec-icon">
@@ -235,7 +238,7 @@
             </div>
             <h3>Manual operativo 2025</h3>
             <p>Manual de procedimientos para el Programa de Prevención y Tratamiento de Adicciones en la Jurisdicción.</p>
-            <a href="biblioteca.html?cat=manuales" class="subsec-link">Ver manual →</a>
+            <a href="biblioteca.html?tipo=manual" class="subsec-link">Ver manual →</a>
           </div>
         </div>
       </div>
@@ -249,33 +252,7 @@
           <h2>Registro de<br>evidencias</h2>
           <p>Qué documentar y cómo registrar las actividades de prevención de adicciones para el reporte mensual.</p>
         </div>
-        <div class="subsec-grid">
-          <div class="subsec-card">
-            <div class="subsec-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
-            </div>
-            <h3>Evidencia mínima requerida</h3>
-            <p><strong>Plática/taller:</strong> Lista de asistencia + foto de la actividad + bitácora.</p>
-            <p><strong>Tamizaje:</strong> Formato aplicado + registro en hoja de tamizajes + foto.</p>
-            <a href="biblioteca.html?cat=formatos" class="subsec-link">Descargar formatos →</a>
-          </div>
-          <div class="subsec-card">
-            <div class="subsec-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-            </div>
-            <h3>Enviar evidencias</h3>
-            <p>Envía las fotos, listas y formatos al departamento para integrarlos al reporte mensual de adicciones.</p>
-            <a href="index.html#contacto" class="subsec-link">Enviar por formulario →</a>
-          </div>
-          <div class="subsec-card">
-            <div class="subsec-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-            </div>
-            <h3>Consultar reportes</h3>
-            <p>Accede a los reportes mensuales consolidados de actividades de prevención de adicciones de la jurisdicción.</p>
-            <a href="#reportes" class="subsec-link">Ver reportes →</a>
-          </div>
-        </div>
+        <div data-evidencias="adicciones"></div>
       </div>
     </section>
 
@@ -288,39 +265,11 @@
           <p>Reportes mensuales y anuales del programa de prevención de adicciones de la Jurisdicción Sanitaria Texcoco.</p>
         </div>
 
-        <!-- Formularios de captura -->
-        <div class="subsec-grid">
-
-          <div class="subsec-card">
-            <div class="subsec-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-            </div>
-            <h3>Informe mensual de Adicciones</h3>
-            <p>Formulario oficial de captura del informe mensual de actividades de prevención y atención de adicciones.</p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfYSe8hf7D6nGzWK7GKmlJtdWyhLuaUOF0dE97gOa8XYkqwSg/viewform"
-               class="subsec-link" target="_blank" rel="noopener">Abrir formulario →</a>
-          </div>
-
-          <div class="subsec-card">
-            <div class="subsec-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
-            <h3>Concentrado de Violencia y Delincuencia</h3>
-            <p>Formulario de captura del concentrado mensual de violencia y delincuencia vinculado al programa de adicciones.</p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeR61t_9bC_0y5Ln2MI0lmW-bayXjagkH6QsBSDxi2C0k6xcg/viewform"
-               class="subsec-link" target="_blank" rel="noopener">Abrir formulario →</a>
-          </div>
-
-          <div class="subsec-card">
-            <div class="subsec-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-            </div>
-            <h3>Más formularios e indicadores</h3>
-            <p>Consulta todos los formularios de captura y los indicadores consolidados del programa en la sección de Reportes.</p>
-            <a href="reportes.html#formularios" class="subsec-link">Ir a Reportes →</a>
-          </div>
-
-        </div>
+        <div class="material-grid" data-recursos data-programa="adicciones"
+             data-tipo="formulario"></div>
+        <p class="section-crosslink">
+          <a href="reportes.html#formularios">Más formularios e indicadores</a>
+        </p>
 
         <p style="margin-top:1.5rem; font-size:.9rem; color:var(--gray-500)">
           ¿Necesitas un reporte anterior? <a href="index.html#contacto" style="color:var(--teal)">Contáctanos →</a>
@@ -333,7 +282,7 @@
 
   <div id="site-footer"></div>
 
-  <script src="assets/data/campaigns.js"></script>
+  <script src="assets/data/recursos.js"></script>
   <script src="components.js"></script>
   <script src="script.js"></script>
 </body>

@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Recursos para Psicólogos — Promoción a la Salud · Jurisdicción Sanitaria Texcoco</title>
   <meta name="description" content="Espacio exclusivo para el personal de psicología de la Jurisdicción Sanitaria Texcoco. Herramientas, lineamientos, formatos de expediente, pruebas psicológicas y más.">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="mask-icon" href="assets/img/favicon.svg" color="#9F2241">
+  <meta name="theme-color" content="#9F2241">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -14,7 +17,7 @@
 
   <div id="site-nav"></div>
 
-  <main>
+  <main id="main" tabindex="-1">
 
     <!-- ════════ HERO DE PÁGINA ════════ -->
     <div class="page-hero" style="--ph-color: var(--purple)">
@@ -50,7 +53,7 @@
           <p>Materiales, lineamientos, formatos y herramientas organizadas por categoría para apoyar tu práctica diaria en las unidades médicas de la jurisdicción.</p>
         </div>
 
-        <div id="psicologia-grid" class="subsec-grid"></div>
+        <div class="material-grid" data-recursos data-tema="psicologia"></div>
 
         <p style="margin-top:1.5rem; font-size:.9rem; color:var(--gray-500); text-align:center">
           ¿Falta algún recurso o tienes dudas? <a href="index.html#contacto" style="color:var(--purple)">Contáctanos →</a>
@@ -95,8 +98,7 @@
 
   <div id="site-footer"></div>
 
-  <script src="assets/data/campaigns.js"></script>
-  <script src="assets/data/psicologia.js"></script>
+  <script src="assets/data/recursos.js"></script>
   <script src="components.js"></script>
   <script src="script.js"></script>
 </body>

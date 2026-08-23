@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Biblioteca — Promoción a la Salud · Jurisdicción Sanitaria Texcoco</title>
   <meta name="description" content="Biblioteca de recursos del Departamento de Promoción a la Salud: lineamientos, manuales, formatos, NOMs, material gráfico y presentaciones.">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="mask-icon" href="assets/img/favicon.svg" color="#9F2241">
+  <meta name="theme-color" content="#9F2241">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -14,7 +17,7 @@
 
   <div id="site-nav"></div>
 
-  <main>
+  <main id="main" tabindex="-1">
 
     <!-- ════════ HERO DE PÁGINA ════════ -->
     <div class="page-hero" style="--ph-color: var(--gold-dk)">
@@ -29,21 +32,50 @@
       </div>
     </div>
 
-    <!-- ════════ FILTROS + CONTEO ════════ -->
+    <!-- ════════ BÚSQUEDA + FILTROS FACETADOS ════════
+         Tres facetas independientes sobre el mismo índice:
+         programa · tipo · tema. El estado va a la URL, así que
+         otras páginas enlazan aquí ya filtrado
+         (biblioteca.html?programa=entornos&tipo=formato). -->
     <div class="filter-bar-wrap">
       <div class="container">
-        <div class="filter-bar">
-          <button class="filter-btn active" data-cat="all">Todos</button>
-          <button class="filter-btn" data-cat="formatos">Formatos</button>
-          <button class="filter-btn" data-cat="lineamientos">Lineamientos</button>
-          <button class="filter-btn" data-cat="manuales">Manuales</button>
-          <button class="filter-btn" data-cat="noms">NOMs</button>
-          <button class="filter-btn" data-cat="grafico">Material gráfico</button>
-          <button class="filter-btn" data-cat="presentacion">Presentaciones</button>
-          <button class="filter-btn" data-cat="documentos">Docs. oficiales</button>
+
+        <div class="filter-search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <label class="visually-hidden" for="buscador">Buscar en la biblioteca</label>
+          <input type="search" id="buscador" placeholder="Buscar por nombre, tema o público…" autocomplete="off">
         </div>
+
+        <div class="filter-group">
+          <span class="filter-label" id="lbl-programa">Programa</span>
+          <div class="filter-bar" role="group" aria-labelledby="lbl-programa">
+            <button class="filter-btn" data-faceta="programa" data-valor="promocion"    aria-pressed="false">Promoción</button>
+            <button class="filter-btn" data-faceta="programa" data-valor="adicciones"   aria-pressed="false">Adicciones</button>
+            <button class="filter-btn" data-faceta="programa" data-valor="salud-mental" aria-pressed="false">Salud Mental</button>
+            <button class="filter-btn" data-faceta="programa" data-valor="entornos"     aria-pressed="false">Entornos</button>
+            <button class="filter-btn" data-faceta="programa" data-valor="transversal"  aria-pressed="false">Transversal</button>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <span class="filter-label" id="lbl-tipo">Tipo de recurso</span>
+          <div class="filter-bar" role="group" aria-labelledby="lbl-tipo">
+            <button class="filter-btn" data-faceta="tipo" data-valor="formato"      aria-pressed="false">Formatos</button>
+            <button class="filter-btn" data-faceta="tipo" data-valor="taller"       aria-pressed="false">Talleres</button>
+            <button class="filter-btn" data-faceta="tipo" data-valor="formulario"   aria-pressed="false">Formularios</button>
+            <button class="filter-btn" data-faceta="tipo" data-valor="normativa"    aria-pressed="false">Lineamientos</button>
+            <button class="filter-btn" data-faceta="tipo" data-valor="nom"          aria-pressed="false">NOMs</button>
+            <button class="filter-btn" data-faceta="tipo" data-valor="manual"       aria-pressed="false">Manuales</button>
+            <button class="filter-btn" data-faceta="tipo" data-valor="grafico"      aria-pressed="false">Material gráfico</button>
+            <button class="filter-btn" data-faceta="tipo" data-valor="presentacion" aria-pressed="false">Presentaciones</button>
+            <button class="filter-btn" data-faceta="tipo" data-valor="documento"    aria-pressed="false">Docs. oficiales</button>
+            <button class="filter-btn" data-faceta="tipo" data-valor="enlace"       aria-pressed="false">Sitios externos</button>
+          </div>
+        </div>
+
         <p class="filter-count-wrap">
-          <span class="filter-count">…</span> disponibles
+          <span class="filter-count" role="status">…</span> disponibles
+          <button type="button" class="filter-clear">Quitar filtros</button>
         </p>
       </div>
     </div>
@@ -51,7 +83,11 @@
     <!-- ════════ GRID DE MATERIALES ════════ -->
     <section class="section-block" id="materiales">
       <div class="container">
-        <div class="material-grid"></div>
+        <div class="material-grid" data-recursos></div>
+        <p class="filter-empty empty-state" hidden>
+          Ningún recurso coincide con esos filtros.
+          <button type="button" class="filter-clear">Ver todos los recursos</button>
+        </p>
       </div>
     </section>
 
@@ -59,8 +95,7 @@
 
   <div id="site-footer"></div>
 
-  <script src="assets/data/campaigns.js"></script>
-  <script src="assets/data/biblioteca.js"></script>
+  <script src="assets/data/recursos.js"></script>
   <script src="components.js"></script>
   <script src="script.js"></script>
 </body>
