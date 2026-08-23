@@ -315,18 +315,27 @@ la palabra. No hay que componentizarlos: basta con enlazarlos entre sí.
   ```
 - **Contact form:** Conectar `handleForm()` a Formspree (`https://formspree.io/f/XXXX`).
 - **Datos reales:** Números placeholder en `kpis.js` y unidades/horarios en `directorio.js`.
-- **Favicon:** Crear con `--crimson` / `--gold`.
 - **URLs de talleres (Canva):** Las URLs del catálogo de talleres usan el patrón `https://www.canva.com/design/ID/view`. Verificar que el token de compartir esté activo (modo "Cualquier persona con el enlace puede ver") antes de publicar.
 - **28 recursos en `estado: 'pendiente'`** en `recursos.js`: sustituir `url` y poner `estado: 'ok'` conforme lleguen los enlaces.
 - **17 recursos en `estado: 'rehospedar'`**: alojados en la cuenta Wix (`*.filesusr.com`); re-alojar en Drive antes del despliegue definitivo.
 
 ## Deployment
 
+Ya está en marcha. GitHub Pages sirve la rama `master` desde la raíz:
+
+**https://oscarog23.github.io/Promocion-de-la-salud-JSTexcoco/**
+
+Desplegar = empujar a `master`. La compilación tarda ~1 minuto.
+
 ```powershell
-git init
 git add .
-git commit -m "init: plataforma interna Promoción a la Salud"
-git remote add origin https://github.com/USUARIO/promocion-salud.git
-git push -u origin main
-# Activar GitHub Pages: Settings > Pages > Branch: main
+git commit -m "..."
+git push origin master
+
+# Ver el estado de la compilación
+gh api repos/OscarOG23/Promocion-de-la-salud-JSTexcoco/pages/builds/latest --jq .status
 ```
+
+**Ojo con las mayúsculas.** Windows no distingue mayúsculas en los nombres de
+archivo; GitHub Pages sí. Un `assets/img/Logo-ps.png` funciona en local y da 404
+al desplegar.
