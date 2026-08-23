@@ -630,6 +630,20 @@ function renderRecursos() {
     grid.innerHTML = items.map(recursoCard).join('') ||
       '<p class="empty-state">Sin recursos en este apartado todavía.</p>';
 
+    // Mismo trato que el encabezado del filtro: el grupo dice cuántos
+    // trae. En entornos y reportes, que no tienen filtro, es la única
+    // pista de cuánto hay antes de ponerse a leer.
+    const titulo = grid.previousElementSibling;
+    if (titulo && titulo.classList.contains('subsec-group')) {
+      let num = titulo.querySelector('.sg-count');
+      if (!num) {
+        num = document.createElement('span');
+        num.className = 'sg-count';
+        titulo.append(' ', num);
+      }
+      num.textContent = total;
+    }
+
     // Divulgación progresiva: en vez de volcar 62 tarjetas, se muestran
     // las más usadas y se enlaza el resto ya filtrado en la Biblioteca.
     const previo = grid.nextElementSibling;
@@ -820,6 +834,7 @@ function initFiltros() {
   const buscador = document.getElementById('buscador');
   const countEl  = document.querySelector('.filter-count');
   const vacio    = document.querySelector('.filter-empty');
+  const encabezado = document.querySelector('.filter-heading');
 
   // Compatibilidad: `?cat=` era el parámetro anterior. El personal puede
   // tener enlaces guardados o impresos, así que se sigue aceptando.
@@ -847,24 +862,80 @@ function initFiltros() {
     return true;
   }
 
+  /** Etiqueta legible de una faceta activa. */
+  function etiquetaFaceta(faceta, valor) {
+    if (faceta === 'programa') return PROGRAMA_LABELS[valor] || valor;
+    if (faceta === 'tipo')     return TIPO_LABELS[valor] || valor;
+    if (faceta === 'tema')     return etiquetaTema(valor);
+    return valor;
+  }
+
+  /**
+   * Encabezado del grupo activo. Aparece solo cuando hay algún filtro
+   * y se va solo al quitarlo: es la respuesta visible a «he pulsado
+   * Alimentación», que antes solo se notaba en el botón resaltado.
+   */
+  function pintarEncabezado(visibles) {
+    if (!encabezado) return;
+    const activas = ['programa', 'tipo', 'tema']
+      .filter(f => estado[f])
+      .map(f => ({ faceta: f, valor: estado[f] }));
+
+    const hayAlgo = activas.length || estado.q;
+    encabezado.hidden = !hayAlgo;
+    encabezado.classList.toggle('visible', !!hayAlgo);
+    if (!hayAlgo) { encabezado.innerHTML = ''; return; }
+
+    const chips = activas.map(({ faceta, valor }) => `
+      <button type="button" class="fh-chip" data-quitar="${faceta}">
+        ${esc(etiquetaFaceta(faceta, valor))}
+        <span aria-hidden="true">&times;</span>
+        <span class="visually-hidden">Quitar este filtro</span>
+      </button>`).join('');
+    const chipBusqueda = estado.q ? `
+      <button type="button" class="fh-chip" data-quitar="q">
+        “${esc(estado.q)}”
+        <span aria-hidden="true">&times;</span>
+        <span class="visually-hidden">Quitar la búsqueda</span>
+      </button>` : '';
+
+    encabezado.innerHTML = `
+      <div class="fh-titulo">
+        ${activas.map(a => esc(etiquetaFaceta(a.faceta, a.valor))).join(' · ') || 'Búsqueda'}
+        <span class="fh-num">${visibles}</span>
+      </div>
+      <div class="fh-chips">${chips}${chipBusqueda}</div>`;
+  }
+
   function aplicar({ animar = true } = {}) {
     let visibles = 0;
-    cards.forEach((card, i) => {
-      if (coincide(card)) {
-        visibles++;
-        card.hidden = false;
-        if (animar && !prefersReducedMotion) {
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(10px)';
-          setTimeout(() => {
-            card.style.transition = 'opacity 280ms var(--ease-out), transform 280ms var(--ease-out)';
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-          }, (visibles % 8) * 40);
+    let entrando = 0;
+    cards.forEach(card => {
+      const dentro = coincide(card);
+      if (dentro) visibles++;
+
+      if (prefersReducedMotion || !animar) {
+        card.hidden = !dentro;
+        card.classList.remove('sale');
+        card.style.cssText = '';
+        return;
+      }
+
+      if (dentro) {
+        // Entra: primero ocupa sitio, luego se desvanece hacia dentro
+        if (card.hidden) {
+          card.hidden = false;
+          card.classList.add('sale');
+          void card.offsetWidth;            // forzar reflujo antes de animar
         }
-      } else {
-        card.hidden = true;
-        card.style.opacity = card.style.transform = card.style.transition = '';
+        const retraso = (entrando++ % 8) * 35;
+        setTimeout(() => card.classList.remove('sale'), retraso);
+      } else if (!card.hidden) {
+        // Sale: se desvanece y solo entonces deja de ocupar sitio
+        card.classList.add('sale');
+        setTimeout(() => {
+          if (!coincide(card)) card.hidden = true;
+        }, 180);
       }
     });
 
@@ -872,6 +943,7 @@ function initFiltros() {
     // no recibía ninguna confirmación de que la lista había cambiado.
     if (countEl) countEl.textContent = `${visibles} recurso${visibles !== 1 ? 's' : ''}`;
     if (vacio) vacio.hidden = visibles > 0;
+    pintarEncabezado(visibles);
 
     botones.forEach(b => {
       const activo = (estado[b.dataset.faceta] || '') === b.dataset.valor;
@@ -898,6 +970,18 @@ function initFiltros() {
     buscador.addEventListener('input', () => {
       clearTimeout(t);
       t = setTimeout(() => { estado.q = buscador.value.trim(); aplicar({ animar: false }); }, 160);
+    });
+  }
+
+  // Las × del encabezado quitan solo su faceta
+  if (encabezado) {
+    encabezado.addEventListener('click', (e) => {
+      const chip = e.target.closest('[data-quitar]');
+      if (!chip) return;
+      const faceta = chip.dataset.quitar;
+      estado[faceta] = '';
+      if (faceta === 'q' && buscador) buscador.value = '';
+      aplicar();
     });
   }
 

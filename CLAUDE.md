@@ -148,13 +148,14 @@ document.querySelectorAll('[data-page]').forEach(a => {
 19. **`renderCampaignsGrid()`** — genera `.subsec-card` en `promocion.html#campanas` desde el MISMO `CAMPAIGNS` que el carrusel (fuente única, no duplicar)
 20. **`renderContacto()`** — rellena la sección de contacto (`index.html`) desde `window.CONTACTO`
 21. **`initTallerDeepLinks()`** — los enlaces `[data-filter]` (det-cards) activan el filtro del catálogo de talleres
-22. **`initFiltros()` honra `?programa=&tipo=&tema=&q=`** — deep-links facetados desde cualquier página; el filtro también escribe la URL, así que se puede compartir y el botón «atrás» lo deshace
-23. **Acordeón móvil** — los `.dropdown-toggle` responden al clic con `aria-expanded`; `Escape` cierra y devuelve el foco
-24. **Skip link + `:focus-visible`** — «Saltar al contenido» y anillo de foco global
-25. **`initBuscadorGlobal()`** — buscador en el navbar sobre el índice completo, en las 9 páginas. `<dialog>` nativo (foco atrapado y Escape sin código propio), atajo `Ctrl/⌘ K` y `/`, resultados agrupados por programa (tope de 5 + «ver los N»), flechas para recorrer, sugerencias con el campo vacío
-26. **`renderEvidencias()`** — el flujo de evidencias (3 pasos) en `[data-evidencias="<programa>"]`. Estaba escrito 5 veces con destinos contradictorios; ahora **todas las páginas envían al mismo sitio**: `reportes.html#formularios`
-27. **`renderDirectorio()` con `data-dir-tema` y `data-dir-formato="compacto"`** — los 6 servicios externos de referencia salen de `directorio.js`; salud-mental muestra solo los de crisis sin repetir los teléfonos
-28. **`normaliza()` + `coincideTexto()`** — búsqueda sin acentos y multi-palabra: «cedula escuela» encuentra «Cédula … Escolar». La usan el buscador global y los filtros de página
+22. **Encabezado del grupo activo** — `.filter-heading` aparece al aplicar cualquier faceta y se va sola al quitarla: nombre legible, conteo y un chip con × por faceta (la búsqueda incluida) que quita solo esa. Las páginas sin filtro (entornos, reportes) reciben el mismo trato con `.sg-count` en sus `.subsec-group`
+23. **`initFiltros()` honra `?programa=&tipo=&tema=&q=`** — deep-links facetados desde cualquier página; el filtro también escribe la URL, así que se puede compartir y el botón «atrás» lo deshace
+24. **Acordeón móvil** — los `.dropdown-toggle` responden al clic con `aria-expanded`; `Escape` cierra y devuelve el foco
+25. **Skip link + `:focus-visible`** — «Saltar al contenido» y anillo de foco global
+26. **`initBuscadorGlobal()`** — buscador en el navbar sobre el índice completo, en las 9 páginas. `<dialog>` nativo (foco atrapado y Escape sin código propio), atajo `Ctrl/⌘ K` y `/`, resultados agrupados por programa (tope de 5 + «ver los N»), flechas para recorrer, sugerencias con el campo vacío
+27. **`renderEvidencias()`** — el flujo de evidencias (3 pasos) en `[data-evidencias="<programa>"]`. Estaba escrito 5 veces con destinos contradictorios; ahora **todas las páginas envían al mismo sitio**: `reportes.html#formularios`
+28. **`renderDirectorio()` con `data-dir-tema` y `data-dir-formato="compacto"`** — los 6 servicios externos de referencia salen de `directorio.js`; salud-mental muestra solo los de crisis sin repetir los teléfonos
+29. **`normaliza()` + `coincideTexto()`** — búsqueda sin acentos y multi-palabra: «cedula escuela» encuentra «Cédula … Escolar». La usan el buscador global y los filtros de página
 
 ### Conexiones clave (mapa de navegación)
 
