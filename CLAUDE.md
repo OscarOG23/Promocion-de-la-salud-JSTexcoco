@@ -163,6 +163,7 @@ document.querySelectorAll('[data-page]').forEach(a => {
 30. **Grupos plegables por subtema** — `data-agrupar="subtema"` en una rejilla `[data-recursos]` reparte el resultado en `<details>`, uno por subtema, en el orden del índice. El catálogo de talleres son 9 determinantes → **24 subtemas** → **68 talleres**. Al filtrar, el grupo que se queda sin resultados **se retira entero** y el que sí tiene se abre solo aunque estuviera plegado
 31. **`materiales: [...]`** — una ficha admite **cualquier número** de archivos (presentación, guion, audio, infografía, fuentes…). Los 3 primeros se ven; el resto se pliega tras «+N materiales». Un material sin `url` se pinta «en elaboración», sin enlace. `url`/`accion`/`complementos` siguen funcionando
 32. **`renderUnidades()`** — el mapa operativo de `directorio.html#mapa`: una ficha por unidad, píldoras de color por servicio y enlaces «Ver en el mapa» / «Cómo llegar» armados con `lat`/`lng`. Los botones de filtro (servicio y municipio) **se generan desde los datos**: no hay lista que mantener en el HTML
+33. **`renderNotebooks()`** — un cuaderno de NotebookLM por determinante, desde `assets/data/notebooks.js`. Rellena la sección `promocion.html#asistente` y el enlace «Preguntar» de cada det-card (`data-notebook="<tema>"`). Sin enlace publicado la tarjeta sale apagada: **nunca se promete un asistente que no existe**
 
 ### Conexiones clave (mapa de navegación)
 
@@ -355,6 +356,22 @@ la palabra. No hay que componentizarlos: basta con enlazarlos entre sí.
 - **Recursos en `estado: 'pendiente'`** en `recursos.js`: sustituir `url` y poner `estado: 'ok'` conforme lleguen los enlaces.
 - **Paquetes de NotebookLM:** conforme se suban a Drive, pasar la ficha a `materiales: [...]` usando los atajos `GD.doc(id)` / `GD.archivo(id)` / `GD.carpeta(id)` del principio de `recursos.js`. Cada archivo debe quedar compartido como «Cualquier persona con el enlace · Lector».
 - **17 recursos en `estado: 'rehospedar'`**: alojados en la cuenta Wix (`*.filesusr.com`); re-alojar en Drive antes del despliegue definitivo.
+
+## Asistentes de NotebookLM
+
+Cada determinante tiene su cuaderno. Los enlaces viven en
+`assets/data/notebooks.js`, con la **misma clave** que el `tema` del
+determinante en `recursos.js`, para que la det-card encuentre el suyo sola.
+
+```js
+alimentacion: { titulo: 'Alimentación', descripcion: '…',
+                url: 'https://notebooklm.google.com/notebook/…',
+                actualizado: 'Ago 2026', estado: 'ok' },
+```
+
+**El cuaderno debe estar compartido como «Cualquier persona con el enlace ·
+Lector».** Sin ese paso el personal ve «No tienes acceso» y el enlace no sirve
+de nada. Con `estado: 'pendiente'` la tarjeta sale apagada y sin enlace.
 
 ## Versionado de assets (cache busting)
 

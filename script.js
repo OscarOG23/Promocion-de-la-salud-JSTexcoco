@@ -1338,6 +1338,68 @@ function renderDirectorio() {
 }
 
 // ══════════════════════════════════════════════
+//  NOTEBOOKLM — un asistente por determinante
+//  El personal pregunta lo que necesita sobre SU tema
+//  («¿cada cuánto se tamiza a una embarazada?») y el
+//  cuaderno responde citando la fuente. Los enlaces
+//  viven en assets/data/notebooks.js.
+// ══════════════════════════════════════════════
+
+const ICON_CHAT = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>`;
+
+/** Los cuadernos declarados, o un objeto vacío si no se cargó el archivo. */
+const notebooksDe = () => (typeof NOTEBOOKS !== 'undefined' ? NOTEBOOKS : {});
+
+/**
+ * Rellena `[data-notebooks]` con una tarjeta por determinante.
+ * El orden es el de TEMA_LABELS, que ya es el orden de los 9
+ * determinantes: no hay una segunda lista que mantener.
+ */
+function renderNotebooks() {
+  const cont = document.querySelector('[data-notebooks]');
+  const nb = notebooksDe();
+
+  // Enlace «Preguntar» dentro de cada det-card
+  document.querySelectorAll('[data-notebook]').forEach(hueco => {
+    const n = nb[hueco.dataset.notebook];
+    if (!n) { hueco.remove(); return; }
+    hueco.outerHTML = n.estado === 'ok' && n.url
+      ? `<a href="${esc(n.url)}" class="det-link det-link--ia" target="_blank" rel="noopener noreferrer"
+             aria-label="Preguntar al asistente de ${esc(n.titulo)}">${ICON_CHAT} Preguntar</a>`
+      : `<span class="det-link is-pending">${ICON_CHAT} Asistente en preparación</span>`;
+  });
+
+  if (!cont) return;
+
+  const claves = Object.keys(nb);
+  if (!claves.length) { cont.innerHTML = ''; return; }
+
+  const listos = claves.filter(k => nb[k].estado === 'ok' && nb[k].url).length;
+
+  cont.innerHTML = `
+    ${listos < claves.length ? `
+      <p class="nb-aviso">${ICON_CHAT}
+        ${listos} de ${claves.length} asistentes están publicados. Los demás aparecen
+        apagados hasta que se les pegue el enlace en <code>assets/data/notebooks.js</code>.</p>` : ''}
+    <div class="nb-grid">
+      ${claves.map(k => {
+        const n = nb[k];
+        const activo = n.estado === 'ok' && n.url;
+        return `
+        <article class="nb-card${activo ? '' : ' is-pending'}">
+          <h3 class="nb-title">${esc(n.titulo)}</h3>
+          ${n.descripcion ? `<p class="nb-desc">${esc(n.descripcion)}</p>` : ''}
+          ${n.actualizado ? `<p class="nb-meta">Fuentes actualizadas: ${esc(n.actualizado)}</p>` : ''}
+          ${activo
+            ? `<a href="${esc(n.url)}" class="mc-btn" target="_blank" rel="noopener noreferrer"
+                  aria-label="Abrir el asistente de ${esc(n.titulo)}">${ICON_CHAT} Preguntar</a>`
+            : `<span class="mc-btn is-pending">${ICON_CLOCK} En preparación</span>`}
+        </article>`;
+      }).join('')}
+    </div>`;
+}
+
+// ══════════════════════════════════════════════
 //  UNIDADES DE SALUD — mapa operativo
 //  Una unidad, una ficha, con los servicios que ofrece
 //  y su punto en el mapa. Sin librerías: los enlaces de
@@ -1651,6 +1713,9 @@ renderDirectorio();
 
 // Mapa operativo de unidades (directorio.html#mapa)
 renderUnidades();
+
+// Asistentes de NotebookLM (promocion.html#asistente)
+renderNotebooks();
 
 // Bloque de evidencias (mismo flujo en las 5 páginas que lo repetían)
 renderEvidencias();
