@@ -2,6 +2,16 @@
    PROMOCIÓN A LA SALUD — JS Premium
    ================================================ */
 
+/* Versión de los archivos propios. Tiene que coincidir con el `?v=`
+   de los <link> y <script> de las 9 páginas.
+   AL TOCAR style.css, script.js o assets/data/*.js: subir las dos.
+   Sin esto, el navegador sirve la copia vieja y parece que el cambio
+   «no se aplicó» aunque el archivo ya esté corregido.
+   Para comprobar qué versión se está viendo: abrir la consola (F12) y
+   escribir  PS_VERSION */
+const PS_VERSION = '20260828a';
+window.PS_VERSION = PS_VERSION;
+
 // ── Reduced motion preference ──────────────────
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -543,6 +553,9 @@ function textoBuscable(r) {
     r.titulo, r.descripcion, r.subtema, r.publico, r.modalidad,
     PROGRAMA_LABELS[r.programa], TIPO_LABELS[r.tipo],
     ...temasDe(r).map(etiquetaTema),
+    // El nombre de cada archivo del paquete también se busca: quien
+    // necesita «el audio» o «la infografía» los pide por su nombre.
+    ...(Array.isArray(r.materiales) ? r.materiales.map(m => m.tipo) : []),
   ].filter(Boolean).join(' '));
 }
 
@@ -552,33 +565,104 @@ function coincideTexto(texto, consulta) {
   return palabras.every(p => texto.includes(p));
 }
 
+/* ── Iconos por clase de archivo ──
+   Un paquete de NotebookLM baja como presentación + guion + audio +
+   infografía + fuentes. Cada material dice de qué clase es con `icono`
+   y aquí se le pone su dibujo. Para una clase nueva basta añadir
+   una línea a este objeto. */
+const SVG = (d, extra = '') =>
+  `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">${d}${extra}</svg>`;
+
+const ICONOS_MATERIAL = {
+  descarga:     ICON_DOWNLOAD,
+  enlace:       ICON_EXTERNAL,
+  carpeta:      ICON_FOLDER,
+  presentacion: SVG('<rect x="2" y="3" width="20" height="13" rx="2"/><line x1="12" y1="16" x2="12" y2="21"/><line x1="8" y1="21" x2="16" y2="21"/>'),
+  documento:    SVG('<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/>'),
+  hoja:         SVG('<rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/>'),
+  video:        SVG('<polygon points="22 7 16 12 22 17 22 7"/><rect x="2" y="5" width="14" height="14" rx="2"/>'),
+  audio:        SVG('<path d="M11 5L6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 010 7"/>'),
+  imagen:       SVG('<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>'),
+  mapa:         SVG('<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>'),
+  formulario:   SVG('<path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>'),
+};
+
+/** A partir del cuarto, los materiales se pliegan tras «+N materiales». */
+const MAX_BOTONES_VISIBLES = 3;
+
 /**
- * Una tarjeta de recurso.
+ * Los materiales de una ficha, normalizados a una lista.
+ *
+ * Antes una tarjeta solo podía enseñar dos cosas: `url` y `complementos`.
+ * Para los paquetes que ya vienen armados (presentación + guion + audio +
+ * infografía + carpeta de fuentes) eso se queda corto, así que ahora se
+ * acepta `materiales: [{ tipo, url, icono, estado }]` **sin tope**.
+ *
+ * El formato antiguo se sigue leyendo tal cual: no hay que reescribir
+ * los recursos que ya están, y los dos pueden convivir en el índice.
+ */
+function materialesDe(r) {
+  if (Array.isArray(r.materiales) && r.materiales.length) {
+    return r.materiales.map(m => ({
+      tipo:   m.tipo || 'Abrir',
+      url:    m.url,
+      icono:  m.icono,
+      // Sin url no hay enlace posible: es un material en elaboración.
+      estado: m.estado || (m.url ? 'ok' : 'pendiente'),
+    }));
+  }
+  return [
+    { tipo:   r.accion || 'Abrir',
+      url:    r.url,
+      icono:  r.icono,
+      estado: r.estado === 'pendiente' ? 'pendiente' : 'ok' },
+    ...(r.complementos
+      ? [{ tipo: 'Complementos', url: r.complementos, icono: 'carpeta', estado: 'ok' }]
+      : []),
+  ];
+}
+
+/**
+ * Un material = un botón.
  * `estado: 'pendiente'` NO produce un enlace: antes se renderizaba
  * href="#", que parecía funcional y no llevaba a ninguna parte.
  */
-function recursoCard(r) {
-  const ext       = /^https?:/i.test(r.url || '');
-  const pendiente = r.estado === 'pendiente';
+function botonMaterial(m, titulo, primario) {
+  if (m.estado === 'pendiente' || !m.url) {
+    return `<span class="mc-btn is-pending">${ICON_CLOCK} ${esc(m.tipo)} · en elaboración</span>`;
+  }
+  const ext = /^https?:/i.test(m.url);
+  const ico = ICONOS_MATERIAL[m.icono] || (ext ? ICON_EXTERNAL : ICON_DOWNLOAD);
+  // aria-label descriptivo: la lista de enlaces del lector de pantalla
+  // era 40 entradas idénticas de «Descargar PDF».
+  return `<a href="${esc(m.url)}" class="mc-btn${primario ? '' : ' outline mc-btn-sec'}"
+             aria-label="${esc(m.tipo)}: ${esc(titulo)}"${ext ? ' target="_blank" rel="noopener noreferrer"' : ''}
+          >${ico} ${esc(m.tipo)}</a>`;
+}
+
+/**
+ * Una tarjeta de recurso.
+ * `ocultarSubtema` se usa dentro de los grupos plegables: el subtema
+ * ya lo dice el encabezado del grupo, repetirlo en cada ficha sobra.
+ */
+function recursoCard(r, { ocultarSubtema = false } = {}) {
+  const mats     = materialesDe(r);
+  const visibles = mats.slice(0, MAX_BOTONES_VISIBLES);
+  const resto    = mats.slice(MAX_BOTONES_VISIBLES);
+  const enObra   = mats.filter(m => m.estado === 'pendiente').length;
 
   const meta = [
-    r.subtema     ? `<span><strong>Materia:</strong> ${esc(r.subtema)}</span>` : '',
+    !ocultarSubtema && r.subtema ? `<span><strong>Materia:</strong> ${esc(r.subtema)}</span>` : '',
     temasDe(r).length ? `<span><strong>Tema:</strong> ${temasDe(r).map(t => esc(etiquetaTema(t))).join(' · ')}</span>` : '',
     r.publico     ? `<span><strong>Público:</strong> ${esc(r.publico)}</span>` : '',
     r.modalidad   ? `<span><strong>Modalidad:</strong> ${esc(r.modalidad)}</span>` : '',
     r.actualizado ? `<span><strong>Actualizado:</strong> ${esc(r.actualizado)}</span>` : '',
-  ].join('');
+  ].filter(Boolean).join('');
 
-  // aria-label descriptivo: la lista de enlaces del lector de pantalla
-  // era 40 entradas idénticas de «Descargar PDF».
-  const accion = pendiente
-    ? `<span class="mc-btn is-pending">${ICON_CLOCK} Próximamente</span>`
-    : `<a href="${esc(r.url)}" class="mc-btn" aria-label="${esc(r.accion)}: ${esc(r.titulo)}"${ext ? ' target="_blank" rel="noopener noreferrer"' : ''}>
-           ${ext ? ICON_EXTERNAL : ICON_DOWNLOAD} ${esc(r.accion)}
-         </a>`;
-
-  const complementos = r.complementos
-    ? `<a href="${esc(r.complementos)}" class="mc-btn outline mc-btn-sec" aria-label="Complementos: ${esc(r.titulo)}" target="_blank" rel="noopener noreferrer">${ICON_FOLDER} Complementos</a>`
+  // El contador solo aparece cuando hay paquete de verdad. Con uno o dos
+  // materiales sería ruido en las 176 fichas que ya existen.
+  const contador = mats.length >= 3
+    ? `<span class="mc-num">${mats.length} materiales${enObra ? ` · ${enObra} en elaboración` : ''}</span>`
     : '';
 
   return `
@@ -587,13 +671,55 @@ function recursoCard(r) {
                data-tipo="${esc(r.tipo)}"
                data-tema="${esc(temasDe(r).join(' '))}"
                data-buscar="${esc(textoBuscable(r))}">
-        <div class="mc-cat ${esc(r.tipo)}">${esc(TIPO_LABELS[r.tipo] || r.tipo)}</div>
+        <div class="mc-head">
+          <div class="mc-cat ${esc(r.tipo)}">${esc(TIPO_LABELS[r.tipo] || r.tipo)}</div>
+          ${contador}
+        </div>
         <h3 class="mc-title">${esc(r.titulo)}</h3>
         ${r.descripcion ? `<p class="mc-desc">${esc(r.descripcion)}</p>` : ''}
         <div class="mc-meta">${meta}</div>
-        ${accion}
-        ${complementos}
+        <div class="mc-files">
+          ${visibles.map((m, i) => botonMaterial(m, r.titulo, i === 0)).join('')}
+          ${resto.length ? `
+            <details class="mc-mas">
+              <summary>+${resto.length} material${resto.length !== 1 ? 'es' : ''}</summary>
+              <div class="mc-files">${resto.map(m => botonMaterial(m, r.titulo, false)).join('')}</div>
+            </details>` : ''}
+        </div>
       </article>`;
+}
+
+/**
+ * Los recursos repartidos en grupos plegables por `subtema`.
+ *
+ * El orden de los grupos es el del propio índice, que ya viene en orden
+ * de catálogo (C01…C15). Así no hay una segunda lista de subtemas que
+ * mantener sincronizada: se añade un taller a `recursos.js` y su grupo
+ * aparece solo, en su sitio.
+ *
+ * Van en `<details>` a propósito: el plegado, el teclado y el estado
+ * accesible los da el navegador. No hay que escribirlos.
+ */
+function gruposPorSubtema(items) {
+  const grupos = new Map();
+  for (const r of items) {
+    const clave = r.subtema || 'Otros materiales';
+    if (!grupos.has(clave)) grupos.set(clave, []);
+    grupos.get(clave).push(r);
+  }
+  if (!grupos.size) return '<p class="empty-state">Sin recursos en este apartado todavía.</p>';
+
+  return [...grupos].map(([nombre, rs]) => `
+      <details class="rec-group" open>
+        <summary class="rg-head">
+          <span class="rg-flecha" aria-hidden="true"></span>
+          <span class="rg-nombre">${esc(nombre)}</span>
+          <span class="rg-count">${rs.length}</span>
+        </summary>
+        <div class="material-grid rg-body">
+          ${rs.map(r => recursoCard(r, { ocultarSubtema: true })).join('')}
+        </div>
+      </details>`).join('');
 }
 
 /**
@@ -601,6 +727,8 @@ function recursoCard(r) {
  * en el HTML, así que una página de programa pide solo lo suyo:
  *   <div class="material-grid" data-recursos data-programa="entornos"
  *        data-tema="escuelas" data-limite="6"></div>
+ *
+ * `data-agrupar="subtema"` reparte el resultado en grupos plegables.
  */
 function renderRecursos() {
   const grids = document.querySelectorAll('[data-recursos]');
@@ -627,8 +755,10 @@ function renderRecursos() {
     const recortado = limite > 0 && total > limite;
     if (recortado) items = items.slice(0, limite);
 
-    grid.innerHTML = items.map(recursoCard).join('') ||
-      '<p class="empty-state">Sin recursos en este apartado todavía.</p>';
+    grid.innerHTML = f.agrupar === 'subtema'
+      ? gruposPorSubtema(items)
+      : (items.map(r => recursoCard(r)).join('') ||
+         '<p class="empty-state">Sin recursos en este apartado todavía.</p>');
 
     // Mismo trato que el encabezado del filtro: el grupo dice cuántos
     // trae. En entornos y reportes, que no tienen filtro, es la única
@@ -830,6 +960,7 @@ function initFiltros() {
   if (!bar) return;
 
   const cards    = [...document.querySelectorAll('.material-card')];
+  const grupos   = [...document.querySelectorAll('.rec-group')];
   const botones  = [...bar.querySelectorAll('.filter-btn[data-faceta]')];
   const buscador = document.getElementById('buscador');
   const countEl  = document.querySelector('.filter-count');
@@ -907,6 +1038,30 @@ function initFiltros() {
       <div class="fh-chips">${chips}${chipBusqueda}</div>`;
   }
 
+  /**
+   * Un grupo sin resultados se retira ENTERO, encabezado incluido.
+   * Ocultar solo las tarjetas dejaba el rótulo flotando sobre una
+   * rejilla vacía y, con `display:flex` ganándole al atributo `hidden`,
+   * ni siquiera se recuperaba el hueco: media pantalla en blanco.
+   *
+   * El conteo se refresca al momento; el ocultado espera a que termine
+   * el desvanecido, para que se vea salir a las tarjetas.
+   */
+  function sincronizarGrupos(demora = 0) {
+    if (!grupos.length) return;
+    const hayFiltro = ['programa', 'tipo', 'tema', 'q'].some(k => estado[k]);
+    grupos.forEach(g => {
+      const n = [...g.querySelectorAll('.material-card')].filter(coincide).length;
+      const num = g.querySelector('.rg-count');
+      if (num) num.textContent = n;
+      // Al filtrar, un grupo con resultados se abre solo: la respuesta
+      // no puede quedarse escondida dentro de un acordeón plegado.
+      if (n && hayFiltro) g.open = true;
+      if (demora) setTimeout(() => { g.hidden = n === 0; }, demora);
+      else g.hidden = n === 0;
+    });
+  }
+
   function aplicar({ animar = true } = {}) {
     let visibles = 0;
     let entrando = 0;
@@ -944,6 +1099,7 @@ function initFiltros() {
     if (countEl) countEl.textContent = `${visibles} recurso${visibles !== 1 ? 's' : ''}`;
     if (vacio) vacio.hidden = visibles > 0;
     pintarEncabezado(visibles);
+    sincronizarGrupos(animar && !prefersReducedMotion ? 190 : 0);
 
     botones.forEach(b => {
       const activo = (estado[b.dataset.faceta] || '') === b.dataset.valor;
@@ -1125,12 +1281,25 @@ function renderDirectorio() {
   const ICON_USER  = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>`;
 
   const data = typeof DIRECTORIO !== 'undefined' ? DIRECTORIO : [];
+  const unidades = typeof UNIDADES !== 'undefined' ? UNIDADES : [];
 
   grids.forEach(grid => {
     const tipo  = grid.dataset.dir;
     // `data-dir-tema` acota los servicios externos (crisis | adicciones |
     // violencia) para que cada programa muestre los suyos sin repetirlos.
     const temas = grid.dataset.dirTema ? grid.dataset.dirTema.split(/\s+/) : null;
+
+    // `data-dir="psicologia"` y `data-dir="nutricion"` ya no son un tipo
+    // de ficha: son un SERVICIO, y salen de la lista de unidades. Así
+    // «C.S. Texcoco» se escribe una vez aunque tenga los dos servicios.
+    if (typeof SERVICIOS !== 'undefined' && SERVICIOS[tipo]) {
+      const conServicio = unidades.filter(u => (u.servicios || []).includes(tipo));
+      grid.innerHTML = conServicio.length
+        ? conServicio.map(u => unidadCard(u, { servicio: tipo })).join('')
+        : '<p class="empty-state">Sin unidades registradas por el momento.</p>';
+      return;
+    }
+
     const items = data.filter(u =>
       u.tipo === tipo && (!temas || temas.some(t => (u.tema || []).includes(t))));
     if (!items.length) {
@@ -1166,6 +1335,193 @@ function renderDirectorio() {
       </div>
     `).join('');
   });
+}
+
+// ══════════════════════════════════════════════
+//  UNIDADES DE SALUD — mapa operativo
+//  Una unidad, una ficha, con los servicios que ofrece
+//  y su punto en el mapa. Sin librerías: los enlaces de
+//  Google Maps se arman con lat/lng, que es todo lo que
+//  hace falta para abrir el pin o pedir la ruta.
+// ══════════════════════════════════════════════
+
+const ICON_PIN   = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>`;
+const ICON_RUTA  = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>`;
+const ICON_TEL   = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.3 19.79 19.79 0 01.22 2.62 2 2 0 012.2.5H5.1a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.41a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>`;
+const ICON_USER_DIR = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>`;
+
+/** ¿Tiene la unidad un punto utilizable en el mapa? */
+const tieneUbicacion = u =>
+  !!u.maps || (Number.isFinite(u.lat) && Number.isFinite(u.lng));
+
+/** Enlace al pin. `maps` (enlace corto pegado a mano) gana si existe. */
+function urlMapa(u) {
+  if (u.maps) return u.maps;
+  if (!Number.isFinite(u.lat) || !Number.isFinite(u.lng)) return '';
+  return `https://www.google.com/maps/search/?api=1&query=${u.lat},${u.lng}`;
+}
+
+/** Enlace «cómo llegar»: Maps calcula la ruta desde donde esté quien mira. */
+function urlRuta(u) {
+  if (Number.isFinite(u.lat) && Number.isFinite(u.lng)) {
+    return `https://www.google.com/maps/dir/?api=1&destination=${u.lat},${u.lng}`;
+  }
+  // Sin coordenadas, la dirección escrita sirve de destino.
+  return u.direccion
+    ? `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(u.direccion)}`
+    : '';
+}
+
+/** Las píldoras de servicio: el color viene del catálogo SERVICIOS. */
+function pildorasServicio(u, destacado) {
+  const cat = typeof SERVICIOS !== 'undefined' ? SERVICIOS : {};
+  return (u.servicios || []).map(s => {
+    const d = cat[s] || { etiqueta: s, color: 'charcoal' };
+    return `<span class="uc-serv uc-serv--${esc(d.color)}${s === destacado ? ' is-destacado' : ''}"
+                  data-servicio="${esc(s)}">${esc(d.etiqueta)}</span>`;
+  }).join('');
+}
+
+/**
+ * Ficha de unidad. Degrada sola: sin coordenadas no inventa un enlace
+ * roto, avisa de que la ubicación está por cargar. Así se pueden ir
+ * añadiendo las coordenadas poco a poco sin que la página se rompa.
+ */
+function unidadCard(u, { servicio = '' } = {}) {
+  const mapa = urlMapa(u), ruta = urlRuta(u);
+  const ubicacion = tieneUbicacion(u)
+    ? `<div class="uc-acciones">
+         <a href="${esc(mapa)}" class="mc-btn" target="_blank" rel="noopener noreferrer"
+            aria-label="Ver ${esc(u.nombre)} en el mapa">${ICON_PIN} Ver en el mapa</a>
+         ${ruta ? `<a href="${esc(ruta)}" class="mc-btn outline" target="_blank" rel="noopener noreferrer"
+            aria-label="Cómo llegar a ${esc(u.nombre)}">${ICON_RUTA} Cómo llegar</a>` : ''}
+       </div>`
+    : `<p class="uc-sin-mapa">${ICON_PIN} Ubicación por cargar</p>`;
+
+  return `
+      <article class="directory-card unidad-card"
+               data-servicios="${esc((u.servicios || []).join(' '))}"
+               data-municipio="${esc(u.municipio || '')}"
+               data-buscar="${esc(normaliza([u.nombre, u.municipio, u.zona, u.direccion].filter(Boolean).join(' ')))}">
+        <div class="dc-header">
+          <div class="dc-icon dc-${esc(u.tipo || 'centro-salud')}">${ICON_PIN}</div>
+          <div>
+            <h3 class="dc-name">${esc(u.nombre || '')}</h3>
+            <span class="dc-zone">${esc(u.municipio || u.zona || '')}</span>
+          </div>
+        </div>
+        <div class="uc-servicios">${pildorasServicio(u, servicio)}</div>
+        <div class="dc-details">
+          ${u.direccion ? `<div class="dc-row">${ICON_PIN}<span>${esc(u.direccion)}</span></div>` : ''}
+          <div class="dc-row">${ICON_CLOCK}<span>${esc(u.horario || 'Horario por confirmar')}</span></div>
+          ${u.atencion ? `<div class="dc-row">${ICON_USER_DIR}<span>${esc(u.atencion)}</span></div>` : ''}
+          ${u.telefono ? `<div class="dc-row">${ICON_TEL}<a href="tel:${esc(u.telefono)}">${esc(u.telefono)}</a></div>` : ''}
+        </div>
+        ${ubicacion}
+      </article>`;
+}
+
+
+/**
+ * El mapa operativo: todas las unidades en `[data-unidades]`, con
+ * filtros por servicio y por municipio generados a partir de los datos.
+ * No hay lista de botones que mantener en el HTML: si mañana una unidad
+ * estrena odontología, el filtro de odontología aparece solo.
+ */
+function renderUnidades() {
+  const cont = document.querySelector('[data-unidades]');
+  if (!cont) return;
+  if (typeof UNIDADES === 'undefined' || !UNIDADES.length) {
+    cont.innerHTML = '<p class="empty-state">Sin unidades registradas por el momento.</p>';
+    return;
+  }
+
+  const cat = typeof SERVICIOS !== 'undefined' ? SERVICIOS : {};
+  // Solo se ofrecen los filtros que de verdad tienen unidades detrás:
+  // un filtro que siempre da cero es una promesa incumplida.
+  const usados = [...new Set(UNIDADES.flatMap(u => u.servicios || []))]
+    .sort((a, b) => (cat[a]?.etiqueta || a).localeCompare(cat[b]?.etiqueta || b, 'es'));
+  const municipios = [...new Set(UNIDADES.map(u => u.municipio).filter(Boolean))]
+    .sort((a, b) => a.localeCompare(b, 'es'));
+
+  const conUbicacion = UNIDADES.filter(tieneUbicacion).length;
+
+  cont.innerHTML = `
+    <div class="mapa-barra">
+      <div class="filter-group">
+        <span class="filter-label" id="lbl-servicio">Servicio</span>
+        <div class="filter-bar" role="group" aria-labelledby="lbl-servicio">
+          ${usados.map(s => {
+            const n = UNIDADES.filter(u => (u.servicios || []).includes(s)).length;
+            return `<button type="button" class="filter-btn" data-u-servicio="${esc(s)}" aria-pressed="false">
+                      ${esc(cat[s]?.etiqueta || s)} <span class="filter-count">${n}</span></button>`;
+          }).join('')}
+        </div>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label" id="lbl-municipio">Municipio</span>
+        <div class="filter-bar" role="group" aria-labelledby="lbl-municipio">
+          ${municipios.map(m => {
+            const n = UNIDADES.filter(u => u.municipio === m).length;
+            return `<button type="button" class="filter-btn" data-u-municipio="${esc(m)}" aria-pressed="false">
+                      ${esc(m)} <span class="filter-count">${n}</span></button>`;
+          }).join('')}
+        </div>
+      </div>
+      <p class="filter-count-wrap">
+        <span class="u-count" role="status">${UNIDADES.length} unidades</span>
+        <button type="button" class="filter-clear u-clear">Quitar filtros</button>
+      </p>
+      ${conUbicacion < UNIDADES.length
+        ? `<p class="mapa-aviso">${ICON_PIN} ${conUbicacion} de ${UNIDADES.length} unidades tienen coordenadas cargadas.
+             El resto aparece sin enlace al mapa hasta que se añadan en
+             <code>assets/data/directorio.js</code>.</p>`
+        : ''}
+    </div>
+    <div class="directory-grid mapa-grid">${UNIDADES.map(u => unidadCard(u)).join('')}</div>
+    <p class="empty-state u-vacio" hidden>Ninguna unidad coincide con esos filtros.</p>`;
+
+  const fichas  = [...cont.querySelectorAll('.unidad-card')];
+  const vacio   = cont.querySelector('.u-vacio');
+  const countEl = cont.querySelector('.u-count');
+  const estado  = { servicio: '', municipio: '' };
+
+  function aplicar() {
+    let n = 0;
+    fichas.forEach(f => {
+      const ok = (!estado.servicio  || f.dataset.servicios.split(' ').includes(estado.servicio))
+              && (!estado.municipio || f.dataset.municipio === estado.municipio);
+      f.hidden = !ok;
+      if (ok) n++;
+      // La píldora del servicio filtrado se resalta: se ve de un vistazo
+      // por qué esa unidad está en la lista.
+      f.querySelectorAll('.uc-serv').forEach(p =>
+        p.classList.toggle('is-destacado', !!estado.servicio && p.dataset.servicio === estado.servicio));
+    });
+    if (countEl) countEl.textContent = `${n} unidad${n !== 1 ? 'es' : ''}`;
+    if (vacio) vacio.hidden = n > 0;
+    cont.querySelectorAll('[data-u-servicio], [data-u-municipio]').forEach(b => {
+      const activo = b.dataset.uServicio  ? estado.servicio  === b.dataset.uServicio
+                                          : estado.municipio === b.dataset.uMunicipio;
+      b.classList.toggle('active', activo);
+      b.setAttribute('aria-pressed', String(activo));
+    });
+  }
+
+  cont.querySelectorAll('[data-u-servicio], [data-u-municipio]').forEach(b => {
+    b.addEventListener('click', () => {
+      const clave = b.dataset.uServicio ? 'servicio' : 'municipio';
+      const valor = b.dataset.uServicio || b.dataset.uMunicipio;
+      estado[clave] = estado[clave] === valor ? '' : valor;   // repulsar = quitar
+      aplicar();
+    });
+  });
+  cont.querySelector('.u-clear')?.addEventListener('click', () => {
+    estado.servicio = estado.municipio = '';
+    aplicar();
+  });
+
+  aplicar();
 }
 
 // ══════════════════════════════════════════════
@@ -1292,6 +1648,9 @@ renderRecursos();
 
 // Directorio (directorio.html)
 renderDirectorio();
+
+// Mapa operativo de unidades (directorio.html#mapa)
+renderUnidades();
 
 // Bloque de evidencias (mismo flujo en las 5 páginas que lo repetían)
 renderEvidencias();

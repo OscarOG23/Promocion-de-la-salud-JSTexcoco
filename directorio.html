@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=20260828a">
 </head>
 <body>
 
@@ -43,6 +43,7 @@
       <div class="container">
         <nav class="inline-nav" aria-label="Secciones del Directorio">
           <a href="#jurisdiccion"  class="inav-link">Departamento</a>
+          <a href="#mapa"          class="inav-link">Mapa operativo</a>
           <a href="#psicologia"    class="inav-link">Psicología</a>
           <a href="#nutricion"     class="inav-link">Nutrición</a>
           <a href="#referencia"    class="inav-link">Referencia Externa</a>
@@ -92,6 +93,27 @@
       </div>
     </section>
 
+    <!-- MAPA OPERATIVO -->
+    <section class="section-block alt" id="mapa">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag teal">Cobertura</div>
+          <h2>Mapa operativo<br>de unidades</h2>
+          <p>Todas las unidades de la Jurisdicción con los servicios que ofrece cada una. Filtra por servicio o por municipio; cada ficha abre su ubicación en Google Maps y calcula la ruta.</p>
+        </div>
+
+        <!-- Se rellena solo desde UNIDADES (assets/data/directorio.js).
+             Los botones de filtro salen de los datos: si una unidad
+             estrena un servicio, su filtro aparece sin tocar el HTML. -->
+        <div data-unidades></div>
+
+        <p style="margin-top:1.5rem; font-size:.9rem; color:var(--gray-500)">
+          Para añadir una unidad o cargar sus coordenadas edita <code>assets/data/directorio.js</code>
+          (lista <code>UNIDADES</code>). Las instrucciones están en el propio archivo.
+        </p>
+      </div>
+    </section>
+
     <!-- PSICOLOGÍA -->
     <section class="section-block alt" id="psicologia">
       <div class="container">
@@ -104,7 +126,7 @@
         <div class="directory-grid" data-dir="psicologia"></div>
 
         <p style="margin-top:1.5rem; font-size:.9rem; color:var(--gray-500)">
-          Para actualizar horarios o añadir unidades edita <code>assets/data/directorio.js</code>.
+          Para actualizar horarios o añadir unidades edita la lista <code>UNIDADES</code> de <code>assets/data/directorio.js</code>.
           ¿Falta una unidad? <a href="index.html#contacto" style="color:var(--purple)">Notifícanos →</a>
         </p>
       </div>
@@ -207,9 +229,9 @@
 
   <div id="site-footer"></div>
 
-  <script src="assets/data/directorio.js"></script>
-  <script src="assets/data/recursos.js"></script>
-  <script src="components.js"></script>
-  <script src="script.js"></script>
+  <script src="assets/data/directorio.js?v=20260828a"></script>
+  <script src="assets/data/recursos.js?v=20260828a"></script>
+  <script src="components.js?v=20260828a"></script>
+  <script src="script.js?v=20260828a"></script>
 </body>
 </html>

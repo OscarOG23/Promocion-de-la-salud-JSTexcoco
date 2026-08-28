@@ -70,6 +70,15 @@
 
 /* ── Reset ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* `hidden` DEBE ganar siempre.
+   La regla del navegador es `[hidden] { display: none }`, pero cualquier
+   `display` nuestro la vence por venir de la hoja del autor. Con
+   `.material-card { display: flex }` el filtro ponía card.hidden = true
+   y la tarjeta seguía ocupando su celda: el texto desaparecía (opacity 0)
+   y el hueco se quedaba. De ahí el mar de espacio en blanco al filtrar. */
+[hidden] { display: none !important; }
+
 html { scroll-behavior: smooth; }
 body {
   font-family: var(--font-body);
@@ -1471,9 +1480,9 @@ main[tabindex="-1"]:focus { outline: none; }
   flex-direction: column;
   gap: 12px;
 }
-.material-card.hidden {
-  display: none;
-}
+/* (Aquí vivía `.material-card.hidden`, una regla muerta: el filtro nunca
+   pone esa clase, usa el atributo `hidden`. Parecía cubrir el caso y por
+   eso el hueco al filtrar tardó en verse.) */
 .material-card:hover { box-shadow: 0 2px 8px rgba(30,27,24,.06), 0 18px 44px rgba(30,27,24,.13); transform: translateY(-3px); }
 
 
@@ -1548,6 +1557,59 @@ main[tabindex="-1"]:focus { outline: none; }
   color: var(--white);
   transform: translateY(-1px);
 }
+
+/* ── Fichas con varios materiales ──
+   Una ficha ya no lleva «un archivo y quizá su carpeta»: lleva los que
+   tenga. Los botones fluyen y bajan de línea; a partir del cuarto se
+   pliegan solos, así una ficha con diez materiales no aplasta a las
+   demás de la rejilla. */
+.mc-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.mc-num {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.mc-files {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: flex-start;
+  margin-top: auto;   /* los botones al pie: tarjetas de la misma altura */
+}
+.mc-files .mc-files { margin-top: 10px; width: 100%; }
+
+.mc-mas { width: 100%; }
+.mc-mas > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  list-style: none;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text-muted);
+  padding: 6px 2px;
+  border-radius: var(--radius);
+}
+.mc-mas > summary::-webkit-details-marker { display: none; }
+.mc-mas > summary::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.mc-mas[open] > summary::before { transform: rotate(-135deg); }
+.mc-mas > summary:hover { color: var(--crimson); }
 
 /* ================================================
    DETERMINANTE CARDS (Promoción)
@@ -2867,6 +2929,158 @@ html { scroll-behavior: smooth; }
   opacity: 0;
   transform: translateY(8px) scale(.985);
   pointer-events: none;
+}
+
+/* ================================================
+   MAPA OPERATIVO DE UNIDADES
+   ================================================
+   Una unidad, una ficha, con las píldoras de los servicios que ofrece.
+   La «diferenciación de servicios» es de color: cada servicio lleva el
+   suyo desde el catálogo SERVICIOS de directorio.js. */
+
+.mapa-barra {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: 20px 22px 14px;
+  margin-bottom: 24px;
+}
+.mapa-grid { margin-top: 4px; }
+
+.mapa-aviso {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--gray-200);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+.mapa-aviso svg { flex: none; margin-top: 2px; }
+.mapa-aviso code {
+  font-size: 12.5px;
+  background: var(--gray-100);
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+
+.unidad-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.uc-servicios {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.uc-serv {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .04em;
+  padding: 3px 9px;
+  border-radius: 99px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+.uc-serv--crimson  { background: var(--crimson-lt);       color: var(--crimson-dk); }
+.uc-serv--teal     { background: var(--teal-lt);          color: var(--teal-dk); }
+.uc-serv--purple   { background: var(--purple-lt);        color: var(--purple); }
+.uc-serv--gold     { background: var(--gold-lt);          color: var(--gold-txt); }
+.uc-serv--charcoal { background: var(--gray-100);         color: var(--gray-600); }
+/* Al filtrar por un servicio, su píldora se marca: se ve de un vistazo
+   por qué esa unidad salió en la lista. */
+.uc-serv.is-destacado {
+  border-color: currentColor;
+  font-weight: 600;
+}
+
+.uc-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 4px;
+}
+.uc-sin-mapa {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: auto;
+  padding-top: 4px;
+  font-size: 12.5px;
+  color: var(--gray-400);
+  font-style: italic;
+}
+
+@media (max-width: 900px) { .mapa-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 580px) { .mapa-grid { grid-template-columns: 1fr; } }
+
+/* ================================================
+   GRUPOS PLEGABLES POR SUBTEMA
+   ================================================
+   El catálogo de talleres son 9 determinantes → 24 subtemas → 68
+   talleres. Volcados de corrido no se lee la estructura, así que cada
+   subtema es un `<details>`: plegado, teclado y estado accesible los
+   pone el navegador. Al filtrar, el grupo vacío se retira entero. */
+
+/* La rejilla agrupada deja de ser rejilla: sus hijos son los grupos,
+   y cada grupo lleva la suya dentro. */
+.material-grid[data-agrupar] { display: block; }
+
+.rec-group {
+  border-top: 1px solid var(--gray-200);
+  padding: 4px 0 22px;
+}
+.rec-group:first-of-type { border-top: none; }
+
+.rg-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  list-style: none;
+  padding: 16px 2px;
+  border-radius: var(--radius);
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 400;
+  color: var(--teal-dk);
+}
+.rg-head::-webkit-details-marker { display: none; }
+.rg-head:hover .rg-nombre { color: var(--crimson); }
+.rg-nombre { flex: 1; transition: color var(--dur-fast); }
+
+.rg-flecha {
+  width: 8px; height: 8px;
+  flex: none;
+  border-right: 2px solid var(--gold-dk);
+  border-bottom: 2px solid var(--gold-dk);
+  transform: rotate(-45deg);
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.rec-group[open] > .rg-head .rg-flecha { transform: rotate(45deg); }
+
+.rg-count {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: var(--gray-100);
+  border-radius: 99px;
+  padding: 2px 9px;
+  font-variant-numeric: tabular-nums;
+}
+
+.rg-body {
+  padding-top: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rg-flecha, .mc-mas > summary::before { transition: none; }
 }
 
 /* ── Conteo en los encabezados de grupo (entornos, reportes) ── */

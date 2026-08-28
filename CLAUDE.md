@@ -98,6 +98,9 @@ document.querySelectorAll('[data-page]').forEach(a => {
 | `.nav-cards-grid` / `.nav-card` | 8 tarjetas de navegación principal | `index.html` |
 | `.filter-bar-wrap` / `.filter-search` / `.filter-btn[data-faceta]` | Búsqueda + filtros facetados | `biblioteca.html`, `promocion.html` |
 | `.material-card` | Tarjeta de recurso (la genera `renderRecursos`) | biblioteca, promocion, entornos, reportes, recursos-psicologia |
+| `.rec-group` / `.rg-head` / `.rg-count` | Grupo plegable por subtema (`<details>`) | `promocion.html#talleres` |
+| `.mc-files` / `.mc-mas` / `.mc-num` | Botonera de N materiales por ficha, con pliegue «+N» | Toda ficha con `materiales` |
+| `.unidad-card` / `.uc-serv` / `.mapa-barra` | Ficha de unidad con píldoras de servicio y enlaces a Maps | `directorio.html#mapa` |
 | `.subsec-group` / `.section-crosslink` / `.grid-more` | Agrupador, enlace cruzado y «ver todos» | `entornos.html`, `reportes.html` |
 | `.det-grid` / `.det-card` | Cards de determinantes sociales | `promocion.html` |
 | `.subsec-grid` / `.subsec-card` | Cards de subsección genérica | Todas las páginas |
@@ -154,8 +157,12 @@ document.querySelectorAll('[data-page]').forEach(a => {
 25. **Skip link + `:focus-visible`** — «Saltar al contenido» y anillo de foco global
 26. **`initBuscadorGlobal()`** — buscador en el navbar sobre el índice completo, en las 9 páginas. `<dialog>` nativo (foco atrapado y Escape sin código propio), atajo `Ctrl/⌘ K` y `/`, resultados agrupados por programa (tope de 5 + «ver los N»), flechas para recorrer, sugerencias con el campo vacío
 27. **`renderEvidencias()`** — el flujo de evidencias (3 pasos) en `[data-evidencias="<programa>"]`. Estaba escrito 5 veces con destinos contradictorios; ahora **todas las páginas envían al mismo sitio**: `reportes.html#formularios`
-28. **`renderDirectorio()` con `data-dir-tema` y `data-dir-formato="compacto"`** — los 6 servicios externos de referencia salen de `directorio.js`; salud-mental muestra solo los de crisis sin repetir los teléfonos
+
+28. **`renderDirectorio()` con `data-dir-tema` y `data-dir-formato="compacto"`** — los 6 servicios externos de referencia salen de `DIRECTORIO`; salud-mental muestra solo los de crisis sin repetir los teléfonos. `data-dir="psicologia"` y `data-dir="nutricion"` ya no son un tipo de ficha sino un **servicio**, y salen de `UNIDADES`
 29. **`normaliza()` + `coincideTexto()`** — búsqueda sin acentos y multi-palabra: «cedula escuela» encuentra «Cédula … Escolar». La usan el buscador global y los filtros de página
+30. **Grupos plegables por subtema** — `data-agrupar="subtema"` en una rejilla `[data-recursos]` reparte el resultado en `<details>`, uno por subtema, en el orden del índice. El catálogo de talleres son 9 determinantes → **24 subtemas** → **68 talleres**. Al filtrar, el grupo que se queda sin resultados **se retira entero** y el que sí tiene se abre solo aunque estuviera plegado
+31. **`materiales: [...]`** — una ficha admite **cualquier número** de archivos (presentación, guion, audio, infografía, fuentes…). Los 3 primeros se ven; el resto se pliega tras «+N materiales». Un material sin `url` se pinta «en elaboración», sin enlace. `url`/`accion`/`complementos` siguen funcionando
+32. **`renderUnidades()`** — el mapa operativo de `directorio.html#mapa`: una ficha por unidad, píldoras de color por servicio y enlaces «Ver en el mapa» / «Cómo llegar» armados con `lat`/`lng`. Los botones de filtro (servicio y municipio) **se generan desde los datos**: no hay lista que mantener en el HTML
 
 ### Conexiones clave (mapa de navegación)
 
@@ -228,6 +235,29 @@ Valores válidos para `icono`: `"image"`, `"slides"`, `"video"`, `"doc"`, `"link
 | `pendiente` | Se renderiza apagado y **sin `<a>`**: «Próximamente». Usar en vez de `url: "#"` |
 | `rehospedar` | Funciona, pero el archivo vive en la cuenta Wix. Marca interna, no se muestra |
 
+### Un recurso con varios archivos
+
+Cuando un tema trae paquete completo, en vez de `url` + `complementos` se usa
+`materiales`, que **no tiene tope**:
+
+```js
+materiales: [
+  { tipo: 'Presentación',  icono: 'presentacion', url: 'talleres/C02-02.html' },
+  { tipo: 'Guion',         icono: 'documento', url: GD.doc('1AbC…') },
+  { tipo: 'Audio resumen', icono: 'audio',     url: GD.archivo('1DeF…') },
+  { tipo: 'Infografía',    icono: 'imagen',    url: GD.archivo('1GhI…') },
+  { tipo: 'Fuentes',       icono: 'carpeta',   url: GD.carpeta('1JkL…') },
+  { tipo: 'Cuaderno',      icono: 'documento' },   // sin url = «en elaboración»
+]
+```
+
+El primero es el botón principal; a partir del cuarto se pliegan tras
+«+N materiales». `icono`: `presentacion` · `documento` · `hoja` · `video` ·
+`audio` · `imagen` · `carpeta` · `mapa` · `formulario` · `enlace` · `descarga`.
+
+`GD` son atajos de Drive definidos al principio de `recursos.js`: se pega
+**solo el ID** del archivo, no la URL entera.
+
 **No usar nunca `href="#"` en el HTML.** Para una tarjeta cuyo material aún no
 existe, va `<span class="subsec-link is-pending">Próximamente</span>`; en la tabla
 de reportes, `<span class="rr-link is-pending">`. El sitio tiene 0 enlaces muertos
@@ -258,7 +288,12 @@ El parámetro anterior `?cat=` se sigue aceptando (se traduce a `tipo` o a `tema
 para que no se rompan los enlaces que el personal ya tenga guardados o impresos.
 
 **KPIs:** editar `assets/data/kpis.js` (arrays `index` y `reportes` — un solo lugar para ambas páginas).
-**Directorio:** editar `assets/data/directorio.js` (`tipo: "psicologia" | "nutricion" | "referencia"`).
+**Directorio:** editar `assets/data/directorio.js`, que ahora tiene **dos listas**:
+
+- `UNIDADES` — las unidades de salud. **Una entrada por unidad**, con `servicios: []` (claves del catálogo `SERVICIOS`), `municipio`, `direccion` y `lat`/`lng`. De aquí salen el mapa operativo y las rejillas de psicología y nutrición. Antes «C.S. Texcoco» estaba escrito dos veces —una por servicio— y había que corregir el horario en los dos sitios.
+- `DIRECTORIO` — solo los servicios **externos** de referencia (`tipo: "referencia"`), con `tema` (`crisis` | `adicciones` | `violencia`) y `telefono` (solo dígitos).
+
+`lat`/`lng` son números en grados decimales **con el signo**: aquí la longitud es negativa (~-98.9). Sin coordenadas la ficha dice «Ubicación por cargar» y no rompe nada, así que se pueden ir cargando poco a poco. Un servicio nuevo se añade con una línea en `SERVICIOS` y su filtro aparece solo.
 Los de tipo `referencia` son servicios externos y llevan `tema` (`crisis` | `adicciones` | `violencia`) y, si aplica, `telefono` (solo dígitos, para el enlace `tel:`).
 
 ## Bloques repetidos: usar el componente, no copiar HTML
@@ -316,9 +351,29 @@ la palabra. No hay que componentizarlos: basta con enlazarlos entre sí.
   ```
 - **Contact form:** Conectar `handleForm()` a Formspree (`https://formspree.io/f/XXXX`).
 - **Datos reales:** Números placeholder en `kpis.js` y unidades/horarios en `directorio.js`.
-- **URLs de talleres (Canva):** Las URLs del catálogo de talleres usan el patrón `https://www.canva.com/design/ID/view`. Verificar que el token de compartir esté activo (modo "Cualquier persona con el enlace puede ver") antes de publicar.
-- **28 recursos en `estado: 'pendiente'`** en `recursos.js`: sustituir `url` y poner `estado: 'ok'` conforme lleguen los enlaces.
+- **Coordenadas de las unidades:** `UNIDADES` en `assets/data/directorio.js` tiene `lat: null, lng: null` en las 5 entradas. Al pegarlas aparecen solos los botones de mapa y ruta. (En Google Maps: clic derecho sobre el punto → la primera línea del menú son las dos cifras, y al pulsarla se copian.)
+- **Recursos en `estado: 'pendiente'`** en `recursos.js`: sustituir `url` y poner `estado: 'ok'` conforme lleguen los enlaces.
+- **Paquetes de NotebookLM:** conforme se suban a Drive, pasar la ficha a `materiales: [...]` usando los atajos `GD.doc(id)` / `GD.archivo(id)` / `GD.carpeta(id)` del principio de `recursos.js`. Cada archivo debe quedar compartido como «Cualquier persona con el enlace · Lector».
 - **17 recursos en `estado: 'rehospedar'`**: alojados en la cuenta Wix (`*.filesusr.com`); re-alojar en Drive antes del despliegue definitivo.
+
+## Versionado de assets (cache busting)
+
+`style.css`, `script.js`, `components.js` y `assets/data/*.js` se enlazan con
+`?v=FECHA` en las 9 páginas, y la misma cadena está en `PS_VERSION`, al
+principio de `script.js`.
+
+**Al tocar cualquiera de esos archivos hay que subir la versión en los dos
+sitios.** Si no, el navegador (y la caché de GitHub Pages) siguen sirviendo la
+copia vieja y parece que el cambio «no se aplicó» aunque el archivo ya esté
+corregido — un rato perdido buscando un fallo que no existe.
+
+```powershell
+# Comprobar qué versión se está viendo: consola del navegador (F12)
+PS_VERSION
+```
+
+Si lo que se ve no coincide con `PS_VERSION` del archivo, es caché: recargar
+con Ctrl+Shift+R.
 
 ## Deployment
 

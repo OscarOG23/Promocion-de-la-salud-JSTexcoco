@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=20260828a">
 </head>
 <body>
 
@@ -214,7 +214,7 @@
         <div class="section-header">
           <div class="section-tag crimson">Recursos para el personal</div>
           <h2>Catálogo de Talleres<br>Comunitarios</h2>
-          <p>Presentaciones listas para impartir, organizadas por los temas de los determinantes. Filtra por categoría.</p>
+          <p>Presentaciones listas para impartir. 68 talleres agrupados en los 24 subtemas del catálogo, dentro de los 9 determinantes. Filtra por determinante o pliega los grupos que no necesites.</p>
         </div>
 
         <div class="filter-bar-wrap">
@@ -244,7 +244,10 @@
         </div>
 
         <div class="filter-heading" hidden></div>
-        <div class="material-grid" data-recursos data-tipo="taller"><!-- JS rellena --></div>
+        <!-- data-agrupar: 24 subtemas plegables, en orden de catálogo.
+             Los grupos vacíos se retiran solos al filtrar. -->
+        <div class="material-grid" data-recursos data-tipo="taller"
+             data-agrupar="subtema"><!-- JS rellena --></div>
         <p class="filter-empty empty-state" hidden>
           Ningún taller coincide con esa búsqueda.
           <button type="button" class="filter-clear">Ver todo el catálogo</button>
@@ -473,9 +476,9 @@
 
   <div id="site-footer"></div>
 
-  <script src="assets/data/campaigns.js"></script>
-  <script src="assets/data/recursos.js"></script>
-  <script src="components.js"></script>
-  <script src="script.js"></script>
+  <script src="assets/data/campaigns.js?v=20260828a"></script>
+  <script src="assets/data/recursos.js?v=20260828a"></script>
+  <script src="components.js?v=20260828a"></script>
+  <script src="script.js?v=20260828a"></script>
 </body>
 </html>
