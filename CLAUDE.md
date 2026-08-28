@@ -291,7 +291,7 @@ para que no se rompan los enlaces que el personal ya tenga guardados o impresos.
 **KPIs:** editar `assets/data/kpis.js` (arrays `index` y `reportes` — un solo lugar para ambas páginas).
 **Directorio:** editar `assets/data/directorio.js`, que ahora tiene **dos listas**:
 
-- `UNIDADES` — las unidades de salud. **Una entrada por unidad**, con `servicios: []` (claves del catálogo `SERVICIOS`), `municipio`, `direccion` y `lat`/`lng`. De aquí salen el mapa operativo y las rejillas de psicología y nutrición. Antes «C.S. Texcoco» estaba escrito dos veces —una por servicio— y había que corregir el horario en los dos sitios.
+- `UNIDADES` — las **76 unidades de salud** de la Jurisdicción, no las coordinaciones: la coordinación es estructura administrativa, y quien busca atención busca la unidad. Cada una con su `clues` de IMSS Bienestar (MCIMB…), su `cluesSSA` (MCSSA…), `tipologia`, `municipio`, `servicios: []` y `lat`/`lng`. De aquí salen el mapa operativo y las rejillas por servicio.
 - `DIRECTORIO` — solo los servicios **externos** de referencia (`tipo: "referencia"`), con `tema` (`crisis` | `adicciones` | `violencia`) y `telefono` (solo dígitos).
 
 `lat`/`lng` son números en grados decimales **con el signo**: aquí la longitud es negativa (~-98.9). Sin coordenadas la ficha dice «Ubicación por cargar» y no rompe nada, así que se pueden ir cargando poco a poco. Un servicio nuevo se añade con una línea en `SERVICIOS` y su filtro aparece solo.
@@ -352,7 +352,9 @@ la palabra. No hay que componentizarlos: basta con enlazarlos entre sí.
   ```
 - **Contact form:** Conectar `handleForm()` a Formspree (`https://formspree.io/f/XXXX`).
 - **Datos reales:** Números placeholder en `kpis.js` y unidades/horarios en `directorio.js`.
-- **8 unidades sin coordenada validada:** en `UNIDADES` van con `lat: null` y su comentario, porque en `DIRECTORIO_con_maps_y_coordenadas.xlsx` están marcadas PENDIENTE o con discrepancia. En la web abren una búsqueda en Maps y lo dicen. Al confirmarlas, pegar lat/lng y quitar el comentario.
+- **61 de las 76 unidades sin coordenada:** la hoja `UBICACION MAPS` se hizo por *coordinación*, no por unidad, así que solo 15 unidades heredan un punto. Las demás abren una búsqueda en Maps por nombre y municipio. Para capturarlas está `~/Downloads/CAPTURA_coordenadas_unidades.xlsx`, con una fila por unidad y el enlace ya armado.
+- **Geocodificar automáticamente NO funciona aquí:** se probó con Nominatim/OpenStreetMap y devolvió 0 resultados en 2 de 3 casos, y en el tercero **el centro de salud equivocado** con coordenadas distintas a las del directorio. Un pin plausible pero falso en una unidad médica es peor que ninguno.
+- **(histórico) 8 unidades sin coordenada validada:** en `UNIDADES` van con `lat: null` y su comentario, porque en `DIRECTORIO_con_maps_y_coordenadas.xlsx` están marcadas PENDIENTE o con discrepancia. En la web abren una búsqueda en Maps y lo dicen. Al confirmarlas, pegar lat/lng y quitar el comentario.
 - **Servicios por unidad:** `servicios` solo trae lo que el nombre acredita (CISAME/CECOSAMA → psicología; CEAPS y C.S.U. → medicina general; coordinaciones → promoción). **Nutrición está vacía en las 26**: el directorio de origen no dice qué unidad tiene nutriólogo. Hasta declararlo, esa rejilla de `directorio.html` explica qué falta en vez de mostrarse rota.
 - **Nombres del personal:** la hoja `COORDINACION` trae coordinador, administrador y enfermera por unidad. **No se publican**: el sitio es público. Si algún día se quiere un directorio con nombres, tendría que vivir detrás de acceso restringido.
 - **Recursos en `estado: 'pendiente'`** en `recursos.js`: sustituir `url` y poner `estado: 'ok'` conforme lleguen los enlaces.

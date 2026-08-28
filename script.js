@@ -1497,9 +1497,12 @@ function unidadCard(u, { servicio = '' } = {}) {
           <div class="dc-icon dc-${esc(u.tipo || 'centro-salud')}">${ICON_PIN}</div>
           <div>
             <h3 class="dc-name">${esc(u.nombre || '')}</h3>
-            <span class="dc-zone">${esc(u.municipio || u.zona || '')}</span>
+            <span class="dc-zone">${esc(u.municipio || u.zona || '')}${
+              u.tipologia ? ` · ${esc(u.tipologia)}` : ''}</span>
           </div>
         </div>
+        ${u.clues ? `<p class="uc-clues"><abbr title="Clave Única de Establecimientos de Salud — IMSS Bienestar">CLUES</abbr>
+           <code>${esc(u.clues)}</code>${u.cluesSSA ? ` · <span class="uc-clues-ssa">SSA <code>${esc(u.cluesSSA)}</code></span>` : ''}</p>` : ''}
         <div class="uc-servicios">${pildorasServicio(u, servicio)}</div>
         <div class="dc-details">
           ${u.direccion ? `<div class="dc-row">${ICON_PIN}<span>${esc(u.direccion)}</span></div>` : ''}
@@ -1565,8 +1568,8 @@ function renderUnidades() {
       </p>
       ${conCoordenada < UNIDADES.length
         ? `<p class="mapa-aviso">${ICON_PIN} ${conCoordenada} de ${UNIDADES.length} unidades tienen coordenada exacta.
-             Las ${UNIDADES.length - conCoordenada} restantes abren una búsqueda en Maps por nombre y dirección,
-             porque en el directorio están marcadas como pendientes de validar.</p>`
+             Las ${UNIDADES.length - conCoordenada} restantes abren una búsqueda en Maps por nombre y municipio:
+             todavía no se les ha capturado el punto.</p>`
         : ''}
     </div>
     <div class="directory-grid mapa-grid">${UNIDADES.map(u => unidadCard(u)).join('')}</div>

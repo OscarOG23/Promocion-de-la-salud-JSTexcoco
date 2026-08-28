@@ -3061,6 +3061,26 @@ html { scroll-behavior: smooth; }
   gap: 12px;
 }
 
+.uc-clues {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  letter-spacing: .02em;
+}
+.uc-clues abbr {
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px dotted var(--gray-400);
+  cursor: help;
+}
+.uc-clues code {
+  font-size: 11.5px;
+  background: var(--gray-100);
+  border-radius: 4px;
+  padding: 1px 5px;
+  letter-spacing: .04em;
+}
+.uc-clues-ssa { color: var(--gray-400); }
+
 .uc-servicios {
   display: flex;
   flex-wrap: wrap;
