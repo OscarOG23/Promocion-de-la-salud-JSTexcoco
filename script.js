@@ -1389,7 +1389,9 @@ function renderNotebooks() {
         <article class="nb-card${activo ? '' : ' is-pending'}">
           <h3 class="nb-title">${esc(n.titulo)}</h3>
           ${n.descripcion ? `<p class="nb-desc">${esc(n.descripcion)}</p>` : ''}
-          ${n.actualizado ? `<p class="nb-meta">Fuentes actualizadas: ${esc(n.actualizado)}</p>` : ''}
+          ${n.fuentes || n.actualizado ? `<p class="nb-meta">${
+              [n.fuentes ? `${n.fuentes} fuente${n.fuentes !== 1 ? 's' : ''}` : '',
+               n.actualizado].filter(Boolean).map(esc).join(' · ')}</p>` : ''}
           ${activo
             ? `<a href="${esc(n.url)}" class="mc-btn" target="_blank" rel="noopener noreferrer"
                   aria-label="Abrir el asistente de ${esc(n.titulo)}">${ICON_CHAT} Preguntar</a>`

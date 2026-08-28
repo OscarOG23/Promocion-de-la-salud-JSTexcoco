@@ -160,7 +160,7 @@ document.querySelectorAll('[data-page]').forEach(a => {
 
 28. **`renderDirectorio()` con `data-dir-tema` y `data-dir-formato="compacto"`** — los 6 servicios externos de referencia salen de `DIRECTORIO`; salud-mental muestra solo los de crisis sin repetir los teléfonos. `data-dir="psicologia"` y `data-dir="nutricion"` ya no son un tipo de ficha sino un **servicio**, y salen de `UNIDADES`
 29. **`normaliza()` + `coincideTexto()`** — búsqueda sin acentos y multi-palabra: «cedula escuela» encuentra «Cédula … Escolar». La usan el buscador global y los filtros de página
-30. **Grupos plegables por subtema** — `data-agrupar="subtema"` en una rejilla `[data-recursos]` reparte el resultado en `<details>`, uno por subtema, en el orden del índice. El catálogo de talleres son 9 determinantes → **24 subtemas** → **68 talleres**. Al filtrar, el grupo que se queda sin resultados **se retira entero** y el que sí tiene se abre solo aunque estuviera plegado
+30. **Grupos plegables por subtema** — `data-agrupar="subtema"` en una rejilla `[data-recursos]` reparte el resultado en `<details>`, uno por subtema, en el orden del índice. El catálogo son 9 determinantes → **24 subtemas** → **77 fichas** (68 talleres + 9 presentaciones de subtema). Al filtrar, el grupo que se queda sin resultados **se retira entero** y el que sí tiene se abre solo aunque estuviera plegado
 31. **`materiales: [...]`** — una ficha admite **cualquier número** de archivos (presentación, guion, audio, infografía, fuentes…). Los 3 primeros se ven; el resto se pliega tras «+N materiales». Un material sin `url` se pinta «en elaboración», sin enlace. `url`/`accion`/`complementos` siguen funcionando
 32. **`renderUnidades()`** — el mapa operativo de `directorio.html#mapa`: una ficha por unidad, píldoras de color por servicio y enlaces «Ver en el mapa» / «Cómo llegar» armados con `lat`/`lng`. Los botones de filtro (servicio y municipio) **se generan desde los datos**: no hay lista que mantener en el HTML
 33. **`renderNotebooks()`** — un cuaderno de NotebookLM por determinante, desde `assets/data/notebooks.js`. Rellena la sección `promocion.html#asistente` y el enlace «Preguntar» de cada det-card (`data-notebook="<tema>"`). Sin enlace publicado la tarjeta sale apagada: **nunca se promete un asistente que no existe**
@@ -359,7 +359,7 @@ la palabra. No hay que componentizarlos: basta con enlazarlos entre sí.
 
 ## Asistentes de NotebookLM
 
-Cada determinante tiene su cuaderno. Los enlaces viven en
+Cada determinante tiene su cuaderno (167 fuentes entre los 9). Los enlaces viven en
 `assets/data/notebooks.js`, con la **misma clave** que el `tema` del
 determinante en `recursos.js`, para que la det-card encuentre el suyo sola.
 
@@ -371,7 +371,8 @@ alimentacion: { titulo: 'Alimentación', descripcion: '…',
 
 **El cuaderno debe estar compartido como «Cualquier persona con el enlace ·
 Lector».** Sin ese paso el personal ve «No tienes acceso» y el enlace no sirve
-de nada. Con `estado: 'pendiente'` la tarjeta sale apagada y sin enlace.
+de nada. Compartirlo con correos concretos NO basta: hoy 7 de los 9 están así
+y por eso salen apagados. Con `estado: 'pendiente'` la tarjeta sale apagada y sin enlace.
 
 ## Versionado de assets (cache busting)
 
