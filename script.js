@@ -1294,9 +1294,15 @@ function renderDirectorio() {
     // «C.S. Texcoco» se escribe una vez aunque tenga los dos servicios.
     if (typeof SERVICIOS !== 'undefined' && SERVICIOS[tipo]) {
       const conServicio = unidades.filter(u => (u.servicios || []).includes(tipo));
+      // El directorio de origen no dice qué servicios da cada unidad, así
+      // que el vacío aquí no es un fallo: es un dato que falta declarar.
+      // Decirlo con nombre y apellido es más útil que «sin unidades».
       grid.innerHTML = conServicio.length
         ? conServicio.map(u => unidadCard(u, { servicio: tipo })).join('')
-        : '<p class="empty-state">Sin unidades registradas por el momento.</p>';
+        : `<p class="empty-state">Todavía ninguna unidad tiene declarado el servicio de
+             <strong>${esc(SERVICIOS[tipo].etiqueta.toLowerCase())}</strong>.
+             Se añade poniendo <code>'${esc(tipo)}'</code> en el campo <code>servicios</code>
+             de esa unidad, en <code>assets/data/directorio.js</code>.</p>`;
       return;
     }
 
@@ -1414,6 +1420,21 @@ const ICON_RUTA  = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" 
 const ICON_TEL   = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.3 19.79 19.79 0 01.22 2.62 2 2 0 012.2.5H5.1a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.41a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>`;
 const ICON_USER_DIR = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>`;
 
+/**
+ * «5959531945» → «595 953 1945». El dato se guarda en dígitos porque
+ * el enlace `tel:` los necesita limpios; la persona lee otra cosa.
+ * Formato mexicano: 55/56/33/81 llevan lada de 2, el resto de 3.
+ */
+function telefonoLegible(d) {
+  const n = String(d || '').replace(/\D/g, '');
+  if (n.length === 10) {
+    return /^(55|56|33|81)/.test(n)
+      ? `${n.slice(0, 2)} ${n.slice(2, 6)} ${n.slice(6)}`
+      : `${n.slice(0, 3)} ${n.slice(3, 6)} ${n.slice(6)}`;
+  }
+  return n;
+}
+
 /** ¿Tiene la unidad un punto utilizable en el mapa? */
 const tieneUbicacion = u =>
   !!u.maps || (Number.isFinite(u.lat) && Number.isFinite(u.lng));
@@ -1453,13 +1474,18 @@ function pildorasServicio(u, destacado) {
  */
 function unidadCard(u, { servicio = '' } = {}) {
   const mapa = urlMapa(u), ruta = urlRuta(u);
+  // Sin coordenada propia, el enlace es una BÚSQUEDA en Maps, no un pin.
+  // Decirlo evita que alguien salga a una dirección que no está confirmada.
+  const exacta = Number.isFinite(u.lat) && Number.isFinite(u.lng);
   const ubicacion = tieneUbicacion(u)
     ? `<div class="uc-acciones">
-         <a href="${esc(mapa)}" class="mc-btn" target="_blank" rel="noopener noreferrer"
-            aria-label="Ver ${esc(u.nombre)} en el mapa">${ICON_PIN} Ver en el mapa</a>
-         ${ruta ? `<a href="${esc(ruta)}" class="mc-btn outline" target="_blank" rel="noopener noreferrer"
+         <a href="${esc(mapa)}" class="mc-btn${exacta ? '' : ' outline'}" target="_blank" rel="noopener noreferrer"
+            aria-label="${exacta ? 'Ver' : 'Buscar'} ${esc(u.nombre)} en el mapa">
+            ${ICON_PIN} ${exacta ? 'Ver en el mapa' : 'Buscar en Maps'}</a>
+         ${exacta && ruta ? `<a href="${esc(ruta)}" class="mc-btn outline" target="_blank" rel="noopener noreferrer"
             aria-label="Cómo llegar a ${esc(u.nombre)}">${ICON_RUTA} Cómo llegar</a>` : ''}
-       </div>`
+       </div>
+       ${!exacta ? `<p class="uc-aviso">Ubicación sin confirmar: el enlace busca por nombre y dirección.</p>` : ''}`
     : `<p class="uc-sin-mapa">${ICON_PIN} Ubicación por cargar</p>`;
 
   return `
@@ -1479,7 +1505,7 @@ function unidadCard(u, { servicio = '' } = {}) {
           ${u.direccion ? `<div class="dc-row">${ICON_PIN}<span>${esc(u.direccion)}</span></div>` : ''}
           <div class="dc-row">${ICON_CLOCK}<span>${esc(u.horario || 'Horario por confirmar')}</span></div>
           ${u.atencion ? `<div class="dc-row">${ICON_USER_DIR}<span>${esc(u.atencion)}</span></div>` : ''}
-          ${u.telefono ? `<div class="dc-row">${ICON_TEL}<a href="tel:${esc(u.telefono)}">${esc(u.telefono)}</a></div>` : ''}
+          ${u.telefono ? `<div class="dc-row">${ICON_TEL}<a href="tel:${esc(u.telefono)}">${esc(telefonoLegible(u.telefono))}</a></div>` : ''}
         </div>
         ${ubicacion}
       </article>`;
@@ -1508,7 +1534,8 @@ function renderUnidades() {
   const municipios = [...new Set(UNIDADES.map(u => u.municipio).filter(Boolean))]
     .sort((a, b) => a.localeCompare(b, 'es'));
 
-  const conUbicacion = UNIDADES.filter(tieneUbicacion).length;
+  // «Con coordenada» = pin exacto. Las demás solo tienen búsqueda por nombre.
+  const conCoordenada = UNIDADES.filter(u => Number.isFinite(u.lat) && Number.isFinite(u.lng)).length;
 
   cont.innerHTML = `
     <div class="mapa-barra">
@@ -1536,10 +1563,10 @@ function renderUnidades() {
         <span class="u-count" role="status">${UNIDADES.length} unidades</span>
         <button type="button" class="filter-clear u-clear">Quitar filtros</button>
       </p>
-      ${conUbicacion < UNIDADES.length
-        ? `<p class="mapa-aviso">${ICON_PIN} ${conUbicacion} de ${UNIDADES.length} unidades tienen coordenadas cargadas.
-             El resto aparece sin enlace al mapa hasta que se añadan en
-             <code>assets/data/directorio.js</code>.</p>`
+      ${conCoordenada < UNIDADES.length
+        ? `<p class="mapa-aviso">${ICON_PIN} ${conCoordenada} de ${UNIDADES.length} unidades tienen coordenada exacta.
+             Las ${UNIDADES.length - conCoordenada} restantes abren una búsqueda en Maps por nombre y dirección,
+             porque en el directorio están marcadas como pendientes de validar.</p>`
         : ''}
     </div>
     <div class="directory-grid mapa-grid">${UNIDADES.map(u => unidadCard(u)).join('')}</div>

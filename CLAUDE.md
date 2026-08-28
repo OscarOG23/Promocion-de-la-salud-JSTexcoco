@@ -352,7 +352,9 @@ la palabra. No hay que componentizarlos: basta con enlazarlos entre sí.
   ```
 - **Contact form:** Conectar `handleForm()` a Formspree (`https://formspree.io/f/XXXX`).
 - **Datos reales:** Números placeholder en `kpis.js` y unidades/horarios en `directorio.js`.
-- **Coordenadas de las unidades:** `UNIDADES` en `assets/data/directorio.js` tiene `lat: null, lng: null` en las 5 entradas. Al pegarlas aparecen solos los botones de mapa y ruta. (En Google Maps: clic derecho sobre el punto → la primera línea del menú son las dos cifras, y al pulsarla se copian.)
+- **8 unidades sin coordenada validada:** en `UNIDADES` van con `lat: null` y su comentario, porque en `DIRECTORIO_con_maps_y_coordenadas.xlsx` están marcadas PENDIENTE o con discrepancia. En la web abren una búsqueda en Maps y lo dicen. Al confirmarlas, pegar lat/lng y quitar el comentario.
+- **Servicios por unidad:** `servicios` solo trae lo que el nombre acredita (CISAME/CECOSAMA → psicología; CEAPS y C.S.U. → medicina general; coordinaciones → promoción). **Nutrición está vacía en las 26**: el directorio de origen no dice qué unidad tiene nutriólogo. Hasta declararlo, esa rejilla de `directorio.html` explica qué falta en vez de mostrarse rota.
+- **Nombres del personal:** la hoja `COORDINACION` trae coordinador, administrador y enfermera por unidad. **No se publican**: el sitio es público. Si algún día se quiere un directorio con nombres, tendría que vivir detrás de acceso restringido.
 - **Recursos en `estado: 'pendiente'`** en `recursos.js`: sustituir `url` y poner `estado: 'ok'` conforme lleguen los enlaces.
 - **Paquetes de NotebookLM:** conforme se suban a Drive, pasar la ficha a `materiales: [...]` usando los atajos `GD.doc(id)` / `GD.archivo(id)` / `GD.carpeta(id)` del principio de `recursos.js`. Cada archivo debe quedar compartido como «Cualquier persona con el enlace · Lector».
 - **17 recursos en `estado: 'rehospedar'`**: alojados en la cuenta Wix (`*.filesusr.com`); re-alojar en Drive antes del despliegue definitivo.

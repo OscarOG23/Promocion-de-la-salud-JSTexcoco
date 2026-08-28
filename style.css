@@ -3094,6 +3094,15 @@ html { scroll-behavior: smooth; }
   margin-top: auto;
   padding-top: 4px;
 }
+.uc-aviso {
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--gold-txt);
+  background: var(--gold-lt);
+  border-radius: var(--radius);
+  padding: 6px 10px;
+}
 .uc-sin-mapa {
   display: flex;
   align-items: center;

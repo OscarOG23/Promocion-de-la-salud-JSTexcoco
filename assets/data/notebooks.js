@@ -38,9 +38,7 @@ const NOTEBOOKS = {
     url: 'https://notebooklm.google.com/notebook/1eb68ba7-9443-47ae-99fb-c8b4070fdc35',
     fuentes: 14,
     actualizado: 'Ago 2026',
-    // ⚠ RESTRINGIDO: solo lo abren 4 correos.
-    //   Compartir → Cualquiera con el enlace, y poner estado: 'ok'.
-    estado: 'pendiente' },
+    estado: 'ok' },
 
   'salud-sexual': {
     titulo: 'Salud Sexual y Reproductiva',
@@ -56,9 +54,7 @@ const NOTEBOOKS = {
     url: 'https://notebooklm.google.com/notebook/846aa065-9780-495b-92ae-ca5bef1b1ddf',
     fuentes: 15,
     actualizado: 'Ago 2026',
-    // ⚠ RESTRINGIDO: solo lo abren 5 correos.
-    //   Compartir → Cualquiera con el enlace, y poner estado: 'ok'.
-    estado: 'pendiente' },
+    estado: 'ok' },
 
   'entornos-psicosociales': {
     titulo: 'Entornos Psicosociales Saludables',
@@ -66,9 +62,7 @@ const NOTEBOOKS = {
     url: 'https://notebooklm.google.com/notebook/73cf8e8e-08ee-4970-8a98-bde5553919f3',
     fuentes: 14,
     actualizado: 'Ago 2026',
-    // ⚠ RESTRINGIDO: solo lo abren 5 correos.
-    //   Compartir → Cualquiera con el enlace, y poner estado: 'ok'.
-    estado: 'pendiente' },
+    estado: 'ok' },
 
   infancia: {
     titulo: 'Crecimiento y Desarrollo Infantil',
@@ -76,9 +70,7 @@ const NOTEBOOKS = {
     url: 'https://notebooklm.google.com/notebook/582e0663-8a6e-4e25-a057-28d235f17e1d',
     fuentes: 15,
     actualizado: 'Ago 2026',
-    // ⚠ RESTRINGIDO: solo lo abren 4 correos.
-    //   Compartir → Cualquiera con el enlace, y poner estado: 'ok'.
-    estado: 'pendiente' },
+    estado: 'ok' },
 
   diversidad: {
     titulo: 'Diversidad, Equidad y Género',
@@ -86,9 +78,7 @@ const NOTEBOOKS = {
     url: 'https://notebooklm.google.com/notebook/630a33da-1877-465a-a100-17f98b962330',
     fuentes: 10,
     actualizado: 'Ago 2026',
-    // ⚠ RESTRINGIDO: solo lo abren 4 correos.
-    //   Compartir → Cualquiera con el enlace, y poner estado: 'ok'.
-    estado: 'pendiente' },
+    estado: 'ok' },
 
   'derecho-salud': {
     titulo: 'Derecho a la Salud',
@@ -96,9 +86,7 @@ const NOTEBOOKS = {
     url: 'https://notebooklm.google.com/notebook/2580bab3-b80f-40b7-97fb-bcee6bc439a8',
     fuentes: 15,
     actualizado: 'Ago 2026',
-    // ⚠ RESTRINGIDO: solo lo abren 4 correos.
-    //   Compartir → Cualquiera con el enlace, y poner estado: 'ok'.
-    estado: 'pendiente' },
+    estado: 'ok' },
 
   participacion: {
     titulo: 'Participación Social',
@@ -106,7 +94,5 @@ const NOTEBOOKS = {
     url: 'https://notebooklm.google.com/notebook/59e267a2-aa90-44a6-8e87-2cdf2b351f3a',
     fuentes: 9,
     actualizado: 'Ago 2026',
-    // ⚠ RESTRINGIDO: solo lo abren 4 correos.
-    //   Compartir → Cualquiera con el enlace, y poner estado: 'ok'.
-    estado: 'pendiente' },
+    estado: 'ok' },
 };
