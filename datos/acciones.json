@@ -1,0 +1,1075 @@
+{
+  "_meta": {
+    "fuente": "Acciones Integradas de Linea de Vida - Registro de seguimiento de las acciones. Secretaria de Salud. Formatos de registro vigentes desde 2019.",
+    "transcripcion": "Texto literal del formato, incluidas sus erratas de imprenta (adultos-mayores-60 numeral 7 «antineumococis»; embarazo-primera numeral 6 «y R)h»). No se corrigen para que numeral y texto coincidan con la hoja impresa.",
+    "vigencias": {
+      "manual": "Manual del Paquete Garantizado de Servicios de Salud de Promocion y Prevencion para una mejor salud, 2011",
+      "formatos": "Formatos de registro de seguimiento, 2019",
+      "lineamientos": "Lineamientos de operacion 2026, ISEM"
+    },
+    "criterioRegistro": {
+      "minimoAcciones": 5,
+      "nota": "Minimo 5 acciones por grupo etario para registrar atencion integral. En los grupos con requiereTodas se exigen todas. La productividad es de la unidad, no del personal. En el expediente se registra unicamente el numeral de la accion, sin abreviaturas (NOM-004-SSA3-2012)."
+    },
+    "pendienteValidacion": {
+      "campos": [
+        "determinante",
+        "promocion"
+      ],
+      "criterioAplicado": "determinante: se asigna solo cuando el texto de la accion nombra sin ambiguedad uno de los nueve determinantes; las acciones clinicas puras (baciloscopia, quimioprofilaxis, exploracion fisica, complementos nutricionales, laboratorio, somatometria) quedan en null y no se fuerzan. promocion: true cuando el verbo de la accion es orienta, informa, promueve, capacita, entrega o actualiza cartilla, o detecta y refiere violencia.",
+      "nota": "Ambos campos son criterio tecnico del Departamento. Los valores de este archivo son una propuesta legible y auditable, sujeta a firma antes de usarse para contar productividad de promocion."
+    }
+  },
+  "determinantes": {
+    "01": "Alimentación",
+    "02": "Actividad Física",
+    "03": "Salud Sexual y Reproductiva",
+    "04": "Entornos Físicos Saludables",
+    "05": "Entornos Psicosociales Saludables",
+    "06": "Crecimiento y Desarrollo Infantil",
+    "07": "Diversidad, Equidad y Género",
+    "08": "Derecho a la Salud",
+    "09": "Participación Social"
+  },
+  "grupos": [
+    {
+      "id": "recien-nacido",
+      "nombre": "Recién nacida/o menores de 1 mes",
+      "corto": "Recién nacida/o",
+      "etapa": "infancia",
+      "requiereTodas": true,
+      "acciones": [
+        {
+          "numeral": 1,
+          "texto": "Identifica signos de alarma",
+          "tema": "signos-alarma-recien-nacido",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 2,
+          "texto": "Verifica condiciones del parto",
+          "tema": "condiciones-parto",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 3,
+          "texto": "Efectúa exploración física completa",
+          "tema": "exploracion-fisica",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 4,
+          "texto": "Detecta defectos al nacimiento y en su caso refiere",
+          "tema": "defectos-nacimiento",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 5,
+          "texto": "Revisa cordón umbilical",
+          "tema": "cordon-umbilical",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 6,
+          "texto": "Realiza tamiz neonatal",
+          "tema": "tamiz-neonatal",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 7,
+          "texto": "Verifica aplicación de vitaminas K y A, comprueba profilaxis oftálmica",
+          "tema": "vitamina-k-profilaxis",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 8,
+          "texto": "Aplica vacuna BCG y primera de Hepatitis B",
+          "tema": "vacunacion",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 9,
+          "texto": "Capacita a los padres sobre alimentación al seno materno y estimulación temprana",
+          "tema": "lactancia-estimulacion",
+          "determinante": "06",
+          "promocion": true
+        },
+        {
+          "numeral": 10,
+          "texto": "Entrega y/o actualiza la Cartilla Nacional de Salud de niñas y niños de 0 a 9 años",
+          "tema": "cartilla",
+          "determinante": "08",
+          "promocion": true
+        },
+        {
+          "numeral": 11,
+          "texto": "Registra correctamente el servicio proporcionado en el Sistema de Información en Salud",
+          "tema": "registro-sis",
+          "determinante": null,
+          "promocion": false
+        }
+      ]
+    },
+    {
+      "id": "menores-5",
+      "nombre": "Menor de 5 años",
+      "corto": "Menor de 5",
+      "etapa": "infancia",
+      "requiereTodas": false,
+      "acciones": [
+        {
+          "numeral": 1,
+          "texto": "Identifica factores de mal pronóstico del entorno familiar",
+          "tema": "entorno-familiar",
+          "determinante": "05",
+          "promocion": true
+        },
+        {
+          "numeral": 2,
+          "texto": "Realiza exploración física completa",
+          "tema": "exploracion-fisica",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 3,
+          "texto": "Toma peso y estatura, anótalos en la Cartilla Nacional de Salud Niñas y niños de 0 a 9 años",
+          "tema": "somatometria",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 4,
+          "texto": "Evalúa el desarrollo psicomotor",
+          "tema": "desarrollo-psicomotor",
+          "determinante": "06",
+          "promocion": false
+        },
+        {
+          "numeral": 5,
+          "texto": "Identifica problemas posturales",
+          "tema": "problemas-posturales",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 6,
+          "texto": "Promueve la salud bucal",
+          "tema": "salud-bucal",
+          "determinante": null,
+          "promocion": true
+        },
+        {
+          "numeral": 7,
+          "texto": "Actualiza esquema de vacunación",
+          "tema": "vacunacion",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 8,
+          "texto": "Administra complementos nutricionales",
+          "tema": "complementos-nutricionales",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 9,
+          "texto": "Realiza desparasitación intestinal",
+          "tema": "desparasitacion",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 10,
+          "texto": "Administra quimioprofilaxis para tuberculosis pulmonar si es el caso",
+          "tema": "quimioprofilaxis-tb",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 11,
+          "texto": "Capacita a los padres sobre cuidados de la niña o niño alimentación y estimulación temprana",
+          "tema": "cuidados-infancia",
+          "determinante": "06",
+          "promocion": true
+        },
+        {
+          "numeral": 12,
+          "texto": "Promueve actividad física y prevención de accidentes",
+          "tema": "actividad-fisica",
+          "determinante": "02",
+          "promocion": true
+        },
+        {
+          "numeral": 13,
+          "texto": "Promueve prevención de violencia familiar y detecta casos",
+          "tema": "violencia-familiar",
+          "determinante": "05",
+          "promocion": true
+        }
+      ]
+    },
+    {
+      "id": "ninas-ninos-5-9",
+      "nombre": "Niñas y niños de 5 a 9 años",
+      "corto": "Niñas y niños 5-9",
+      "etapa": "infancia",
+      "requiereTodas": false,
+      "acciones": [
+        {
+          "numeral": 1,
+          "texto": "Realiza exploración física completa",
+          "tema": "exploracion-fisica",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 2,
+          "texto": "Toma peso y estatura y anótalos en la Cartilla Nacional de Salud Niñas y niños de 0 a 9 años",
+          "tema": "somatometria",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 3,
+          "texto": "Evalúa agudeza visual y auditiva",
+          "tema": "agudeza-visual-auditiva",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 4,
+          "texto": "Detecta trastornos que limiten el desarrollo y el aprendizaje",
+          "tema": "trastornos-aprendizaje",
+          "determinante": "06",
+          "promocion": false
+        },
+        {
+          "numeral": 5,
+          "texto": "Identifica problemas posturales",
+          "tema": "problemas-posturales",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 6,
+          "texto": "Promueve salud bucal",
+          "tema": "salud-bucal",
+          "determinante": null,
+          "promocion": true
+        },
+        {
+          "numeral": 7,
+          "texto": "Actualiza esquema de vacunación",
+          "tema": "vacunacion",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 8,
+          "texto": "Administra quimioprofilaxis para tuberculosis pulmonar, si es el caso",
+          "tema": "quimioprofilaxis-tb",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 9,
+          "texto": "Brinda orientación nutricional",
+          "tema": "orientacion-nutricional",
+          "determinante": "01",
+          "promocion": true
+        },
+        {
+          "numeral": 10,
+          "texto": "Promueve actividad física y prevención de accidentes",
+          "tema": "actividad-fisica",
+          "determinante": "02",
+          "promocion": true
+        },
+        {
+          "numeral": 11,
+          "texto": "Promueve higiene personal y familiar",
+          "tema": "higiene-personal",
+          "determinante": "04",
+          "promocion": true
+        },
+        {
+          "numeral": 12,
+          "texto": "Promueve prevención de violencia familiar y detecta casos",
+          "tema": "violencia-familiar",
+          "determinante": "05",
+          "promocion": true
+        },
+        {
+          "numeral": 13,
+          "texto": "Promueve la prevención de consumo de alcohol y drogas, refiere a Centros Nueva Vida del CONADIC",
+          "tema": "alcohol-tabaco-drogas",
+          "determinante": "05",
+          "promocion": true
+        }
+      ]
+    },
+    {
+      "id": "adolescentes-10-19",
+      "nombre": "Adolescentes de 10 a 19 años",
+      "corto": "Adolescentes",
+      "etapa": "adolescencia",
+      "requiereTodas": false,
+      "acciones": [
+        {
+          "numeral": 1,
+          "texto": "Entrega y/o actualiza la Cartilla Nacional de Salud Adolescentes de 10 a 19 años, revisa esquema vacunación y si corresponde, aplica biológico",
+          "tema": "cartilla",
+          "determinante": "08",
+          "promocion": true
+        },
+        {
+          "numeral": 2,
+          "texto": "Realiza exploración física completa",
+          "tema": "exploracion-fisica",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 3,
+          "texto": "Realiza detección gruesa de defectos visuales",
+          "tema": "agudeza-visual-auditiva",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 4,
+          "texto": "Orienta sobre salud sexual y reproductiva",
+          "tema": "salud-sexual-reproductiva",
+          "determinante": "03",
+          "promocion": true
+        },
+        {
+          "numeral": 5,
+          "texto": "Informa sobre métodos anticonceptivos y promueve el uso de condones",
+          "tema": "metodos-anticonceptivos",
+          "determinante": "03",
+          "promocion": true
+        },
+        {
+          "numeral": 6,
+          "texto": "Maneja a la adolescente embarazada como paciente de alto riesgo",
+          "tema": "embarazo-adolescente",
+          "determinante": "03",
+          "promocion": false
+        },
+        {
+          "numeral": 7,
+          "texto": "Detecta ITS y VIH/SIDA, brinda tratamiento de ITS y refiere los casos de VIH/SIDA",
+          "tema": "its-vih",
+          "determinante": "03",
+          "promocion": false
+        },
+        {
+          "numeral": 8,
+          "texto": "Verifica riesgo de TB y en presencia de tos y flemas, toma muestra para baciloscopía",
+          "tema": "tamizaje-tb",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 9,
+          "texto": "Administra quimioprofilaxis para tuberculosis pulmonar si es el caso",
+          "tema": "quimioprofilaxis-tb",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 10,
+          "texto": "Evalúa estado nutricional y proporciona orientación alimentaria",
+          "tema": "orientacion-nutricional",
+          "determinante": "01",
+          "promocion": true
+        },
+        {
+          "numeral": 11,
+          "texto": "Identifica casos de adicciones y refiere a Centros Nueva Vida",
+          "tema": "alcohol-tabaco-drogas",
+          "determinante": "05",
+          "promocion": true
+        },
+        {
+          "numeral": 12,
+          "texto": "Promueve actividad física, salud bucal y prevención de accidentes",
+          "tema": "actividad-fisica",
+          "determinante": "02",
+          "promocion": true
+        },
+        {
+          "numeral": 13,
+          "texto": "Detecta violencia, orienta y refiere casos",
+          "tema": "violencia-familiar",
+          "determinante": "05",
+          "promocion": true
+        },
+        {
+          "numeral": 14,
+          "texto": "Realiza detección de cáncer",
+          "tema": "deteccion-cancer",
+          "determinante": null,
+          "promocion": false
+        }
+      ]
+    },
+    {
+      "id": "mujeres-20-59",
+      "nombre": "Mujeres de 20 a 59 años",
+      "corto": "Mujeres 20-59",
+      "etapa": "adultez",
+      "requiereTodas": false,
+      "acciones": [
+        {
+          "numeral": 1,
+          "texto": "Entrega y/o actualiza la Cartilla Nacional de Salud Mujeres de 20 a 59 años",
+          "tema": "cartilla",
+          "determinante": "08",
+          "promocion": true
+        },
+        {
+          "numeral": 2,
+          "texto": "Informa sobre cáncer cérvico-uterino y si corresponde, toma Papanicolaou",
+          "tema": "cancer-cervico-uterino",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 3,
+          "texto": "Informa sobre cáncer de mama, realiza exploración mamaria en su caso, prescribe mastografía",
+          "tema": "cancer-mama",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 4,
+          "texto": "Aplica vacunas Td, SR, Influenza estacional y administra ácido fólico, según corresponda",
+          "tema": "vacunacion",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 5,
+          "texto": "Orienta sobre salud sexual y reproductiva",
+          "tema": "salud-sexual-reproductiva",
+          "determinante": "03",
+          "promocion": true
+        },
+        {
+          "numeral": 6,
+          "texto": "Informa sobre planificación familiar y promueve el uso de condones",
+          "tema": "metodos-anticonceptivos",
+          "determinante": "03",
+          "promocion": true
+        },
+        {
+          "numeral": 7,
+          "texto": "Detecta ITS y VIH/SIDA, brinda tratamiento de ITS y refiere casos de VIH/SIDA",
+          "tema": "its-vih",
+          "determinante": "03",
+          "promocion": false
+        },
+        {
+          "numeral": 8,
+          "texto": "Evalúa vigila estado nutricional",
+          "tema": "orientacion-nutricional",
+          "determinante": "01",
+          "promocion": true
+        },
+        {
+          "numeral": 9,
+          "texto": "Aplica cuestionario para detección de diabetes, hipertensión arterial, sobrepeso, obesidad y osteoporosis. Si corresponde mide colesterol",
+          "tema": "deteccion-cronicas",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 10,
+          "texto": "Verifica riesgo de TB y en presencia de tos y flemas, toma muestra para baciloscopia",
+          "tema": "tamizaje-tb",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 11,
+          "texto": "Administra quimioprofilaxis para tuberculosis pulmonar",
+          "tema": "quimioprofilaxis-tb",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 12,
+          "texto": "Identifica climaterio y menopausia a partir de los 40 años, orienta según el caso",
+          "tema": "climaterio-menopausia",
+          "determinante": null,
+          "promocion": true
+        },
+        {
+          "numeral": 13,
+          "texto": "Promueve actividad física y prevención de accidentes e informa sobre riesgos por consumo de alcohol, tabaco y otras drogas",
+          "tema": "actividad-fisica",
+          "determinante": "02",
+          "promocion": true
+        },
+        {
+          "numeral": 14,
+          "texto": "Informa sobre salud bucal",
+          "tema": "salud-bucal",
+          "determinante": null,
+          "promocion": true
+        },
+        {
+          "numeral": 15,
+          "texto": "Detecta y refiere casos de violencia familiar o de pareja",
+          "tema": "violencia-familiar",
+          "determinante": "05",
+          "promocion": true
+        }
+      ]
+    },
+    {
+      "id": "hombres-20-59",
+      "nombre": "Hombres de 20 a 59 años",
+      "corto": "Hombres 20-59",
+      "etapa": "adultez",
+      "requiereTodas": false,
+      "acciones": [
+        {
+          "numeral": 1,
+          "texto": "Entrega y/o actualiza la Cartilla Nacional de Salud Hombres de 20 a 59 años",
+          "tema": "cartilla",
+          "determinante": "08",
+          "promocion": true
+        },
+        {
+          "numeral": 2,
+          "texto": "Orienta sobre salud sexual y reproductiva",
+          "tema": "salud-sexual-reproductiva",
+          "determinante": "03",
+          "promocion": true
+        },
+        {
+          "numeral": 3,
+          "texto": "Informa sobre métodos anticonceptivos, vasectomía y ofrece condones",
+          "tema": "metodos-anticonceptivos",
+          "determinante": "03",
+          "promocion": true
+        },
+        {
+          "numeral": 4,
+          "texto": "Detecta ITS y VIH/SIDA, brinda tratamiento de ITS y refiere casos de VIH/SIDA",
+          "tema": "its-vih",
+          "determinante": "03",
+          "promocion": false
+        },
+        {
+          "numeral": 5,
+          "texto": "Aplica cuestionario para detección de diabetes, hipertensión arterial, sobrepeso y obesidad. Si corresponde, mide colesterol",
+          "tema": "deteccion-cronicas",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 6,
+          "texto": "Aplica cuestionario para detectar enfermedad prostática",
+          "tema": "enfermedad-prostatica",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 7,
+          "texto": "Verifica riesgo de TB y presencia de tos y flemas, toma muestra para baciloscopía",
+          "tema": "tamizaje-tb",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 8,
+          "texto": "Administra quimioprofilaxis para tuberculosis pulmonar",
+          "tema": "quimioprofilaxis-tb",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 9,
+          "texto": "Informa sobre riesgos de consumo de alcohol, tabaco y otras drogas",
+          "tema": "alcohol-tabaco-drogas",
+          "determinante": "05",
+          "promocion": true
+        },
+        {
+          "numeral": 10,
+          "texto": "Promueve actividad física y prevención de accidentes",
+          "tema": "actividad-fisica",
+          "determinante": "02",
+          "promocion": true
+        },
+        {
+          "numeral": 11,
+          "texto": "Aplica vacunas SR, Td e Influenza estacional, si corresponde",
+          "tema": "vacunacion",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 12,
+          "texto": "Informa sobre salud bucal",
+          "tema": "salud-bucal",
+          "determinante": null,
+          "promocion": true
+        }
+      ]
+    },
+    {
+      "id": "adultos-mayores-60",
+      "nombre": "Mujeres y hombres de 60 años y más",
+      "corto": "Adultos mayores",
+      "etapa": "adultez",
+      "requiereTodas": false,
+      "acciones": [
+        {
+          "numeral": 1,
+          "texto": "Entrega y/o actualiza la Cartilla Nacional de Salud del Adulto Mayor (personas de 60 años y más)",
+          "tema": "cartilla",
+          "determinante": "08",
+          "promocion": true
+        },
+        {
+          "numeral": 2,
+          "texto": "Identifica deficiencias visuales y auditivas, promueve salud bucal",
+          "tema": "agudeza-visual-auditiva",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 3,
+          "texto": "Informa sobre cáncer cérvico-uterino y si corresponde, toma Papanicolaou",
+          "tema": "cancer-cervico-uterino",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 4,
+          "texto": "Informa sobre cáncer de mama, realiza exploración mamaria en su caso, prescribe mastografía",
+          "tema": "cancer-mama",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 5,
+          "texto": "Aplica cuestionario para identificar enfermedad prostática",
+          "tema": "enfermedad-prostatica",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 6,
+          "texto": "Aplica cuestionario para detección de diabetes, hipertensión arterial, sobrepeso, obesidad y osteoporosis. Si corresponde mide colesterol",
+          "tema": "deteccion-cronicas",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 7,
+          "texto": "Orienta sobre IRA´S y ofrece vacunas antineumocócis Influenza estacional y Td",
+          "tema": "vacunacion",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 8,
+          "texto": "Verifica riesgo de TB y en presencia de tos y flemas, toma muestra para baciloscopía",
+          "tema": "tamizaje-tb",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 9,
+          "texto": "Informa sobre riesgo de consumo de alcohol, tabaco y otras drogas",
+          "tema": "alcohol-tabaco-drogas",
+          "determinante": "05",
+          "promocion": true
+        },
+        {
+          "numeral": 10,
+          "texto": "Identifica signos de alarma por deterioro cognitivo y depresión",
+          "tema": "deterioro-cognitivo-depresion",
+          "determinante": "05",
+          "promocion": true
+        },
+        {
+          "numeral": 11,
+          "texto": "Promueve actividad física y prevención de accidentes, con énfasis en caídas",
+          "tema": "actividad-fisica",
+          "determinante": "02",
+          "promocion": true
+        },
+        {
+          "numeral": 12,
+          "texto": "Detecta y refiere casos de violencia familiar",
+          "tema": "violencia-familiar",
+          "determinante": "05",
+          "promocion": true
+        }
+      ]
+    },
+    {
+      "id": "embarazo-primera",
+      "nombre": "Consulta de primera vez durante el embarazo",
+      "corto": "Embarazo · 1ª consulta",
+      "etapa": "embarazo",
+      "requiereTodas": true,
+      "acciones": [
+        {
+          "numeral": 1,
+          "texto": "Confirma embarazo",
+          "tema": "confirma-embarazo",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 2,
+          "texto": "Elabora Historia Clínica Perinatal y Carnet Perinatal",
+          "tema": "historia-clinica-perinatal",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 3,
+          "texto": "Identifica riesgos y refiere a la embarazada, en su caso",
+          "tema": "riesgo-obstetrico",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 4,
+          "texto": "Valora y controla peso y tensión arterial",
+          "tema": "peso-tension-embarazo",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 5,
+          "texto": "Promueve salud bucodental",
+          "tema": "salud-bucal",
+          "determinante": null,
+          "promocion": true
+        },
+        {
+          "numeral": 6,
+          "texto": "Indica estudios de laboratorio (Sífilis, BH, QS, EGO completo, tipo sanguíneo y R)h",
+          "tema": "laboratorio-embarazo",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 7,
+          "texto": "Aplica vacuna Td, Influenza estacional e investiga aplicaciones de vacuna SR",
+          "tema": "vacunacion",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 8,
+          "texto": "Administra complementos nutricionales",
+          "tema": "complementos-nutricionales",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 9,
+          "texto": "Previene y detecta ITS y VIH/SIDA, brinda tratamiento de ITS y refiere casos de VIH/SIDA",
+          "tema": "its-vih",
+          "determinante": "03",
+          "promocion": false
+        },
+        {
+          "numeral": 10,
+          "texto": "Orienta y promueve la participación paterna",
+          "tema": "participacion-paterna",
+          "determinante": "07",
+          "promocion": true
+        },
+        {
+          "numeral": 11,
+          "texto": "Prevén, detecta y refiere casos de violencia familiar y pareja",
+          "tema": "violencia-familiar",
+          "determinante": "05",
+          "promocion": true
+        }
+      ]
+    },
+    {
+      "id": "embarazo-segunda",
+      "nombre": "Segunda consulta durante el embarazo",
+      "corto": "Embarazo · 2ª consulta",
+      "etapa": "embarazo",
+      "requiereTodas": true,
+      "acciones": [
+        {
+          "numeral": 1,
+          "texto": "Realiza exploración física completa",
+          "tema": "exploracion-fisica",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 2,
+          "texto": "Identifica signos y síntomas de alarma",
+          "tema": "signos-alarma-embarazo",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 3,
+          "texto": "Solicita examen general de orina",
+          "tema": "examen-orina",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 4,
+          "texto": "Proporciona complementos nutricionales",
+          "tema": "complementos-nutricionales",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 5,
+          "texto": "Administra primera dosis de toxoide tetánico y diftérico",
+          "tema": "toxoide-tetanico",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 6,
+          "texto": "Orienta a la embarazada y a su pareja",
+          "tema": "orientacion-embarazada",
+          "determinante": "06",
+          "promocion": true
+        },
+        {
+          "numeral": 7,
+          "texto": "Registra todas las actividades en la Historia Clínica Perinatal y en el Carnet Perinatal",
+          "tema": "historia-clinica-perinatal",
+          "determinante": null,
+          "promocion": false
+        }
+      ]
+    },
+    {
+      "id": "embarazo-tercera",
+      "nombre": "Tercera consulta durante el embarazo",
+      "corto": "Embarazo · 3ª consulta",
+      "etapa": "embarazo",
+      "requiereTodas": true,
+      "acciones": [
+        {
+          "numeral": 1,
+          "texto": "Realiza exploración física completa",
+          "tema": "exploracion-fisica",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 2,
+          "texto": "Valora presentación fetal",
+          "tema": "presentacion-fetal",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 3,
+          "texto": "Identifica signos y síntomas de alarma",
+          "tema": "signos-alarma-embarazo",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 4,
+          "texto": "Solicita exámenes de laboratorio (BH, glucemia VDRL)",
+          "tema": "laboratorio-embarazo",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 5,
+          "texto": "Proporciona complementos nutricionales",
+          "tema": "complementos-nutricionales",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 6,
+          "texto": "Orienta a la embarazada y a su pareja",
+          "tema": "orientacion-embarazada",
+          "determinante": "06",
+          "promocion": true
+        },
+        {
+          "numeral": 7,
+          "texto": "Registra todas las actividades en la Historia Clínica Perinatal en el Carnet Perinatal",
+          "tema": "historia-clinica-perinatal",
+          "determinante": null,
+          "promocion": false
+        }
+      ]
+    },
+    {
+      "id": "embarazo-cuarta-quinta",
+      "nombre": "Cuarta y quinta consulta durante el embarazo",
+      "corto": "Embarazo · 4ª y 5ª",
+      "etapa": "embarazo",
+      "requiereTodas": true,
+      "acciones": [
+        {
+          "numeral": 1,
+          "texto": "Realiza exploración física completa",
+          "tema": "exploracion-fisica",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 2,
+          "texto": "Valora presentación fetal",
+          "tema": "presentacion-fetal",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 3,
+          "texto": "Identifica signos y síntomas de alarma",
+          "tema": "signos-alarma-embarazo",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 4,
+          "texto": "Aplicar la segunda dosis de toxoide tetánico y diftérico",
+          "tema": "toxoide-tetanico",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 5,
+          "texto": "Proporciona complementos nutricionales",
+          "tema": "complementos-nutricionales",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 6,
+          "texto": "Refuerza orientación a la embarazada y a su pareja o familia",
+          "tema": "orientacion-embarazada",
+          "determinante": "06",
+          "promocion": true
+        },
+        {
+          "numeral": 7,
+          "texto": "Registra todas las actividades de la Historia Clínica Perinatal y en el Carnet Perinatal",
+          "tema": "historia-clinica-perinatal",
+          "determinante": null,
+          "promocion": false
+        }
+      ]
+    },
+    {
+      "id": "puerperio",
+      "nombre": "Puerperio",
+      "corto": "Puerperio",
+      "etapa": "embarazo",
+      "requiereTodas": true,
+      "acciones": [
+        {
+          "numeral": 1,
+          "texto": "Elabora o actualiza Historia Clínica Perinatal",
+          "tema": "historia-clinica-perinatal",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 2,
+          "texto": "Promueve alojamiento conjunto y lactancia materna",
+          "tema": "alojamiento-lactancia",
+          "determinante": "06",
+          "promocion": true
+        },
+        {
+          "numeral": 3,
+          "texto": "Examina heridas quirúrgicas",
+          "tema": "heridas-quirurgicas",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 4,
+          "texto": "Vigila sangrado obstétrico",
+          "tema": "sangrado-obstetrico",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 5,
+          "texto": "Detecta HTA y edema",
+          "tema": "hta-edema",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 6,
+          "texto": "Verifica presencia de fiebre",
+          "tema": "fiebre-puerperio",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 7,
+          "texto": "Maneja y refiere oportunamente complicaciones",
+          "tema": "complicaciones-puerperio",
+          "determinante": null,
+          "promocion": false
+        },
+        {
+          "numeral": 8,
+          "texto": "Ofrece métodos de planificación familiar",
+          "tema": "planificacion-familiar",
+          "determinante": "03",
+          "promocion": true
+        },
+        {
+          "numeral": 9,
+          "texto": "Proporciona capacitación a la madre sobre cuidados de recién nacida/o",
+          "tema": "cuidados-recien-nacido",
+          "determinante": "06",
+          "promocion": true
+        },
+        {
+          "numeral": 10,
+          "texto": "Promueve la participación paterna en el cuidado de recién nacida/o, planificación familiar y estimulación temprana",
+          "tema": "participacion-paterna",
+          "determinante": "07",
+          "promocion": true
+        },
+        {
+          "numeral": 11,
+          "texto": "Promueve la detección de violencia familiar o de pareja, detecta y refiere casos",
+          "tema": "violencia-familiar",
+          "determinante": "05",
+          "promocion": true
+        }
+      ]
+    }
+  ]
+}

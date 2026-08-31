@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paquete Garantizado — Promoción a la Salud · Jurisdicción Sanitaria Texcoco</title>
+  <meta name="description" content="Guía de consulta de las Acciones Integradas de Línea de Vida: qué significa cada numeral del Paquete Garantizado en cada grupo de edad.">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="mask-icon" href="assets/img/favicon.svg" color="#9F2241">
+  <meta name="theme-color" content="#9F2241">
+  <!-- Sin fuentes remotas: este módulo debe abrir sin internet. -->
+  <link rel="stylesheet" href="style.css?v=20260831a">
+</head>
+<body class="pg-body">
+
+  <div id="site-nav"></div>
+
+  <main id="main" tabindex="-1">
+
+    <!-- ════════ HERO DE PÁGINA ════════ -->
+    <div class="page-hero" style="--ph-color: var(--crimson-dk)">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Ruta de navegación">
+          <a href="index.html">Inicio</a>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          <a href="promocion.html">Promoción de la Salud</a>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          <span>Paquete Garantizado</span>
+        </nav>
+        <h1 class="ph-title">Paquete Garantizado</h1>
+        <p class="ph-desc">
+          Acciones Integradas de Línea de Vida. Qué significa cada numeral,
+          en cada grupo de edad, para que el registro en la nota médica se pueda
+          leer y sostener en una supervisión.
+        </p>
+      </div>
+    </div>
+
+    <!-- ════════ AVISO DE ALCANCE ════════ -->
+    <div class="pg-alcance">
+      <div class="container">
+        <p>
+          <strong>Es una guía de consulta.</strong> No es un formato del expediente
+          clínico ni un capturador. El registro oficial sigue siendo la nota médica,
+          la Cartilla Nacional de Salud y la hoja diaria de consulta externa.
+          Esta página <strong>no pide ni guarda ningún dato de paciente</strong>.
+        </p>
+      </div>
+    </div>
+
+    <!-- ════════ PESTAÑAS DEL MÓDULO ════════ -->
+    <div class="inline-nav-wrap">
+      <div class="container">
+        <nav class="inline-nav pg-tabs" aria-label="Vistas del módulo" role="tablist">
+          <button type="button" class="inav-link pg-tab" role="tab" data-vista="consultar"    aria-selected="true"  id="tab-consultar"    aria-controls="panel-consultar">Consultar</button>
+          <button type="button" class="inav-link pg-tab" role="tab" data-vista="verificar"    aria-selected="false" id="tab-verificar"    aria-controls="panel-verificar">Verificar</button>
+          <button type="button" class="inav-link pg-tab" role="tab" data-vista="practicar"    aria-selected="false" id="tab-practicar"    aria-controls="panel-practicar">Practicar</button>
+          <button type="button" class="inav-link pg-tab" role="tab" data-vista="determinante" aria-selected="false" id="tab-determinante" aria-controls="panel-determinante">Por determinante</button>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Mensaje único de carga / error del índice de acciones. -->
+    <div class="container">
+      <p class="pg-estado" id="pg-estado" role="status">Cargando las acciones…</p>
+    </div>
+
+    <!-- ════════ 1 · CONSULTAR ════════ -->
+    <section class="section-block pg-panel" id="panel-consultar" role="tabpanel" aria-labelledby="tab-consultar" hidden>
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag crimson">Antes de escribir la nota</div>
+          <h2>Elige el grupo y marca<br>lo que sí realizaste</h2>
+          <p>La página arma la cadena de numerales que copias a tu nota. Nada de lo que marques sale de este teléfono.</p>
+        </div>
+
+        <div class="pg-grupos" id="pg-grupos" role="group" aria-label="Grupo de edad o etapa"></div>
+
+        <div class="pg-consulta-grid">
+          <div class="pg-lista" id="pg-lista"></div>
+
+          <aside class="pg-salida" id="pg-salida" aria-live="polite">
+            <div class="pg-contador">
+              <span class="pg-cont-num" id="pg-cont-num">0</span>
+              <span class="pg-cont-meta" id="pg-cont-meta">acciones marcadas</span>
+            </div>
+            <p class="pg-regla" id="pg-regla"></p>
+            <label class="pg-out-label" for="pg-out">Para la nota médica</label>
+            <output class="pg-out" id="pg-out">—</output>
+            <button type="button" class="btn btn-primary pg-copiar" id="pg-copiar" disabled>Copiar numerales</button>
+            <button type="button" class="pg-limpiar" id="pg-limpiar">Limpiar</button>
+            <p class="pg-nota-nom">
+              En el expediente se registra únicamente el numeral, sin abreviaturas
+              (NOM-004-SSA3-2012). Los resultados y hallazgos van en la nota, como siempre.
+            </p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════ 2 · VERIFICAR ════════ -->
+    <section class="section-block alt pg-panel" id="panel-verificar" role="tabpanel" aria-labelledby="tab-verificar" hidden>
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag teal">Al revisar una nota ya escrita</div>
+          <h2>Escribe los numerales<br>y te digo qué son</h2>
+          <p>Sirve para supervisión y para releer una nota propia. Los numerales que no existen en ese grupo se marcan.</p>
+        </div>
+
+        <div class="pg-verif-form">
+          <div class="pg-campo">
+            <label for="pg-verif-grupo">Grupo de edad o etapa</label>
+            <select id="pg-verif-grupo" class="pg-select"></select>
+          </div>
+          <div class="pg-campo">
+            <label for="pg-verif-num">Numerales anotados</label>
+            <input type="text" id="pg-verif-num" class="pg-input" inputmode="numeric"
+                   placeholder="1, 2, 4, 8, 9" autocomplete="off">
+          </div>
+        </div>
+
+        <div class="pg-verif-res" id="pg-verif-res" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- ════════ 3 · PRACTICAR ════════ -->
+    <section class="section-block pg-panel" id="panel-practicar" role="tabpanel" aria-labelledby="tab-practicar" hidden>
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag gold">Para aprendérselos</div>
+          <h2>Practica en los dos sentidos</h2>
+          <p>Del numeral a la acción y de la acción al numeral. Sin marcador que quede guardado en ningún lado.</p>
+        </div>
+
+        <div class="pg-practica" id="pg-practica"></div>
+      </div>
+    </section>
+
+    <!-- ════════ 4 · POR DETERMINANTE ════════ -->
+    <section class="section-block alt pg-panel" id="panel-determinante" role="tabpanel" aria-labelledby="tab-determinante" hidden>
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag purple">Lectura inversa</div>
+          <h2>Qué acción del paquete<br>refuerza cada determinante</h2>
+          <p>El mismo índice leído al revés: con qué numeral se registra ese determinante en cada grupo de edad.</p>
+        </div>
+
+        <div class="pg-dets" id="pg-dets" role="group" aria-label="Determinante social"></div>
+        <div class="pg-det-tabla" id="pg-det-tabla" aria-live="polite"></div>
+
+        <p class="pg-det-aviso">
+          No todas las acciones tienen determinante. Baciloscopía, quimioprofilaxis,
+          exploración física o complementos nutricionales son clínicas puras y no se
+          fuerzan dentro de una de las nueve categorías: inflaría las cifras de
+          promoción y no resistiría una supervisión.
+        </p>
+      </div>
+    </section>
+
+    <!-- ════════ VIGENCIAS ════════ -->
+    <section class="section-block pg-vigencias">
+      <div class="container">
+        <h2>Por qué el formato se ve viejo</h2>
+        <ul class="pg-vig-lista">
+          <li><span class="pg-vig-anio">2011</span> Manual del Paquete Garantizado de Servicios de Salud de Promoción y Prevención para una mejor salud. Es la fuente de contenido que los propios formatos señalan.</li>
+          <li><span class="pg-vig-anio">2019</span> Formatos de registro de seguimiento de las Acciones Integradas de Línea de Vida. Nunca se actualizaron: de aquí salen los numerales de esta página, transcritos tal cual, erratas de imprenta incluidas.</li>
+          <li><span class="pg-vig-anio">2026</span> Lineamientos de operación ISEM. De aquí sale el mínimo de cinco acciones, los grupos que exigen todas y la regla de que la productividad es de la unidad, no del personal.</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="assets/data/recursos.js?v=20260831a"></script>
+  <script src="components.js?v=20260831a"></script>
+  <script src="script.js?v=20260831a"></script>
+  <script src="paquete.js?v=20260831a"></script>
+</body>
+</html>

@@ -19,9 +19,13 @@ Multi-page internal staff platform for the **Departamento de Promoción a la Sal
 ├── reportes.html            ← Reportes e Indicadores (KPIs + tablas descargables)
 ├── directorio.html          ← Directorio de Atención (unidades + psicología/nutrición)
 ├── recursos-psicologia.html ← Recursos de Psicología (catálogo de materiales clínicos)
+├── paquete-garantizado.html ← Paquete Garantizado (4 vistas sobre acciones.json)
 ├── style.css           ← Compartido — todos los componentes
 ├── script.js           ← Comportamientos compartidos + carousel + filtros
 ├── components.js       ← Navbar + footer como template literals (inyectados via JS)
+├── paquete.js          ← Solo del módulo Paquete Garantizado
+├── datos/
+│   └── acciones.json   ← Las 133 Acciones Integradas de Línea de Vida
 └── assets/
     ├── img/logo-ps.png
     └── data/
@@ -31,11 +35,15 @@ Multi-page internal staff platform for the **Departamento de Promoción a la Sal
         └── directorio.js   ← Unidades de psicología y nutrición
 ```
 
+Son **10 páginas**. `paquete-garantizado.html` es la única que **no** enlaza
+Google Fonts: el módulo tiene que abrir sin internet, así que redefine
+`--font-display` / `--font-body` a Cambria/Calibri sobre `body.pg-body`.
+
 `recursos.js` sustituyó a `biblioteca.js`, `talleres.js`, `formularios.js`,
 `psicologia.js` y a las 62 tarjetas que estaban escritas a mano dentro de
 `entornos.html`. Los archivos antiguos siguen en el historial de git.
 
-**`recursos.js` se carga en las 9 páginas**: el buscador global del navbar lo
+**`recursos.js` se carga en las 10 páginas**: el buscador global del navbar lo
 necesita en todas. Si falta, el botón de búsqueda se retira solo en vez de
 quedarse sin hacer nada.
 
@@ -155,7 +163,7 @@ document.querySelectorAll('[data-page]').forEach(a => {
 23. **`initFiltros()` honra `?programa=&tipo=&tema=&q=`** — deep-links facetados desde cualquier página; el filtro también escribe la URL, así que se puede compartir y el botón «atrás» lo deshace
 24. **Acordeón móvil** — los `.dropdown-toggle` responden al clic con `aria-expanded`; `Escape` cierra y devuelve el foco
 25. **Skip link + `:focus-visible`** — «Saltar al contenido» y anillo de foco global
-26. **`initBuscadorGlobal()`** — buscador en el navbar sobre el índice completo, en las 9 páginas. `<dialog>` nativo (foco atrapado y Escape sin código propio), atajo `Ctrl/⌘ K` y `/`, resultados agrupados por programa (tope de 5 + «ver los N»), flechas para recorrer, sugerencias con el campo vacío
+26. **`initBuscadorGlobal()`** — buscador en el navbar sobre el índice completo, en las 10 páginas. `<dialog>` nativo (foco atrapado y Escape sin código propio), atajo `Ctrl/⌘ K` y `/`, resultados agrupados por programa (tope de 5 + «ver los N»), flechas para recorrer, sugerencias con el campo vacío
 27. **`renderEvidencias()`** — el flujo de evidencias (3 pasos) en `[data-evidencias="<programa>"]`. Estaba escrito 5 veces con destinos contradictorios; ahora **todas las páginas envían al mismo sitio**: `reportes.html#formularios`
 
 28. **`renderDirectorio()` con `data-dir-tema` y `data-dir-formato="compacto"`** — los 6 servicios externos de referencia salen de `DIRECTORIO`; salud-mental muestra solo los de crisis sin repetir los teléfonos. `data-dir="psicologia"` y `data-dir="nutricion"` ya no son un tipo de ficha sino un **servicio**, y salen de `UNIDADES`
@@ -342,7 +350,110 @@ la palabra. No hay que componentizarlos: basta con enlazarlos entre sí.
 </div>
 ```
 
+## Paquete Garantizado (`paquete-garantizado.html` + `paquete.js` + `datos/acciones.json`)
+
+El personal registra las acciones del paquete en la nota médica **solo con el
+número** («se realizaron las acciones 1, 2, 4, 8, 9»). El número no dice qué es,
+no hay formatos impresos suficientes y en una supervisión nadie puede
+reconstruir qué significaba cada numeral. El módulo resuelve eso y nada más.
+
+**Es una guía de consulta. No es un formato del expediente y no es un
+capturador.** Cero datos de paciente: no se pide ni se guarda nombre,
+expediente ni edad, ni en el navegador ni en ningún lado. Lo único que
+`paquete.js` escribe en `localStorage` es una copia de `acciones.json`, para que
+la página abra sin internet después de la primera visita.
+
+### Fuente única: `datos/acciones.json`
+
+Es el **único** archivo con numerales. Ninguna vista los tiene escritos.
+
+```json
+{ "id": "mujeres-20-59", "nombre": "Mujeres de 20 a 59 años",
+  "corto": "Mujeres 20-59", "etapa": "adultez", "requiereTodas": false,
+  "acciones": [
+    { "numeral": 15,
+      "texto": "Detecta y refiere casos de violencia familiar o de pareja",
+      "tema": "violencia-familiar", "determinante": "05", "promocion": true }
+  ] }
+```
+
+| Campo | Qué es |
+|---|---|
+| `numeral` | El número tal como aparece en el formato 2019. **Cambia entre grupos para el mismo tema**: violencia familiar es el 13 en menores de 5, el 12 en 5-9 y el 15 en mujeres 20-59. Es la clave de todo el módulo. |
+| `tema` | Slug compartido entre grupos. Es lo que permitirá reutilizar contenido en las fichas de tema. 58 temas para 133 acciones. |
+| `determinante` | `"01"`–`"09"` o `null`. |
+| `promocion` | Booleano. Criterio técnico del Departamento. |
+| `requiereTodas` | `true` en recién nacidos, las 4 consultas de embarazo y puerperio. Ahí no aplica el mínimo de 5. |
+
+**Son 12 grupos, no 10**: la hoja de consulta subsecuente del embarazo trae
+segunda y tercera por separado, y luego va la de cuarta y quinta.
+
+Al tocar `acciones.json` hay que **subir la versión** en
+`paquete-garantizado.html` y en `PS_VERSION` (`script.js`), como con cualquier
+otro asset.
+
+### De dónde salen los datos
+
+`LINEA DE VIDA.pdf` — «Acciones Integradas de Línea de Vida · Registro de
+seguimiento de las acciones», Secretaría de Salud, formatos 2019. 11 páginas,
+12 tablas. Se transcribió carácter por carácter desde la capa de texto del PDF
+(que viene duplicada y hay que deduplicar por posición) y **cada renglón se
+verificó contra la página renderizada**, porque el agrupamiento por celda no se
+puede deducir del texto: el formato no tiene rejilla vectorial.
+
+**El texto va literal, erratas de imprenta incluidas** —
+`adultos-mayores-60` numeral 7 dice «antineumocócis», `embarazo-primera`
+numeral 6 dice «y R)h». No se corrigen: el numeral y su texto tienen que
+coincidir con la hoja impresa que el personal tiene enfrente.
+
+### Las cuatro vistas
+
+| Vista | Para qué | Deep link |
+|---|---|---|
+| Consultar | Marcar lo realizado y copiar la cadena de numerales para la nota | `?vista=consultar&grupo=mujeres-20-59` |
+| Verificar | Escribir los numerales de una nota y ver qué significan; marca los que no existen y los repetidos | `?vista=verificar` |
+| Practicar | Reactivos en los dos sentidos, numeral↔acción | `?vista=practicar` |
+| Por determinante | El índice al revés: con qué numeral se registra cada determinante en cada grupo | `?vista=determinante&determinante=05` |
+
+Las det-cards de `promocion.html#determinantes` enlazan a la cuarta vista con
+su código. **Participación Social (09) no lleva enlace: ninguna acción del
+paquete le corresponde**, y una tabla vacía sería peor que no enlazar.
+
+### Criterios de registro (Lineamientos 2026)
+
+Mínimo **5 acciones** por grupo etario; **todas** en los grupos con
+`requiereTodas`. La productividad es **de la unidad, no del personal**. En el
+expediente se registra únicamente el numeral, sin abreviaturas
+(NOM-004-SSA3-2012). El contador y los mensajes de estado salen de
+`_meta.criterioRegistro`.
+
+### Qué NO hacer aquí
+
+- No agregar captura de datos de pacientes bajo ninguna forma.
+- No convertirlo en un registro paralelo al expediente.
+- No inventar contenido clínico: si no está en el Manual o en la norma, se deja
+  pendiente y no se publica.
+- No duplicar los numerales en otro archivo.
+
 ## Pending integrations
+
+- **Fichas de tema del Paquete Garantizado:** las cuatro secciones por tema
+  (`queDigo` / `conQue` / `queAnoto` / `aDondeRefiero`) **no se pueden escribir
+  todavía**: su contenido sale del *Manual del Paquete Garantizado* (2011) y ese
+  documento no está en el repositorio ni en el disco. `datos/temas.json` no
+  existe a propósito: inventar el contenido clínico sería peor que no tenerlo.
+  Al conseguir el Manual, empezar por las cinco de mayor frecuencia —violencia
+  familiar, cartilla, actividad física, salud bucal, alcohol y tabaco—,
+  publicarlas y ver si se usan antes de escribir las 58 restantes.
+- **`determinante` y `promocion` sin firmar:** son criterio técnico del
+  Departamento. Los valores que trae `acciones.json` son una propuesta y el
+  criterio con que se aplicó está escrito en `_meta.pendienteValidacion`. No
+  usarlos para contar productividad de promoción hasta que estén validados.
+  82 de las 133 acciones van con `determinante: null` a propósito (§6 del
+  encargo: no forzar acciones clínicas puras dentro de los nueve determinantes).
+- **Offline de verdad:** hoy el módulo abre sin internet gracias a la copia en
+  `localStorage`, pero solo después de la primera visita con red. Un service
+  worker acotado a `paquete-garantizado.html` lo resolvería del todo.
 
 - **SIJ iframe:** Reemplazar `.sij-placeholder` en `index.html#jornadas`:
   ```html
@@ -380,8 +491,8 @@ y por eso salen apagados. Con `estado: 'pendiente'` la tarjeta sale apagada y si
 
 ## Versionado de assets (cache busting)
 
-`style.css`, `script.js`, `components.js` y `assets/data/*.js` se enlazan con
-`?v=FECHA` en las 9 páginas, y la misma cadena está en `PS_VERSION`, al
+`style.css`, `script.js`, `components.js`, `paquete.js`, `assets/data/*.js` y
+`datos/acciones.json` se enlazan con `?v=FECHA` en las 10 páginas, y la misma cadena está en `PS_VERSION`, al
 principio de `script.js`.
 
 **Al tocar cualquiera de esos archivos hay que subir la versión en los dos

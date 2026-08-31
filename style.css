@@ -3219,3 +3219,480 @@ html { scroll-behavior: smooth; }
   .filter-heading { opacity: 1; transform: none; }
   .material-card.sale { opacity: 1; transform: none; }
 }
+
+/* ================================================================
+   PAQUETE GARANTIZADO  ·  paquete-garantizado.html
+   ----------------------------------------------------------------
+   El módulo no carga fuentes remotas: las unidades trabajan sin
+   internet y la página debe abrir igual. Por eso redefine las dos
+   variables de tipografía sobre el <body>, en vez de heredar las
+   Google Fonts que enlazan las otras ocho páginas.
+   ================================================================ */
+
+.pg-body {
+  --font-display: Cambria, Georgia, 'Times New Roman', serif;
+  --font-body:    Calibri, Candara, 'Segoe UI', system-ui, sans-serif;
+  --pg-guinda:    #9F2241;
+  --pg-guinda-dk: #7A1A32;
+  --pg-oro:       #B78D55;
+  --pg-crema:     #FAF7F2;
+  font-family: var(--font-body);
+}
+
+/* ── Banda de alcance: qué es y qué no es este módulo ── */
+.pg-alcance {
+  background: var(--pg-crema);
+  border-bottom: 1px solid var(--gray-200);
+  padding: 18px 0;
+}
+.pg-alcance p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--gray-800);
+  max-width: 74ch;
+}
+.pg-alcance strong { color: var(--pg-guinda-dk); }
+
+/* ── Pestañas del módulo ──
+   Son <button> en vez de <a> porque no navegan. Solo se resetea el
+   botón: el tamaño y el espaciado los pone .inline-nav .inav-link,
+   para que se vean igual que las navegaciones internas del sitio. */
+.pg-tabs .pg-tab {
+  font-family: var(--font-body);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* ── Estado de carga / error del índice ── */
+.pg-estado {
+  margin: 20px 0 0;
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  background: var(--gray-100);
+  color: var(--text-muted);
+  font-size: 15px;
+}
+.pg-estado.is-aviso {
+  background: var(--gold-lt);
+  color: var(--gold-txt);
+  border-left: 3px solid var(--pg-oro);
+}
+.pg-estado.is-error {
+  background: var(--crimson-lt);
+  color: var(--pg-guinda-dk);
+  border-left: 3px solid var(--pg-guinda);
+}
+.pg-estado code {
+  font-family: Consolas, 'Courier New', monospace;
+  font-size: .9em;
+}
+
+/* ── Selector de grupo etario ── */
+.pg-grupos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(178px, 1fr));
+  gap: 10px;
+  margin-bottom: 34px;
+}
+.pg-grupo-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 13px 15px;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  background: var(--white);
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--gray-800);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease-out),
+              background var(--dur-fast) var(--ease-out);
+}
+.pg-grupo-btn:hover { border-color: var(--pg-oro); background: var(--pg-crema); }
+.pg-grupo-btn.is-activo {
+  background: var(--pg-guinda);
+  border-color: var(--pg-guinda);
+  color: var(--white);
+}
+.pgb-n {
+  flex: none;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+  background: var(--gray-100);
+  border-radius: 99px;
+  padding: 2px 8px;
+}
+.pg-grupo-btn.is-activo .pgb-n {
+  color: var(--white);
+  background: rgba(255, 255, 255, .22);
+}
+
+/* ── Lista de acciones + panel de salida ── */
+.pg-consulta-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 32px;
+  align-items: start;
+}
+.pg-lista-titulo {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 24px;
+  color: var(--pg-guinda-dk);
+  margin: 0 0 14px;
+}
+.pg-acciones { list-style: none; margin: 0; padding: 0; }
+.pg-accion + .pg-accion { margin-top: 8px; }
+
+.pg-accion-lbl {
+  display: grid;
+  grid-template-columns: 22px 46px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  background: var(--white);
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease-out),
+              background var(--dur-fast) var(--ease-out);
+}
+.pg-accion-lbl:hover { border-color: var(--pg-oro); }
+.pg-accion.is-marcada .pg-accion-lbl {
+  border-color: var(--pg-guinda);
+  background: var(--crimson-lt);
+}
+.pg-check { width: 20px; height: 20px; accent-color: var(--pg-guinda); cursor: pointer; }
+
+/* El numeral es lo que la persona necesita reconocer de un vistazo. */
+.pg-numeral {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+  padding: 0 8px;
+  border-radius: 8px;
+  background: var(--pg-guinda);
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.pg-numeral-lg { font-size: 28px; min-width: 52px; height: 52px; vertical-align: middle; }
+.pg-texto { font-size: 16px; line-height: 1.5; color: var(--gray-800); }
+
+/* ── Panel de salida (pegajoso en escritorio) ── */
+.pg-salida {
+  position: sticky;
+  top: calc(var(--nav-h) + 16px);
+  padding: 22px;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  background: var(--pg-crema);
+}
+.pg-contador { display: flex; align-items: baseline; gap: 9px; }
+.pg-cont-num {
+  font-family: var(--font-display);
+  font-size: 44px;
+  line-height: 1;
+  color: var(--pg-guinda);
+  font-variant-numeric: tabular-nums;
+}
+.pg-cont-meta { font-size: 14px; color: var(--text-muted); }
+.pg-regla {
+  margin: 12px 0 20px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--gray-800);
+}
+.pg-salida.is-ok    .pg-cont-num { color: var(--teal); }
+.pg-salida.is-ok    .pg-regla    { color: var(--teal-dk); }
+.pg-salida.is-corto .pg-regla    { color: var(--gold-txt); }
+
+.pg-out-label {
+  display: block;
+  font-size: 12px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+.pg-out {
+  display: block;
+  padding: 13px 15px;
+  border: 1px dashed var(--gray-400);
+  border-radius: var(--radius);
+  background: var(--white);
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-variant-numeric: tabular-nums;
+  color: var(--pg-guinda-dk);
+  word-break: break-word;
+  margin-bottom: 14px;
+}
+.pg-copiar { width: 100%; justify-content: center; }
+.pg-limpiar {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  padding: 9px;
+  border: none;
+  background: none;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-muted);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.pg-nota-nom {
+  margin: 18px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--gray-200);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+/* ── Verificar ── */
+.pg-verif-form {
+  display: grid;
+  grid-template-columns: minmax(0, 280px) minmax(0, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.pg-campo label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+.pg-select, .pg-input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  background: var(--white);
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--gray-800);
+}
+.pg-input { font-variant-numeric: tabular-nums; }
+.pg-select:focus-visible, .pg-input:focus-visible { border-color: var(--pg-guinda); }
+
+.pg-verif-vacio { color: var(--text-muted); font-size: 15px; }
+.pg-verif-resumen { font-size: 16px; margin: 0 0 16px; color: var(--gray-800); }
+.pg-verif-lista { list-style: none; margin: 0; padding: 0; }
+.pg-verif-fila {
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  background: var(--white);
+}
+.pg-verif-fila + .pg-verif-fila { margin-top: 8px; }
+.pg-verif-fila.is-inexistente { border-color: var(--pg-guinda); background: var(--crimson-lt); }
+.pg-verif-fila.is-inexistente .pg-numeral { background: var(--gray-400); }
+.pg-verif-fila.is-repetido { border-style: dashed; }
+.pg-verif-fila em { color: var(--text-muted); font-style: normal; }
+
+/* ── Practicar ── */
+.pg-quiz {
+  max-width: 720px;
+  padding: 26px;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  background: var(--white);
+}
+.pg-quiz-pregunta {
+  font-family: var(--font-display);
+  font-size: 21px;
+  /* Holgado a propósito: el enunciado lleva el numeral incrustado y
+     con 1.45 el recuadro se comía el renglón de abajo. */
+  line-height: 1.75;
+  color: var(--gray-800);
+  margin: 0 0 22px;
+}
+.pg-quiz-ops { display: grid; gap: 9px; }
+.pg-quiz-op {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 15px;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  background: var(--white);
+  font-family: var(--font-body);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease-out);
+}
+.pg-quiz-op:hover:not(:disabled) { border-color: var(--pg-oro); }
+.pg-quiz-op:disabled { cursor: default; }
+.pg-quiz-op.is-bien { border-color: var(--teal); background: var(--teal-lt); }
+.pg-quiz-op.is-mal  { border-color: var(--pg-guinda); background: var(--crimson-lt); }
+.pg-quiz-fb { min-height: 1.5em; margin: 16px 0 0; font-size: 15px; color: var(--gray-800); }
+.pg-quiz-pie {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--gray-200);
+}
+.pg-quiz-marcador { font-size: 14px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+
+/* ── Por determinante ── */
+.pg-dets {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 10px;
+  margin-bottom: 30px;
+}
+.pg-det-btn {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  background: var(--white);
+  font-family: var(--font-body);
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+}
+.pg-det-btn:hover { border-color: var(--purple); }
+.pg-det-btn.is-activo { border-color: var(--purple); background: var(--purple-lt); }
+.pgd-num {
+  font-family: var(--font-display);
+  font-size: 17px;
+  color: var(--purple);
+  font-variant-numeric: tabular-nums;
+}
+.pgd-n {
+  font-size: 12px;
+  color: var(--text-muted);
+  background: var(--gray-100);
+  border-radius: 99px;
+  padding: 2px 8px;
+  font-variant-numeric: tabular-nums;
+}
+.pg-det-titulo {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 26px;
+  color: var(--purple);
+  margin: 0 0 4px;
+}
+.pg-det-sub { margin: 0 0 18px; color: var(--text-muted); font-size: 15px; }
+
+.pg-det-tabla { overflow-x: auto; }
+.pg-tabla {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+}
+.pg-tabla th, .pg-tabla td {
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--gray-100);
+  font-size: 15px;
+  vertical-align: middle;
+}
+.pg-tabla th {
+  font-size: 12px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 500;
+  background: var(--pg-crema);
+}
+.pg-tabla tr:last-child td { border-bottom: none; }
+.pg-td-grupo { color: var(--text-muted); white-space: nowrap; }
+.pg-td-num { width: 60px; }
+.pg-td-num .pg-numeral { background: var(--purple); min-width: 34px; height: 34px; font-size: 17px; }
+.pg-det-pie, .pg-det-aviso {
+  margin: 18px 0 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  max-width: 74ch;
+}
+
+/* ── Vigencias que conviven ── */
+.pg-vigencias h2 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 28px;
+  color: var(--pg-guinda-dk);
+  margin: 0 0 20px;
+}
+.pg-vig-lista { list-style: none; margin: 0; padding: 0; max-width: 82ch; }
+.pg-vig-lista li {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  gap: 16px;
+  padding: 14px 0;
+  border-top: 1px solid var(--gray-200);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--gray-800);
+}
+.pg-vig-anio {
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--pg-oro);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Responsivo hasta 360 px ── */
+@media (max-width: 900px) {
+  .pg-consulta-grid { grid-template-columns: 1fr; }
+  .pg-salida { position: static; }
+  .pg-verif-form { grid-template-columns: 1fr; }
+}
+@media (max-width: 580px) {
+  .pg-grupos { grid-template-columns: 1fr 1fr; }
+  .pg-dets   { grid-template-columns: 1fr; }
+  .pg-accion-lbl { grid-template-columns: 20px 40px minmax(0, 1fr); gap: 10px; padding: 11px; }
+  .pg-numeral { min-width: 36px; height: 36px; font-size: 19px; }
+  .pg-texto { font-size: 15px; }
+  .pg-quiz { padding: 18px; }
+  .pg-quiz-pregunta { font-size: 18px; }
+}
+@media (max-width: 400px) {
+  .pg-grupos { grid-template-columns: 1fr; }
+  .pg-vig-lista li { grid-template-columns: 1fr; gap: 4px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pg-grupo-btn, .pg-accion-lbl, .pg-quiz-op { transition: none; }
+}
+
+/* Opciones que son solo numerales: fila compacta, el número manda. */
+.pg-quiz-ops.es-numerales {
+  grid-template-columns: repeat(auto-fit, minmax(84px, 1fr));
+  gap: 12px;
+}
+.pg-quiz-ops.es-numerales .pg-quiz-op {
+  justify-content: center;
+  padding: 16px 10px;
+}
+

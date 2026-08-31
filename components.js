@@ -41,7 +41,7 @@
   const NAV_MENUS = [
     { page: 'promocion', label: 'Promoción de la Salud', items: [
       ['determinantes', 'Determinantes Sociales'],
-      ['paquete',       'Paquete Garantizado'],
+      ['paquete-garantizado.html', 'Paquete Garantizado'],
       ['material',      'Material Educativo'],
       ['campanas',      'Campañas'],
       ['estilos',       'Estilos de Vida'],
@@ -81,8 +81,10 @@
             ${label} ${CHEVRON}
           </button>
           <div class="dropdown-menu" id="dd-${page}">
-            ${items.map(([hash, text]) =>
-              `<a href="${page}.html#${hash}" class="dropdown-item">${text}</a>`).join('\n            ')}
+            ${items.map(([destino, text]) =>
+              // Un destino con .html es una página propia; el resto son
+              // anclas dentro de la página del menú.
+              `<a href="${destino.includes('.html') ? destino : `${page}.html#${destino}`}" class="dropdown-item">${text}</a>`).join('\n            ')}
           </div>
         </div>`;
 
@@ -188,7 +190,11 @@ ${NAV_MENUS.map(dropdown).join('')}
 
   /* ── 4. Marcar el link activo según la página actual ── */
   const filename = window.location.pathname.split('/').pop().replace('.html', '') || 'index';
+  /* Páginas propias que cuelgan de un menú: el desplegable se marca
+     activo igual que si estuvieras en la página del menú. */
+  const ALIAS = { 'paquete-garantizado': 'promocion' };
+  const activa = ALIAS[filename] || filename;
   document.querySelectorAll('.nav-link[data-page], .dropdown-toggle[data-page]').forEach(link => {
-    if (link.dataset.page === filename) link.classList.add('active');
+    if (link.dataset.page === activa) link.classList.add('active');
   });
 })();
