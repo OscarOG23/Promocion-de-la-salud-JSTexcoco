@@ -9,7 +9,7 @@
    «no se aplicó» aunque el archivo ya esté corregido.
    Para comprobar qué versión se está viendo: abrir la consola (F12) y
    escribir  PS_VERSION */
-const PS_VERSION = '20260831a';
+const PS_VERSION = '20260831b';
 window.PS_VERSION = PS_VERSION;
 
 // ── Reduced motion preference ──────────────────
@@ -587,6 +587,58 @@ const ICONOS_MATERIAL = {
   formulario:   SVG('<path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>'),
 };
 
+/* ── Google Drive: visor y descarga salen del mismo enlace ──────
+   El índice traía 54 URLs terminadas en `/edit`, que abren el EDITOR:
+   pide permisos, en el móvil ofrece instalar la app y deja que
+   alguien modifique el original. `/preview` abre el visor de solo
+   lectura y basta para consultar.
+
+   La URL de descarga NO se guarda en `recursos.js`: se deriva del
+   mismo id. Guardar las dos sería duplicar el dato y con el tiempo
+   acabarían apuntando a archivos distintos.
+
+   Sin par de descarga se quedan, a propósito, las CARPETAS (no son un
+   archivo) y los FORMULARIOS (se contestan, no se bajan). */
+const GD_RE = /^https:\/\/(?:docs|drive)\.google\.com\/(presentation|document|spreadsheets|file)\/d\/([A-Za-z0-9_-]{10,})/;
+
+const GD_VISOR = {
+  presentation: id => `https://docs.google.com/presentation/d/${id}/preview`,
+  document:     id => `https://docs.google.com/document/d/${id}/preview`,
+  spreadsheets: id => `https://docs.google.com/spreadsheets/d/${id}/preview`,
+  // Un archivo suelto se queda en /view: el visor de Drive ya trae sus
+  // propios botones de descargar e imprimir. /preview es para incrustar.
+  file:         id => `https://drive.google.com/file/d/${id}/view`,
+};
+
+const GD_DESCARGA = {
+  presentation: id => `https://docs.google.com/presentation/d/${id}/export/pdf`,
+  document:     id => `https://docs.google.com/document/d/${id}/export?format=pdf`,
+  spreadsheets: id => `https://docs.google.com/spreadsheets/d/${id}/export?format=xlsx`,
+  file:         id => `https://drive.google.com/uc?export=download&id=${id}`,
+};
+
+/** Qué formato baja cada tipo, para decirlo en el botón. */
+const GD_FORMATO = {
+  presentation: 'PDF', document: 'PDF', spreadsheets: 'Excel', file: 'Archivo',
+};
+
+/**
+ * Cualquier enlace de Drive llevado a su forma de visor.
+ * Lo que no es Drive (o es carpeta o formulario) se devuelve igual.
+ * Es red de seguridad además de conversión: si mañana alguien pega un
+ * `/edit` en el índice, aquí se endereza solo.
+ */
+function visorDrive(url) {
+  const m = GD_RE.exec(url || '');
+  return m ? GD_VISOR[m[1]](m[2]) : url;
+}
+
+/** El gemelo de descarga, o null si ese destino no tiene uno. */
+function descargaDrive(url) {
+  const m = GD_RE.exec(url || '');
+  return m ? { url: GD_DESCARGA[m[1]](m[2]), formato: GD_FORMATO[m[1]] } : null;
+}
+
 /** A partir del cuarto, los materiales se pliegan tras «+N materiales». */
 const MAX_BOTONES_VISIBLES = 3;
 
@@ -631,13 +683,34 @@ function botonMaterial(m, titulo, primario) {
   if (m.estado === 'pendiente' || !m.url) {
     return `<span class="mc-btn is-pending">${ICON_CLOCK} ${esc(m.tipo)} · en elaboración</span>`;
   }
-  const ext = /^https?:/i.test(m.url);
-  const ico = ICONOS_MATERIAL[m.icono] || (ext ? ICON_EXTERNAL : ICON_DOWNLOAD);
+  // visorDrive endereza cualquier /edit que se haya colado en el índice.
+  const visor = visorDrive(m.url);
+  const ext = /^https?:/i.test(visor);
+  // La flecha de descarga ya significa una cosa concreta (el botón de bajar
+  // del par), así que deja de usarse por defecto en lo que solo se abre:
+  // los .html del sitio son las presentaciones de taller, no descargas.
+  const ico = ICONOS_MATERIAL[m.icono]
+    || (ext ? ICON_EXTERNAL
+           : /\.html?$/i.test(visor) ? ICONOS_MATERIAL.presentacion
+                                     : ICON_DOWNLOAD);
   // aria-label descriptivo: la lista de enlaces del lector de pantalla
   // era 40 entradas idénticas de «Descargar PDF».
-  return `<a href="${esc(m.url)}" class="mc-btn${primario ? '' : ' outline mc-btn-sec'}"
+  const ver = `<a href="${esc(visor)}" class="mc-btn${primario ? '' : ' outline mc-btn-sec'}"
              aria-label="${esc(m.tipo)}: ${esc(titulo)}"${ext ? ' target="_blank" rel="noopener noreferrer"' : ''}
           >${ico} ${esc(m.tipo)}</a>`;
+
+  // El gemelo de descarga, derivado del mismo id. `descarga: false` en el
+  // índice lo quita para un material que no se deba repartir como archivo.
+  const gd = m.descarga === false ? null : descargaDrive(m.url);
+  if (!gd) return ver;
+
+  // Solo icono: con el texto al lado, una ficha de tres materiales pasaba
+  // de tres botones a seis y no se leía nada. El nombre va en aria-label.
+  return `<span class="mc-par">${ver}<a href="${esc(gd.url)}" class="mc-btn mc-baja"
+             aria-label="Descargar ${esc(m.tipo)} en ${esc(gd.formato)}: ${esc(titulo)}"
+             title="Descargar ${esc(gd.formato)}"
+             target="_blank" rel="noopener noreferrer"
+          >${ICON_DOWNLOAD}</a></span>`;
 }
 
 /**

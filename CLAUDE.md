@@ -305,6 +305,38 @@ para que no se rompan los enlaces que el personal ya tenga guardados o impresos.
 `lat`/`lng` son números en grados decimales **con el signo**: aquí la longitud es negativa (~-98.9). Sin coordenadas la ficha dice «Ubicación por cargar» y no rompe nada, así que se pueden ir cargando poco a poco. Un servicio nuevo se añade con una línea en `SERVICIOS` y su filtro aparece solo.
 Los de tipo `referencia` son servicios externos y llevan `tema` (`crisis` | `adicciones` | `violencia`) y, si aplica, `telefono` (solo dígitos, para el enlace `tel:`).
 
+## Enlaces de Drive: visor y descarga
+
+Un material alojado en Google enseña **dos botones**: el principal abre el
+visor y, pegado a él, un botón solo con icono baja el archivo.
+
+**La URL de descarga no se guarda en `recursos.js`.** Se deriva del mismo id
+en `script.js` (`visorDrive()` y `descargaDrive()`). Guardar las dos sería
+duplicar el dato y con el tiempo acabarían apuntando a archivos distintos.
+
+| Destino | Botón «ver» | Botón «bajar» |
+|---|---|---|
+| Slides | `/preview` | `/export/pdf` |
+| Documento | `/preview` | `/export?format=pdf` |
+| Hoja | `/preview` | `/export?format=xlsx` |
+| Archivo suelto | `/view` (el visor de Drive ya trae sus botones) | `uc?export=download&id=` |
+| **Carpeta** | tal cual | ninguno: no es un archivo |
+| **Formulario** | `viewform` | ninguno: se contesta, no se baja |
+| Local o sitio externo | tal cual | ninguno |
+
+**Nunca `/edit` en el índice.** Abre el editor: pide permisos, en el móvil
+ofrece instalar la app y deja que alguien modifique el original. Los atajos
+`GD.slides` / `GD.doc` / `GD.hoja` ya generan `/preview`, y `visorDrive()`
+endereza como red de seguridad cualquier `/edit` que se cuele después.
+
+`descarga: false` en un material quita el botón de bajar, para algo que se
+pueda consultar pero no repartir como archivo.
+
+**Compartir sigue siendo el requisito.** Ninguna forma de URL arregla un
+archivo que no esté como «Cualquier persona con el enlace · Lector»: sin eso
+Drive responde 404 o 410 a quien no esté en la lista, y da igual qué enlace
+se ponga.
+
 ## Bloques repetidos: usar el componente, no copiar HTML
 
 | Bloque | Cómo se pone | Fuente |
@@ -437,6 +469,20 @@ expediente se registra únicamente el numeral, sin abreviaturas
 
 ## Pending integrations
 
+- **1 formulario apunta al editor:** «Reporte Productividad Promotores y
+  Gestores» tiene `docs.google.com/forms/d/…/edit`, que abre el EDITOR del
+  formulario y responde 401 a quien no sea dueño. El enlace público no se puede
+  derivar del id de edición: hay que sacarlo de «Enviar → enlace» en el propio
+  formulario y pegarlo en `recursos.js`.
+- **16 de 79 recursos de Google responden 404/410 sin sesión:** 5 hojas, 4
+  archivos, 3 carpetas, 2 documentos y 2 presentaciones. Comprobado con la URL
+  original, no solo con `/preview`. Hay que compartirlos como «Cualquier persona
+  con el enlace · Lector» o re-alojarlos. Mientras tanto, el visor y la descarga
+  fallan igual: la forma de la URL no arregla un permiso.
+- **19 archivos siguen en la cuenta Wix** (`estado: 'rehospedar'`, 14.7 MB en
+  total, los 19 vivos a agosto 2026). Traerlos a `assets/materiales/` quitaría
+  esa dependencia entera; el repo pasaría de 3 a ~18 MB, muy por debajo del
+  límite de GitHub Pages.
 - **Fichas de tema del Paquete Garantizado:** las cuatro secciones por tema
   (`queDigo` / `conQue` / `queAnoto` / `aDondeRefiero`) **no se pueden escribir
   todavía**: su contenido sale del *Manual del Paquete Garantizado* (2011) y ese
@@ -470,7 +516,6 @@ expediente se registra únicamente el numeral, sin abreviaturas
 - **Nombres del personal:** la hoja `COORDINACION` trae coordinador, administrador y enfermera por unidad. **No se publican**: el sitio es público. Si algún día se quiere un directorio con nombres, tendría que vivir detrás de acceso restringido.
 - **Recursos en `estado: 'pendiente'`** en `recursos.js`: sustituir `url` y poner `estado: 'ok'` conforme lleguen los enlaces.
 - **Paquetes de NotebookLM:** conforme se suban a Drive, pasar la ficha a `materiales: [...]` usando los atajos `GD.doc(id)` / `GD.archivo(id)` / `GD.carpeta(id)` del principio de `recursos.js`. Cada archivo debe quedar compartido como «Cualquier persona con el enlace · Lector».
-- **17 recursos en `estado: 'rehospedar'`**: alojados en la cuenta Wix (`*.filesusr.com`); re-alojar en Drive antes del despliegue definitivo.
 
 ## Asistentes de NotebookLM
 

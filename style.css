@@ -1586,6 +1586,41 @@ main[tabindex="-1"]:focus { outline: none; }
 }
 .mc-files .mc-files { margin-top: 10px; width: 100%; }
 
+/* ── Par visor + descarga ──────────────────────────────────────
+   Un material de Drive enseña dos cosas: el visor (/preview, solo
+   lectura) y la descarga, derivada del mismo id. El botón de bajar va
+   solo con icono y pegado al principal: con el texto al lado, una ficha
+   de tres materiales pasaba de tres botones a seis y no se leía nada.
+   El nombre completo del archivo va en su aria-label. */
+.mc-par {
+  display: inline-flex;
+  align-items: stretch;
+}
+.mc-par > .mc-btn:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.mc-baja {
+  padding: 7px 9px;
+  margin-left: 1px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+/* El de bajar siempre en versión discreta, aunque acompañe al principal:
+   el material se abre más veces de las que se descarga. */
+.mc-par > .mc-baja:not(.is-pending) {
+  background: transparent;
+  color: var(--gray-600);
+  border: 1.5px solid var(--gray-200);
+}
+.mc-par > .mc-baja:hover { border-color: var(--crimson); color: var(--crimson); }
+.mc-baja svg { flex: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .mc-baja { transition: none; }
+}
+
+
 .mc-mas { width: 100%; }
 .mc-mas > summary {
   display: inline-flex;
