@@ -3731,3 +3731,113 @@ html { scroll-behavior: smooth; }
   padding: 16px 10px;
 }
 
+
+/* ── Mapa de unidades (Leaflet) ─────────────────────────────────
+   Leaflet trae su propio CSS; aquí solo va el encaje con el sitio:
+   el lienzo, el globo y el aviso de cuando la librería no cargó. */
+.mapa-lienzo {
+  height: 560px;
+  margin: 0 0 10px;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  background: var(--gray-100);
+  overflow: hidden;
+  z-index: 0;   /* por debajo del navbar pegajoso */
+}
+.mapa-lienzo.is-vacio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  padding: 34px 20px;
+}
+.mapa-nolib {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 15px;
+  text-align: center;
+}
+.mapa-pie {
+  margin: 0 0 26px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* El globo del punto: lo justo para decidir e irse a la ruta. */
+.mapa-popup { font-family: var(--font-body); line-height: 1.45; }
+.mp-nombre {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 16px;
+  color: var(--crimson-dk);
+  margin-bottom: 2px;
+}
+.mp-tipo, .mp-serv {
+  display: block;
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+.mp-serv { margin-top: 4px; }
+.mp-aviso {
+  margin: 6px 0 0;
+  font-size: 12.5px;
+  color: var(--gold-txt);
+}
+.mp-links {
+  display: flex;
+  gap: 12px;
+  margin-top: 9px;
+  padding-top: 8px;
+  border-top: 1px solid var(--gray-200);
+}
+.mp-links a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--crimson);
+  text-decoration: none;
+}
+.mp-links a:hover { text-decoration: underline; }
+
+/* Leaflet pinta el globo con su propia caja: se le quita el aire de más
+   y se le pone el radio del sitio. */
+.leaflet-popup-content-wrapper { border-radius: var(--radius); }
+.leaflet-popup-content { margin: 12px 14px; }
+.leaflet-container { font-family: var(--font-body); }
+.leaflet-container a.leaflet-popup-close-button { color: var(--gray-400); }
+
+@media (max-width: 900px) { .mapa-lienzo { height: 380px; } }
+@media (max-width: 580px) { .mapa-lienzo { height: 320px; } }
+
+/* Clave de colores del mapa: se genera desde los datos, solo con los
+   tipos que tienen unidades con punto. */
+.mapa-leyenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  list-style: none;
+  margin: 0 0 8px;
+  padding: 0;
+}
+.mapa-leyenda li {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  color: var(--gray-800);
+}
+.ml-punto {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 2px solid var(--white);
+  box-shadow: 0 0 0 1px var(--gray-200);
+  flex: none;
+}
+.ml-n {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}

@@ -9,7 +9,7 @@
    «no se aplicó» aunque el archivo ya esté corregido.
    Para comprobar qué versión se está viendo: abrir la consola (F12) y
    escribir  PS_VERSION */
-const PS_VERSION = '20260831b';
+const PS_VERSION = '20260831c';
 window.PS_VERSION = PS_VERSION;
 
 // ── Reduced motion preference ──────────────────
@@ -1594,6 +1594,152 @@ function unidadCard(u, { servicio = '' } = {}) {
  * No hay lista de botones que mantener en el HTML: si mañana una unidad
  * estrena odontología, el filtro de odontología aparece solo.
  */
+/* ── Mapa de unidades (Leaflet) ─────────────────────────────────
+   Leaflet vive en assets/vendor/leaflet: si se cayera un CDN el mapa
+   seguiría estando. Lo único que necesita red son los mosaicos de
+   OpenStreetMap; sin ellos el lienzo sale gris pero los puntos siguen
+   en su sitio y las fichas de abajo funcionan igual.
+
+   El mapa NO es la lista: es una segunda vista del mismo filtro. Quien
+   use lector de pantalla o no cargue el mapa tiene la rejilla completa
+   debajo, que es la fuente de verdad.                                 */
+
+/** Color del punto según el tipo de unidad. */
+const MAPA_COLORES = {
+  'centro-salud':  '#9F2241',
+  'ceaps':         '#235B4E',
+  'hospital':      '#5C3D8F',
+  'especializada': '#BC955C',
+  'jurisdiccion':  '#4A4848',
+};
+
+const MAPA_TIPOS = {
+  'centro-salud':  'Centro de salud',
+  'ceaps':         'CEAPS',
+  'hospital':      'Hospital',
+  'especializada': 'Unidad especializada',
+  'jurisdiccion':  'Jurisdicción',
+  'movil':         'Unidad móvil',
+};
+
+/**
+ * Dibuja las unidades con coordenada y devuelve un mando para que el
+ * filtro de la página mueva el mapa. Si Leaflet no cargó, devuelve null
+ * y la página sigue funcionando sin mapa.
+ */
+function initMapaUnidades(unidades) {
+  const div = document.getElementById('mapa-unidades');
+  if (!div) return null;
+
+  const conPunto = unidades.filter(u => Number.isFinite(u.lat) && Number.isFinite(u.lng));
+  if (typeof L === 'undefined' || !conPunto.length) {
+    div.innerHTML = `<p class="mapa-nolib">${ICON_PIN} El mapa no se pudo cargar.
+      El listado de unidades de abajo funciona igual.</p>`;
+    div.classList.add('is-vacio');
+    return null;
+  }
+
+  const map = L.map(div, {
+    // Sin zoom con la rueda: en una página larga, atrapar el scroll del
+    // usuario dentro del mapa es de las cosas que más molestan.
+    scrollWheelZoom: false,
+    zoomControl: true,
+  });
+
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>',
+  }).addTo(map);
+
+  const capa = L.layerGroup().addTo(map);
+  const marcas = conPunto.map(u => {
+    const color = MAPA_COLORES[u.tipo] || MAPA_COLORES['centro-salud'];
+    const m = L.circleMarker([u.lat, u.lng], {
+      radius: u.tipo === 'hospital' || u.tipo === 'jurisdiccion' ? 9 : 7,
+      color: '#fff', weight: 2, opacity: 1,
+      fillColor: color, fillOpacity: .92,
+    });
+    m.bindPopup(popupUnidad(u), { maxWidth: 280 });
+    m.bindTooltip(u.nombre, { direction: 'top', offset: [0, -8] });
+    return { u, m };
+  });
+
+  /** Encuadra el mapa sobre las unidades que se le pasen. */
+  function encuadrar(lista) {
+    if (!lista.length) return;
+    map.invalidateSize({ animate: false });
+    const b = L.latLngBounds(lista.map(x => [x.u.lat, x.u.lng]));
+    map.fitBounds(b, { padding: [34, 34], maxZoom: lista.length === 1 ? 15 : 14 });
+  }
+
+  marcas.forEach(x => capa.addLayer(x.m));
+  encuadrar(marcas);
+
+  // Leaflet mide el contenedor al crearse. Si en ese momento el diseño aún
+  // no ha cuajado —tipografías por llegar, la rejilla acomodándose— se
+  // queda con una medida vieja y los mosaicos no llenan la caja. Se le
+  // vuelve a preguntar en cuanto el contenedor cambie de tamaño.
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(() => map.invalidateSize({ animate: false })).observe(div);
+  } else {
+    window.addEventListener('resize', () => map.invalidateSize({ animate: false }));
+  }
+  requestAnimationFrame(() => {
+    map.invalidateSize({ animate: false });
+    encuadrar(marcas);
+  });
+
+  return {
+    /** El filtro de la página manda: mismos criterios que las fichas. */
+    sincroniza(pasa) {
+      const visibles = marcas.filter(x => pasa(x.u));
+      capa.clearLayers();
+      visibles.forEach(x => capa.addLayer(x.m));
+      encuadrar(visibles);
+      return visibles.length;
+    },
+  };
+}
+
+/**
+ * La clave de colores del mapa. Sale de los datos: solo aparecen los
+ * tipos que de verdad tienen unidades con punto, y con su conteo.
+ * Un color sin explicar es un color que no dice nada.
+ */
+function leyendaMapa(unidades) {
+  const conPunto = unidades.filter(u => Number.isFinite(u.lat) && Number.isFinite(u.lng));
+  const cuenta = {};
+  conPunto.forEach(u => { cuenta[u.tipo] = (cuenta[u.tipo] || 0) + 1; });
+  const filas = Object.keys(MAPA_COLORES)
+    .filter(t => cuenta[t])
+    .map(t => `<li><span class="ml-punto" style="background:${MAPA_COLORES[t]}"></span>
+                 ${esc(MAPA_TIPOS[t] || t)} <span class="ml-n">${cuenta[t]}</span></li>`);
+  return filas.length
+    ? `<ul class="mapa-leyenda">${filas.join('')}</ul>`
+    : '';
+}
+
+/** El globo de un punto: lo mínimo para decidir e irse a la ruta. */
+function popupUnidad(u) {
+  const servicios = (u.servicios || [])
+    .map(s => esc((typeof SERVICIOS !== 'undefined' && SERVICIOS[s]?.etiqueta) || s))
+    .join(' · ');
+  const aviso = u.ubicacion === 'por-validar'
+    ? '<p class="mp-aviso">Ubicación por corroborar.</p>' : '';
+  return `
+    <div class="mapa-popup">
+      <strong class="mp-nombre">${esc(u.nombre || '')}</strong>
+      <span class="mp-tipo">${esc(MAPA_TIPOS[u.tipo] || u.tipo || '')} · ${esc(u.municipio || '')}</span>
+      ${servicios ? `<span class="mp-serv">${servicios}</span>` : ''}
+      ${aviso}
+      <span class="mp-links">
+        <a href="${esc(urlMapa(u))}" target="_blank" rel="noopener noreferrer">Ver en Maps</a>
+        <a href="${esc(urlRuta(u))}" target="_blank" rel="noopener noreferrer">Cómo llegar</a>
+      </span>
+    </div>`;
+}
+
+
 function renderUnidades() {
   const cont = document.querySelector('[data-unidades]');
   if (!cont) return;
@@ -1612,6 +1758,11 @@ function renderUnidades() {
 
   // «Con coordenada» = pin exacto. Las demás solo tienen búsqueda por nombre.
   const conCoordenada = UNIDADES.filter(u => Number.isFinite(u.lat) && Number.isFinite(u.lng)).length;
+  // Faltar coordenada no significa lo mismo en todas: una unidad móvil no
+  // tiene punto fijo, y donde el enlace apuntaba a otra unidad se dejó sin
+  // punto a propósito. Decirlo por separado evita que parezca descuido.
+  const moviles = UNIDADES.filter(u => u.ubicacion === 'movil').length;
+  const dudosas = UNIDADES.filter(u => u.ubicacion === 'discrepancia').length;
 
   cont.innerHTML = `
     <div class="mapa-barra">
@@ -1640,29 +1791,44 @@ function renderUnidades() {
         <button type="button" class="filter-clear u-clear">Quitar filtros</button>
       </p>
       ${conCoordenada < UNIDADES.length
-        ? `<p class="mapa-aviso">${ICON_PIN} ${conCoordenada} de ${UNIDADES.length} unidades tienen coordenada exacta.
-             Las ${UNIDADES.length - conCoordenada} restantes abren una búsqueda en Maps por nombre y municipio:
-             todavía no se les ha capturado el punto.</p>`
+        ? `<p class="mapa-aviso">${ICON_PIN} ${conCoordenada} de ${UNIDADES.length} unidades están en el mapa.
+             ${moviles ? `${moviles} son unidades móviles y no tienen punto fijo. ` : ''}
+             ${dudosas ? `En ${dudosas} el enlace del directorio apuntaba a otra unidad y se dejaron sin punto
+             en vez de arriesgar una ubicación falsa. ` : ''}
+             Todas abren una búsqueda en Maps por nombre y municipio.</p>`
         : ''}
     </div>
+    <div class="mapa-lienzo" id="mapa-unidades" role="application"
+         aria-label="Mapa de unidades de la Jurisdicción"></div>
+    ${leyendaMapa(UNIDADES)}
+    <p class="mapa-pie">El mapa es un atajo visual. La lista completa, con horarios y teléfonos, está debajo.</p>
     <div class="directory-grid mapa-grid">${UNIDADES.map(u => unidadCard(u)).join('')}</div>
     <p class="empty-state u-vacio" hidden>Ninguna unidad coincide con esos filtros.</p>`;
 
-  const fichas  = [...cont.querySelectorAll('.unidad-card')];
+  // Las fichas se pintan en el orden de UNIDADES, así que cada una queda
+  // emparejada con su unidad y el filtro se evalúa sobre el dato, no sobre
+  // atributos del DOM: una sola condición para la lista y para el mapa.
+  const fichas  = [...cont.querySelectorAll('.unidad-card')]
+    .map((el, i) => ({ el, u: UNIDADES[i] }));
   const vacio   = cont.querySelector('.u-vacio');
   const countEl = cont.querySelector('.u-count');
   const estado  = { servicio: '', municipio: '' };
+  // El mapa es una segunda vista del MISMO filtro, no un control aparte.
+  const mapa = initMapaUnidades(UNIDADES);
+
+  const pasa = u => (!estado.servicio  || (u.servicios || []).includes(estado.servicio))
+                 && (!estado.municipio || u.municipio === estado.municipio);
 
   function aplicar() {
     let n = 0;
-    fichas.forEach(f => {
-      const ok = (!estado.servicio  || f.dataset.servicios.split(' ').includes(estado.servicio))
-              && (!estado.municipio || f.dataset.municipio === estado.municipio);
-      f.hidden = !ok;
+    if (mapa) mapa.sincroniza(pasa);
+    fichas.forEach(({ el, u }) => {
+      const ok = pasa(u);
+      el.hidden = !ok;
       if (ok) n++;
       // La píldora del servicio filtrado se resalta: se ve de un vistazo
       // por qué esa unidad está en la lista.
-      f.querySelectorAll('.uc-serv').forEach(p =>
+      el.querySelectorAll('.uc-serv').forEach(p =>
         p.classList.toggle('is-destacado', !!estado.servicio && p.dataset.servicio === estado.servicio));
     });
     if (countEl) countEl.textContent = `${n} unidad${n !== 1 ? 'es' : ''}`;

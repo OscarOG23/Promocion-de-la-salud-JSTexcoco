@@ -27,7 +27,7 @@ const SERVICIOS = {
   'medicina-general': { etiqueta: 'Medicina general', color: 'crimson' },
   'psicologia':       { etiqueta: 'Psicología',       color: 'purple'  },
   'nutricion':        { etiqueta: 'Nutrición',        color: 'teal'    },
-  'odontologia':      { etiqueta: 'Odontología',      color: 'gold'    },
+  'estomatologia':    { etiqueta: 'Estomatología',    color: 'gold'    },
   'enfermeria':       { etiqueta: 'Enfermería',       color: 'teal'    },
   'vacunacion':       { etiqueta: 'Vacunación',       color: 'crimson' },
   'planificacion':    { etiqueta: 'Planificación familiar', color: 'purple' },
@@ -65,13 +65,46 @@ const SERVICIOS = {
    `servicios` solo trae lo que el propio nombre acredita (un CISAME hace
    salud mental; de un CEAPS no se puede deducir si tiene nutriólogo).
 
-   Las unidades sin coordenada llevan `lat: null` porque en la hoja están
-   marcadas PENDIENTE o con discrepancia. Cada una conserva su comentario
-   con lo que falta comprobar, y en la web salen con su enlace de búsqueda
+   Las unidades sin coordenada llevan `lat: null` y un campo `ubicacion`
+   que dice POR QUÉ (ver abajo). En la web salen con su enlace de búsqueda
    en Maps en vez de un pin equivocado.
 
    NO se incluyen los nombres del personal (coordinador, administrador,
    enfermera) que trae la hoja: el sitio es público.
+
+   EL CAMPO `ubicacion`
+   --------------------
+   Falta de coordenada no significa lo mismo en todas las unidades, y el
+   mapa lo dice en vez de mostrarlas todas como un hueco:
+
+     (sin campo)      → coordenada tomada del pin exacto del enlace. 47.
+     'por-validar'    → el punto entra al mapa, pero la ficha avisa de que
+                        está sin corroborar del todo. 4.
+     'movil'          → unidad móvil: no tiene punto fijo, y eso no es un
+                        dato pendiente sino cómo trabaja. 7.
+     'discrepancia'   → el enlace del directorio apuntaba a OTRA unidad.
+                        Se dejó sin punto a propósito: un pin plausible
+                        pero falso en una unidad médica es peor que
+                        ninguno. 3 (Las Palomas, CECOSAMA Chimalhuacán y
+                        SORID Barrio Transportistas).
+
+   Al confirmar una de las 7 pendientes: pega `lat`/`lng` y borra la línea
+   de `ubicacion`. El mapa y el conteo se actualizan solos.
+
+   Fuente: CAPTURA_coordenadas_unidades_COMPLETADA.xlsx, unida por CLUES.
+   Las columnas de latitud/longitud traen el pin exacto; el `@lat,lng` que
+   va dentro de la URL larga de Google NO sirve, porque es el centro de
+   cámara y puede estar a kilómetros del pin.
+
+   SERVICIOS DE CONSULTA EXTERNA
+   -----------------------------
+   `nutricion`, `psicologia` y `estomatologia` están en el catálogo y sus
+   filtros aparecen en el mapa EN CUANTO alguna unidad los declare. Hoy
+   casi ninguna los tiene marcados porque el directorio de origen no dice
+   qué unidad cuenta con nutriólogo, psicólogo o estomatólogo. Se van
+   marcando a mano conforme se confirmen; no se deducen del tipo de
+   unidad, porque mandar a alguien a un servicio que no existe es peor
+   que no anunciarlo.
 
    SOBRE LAS COORDENADAS
    ---------------------
@@ -113,7 +146,7 @@ const UNIDADES = [
     tipologia: 'Urbano De 01 Núcleos Básicos',
     municipio: 'Atenco',
     coordinacion: 'Chiconcuac',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.5816536, lng: -98.9306887,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SN%20CRIST%C3%93BAL%20NEXQUIPAYAC%2C%20Atenco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -126,7 +159,7 @@ const UNIDADES = [
     tipologia: 'Urbano De 02 Núcleos Básicos',
     municipio: 'Atenco',
     coordinacion: 'Chiconcuac',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.5821342, lng: -98.9460205,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SANTA%20ISABEL%20IXTAPAN%2C%20Atenco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -139,7 +172,7 @@ const UNIDADES = [
     tipologia: 'Urbano De 02 Núcleos Básicos',
     municipio: 'Atenco',
     coordinacion: 'Chiconcuac',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.547108, lng: -98.9003728,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20ZAPOTLAN%2C%20Atenco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -152,7 +185,7 @@ const UNIDADES = [
     tipologia: 'Urbano De 02 Núcleos Básicos',
     municipio: 'Atenco',
     coordinacion: 'Chiconcuac',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.5602744, lng: -98.9127964,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SAN%20FRANCISCO%20ACUEXCOMAC%2C%20Atenco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -180,7 +213,7 @@ const UNIDADES = [
     tipologia: 'Urbano De 01 Núcleos Básicos',
     municipio: 'Chiautla',
     coordinacion: 'Chiautla',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.5548531, lng: -98.8867479,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SAN%20ANDR%C3%89S%20CHIAUTLA%2C%20Chiautla%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -193,7 +226,7 @@ const UNIDADES = [
     tipologia: 'Urbano De 01 Núcleos Básicos',
     municipio: 'Chiautla',
     coordinacion: 'Chiautla',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.5890084, lng: -98.8984354,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20OCOPULCO%2C%20Chiautla%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -206,7 +239,7 @@ const UNIDADES = [
     tipologia: 'Urbano De 01 Núcleos Básicos',
     municipio: 'Chiautla',
     coordinacion: 'Chiautla',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.5678537, lng: -98.8893353,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SANTIAGO%20CHIMALPA%2C%20Chiautla%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -219,7 +252,7 @@ const UNIDADES = [
     tipologia: 'Rural De 01 Núcleo Básico',
     municipio: 'Chiautla',
     coordinacion: 'Chiautla',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.5744406, lng: -98.8731169,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SAN%20ANTONIO%20TEPETITLAN%2C%20Chiautla%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -232,7 +265,7 @@ const UNIDADES = [
     tipologia: 'Urbano De 01 Núcleos Básicos',
     municipio: 'Chiautla',
     coordinacion: 'Chiautla',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.553558, lng: -98.8684861,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20NONOALCO%2C%20Chiautla%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -246,7 +279,8 @@ const UNIDADES = [
     municipio: 'Chiautla',
     coordinacion: 'Ceaps Chiautla',
     direccion: 'Cto. Escolar 2 de Marzo, Col. San Juan, Chiautla, Estado de México',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.5457904, lng: -98.8805123,
+    ubicacion: 'por-validar',   // coordenada sin corroborar del todo
     maps:      'https://www.google.com/maps/search/?api=1&query=CEAPS+Chiautla%2C+Cto.+Escolar+2+de+Marzo%2C+Col.+San+Juan%2C+Chiautla%2C+Estado+de+M%C3%A9xico&query_place_id=ChIJs-DXgzDp0YURVzGxkstbSf8',
     servicios: ['medicina-general'],
     telefono:  '5959538874',   // de su coordinación
@@ -262,7 +296,8 @@ const UNIDADES = [
     municipio: 'Chiautla',
     coordinacion: 'Jurisdicción Sanitaria Xix. Texcoco',
     direccion: 'Camino a Papalotla No. 17, San Sebastián, Chiautla, Estado de México, C.P. 56030',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.5522212, lng: -98.8800277,
+    ubicacion: 'por-validar',   // coordenada sin corroborar del todo
     maps:      'https://www.google.com/maps/search/?api=1&query=JURISDICCION+SANITARIA+TEXCOCO+ISEM%2C+Camino+a+Papalotla+No.+17%2C+San+Sebasti%C3%A1n%2C+Chiautla%2C+Estado+de+M%C3%A9xico%2C+C.P.+56030&query_place_id=ChIJUbIurWLo0YURQy257Q17Mso',
     servicios: ['promocion'],
     // ⚠ PENDIENTE DE VALIDAR: la ficha de Maps está identificada, pero no se asignó coordenada sin una c
@@ -277,7 +312,7 @@ const UNIDADES = [
     tipologia: 'Urbano De 02 Núcleos Básicos',
     municipio: 'Chicoloapan',
     coordinacion: 'Chicoloapan',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.4025046, lng: -98.9292535,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20EJERCITO%20DEL%20TRABAJO%2C%20Chicoloapan%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -290,7 +325,7 @@ const UNIDADES = [
     tipologia: 'Urbano De 02 Núcleos Básicos',
     municipio: 'Chicoloapan',
     coordinacion: 'Chicoloapan',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.4047348, lng: -98.9066603,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20COL.SANTA%20ROSA%2C%20Chicoloapan%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -303,7 +338,7 @@ const UNIDADES = [
     tipologia: 'Urbano De 01 Núcleos Básicos',
     municipio: 'Chicoloapan',
     coordinacion: 'Chicoloapan',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.3982296, lng: -98.9335639,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20FRANCISCO%20VILLA%2C%20Chicoloapan%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -329,7 +364,7 @@ const UNIDADES = [
     tipologia: 'Urbano De 02 Núcleos Básicos',
     municipio: 'Chicoloapan',
     coordinacion: 'Chicoloapan',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.4208411, lng: -98.9013736,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SAN%20VICENTE%20CHICOLOAPAN%2C%20Chicoloapan%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -342,7 +377,7 @@ const UNIDADES = [
     tipologia: 'Urbano De 01 Núcleos Básicos',
     municipio: 'Chicoloapan',
     coordinacion: 'Chicoloapan',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.4051828, lng: -98.9205693,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20VENUSTIANO%20CARRANZA%2C%20Chicoloapan%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -355,7 +390,7 @@ const UNIDADES = [
     tipologia: 'Urbano De 02 Núcleos Básicos',
     municipio: 'Chicoloapan',
     coordinacion: 'Chicoloapan',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.4182357, lng: -98.8837051,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20C.S.%20ARA%2C%20Chicoloapan%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -368,7 +403,7 @@ const UNIDADES = [
     tipologia: 'Urbano De 02 Núcleos Básicos',
     municipio: 'Chicoloapan',
     coordinacion: 'Chicoloapan',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.4249673, lng: -98.8895377,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20C.S.%20BETA%2C%20Chicoloapan%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -396,7 +431,7 @@ const UNIDADES = [
     tipologia: 'Hospital Integral (Comunitario)',
     municipio: 'Chiconcuac',
     coordinacion: 'Hospital Municipal De Chiconcuac',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.5437209, lng: -98.8974549,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20HOSPITAL%20MUNICIPAL%20DE%20CHICONCUAC%2C%20Chiconcuac%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general', 'urgencias'],
     horario:   '',
@@ -410,7 +445,7 @@ const UNIDADES = [
     tipologia: 'Urbano De 06 Núcleos Básicos',
     municipio: 'Chimalhuacan',
     coordinacion: 'San Pedro',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.4212549, lng: -98.947509,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20CHIMALHUACAN%2C%20Chimalhuacan%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -437,7 +472,8 @@ const UNIDADES = [
     municipio: 'Chimalhuacan',
     coordinacion: 'San Lorenzo',
     direccion: 'Díaz Ordaz y Venustiano Carranza S/N, San Lorenzo, Chimalhuacán, Estado de México, C.P. 56340',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.40773, lng: -98.9820024,
+    ubicacion: 'por-validar',   // coordenada sin corroborar del todo
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS+Bienestar+-+Centro+de+Salud+San+Lorenzo%2C+D%C3%ADaz+Ordaz+y+Venustiano+Carranza+S%2FN%2C+San+Lorenzo%2C+Chimalhuac%C3%A1n%2C+Estado+de+M%C3%A9xico%2C+C.P.+56340&query_place_id=ChIJ8VZLWhDj0YURIc9JbC_62YA',
     servicios: ['medicina-general'],
     // ⚠ PENDIENTE DE VALIDAR: la unidad de San Lorenzo está identificada en Maps, pero no se encontró un
@@ -451,7 +487,8 @@ const UNIDADES = [
     tipologia: 'Unidad Móvil',
     municipio: 'Chimalhuacan',
     coordinacion: 'San Lorenzo',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: null, lng: null,   // unidad móvil: no tiene punto fijo
+    ubicacion: 'movil',
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20U.%20M%C3%93VIL%20ISEM%20SAN%20LORENZO%201%2C%20Chimalhuacan%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -477,7 +514,8 @@ const UNIDADES = [
     tipologia: 'Urbano De 03 Núcleos Básicos',
     municipio: 'Chimalhuacan',
     coordinacion: 'San Agustin',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: null, lng: null,   // sin coordenada a propósito: el enlace apuntaba a otra unidad
+    ubicacion: 'discrepancia',
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20LAS%20PALOMAS%2C%20Chimalhuacan%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -557,7 +595,8 @@ const UNIDADES = [
     tipologia: 'Unidad De Especialidades Médicas (Unemes)',
     municipio: 'Chimalhuacan',
     coordinacion: 'Uneme',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: null, lng: null,   // sin coordenada a propósito: el enlace apuntaba a otra unidad
+    ubicacion: 'discrepancia',
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20CENTRO%20COMUNITARIO%20DE%20SALUD%20MENTAL%20Y%20ADICCIONES%20CHIMALHUAC%C3%81N%2C%20Chimalhuacan%2C%20Estado%20de%20Mexico',
     servicios: ['psicologia'],
     horario:   '',
@@ -571,7 +610,8 @@ const UNIDADES = [
     municipio: 'Chimalhuacan',
     coordinacion: 'Uneme',
     direccion: 'Av. Riva Palacio esq. Av. México, Barrio Transportistas, Chimalhuacán, Estado de México, C.P. 56335',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: null, lng: null,   // sin coordenada a propósito: el enlace apuntaba a otra unidad
+    ubicacion: 'discrepancia',
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS+Bienestar+-+UNEME+Sorid+Barrio+Transportistas%2C+Av.+Riva+Palacio+esq.+Av.+M%C3%A9xico%2C+Barrio+Transportistas%2C+Chimalhuac%C3%A1n%2C+Estado+de+M%C3%A9xico%2C+C.P.+56335&query_place_id=ChIJ-T5acQDj0YURsk6by2O8jNo',
     servicios: [],
     // ⚠ PENDIENTE: Maps muestra un domicilio distinto (Gardenia 65) al directorio/oficial; se dejó sin c
@@ -598,7 +638,7 @@ const UNIDADES = [
     tipologia: 'Hospital General',
     municipio: 'Chimalhuacan',
     coordinacion: 'H.G. Chimalhuacan',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.4196617, lng: -98.9751505,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20H.G.%20CHIMALHUAC%C3%81N%2C%20Chimalhuacan%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general', 'urgencias'],
     horario:   '',
@@ -611,7 +651,7 @@ const UNIDADES = [
     tipologia: 'Hospital General',
     municipio: 'Chimalhuacan',
     coordinacion: 'Hospital General Chimalhuacán San Agustín',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.3870925, lng: -98.9604154,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20HOSPITAL%20GENERAL%20CHIMALHUAC%C3%81N%20SAN%20AGUST%C3%8DN%2C%20Chimalhuacan%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general', 'urgencias'],
     horario:   '',
@@ -624,7 +664,7 @@ const UNIDADES = [
     tipologia: 'Hospital Especializado',
     municipio: 'Chimalhuacan',
     coordinacion: 'Hospital Materno Infantil Vicente Guerrero Chimalhuacán',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.4422896, lng: -98.9730086,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20HOSPITAL%20MATERNO%20INFANTIL%20VICENTE%20GUERRERO%20CHIMALHUAC%C3%81N%2C%20Chimalhuacan%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general', 'urgencias'],
     horario:   '',
@@ -638,7 +678,7 @@ const UNIDADES = [
     tipologia: 'Urbano De 02 Núcleos Básicos',
     municipio: 'Papalotla',
     coordinacion: 'Chiautla',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.5614354, lng: -98.8588554,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20PAPALOTLA%2C%20Papalotla%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -653,7 +693,8 @@ const UNIDADES = [
     municipio: 'Tepetlaoxtoc',
     coordinacion: 'Ceaps Tepetlaoxtoc',
     direccion: 'Jolalpan No. 21, Col. La Santísima, Tepetlaoxtoc, Estado de México, C.P. 56070',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.5756918, lng: -98.8175981,
+    ubicacion: 'por-validar',   // coordenada sin corroborar del todo
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS+Bienestar+-+CEAPS+Tepetlaoxtoc%2C+Jolalpan+No.+21%2C+Col.+La+Sant%C3%ADsima%2C+Tepetlaoxtoc%2C+Estado+de+M%C3%A9xico%2C+C.P.+56070&query_place_id=ChIJI0xhspPC0YURFASKflsnnZM',
     servicios: ['medicina-general'],
     telefono:  '5959230932',   // de su coordinación
@@ -668,7 +709,7 @@ const UNIDADES = [
     tipologia: 'Urbano De 01 Núcleos Básicos',
     municipio: 'Tepetlaoxtoc',
     coordinacion: 'Chiautla',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.5841202, lng: -98.8459583,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20LA%20CONCEPCI%C3%93N%20JOLALPAN%2C%20Tepetlaoxtoc%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -681,7 +722,7 @@ const UNIDADES = [
     tipologia: 'Rural De 01 Núcleo Básico',
     municipio: 'Tepetlaoxtoc',
     coordinacion: 'Chiautla',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.5614341, lng: -98.7888624,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SAN%20BERNARDO%20TLALMIMILOLPAN%2C%20Tepetlaoxtoc%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -694,7 +735,7 @@ const UNIDADES = [
     tipologia: 'Rural De 01 Núcleo Básico',
     municipio: 'Tepetlaoxtoc',
     coordinacion: 'Chiautla',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.5681384, lng: -98.7854775,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SAN%20PEDRO%20CHIAUTZINGO%2C%20Tepetlaoxtoc%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -707,7 +748,7 @@ const UNIDADES = [
     tipologia: 'Urbano De 01 Núcleos Básicos',
     municipio: 'Tepetlaoxtoc',
     coordinacion: 'Chiautla',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.5416749, lng: -98.7467581,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SANTO%20TOM%C3%81S%20APIPILHUASCO%2C%20Tepetlaoxtoc%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -734,7 +775,7 @@ const UNIDADES = [
     tipologia: 'Urbano De 02 Núcleos Básicos',
     municipio: 'Texcoco',
     coordinacion: 'Texcoco Cabecera',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.5324364, lng: -98.8788793,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20TULANTONGO%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -747,7 +788,7 @@ const UNIDADES = [
     tipologia: 'Urbano De 01 Núcleos Básicos',
     municipio: 'Texcoco',
     coordinacion: 'Texcoco Cabecera',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.4785865, lng: -98.8620498,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SAN%20LUIS%20HUEXOTLA%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -760,7 +801,7 @@ const UNIDADES = [
     tipologia: 'Urbano De 01 Núcleos Básicos',
     municipio: 'Texcoco',
     coordinacion: 'Texcoco Cabecera',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.5172166, lng: -98.8636525,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SANTA%20CRUZ%20DE%20ARRIBA%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -773,7 +814,7 @@ const UNIDADES = [
     tipologia: 'Urbano De 01 Núcleos Básicos',
     municipio: 'Texcoco',
     coordinacion: 'Texcoco Cabecera',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.4722341, lng: -98.8814765,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20LEYES%20DE%20REFORMA%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -786,7 +827,7 @@ const UNIDADES = [
     tipologia: 'Urbano De 01 Núcleos Básicos',
     municipio: 'Texcoco',
     coordinacion: 'Texcoco Este',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.5256778, lng: -98.8189458,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20LA%20PURIFICACION%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -799,7 +840,7 @@ const UNIDADES = [
     tipologia: 'Urbano De 01 Núcleos Básicos',
     municipio: 'Texcoco',
     coordinacion: 'Texcoco Este',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.5188614, lng: -98.7639866,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SAN%20JERONIMO%20AMANALCO%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -812,7 +853,7 @@ const UNIDADES = [
     tipologia: 'Urbano De 01 Núcleos Básicos',
     municipio: 'Texcoco',
     coordinacion: 'Texcoco Este',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.509798, lng: -98.8136798,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SAN%20MIGUEL%20TLAIXPAN%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -825,7 +866,7 @@ const UNIDADES = [
     tipologia: 'Rural De 01 Núcleo Básico',
     municipio: 'Texcoco',
     coordinacion: 'Texcoco Este',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.4792368, lng: -98.8040814,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SAN%20PABLO%20IXAYOC%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -838,7 +879,7 @@ const UNIDADES = [
     tipologia: 'Urbano De 01 Núcleos Básicos',
     municipio: 'Texcoco',
     coordinacion: 'Texcoco Este',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.4956658, lng: -98.7820405,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20CENTRO%20DE%20SALUD%20SANTA%20CATARINA%20DEL%20MONTE%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -851,7 +892,7 @@ const UNIDADES = [
     tipologia: 'Urbano De 01 Núcleos Básicos',
     municipio: 'Texcoco',
     coordinacion: 'Texcoco Este',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.4798896, lng: -98.8188125,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20TEQUEXQUINAHUAC%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -864,7 +905,7 @@ const UNIDADES = [
     tipologia: 'Rural De 01 Núcleo Básico',
     municipio: 'Texcoco',
     coordinacion: 'Texcoco Este',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.5419722, lng: -98.8155556,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SAN%20JUAN%20TEZONTLA%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -877,7 +918,7 @@ const UNIDADES = [
     tipologia: 'Urbano De 01 Núcleos Básicos',
     municipio: 'Texcoco',
     coordinacion: 'Texcoco Este',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.4954167, lng: -98.8373056,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SANTA%20MAR%C3%8DA%20NATIVITAS%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -890,7 +931,7 @@ const UNIDADES = [
     tipologia: 'Urbano De 01 Núcleos Básicos',
     municipio: 'Texcoco',
     coordinacion: 'Texcoco Este',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.4998157, lng: -98.7718527,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20CENTRO%20DE%20SALUD%20SANTA%20MAR%C3%8DA%20TECUANULCO%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -903,7 +944,8 @@ const UNIDADES = [
     tipologia: 'Unidad Móvil',
     municipio: 'Texcoco',
     coordinacion: 'Texcoco Este',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: null, lng: null,   // unidad móvil: no tiene punto fijo
+    ubicacion: 'movil',
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20U.%20M%C3%93VIL%20ISEM%20SAN%20LORENZO%204%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -916,7 +958,8 @@ const UNIDADES = [
     tipologia: 'Unidad Móvil',
     municipio: 'Texcoco',
     coordinacion: 'Texcoco Este',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: null, lng: null,   // unidad móvil: no tiene punto fijo
+    ubicacion: 'movil',
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20U.%20M%C3%93VIL%20ISEM%20SAN%20LORENZO%203%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -929,7 +972,7 @@ const UNIDADES = [
     tipologia: 'Urbano De 01 Núcleos Básicos',
     municipio: 'Texcoco',
     coordinacion: 'Texcoco Oeste',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.4769881, lng: -98.8989879,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SAN%20BERNARDINO%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -955,7 +998,7 @@ const UNIDADES = [
     tipologia: 'Urbano De 01 Núcleos Básicos',
     municipio: 'Texcoco',
     coordinacion: 'Texcoco Oeste',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.43425, lng: -98.8991389,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SANTIAGO%20CUAUTLALPAN%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -968,7 +1011,7 @@ const UNIDADES = [
     tipologia: 'Urbano De 01 Núcleos Básicos',
     municipio: 'Texcoco',
     coordinacion: 'Texcoco Oeste',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.5360206, lng: -98.9118847,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20LA%20MAGDALENA%20PANOAYA%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -981,7 +1024,7 @@ const UNIDADES = [
     tipologia: 'Urbano De 01 Núcleos Básicos',
     municipio: 'Texcoco',
     coordinacion: 'Texcoco Oeste',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.5077818, lng: -98.8993052,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SAN%20FELIPE%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -994,7 +1037,7 @@ const UNIDADES = [
     tipologia: 'Urbano De 01 Núcleos Básicos',
     municipio: 'Texcoco',
     coordinacion: 'Texcoco Oeste',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.5223424, lng: -98.9067936,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SAN%20JUAN%20TOCUILA%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -1007,7 +1050,8 @@ const UNIDADES = [
     tipologia: 'Unidad Móvil',
     municipio: 'Texcoco',
     coordinacion: 'San Pedro',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: null, lng: null,   // unidad móvil: no tiene punto fijo
+    ubicacion: 'movil',
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20U.%20M%C3%93VIL%20ISEM%20SAN%20PEDRO%201%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -1020,7 +1064,8 @@ const UNIDADES = [
     tipologia: 'Unidad Móvil',
     municipio: 'Texcoco',
     coordinacion: 'San Pedro',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: null, lng: null,   // unidad móvil: no tiene punto fijo
+    ubicacion: 'movil',
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20U.%20M%C3%93VIL%20ISEM%20SAN%20PEDRO%204%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -1033,7 +1078,8 @@ const UNIDADES = [
     tipologia: 'Unidad Móvil',
     municipio: 'Texcoco',
     coordinacion: 'Plateros',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: null, lng: null,   // unidad móvil: no tiene punto fijo
+    ubicacion: 'movil',
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20U.%20M%C3%93VIL%20ISEM%20PLATEROS%202%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -1046,7 +1092,8 @@ const UNIDADES = [
     tipologia: 'Unidad Móvil',
     municipio: 'Texcoco',
     coordinacion: 'Plateros',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: null, lng: null,   // unidad móvil: no tiene punto fijo
+    ubicacion: 'movil',
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20U.%20M%C3%93VIL%20ISEM%20PLATEROS%203%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',
@@ -1059,7 +1106,7 @@ const UNIDADES = [
     tipologia: 'Hospital General',
     municipio: 'Texcoco',
     coordinacion: 'Hospital Materno De Texcoco',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.4551377, lng: -98.8725404,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20HOSPITAL%20MATERNO%20DE%20TEXCOCO%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general', 'urgencias'],
     horario:   '',
@@ -1072,7 +1119,7 @@ const UNIDADES = [
     tipologia: 'Hospital General',
     municipio: 'Texcoco',
     coordinacion: 'H.G. Texcoco Guadalupe Victoria Bicentenario',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.5143605, lng: -98.8717583,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20H.G.%20TEXCOCO%20GUADALUPE%20VICTORIA%20BICENTENARIO%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general', 'urgencias'],
     horario:   '',
@@ -1086,7 +1133,7 @@ const UNIDADES = [
     tipologia: 'Urbano De 01 Núcleos Básicos',
     municipio: 'Tezoyuca',
     coordinacion: 'Chiconcuac',
-    lat: null, lng: null,   // ← pega aquí la coordenada
+    lat: 19.6016247, lng: -98.945318,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20C.S.%20TEQUISISTLAN%2C%20Tezoyuca%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
     horario:   '',

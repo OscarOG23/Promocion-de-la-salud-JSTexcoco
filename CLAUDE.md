@@ -28,6 +28,7 @@ Multi-page internal staff platform for the **Departamento de Promoción a la Sal
 │   └── acciones.json   ← Las 133 Acciones Integradas de Línea de Vida
 └── assets/
     ├── img/logo-ps.png
+    ├── vendor/leaflet/    ← Leaflet 1.9.4 alojado (mapa del directorio)
     └── data/
         ├── recursos.js     ← ÍNDICE ÚNICO: todos los materiales del sitio
         ├── campaigns.js    ← Campañas (carrusel index + grid promocion)
@@ -305,6 +306,34 @@ para que no se rompan los enlaces que el personal ya tenga guardados o impresos.
 `lat`/`lng` son números en grados decimales **con el signo**: aquí la longitud es negativa (~-98.9). Sin coordenadas la ficha dice «Ubicación por cargar» y no rompe nada, así que se pueden ir cargando poco a poco. Un servicio nuevo se añade con una línea en `SERVICIOS` y su filtro aparece solo.
 Los de tipo `referencia` son servicios externos y llevan `tema` (`crisis` | `adicciones` | `violencia`) y, si aplica, `telefono` (solo dígitos, para el enlace `tel:`).
 
+## Mapa de unidades (Leaflet)
+
+`directorio.html#mapa` lleva un mapa real sobre la misma rejilla de fichas.
+
+**Leaflet 1.9.4 vive en el repo**, en `assets/vendor/leaflet/` (173 KB), no en
+un CDN: así el mapa no depende de que un tercero responda. Lo único que pide
+red son los mosaicos de OpenStreetMap. Si Leaflet no cargara, el mapa se
+sustituye por un aviso y **la rejilla de abajo sigue funcionando**: el mapa es
+un atajo visual, la lista es la fuente de verdad.
+
+- **Un solo filtro, dos vistas.** La condición vive en `pasa(u)` dentro de
+  `renderUnidades()`; las fichas y los puntos la usan igual. Al elegir un
+  municipio el mapa reencuadra sobre esas unidades.
+- **Color por tipo de unidad** (`MAPA_COLORES`), con leyenda generada desde
+  los datos: solo salen los tipos que de verdad tienen unidades con punto.
+- **`invalidateSize()` no es opcional.** Leaflet mide el contenedor al
+  crearse; si el diseño aún no cuajó se queda con una medida vieja y los
+  mosaicos no llenan la caja. Hay un `ResizeObserver` sobre el lienzo y una
+  llamada antes de cada reencuadre.
+- **Sin zoom con la rueda**: en una página larga, atrapar el scroll dentro
+  del mapa es de las cosas que más molestan.
+- El globo de cada punto trae nombre, tipo, municipio, servicios y los dos
+  enlaces a Google Maps. Se arman desde `lat`/`lng`, no desde la URL larga
+  de Google.
+
+Al actualizar Leaflet hay que volver a bajar los cinco archivos de
+`assets/vendor/leaflet/` y subir la versión, como con cualquier otro asset.
+
 ## Enlaces de Drive: visor y descarga
 
 Un material alojado en Google enseña **dos botones**: el principal abre el
@@ -509,10 +538,13 @@ expediente se registra únicamente el numeral, sin abreviaturas
   ```
 - **Contact form:** Conectar `handleForm()` a Formspree (`https://formspree.io/f/XXXX`).
 - **Datos reales:** Números placeholder en `kpis.js` y unidades/horarios en `directorio.js`.
-- **61 de las 76 unidades sin coordenada:** la hoja `UBICACION MAPS` se hizo por *coordinación*, no por unidad, así que solo 15 unidades heredan un punto. Las demás abren una búsqueda en Maps por nombre y municipio. Para capturarlas está `~/Downloads/CAPTURA_coordenadas_unidades.xlsx`, con una fila por unidad y el enlace ya armado.
+- **10 de las 76 unidades sin coordenada:** 7 son unidades móviles (no
+  tienen punto fijo) y 3 quedaron sin punto a propósito porque el enlace del
+  directorio apuntaba a otra unidad. Ver el campo `ubicacion` en
+  `directorio.js`. Otras 4 tienen punto pero marcado `por-validar`.
+
 - **Geocodificar automáticamente NO funciona aquí:** se probó con Nominatim/OpenStreetMap y devolvió 0 resultados en 2 de 3 casos, y en el tercero **el centro de salud equivocado** con coordenadas distintas a las del directorio. Un pin plausible pero falso en una unidad médica es peor que ninguno.
-- **(histórico) 8 unidades sin coordenada validada:** en `UNIDADES` van con `lat: null` y su comentario, porque en `DIRECTORIO_con_maps_y_coordenadas.xlsx` están marcadas PENDIENTE o con discrepancia. En la web abren una búsqueda en Maps y lo dicen. Al confirmarlas, pegar lat/lng y quitar el comentario.
-- **Servicios por unidad:** `servicios` solo trae lo que el nombre acredita (CISAME/CECOSAMA → psicología; CEAPS y C.S.U. → medicina general; coordinaciones → promoción). **Nutrición está vacía en las 26**: el directorio de origen no dice qué unidad tiene nutriólogo. Hasta declararlo, esa rejilla de `directorio.html` explica qué falta en vez de mostrarse rota.
+- **Servicios de consulta externa por marcar:** `nutricion`, `psicologia` y `estomatologia` están en el catálogo `SERVICIOS` y su filtro aparece en el mapa en cuanto una unidad los declare. Hoy las 76 unidades traen 72 medicina general, 6 urgencias, 2 psicología y 1 promoción: el directorio de origen no dice qué unidad tiene nutriólogo, psicólogo o estomatólogo. Se marcan a mano conforme se confirmen. **No deducirlos del tipo de unidad**: mandar a alguien a un servicio que no existe es peor que no anunciarlo.
 - **Nombres del personal:** la hoja `COORDINACION` trae coordinador, administrador y enfermera por unidad. **No se publican**: el sitio es público. Si algún día se quiere un directorio con nombres, tendría que vivir detrás de acceso restringido.
 - **Recursos en `estado: 'pendiente'`** en `recursos.js`: sustituir `url` y poner `estado: 'ok'` conforme lleguen los enlaces.
 - **Paquetes de NotebookLM:** conforme se suban a Drive, pasar la ficha a `materiales: [...]` usando los atajos `GD.doc(id)` / `GD.archivo(id)` / `GD.carpeta(id)` del principio de `recursos.js`. Cada archivo debe quedar compartido como «Cualquier persona con el enlace · Lector».
