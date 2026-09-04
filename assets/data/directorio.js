@@ -1155,6 +1155,63 @@ const UNIDADES = [
 ];
 
 
+/* ── LOS DATOS INSTITUCIONALES YA NO SE MANTIENEN AQUÍ ──────────────────
+
+   Desde el 2026-09-04 el nombre, las dos CLUES, el municipio, la coordinación,
+   la tipología, la dirección, las coordenadas y el enlace de Maps de cada
+   unidad vienen de la fuente canónica del JST AI Workspace, no de la lista de
+   arriba. Se regeneran con:
+
+       python ../JST-AI-WORKSPACE/scripts/jst.py export portal-directorio \
+              --out assets/data/jst-directorio.generado.json
+
+   NO edites esos campos en la lista de arriba: este bloque los sobrescribe y
+   tu cambio no se verá. Para corregir un dato institucional, corrígelo en
+   DIRECTORIO.xlsx y reconstruye la base del workspace.
+
+   Lo que SÍ se mantiene aquí, porque es editorial y no institucional:
+   `tipo`, `servicios`, `horario`, `atencion` y la lista DIRECTORIO de abajo.
+
+   Los valores institucionales de la lista de arriba se conservan como
+   respaldo: si el artefacto no carga, el sitio funciona exactamente como
+   antes. Se retirarán cuando la migración esté cerrada.                    */
+(function aplicarCatalogoCanonico() {
+  if (typeof JST_DIRECTORIO === 'undefined' || !JST_DIRECTORIO.unidades) return;
+
+  var INSTITUCIONALES = ['nombre', 'cluesSSA', 'municipio', 'coordinacion',
+                         'tipologia', 'direccion', 'lat', 'lng', 'maps',
+                         'ubicacion', 'telefono'];
+
+  var porClues = {};
+  JST_DIRECTORIO.unidades.forEach(function (u) {
+    if (u.clues) porClues[u.clues] = u;
+    if (u.cluesSSA) porClues[u.cluesSSA] = u;
+  });
+
+  var vistas = {};
+  UNIDADES.forEach(function (local) {
+    var canonica = porClues[local.clues];
+    if (!canonica) return;
+    vistas[canonica.clues || canonica.cluesSSA] = true;
+    INSTITUCIONALES.forEach(function (campo) {
+      if (canonica[campo] !== undefined) local[campo] = canonica[campo];
+    });
+  });
+
+  // Unidades que la jurisdicción tiene y esta lista todavía no. Entran sin
+  // campos editoriales: aparecen en el directorio, pero sin servicios
+  // clasificados hasta que alguien los revise.
+  JST_DIRECTORIO.unidades.forEach(function (canonica) {
+    var llave = canonica.clues || canonica.cluesSSA;
+    if (vistas[llave]) return;
+    var nueva = { servicios: [], horario: '', atencion: '', tipo: '' };
+    INSTITUCIONALES.forEach(function (campo) { nueva[campo] = canonica[campo]; });
+    nueva.clues = canonica.clues;
+    UNIDADES.push(nueva);
+  });
+})();
+
+
 /* ── REFERENCIA — servicios externos ────────────────────────────
    FUENTE ÚNICA. Antes estaban escritos a mano en
    directorio.html#referencia y repetidos en prosa dentro de

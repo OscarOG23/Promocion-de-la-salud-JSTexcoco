@@ -111,8 +111,10 @@
         <div data-unidades></div>
 
         <p style="margin-top:1.5rem; font-size:.9rem; color:var(--gray-500)">
-          Para añadir una unidad o cargar sus coordenadas edita <code>assets/data/directorio.js</code>
-          (lista <code>UNIDADES</code>). Las instrucciones están en el propio archivo.
+          Las unidades, sus CLUES y sus coordenadas vienen del catálogo institucional
+          <code>assets/data/jst-directorio.generado.js</code>, que <strong>no se edita a mano</strong>:
+          se regenera desde <code>DIRECTORIO.xlsx</code>. Los servicios y horarios sí se
+          editan en <code>assets/data/directorio.js</code>.
         </p>
       </div>
     </section>
@@ -129,7 +131,8 @@
         <div class="directory-grid" data-dir="psicologia"></div>
 
         <p style="margin-top:1.5rem; font-size:.9rem; color:var(--gray-500)">
-          Para actualizar horarios o añadir unidades edita la lista <code>UNIDADES</code> de <code>assets/data/directorio.js</code>.
+          Para actualizar horarios o servicios edita la lista <code>UNIDADES</code> de <code>assets/data/directorio.js</code>.
+          Para dar de alta una unidad, se da de alta en <code>DIRECTORIO.xlsx</code> y se regenera el catálogo.
           ¿Falta una unidad? <a href="index.html#contacto" style="color:var(--purple)">Notifícanos →</a>
         </p>
       </div>
@@ -232,7 +235,12 @@
 
   <div id="site-footer"></div>
 
-  <script src="assets/data/directorio.js?v=20260831c"></script>
+  <!-- Catálogo institucional generado desde el JST AI Workspace. Va ANTES de
+       directorio.js, que lo aplica sobre su lista. Es un <script> y no un
+       fetch() de JSON a propósito: esta página se abre con doble clic y el
+       navegador bloquea fetch bajo file://. -->
+  <script src="assets/data/jst-directorio.generado.js?v=20260904a"></script>
+  <script src="assets/data/directorio.js?v=20260904a"></script>
   <script src="assets/data/recursos.js?v=20260831c"></script>
   <script src="components.js?v=20260831c"></script>
   <script src="assets/vendor/leaflet/leaflet.js?v=20260831c"></script>
