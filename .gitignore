@@ -1,3 +1,21 @@
 *.zip
 .DS_Store
 Thumbs.db
+
+# ── Superficie pública ──────────────────────────────────────────────────
+# Este repositorio se publica con GitHub Pages sirviendo la rama master
+# desde la raíz: TODO archivo versionado es descargable por URL directa,
+# esté enlazado o no. Antes de versionar algo aquí, pregúntate si puede
+# publicarse.
+
+# Libros de trabajo institucionales: traen hojas de personal (nombres,
+# teléfonos y cargos de coordinadores, administradores y enfermeras) que
+# no deben salir del entorno interno. La copia de trabajo vive fuera de
+# todo repositorio, en PROYECTOS ISEM/_privado/.
+DIRECTORIO_con_maps_y_coordenadas.xlsx
+DIRECTORIO*.xlsx
+
+# Artefactos de análisis y contexto de agentes: son internos y no aportan
+# nada a quien visita el sitio.
+graphify-out/
+.superpowers/
