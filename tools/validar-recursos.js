@@ -74,6 +74,16 @@ RECURSOS.forEach((r, i) => {
       !/^(https?:\/\/|[\w./-]+\.(html?|pdf|xlsx?|docx?|pptx?))/i.test(r.url)) {
     avisos.push(`${donde}: la url no parece una dirección válida (${String(r.url).slice(0, 50)}).`);
   }
+
+  // Una tarjeta que apunta al /edit de un formulario no sirve para responder:
+  // a quien no es editor le sale "necesitas permiso", y a quien sí lo es le
+  // abre el cuestionario para MODIFICARLO. visorDrive no lo endereza porque
+  // solo normaliza presentation, document, spreadsheets y file — no forms.
+  // Es un error, no un aviso: la tarjeta está rota para su público.
+  if (r.url && /docs\.google\.com\/forms\//i.test(r.url) && /\/edit\b/i.test(r.url)) {
+    errores.push(`${donde}: enlaza al /edit del formulario. Use /viewform, ` +
+                 `o la liga pública de "Enviar" del propio formulario.`);
+  }
 });
 
 // --- 3. Títulos repetidos dentro de un mismo programa ----------------------

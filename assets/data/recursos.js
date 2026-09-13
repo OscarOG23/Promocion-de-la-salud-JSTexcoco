@@ -1145,7 +1145,7 @@ const RECURSOS = [
     tema: [],
     publico: 'Responsables de unidad',
     modalidad: 'Mensual',
-    url: 'https://docs.google.com/forms/d/1JL-MBi82Urn3wKCfLlEenlKLKnGg87sA6uRCt9axKds/edit',
+    url: 'https://docs.google.com/forms/d/1JL-MBi82Urn3wKCfLlEenlKLKnGg87sA6uRCt9axKds/viewform',
     accion: 'Abrir formulario',
     estado: 'ok' },
 
