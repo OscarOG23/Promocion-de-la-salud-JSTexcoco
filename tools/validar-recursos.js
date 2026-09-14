@@ -100,9 +100,15 @@ RECURSOS.forEach(r => {
 });
 
 // --- 4. Resumen -----------------------------------------------------------
+// "Migrado" es cualquier url que YA NO es un Google Form: puede ser un
+// script.google.com (Determinantes) o un sistema aparte como SSOP, servido
+// desde GitHub Pages. El criterio correcto es "dejó de ser Forms", no
+// "vive en script.google.com" — eso subcontaba en cuanto un proyecto migró
+// a otro tipo de sistema.
 const formularios = RECURSOS.filter(r => r && r.tipo === 'formulario');
-const apps = formularios.filter(r => r.url && r.url.includes('script.google.com'));
-const forms = formularios.filter(r => r.url && r.url.includes('docs.google.com/forms'));
+const esForm = u => /forms\.gle|docs\.google\.com\/forms/i.test(u || '');
+const forms = formularios.filter(r => esForm(r.url));
+const apps = formularios.filter(r => r.url && !esForm(r.url) && r.url !== '#');
 const pendientes = RECURSOS.filter(r => r && r.estado === 'pendiente');
 
 console.log('');
