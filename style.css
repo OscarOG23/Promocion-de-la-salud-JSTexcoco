@@ -3841,3 +3841,6 @@ html { scroll-behavior: smooth; }
   color: var(--text-muted);
   font-variant-numeric: tabular-nums;
 }
+
+/* Reporte programado cuyo archivo aún no se publica */
+.badge-pending { background: color-mix(in srgb, var(--gold) 16%, transparent); color: var(--gold-dk); }

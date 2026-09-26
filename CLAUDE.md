@@ -6,6 +6,26 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Multi-page internal staff platform for the **Departamento de Promoción a la Salud, Jurisdicción Sanitaria Texcoco, ISEM** (Instituto de Salud del Estado de México). Dependency-free HTML/CSS/JS — no build step, no Node, no frameworks. Open any `.html` directly in a browser or via Live Server.
 
+## Fuente canónica de datos institucionales
+
+CLUES, nombre, municipio, coordinación, tipología, dirección, coordenadas y Maps de
+cada unidad **no se editan en este repo**: vienen de `core/data/jst.sqlite` en
+`JST-AI-WORKSPACE` (el workspace hermano) y se regeneran con
+
+```powershell
+python ..\JST-AI-WORKSPACE\scripts\jst.py export portal-directorio --out assets/data/jst-directorio.generado.json
+```
+
+`assets/data/directorio.js` los recibe en tiempo de ejecución (función
+`aplicarCatalogoCanonico()`, al inicio del archivo) y **sobreescribe** esos campos en
+`UNIDADES`; un edit manual ahí se pierde en la siguiente carga. Para corregir un dato
+institucional: corregirlo en `DIRECTORIO.xlsx` del workspace y reconstruir con
+`scripts/build_db.py`. Ver `.project/PROJECT.md` para el detalle completo y
+`../JST-AI-WORKSPACE/projects.yaml` para el registro del proyecto.
+
+Lo que sí se edita aquí: `tipo`, `servicios`, `horario`, `atencion` (editorial, no
+institucional) y la lista `DIRECTORIO` de servicios externos.
+
 ## File structure
 
 ```
@@ -298,9 +318,11 @@ El parámetro anterior `?cat=` se sigue aceptando (se traduce a `tipo` o a `tema
 para que no se rompan los enlaces que el personal ya tenga guardados o impresos.
 
 **KPIs:** editar `assets/data/kpis.js` (arrays `index` y `reportes` — un solo lugar para ambas páginas).
-**Directorio:** editar `assets/data/directorio.js`, que ahora tiene **dos listas**:
+**Directorio:** `assets/data/directorio.js` tiene **dos listas**. Ver "Fuente canónica de
+datos institucionales" arriba antes de tocar `UNIDADES`: sus campos institucionales se
+sobreescriben solos y no se editan aquí.
 
-- `UNIDADES` — las **76 unidades de salud** de la Jurisdicción, no las coordinaciones: la coordinación es estructura administrativa, y quien busca atención busca la unidad. Cada una con su `clues` de IMSS Bienestar (MCIMB…), su `cluesSSA` (MCSSA…), `tipologia`, `municipio`, `servicios: []` y `lat`/`lng`. De aquí salen el mapa operativo y las rejillas por servicio.
+- `UNIDADES` — las **76 unidades de salud** de la Jurisdicción, no las coordinaciones: la coordinación es estructura administrativa, y quien busca atención busca la unidad. Cada una con su `clues` de IMSS Bienestar (MCIMB…), su `cluesSSA` (MCSSA…), `tipologia`, `municipio`, `servicios: []` y `lat`/`lng`. De aquí salen el mapa operativo y las rejillas por servicio. **Solo `servicios`, `horario`, `atencion` y `tipo` son editoriales**; el resto lo sobreescribe `aplicarCatalogoCanonico()` desde la fuente del workspace.
 - `DIRECTORIO` — solo los servicios **externos** de referencia (`tipo: "referencia"`), con `tema` (`crisis` | `adicciones` | `violencia`) y `telefono` (solo dígitos).
 
 `lat`/`lng` son números en grados decimales **con el signo**: aquí la longitud es negativa (~-98.9). Sin coordenadas la ficha dice «Ubicación por cargar» y no rompe nada, así que se pueden ir cargando poco a poco. Un servicio nuevo se añade con una línea en `SERVICIOS` y su filtro aparece solo.
@@ -537,14 +559,23 @@ expediente se registra únicamente el numeral, sin abreviaturas
     style="border-radius:12px; border:none;"></iframe>
   ```
 - **Contact form:** Conectar `handleForm()` a Formspree (`https://formspree.io/f/XXXX`).
-- **Datos reales:** Números placeholder en `kpis.js` y unidades/horarios en `directorio.js`.
+- **Datos reales:** Números placeholder en `kpis.js`. Las unidades de `directorio.js` ya
+  traen datos institucionales reales vía la fuente canónica (ver arriba); lo que falta
+  es `atencion` (editorial) y el horario de hospitales, móviles y especializadas.
 - **10 de las 76 unidades sin coordenada:** 7 son unidades móviles (no
   tienen punto fijo) y 3 quedaron sin punto a propósito porque el enlace del
   directorio apuntaba a otra unidad. Ver el campo `ubicacion` en
   `directorio.js`. Otras 4 tienen punto pero marcado `por-validar`.
 
 - **Geocodificar automáticamente NO funciona aquí:** se probó con Nominatim/OpenStreetMap y devolvió 0 resultados en 2 de 3 casos, y en el tercero **el centro de salud equivocado** con coordenadas distintas a las del directorio. Un pin plausible pero falso en una unidad médica es peor que ninguno.
-- **Servicios de consulta externa por marcar:** `nutricion`, `psicologia` y `estomatologia` están en el catálogo `SERVICIOS` y su filtro aparece en el mapa en cuanto una unidad los declare. Hoy las 76 unidades traen 72 medicina general, 6 urgencias, 2 psicología y 1 promoción: el directorio de origen no dice qué unidad tiene nutriólogo, psicólogo o estomatólogo. Se marcan a mano conforme se confirmen. **No deducirlos del tipo de unidad**: mandar a alguien a un servicio que no existe es peor que no anunciarlo.
+- **Servicios de consulta externa:** `psicologia` (21 unidades) y `nutricion` (16) se
+  marcaron en sep 2026 con la producción que esas unidades reportan en SIS 2026 (ene–jul),
+  cruzada con el padrón de personal en `../EVALUACION MENSUAL TRIMESTRAL Y ANUAL/salida/cruce_padron_*.csv`.
+  Hospital General Atenco solo llega por el catálogo: sus servicios van en
+  `SERVICIOS_CONOCIDOS` dentro de `aplicarCatalogoCanonico()`. `estomatologia` (23) sale
+  de la hoja RESUMEN POR UNIDAD de `Padron_personal_JS_XIX.xlsx`. Horario: centros de
+  salud L–V 8:00–16:00 h, CEAPS 24 horas; hospitales, móviles y especializadas sin horario. **No deducirlos del tipo de unidad**: mandar a alguien a un servicio que no
+  existe es peor que no anunciarlo.
 - **Nombres del personal:** la hoja `COORDINACION` trae coordinador, administrador y enfermera por unidad. **No se publican**: el sitio es público. Si algún día se quiere un directorio con nombres, tendría que vivir detrás de acceso restringido.
 - **Recursos en `estado: 'pendiente'`** en `recursos.js`: sustituir `url` y poner `estado: 'ok'` conforme lleguen los enlaces.
 - **Paquetes de NotebookLM:** conforme se suban a Drive, pasar la ficha a `materiales: [...]` usando los atajos `GD.doc(id)` / `GD.archivo(id)` / `GD.carpeta(id)` del principio de `recursos.js`. Cada archivo debe quedar compartido como «Cualquier persona con el enlace · Lector».

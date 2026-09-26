@@ -99,10 +99,10 @@ const SERVICIOS = {
    SERVICIOS DE CONSULTA EXTERNA
    -----------------------------
    `nutricion`, `psicologia` y `estomatologia` están en el catálogo y sus
-   filtros aparecen en el mapa EN CUANTO alguna unidad los declare. Hoy
-   casi ninguna los tiene marcados porque el directorio de origen no dice
-   qué unidad cuenta con nutriólogo, psicólogo o estomatólogo. Se van
-   marcando a mano conforme se confirmen; no se deducen del tipo de
+   filtros aparecen en el mapa EN CUANTO alguna unidad los declare. Se
+   marcaron (sep 2026) las unidades cuyo personal de esa rama reporta
+   producción en SIS 2026, según la plantilla de RH cruzada en
+   EVALUACION MENSUAL TRIMESTRAL Y ANUAL/salida/Padron_personal_JS_XIX.xlsx; no se deducen del tipo de
    unidad, porque mandar a alguien a un servicio que no existe es peor
    que no anunciarlo.
 
@@ -135,8 +135,8 @@ const UNIDADES = [
     coordinacion: 'Ceaps San Salvador Atenco',
     direccion: 'Av. Parque Nacional S/N esq. El Contador, San Salvador Atenco, Estado de México, C.P. 56300',
     lat: 19.54644, lng: -98.91426,
-    servicios: ['medicina-general'],
-    horario:   '',
+    servicios: ['medicina-general', 'psicologia', 'estomatologia'],
+    horario:   '24 horas',
     atencion:  '' },
 
   { nombre:    'San Cristóbal Nexquipayac',
@@ -149,7 +149,7 @@ const UNIDADES = [
     lat: 19.5816536, lng: -98.9306887,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SN%20CRIST%C3%93BAL%20NEXQUIPAYAC%2C%20Atenco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
-    horario:   '',
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'Santa Isabel Ixtapan',
@@ -161,8 +161,8 @@ const UNIDADES = [
     coordinacion: 'Chiconcuac',
     lat: 19.5821342, lng: -98.9460205,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SANTA%20ISABEL%20IXTAPAN%2C%20Atenco%2C%20Estado%20de%20Mexico',
-    servicios: ['medicina-general'],
-    horario:   '',
+    servicios: ['medicina-general', 'estomatologia'],
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'Zapotlán',
@@ -175,7 +175,7 @@ const UNIDADES = [
     lat: 19.547108, lng: -98.9003728,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20ZAPOTLAN%2C%20Atenco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
-    horario:   '',
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'San Francisco Acuexcomac',
@@ -188,7 +188,7 @@ const UNIDADES = [
     lat: 19.5602744, lng: -98.9127964,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SAN%20FRANCISCO%20ACUEXCOMAC%2C%20Atenco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
-    horario:   '',
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'CEAPS Santa Rosa',
@@ -200,9 +200,9 @@ const UNIDADES = [
     coordinacion: 'Ceaps Santa Rosa',
     direccion: 'Seminario S/N, Col. Santa Rosa, Municipio de Atenco, Estado de México, C.P. 56300',
     lat: 19.59014, lng: -98.96609,
-    servicios: ['medicina-general'],
+    servicios: ['medicina-general', 'estomatologia'],
     telefono:  '5959222202',   // de su coordinación
-    horario:   '',
+    horario:   '24 horas',
     atencion:  '' },
 
   /* ══ CHIAUTLA (7) ══ */
@@ -216,7 +216,7 @@ const UNIDADES = [
     lat: 19.5548531, lng: -98.8867479,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SAN%20ANDR%C3%89S%20CHIAUTLA%2C%20Chiautla%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
-    horario:   '',
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'Ocopulco',
@@ -229,7 +229,7 @@ const UNIDADES = [
     lat: 19.5890084, lng: -98.8984354,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20OCOPULCO%2C%20Chiautla%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
-    horario:   '',
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'Santiago Chimalpa',
@@ -241,8 +241,8 @@ const UNIDADES = [
     coordinacion: 'Chiautla',
     lat: 19.5678537, lng: -98.8893353,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SANTIAGO%20CHIMALPA%2C%20Chiautla%2C%20Estado%20de%20Mexico',
-    servicios: ['medicina-general'],
-    horario:   '',
+    servicios: ['medicina-general', 'nutricion'],
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'San Antonio Tepetitlán',
@@ -255,7 +255,7 @@ const UNIDADES = [
     lat: 19.5744406, lng: -98.8731169,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SAN%20ANTONIO%20TEPETITLAN%2C%20Chiautla%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
-    horario:   '',
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'Nonoalco',
@@ -268,7 +268,7 @@ const UNIDADES = [
     lat: 19.553558, lng: -98.8684861,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20NONOALCO%2C%20Chiautla%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
-    horario:   '',
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'CEAPS Chiautla',
@@ -282,10 +282,10 @@ const UNIDADES = [
     lat: 19.5457904, lng: -98.8805123,
     ubicacion: 'por-validar',   // coordenada sin corroborar del todo
     maps:      'https://www.google.com/maps/search/?api=1&query=CEAPS+Chiautla%2C+Cto.+Escolar+2+de+Marzo%2C+Col.+San+Juan%2C+Chiautla%2C+Estado+de+M%C3%A9xico&query_place_id=ChIJs-DXgzDp0YURVzGxkstbSf8',
-    servicios: ['medicina-general'],
+    servicios: ['medicina-general', 'psicologia', 'nutricion', 'estomatologia'],
     telefono:  '5959538874',   // de su coordinación
     // ⚠ PENDIENTE DE VALIDAR: CEAPS Chiautla está identificado en Maps; falta corroborar una coordenada 
-    horario:   '',
+    horario:   '24 horas',
     atencion:  '' },
 
   { nombre:    'Jurisdicción Sanitaria XIX. Texcoco',
@@ -315,7 +315,7 @@ const UNIDADES = [
     lat: 19.4025046, lng: -98.9292535,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20EJERCITO%20DEL%20TRABAJO%2C%20Chicoloapan%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
-    horario:   '',
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'Col.santa Rosa',
@@ -327,8 +327,8 @@ const UNIDADES = [
     coordinacion: 'Chicoloapan',
     lat: 19.4047348, lng: -98.9066603,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20COL.SANTA%20ROSA%2C%20Chicoloapan%2C%20Estado%20de%20Mexico',
-    servicios: ['medicina-general'],
-    horario:   '',
+    servicios: ['medicina-general', 'psicologia'],
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'Francisco Villa',
@@ -341,7 +341,7 @@ const UNIDADES = [
     lat: 19.3982296, lng: -98.9335639,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20FRANCISCO%20VILLA%2C%20Chicoloapan%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
-    horario:   '',
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'Emiliano Zapata',
@@ -353,8 +353,8 @@ const UNIDADES = [
     coordinacion: 'Chicoloapan',
     direccion: 'Calle 1 de Abril S/N, Col. Emiliano Zapata, Chicoloapan, Estado de México, C.P. 56370',
     lat: 19.39801953, lng: -98.9296726,
-    servicios: ['medicina-general'],
-    horario:   '',
+    servicios: ['medicina-general', 'nutricion', 'estomatologia'],
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'San Vicente Chicoloapan',
@@ -367,7 +367,7 @@ const UNIDADES = [
     lat: 19.4208411, lng: -98.9013736,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SAN%20VICENTE%20CHICOLOAPAN%2C%20Chicoloapan%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
-    horario:   '',
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'Venustiano Carranza',
@@ -380,7 +380,7 @@ const UNIDADES = [
     lat: 19.4051828, lng: -98.9205693,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20VENUSTIANO%20CARRANZA%2C%20Chicoloapan%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
-    horario:   '',
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'C.S. ARA',
@@ -393,7 +393,7 @@ const UNIDADES = [
     lat: 19.4182357, lng: -98.8837051,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20C.S.%20ARA%2C%20Chicoloapan%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
-    horario:   '',
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'C.S. Beta',
@@ -406,7 +406,7 @@ const UNIDADES = [
     lat: 19.4249673, lng: -98.8895377,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20C.S.%20BETA%2C%20Chicoloapan%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
-    horario:   '',
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   /* ══ CHICONCUAC (2) ══ */
@@ -419,9 +419,9 @@ const UNIDADES = [
     coordinacion: 'Ceaps Chiconcuac',
     direccion: 'Niños Héroes S/N, Barrio San Miguel, Chiconcuac, Estado de México',
     lat: 19.54412, lng: -98.89722,
-    servicios: ['medicina-general'],
+    servicios: ['medicina-general', 'psicologia', 'estomatologia'],
     telefono:  '5959538930',   // de su coordinación
-    horario:   '',
+    horario:   '24 horas',
     atencion:  '' },
 
   { nombre:    'Hospital Municipal de Chiconcuac',
@@ -433,7 +433,7 @@ const UNIDADES = [
     coordinacion: 'Hospital Municipal De Chiconcuac',
     lat: 19.5437209, lng: -98.8974549,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20HOSPITAL%20MUNICIPAL%20DE%20CHICONCUAC%2C%20Chiconcuac%2C%20Estado%20de%20Mexico',
-    servicios: ['medicina-general', 'urgencias'],
+    servicios: ['medicina-general', 'urgencias', 'psicologia', 'nutricion', 'estomatologia'],
     horario:   '',
     atencion:  '' },
 
@@ -447,8 +447,8 @@ const UNIDADES = [
     coordinacion: 'San Pedro',
     lat: 19.4212549, lng: -98.947509,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20CHIMALHUACAN%2C%20Chimalhuacan%2C%20Estado%20de%20Mexico',
-    servicios: ['medicina-general'],
-    horario:   '',
+    servicios: ['medicina-general', 'nutricion'],
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'CEAPS Santa María Chimalhuacan',
@@ -460,8 +460,8 @@ const UNIDADES = [
     coordinacion: 'Ceaps Santa María Chimalhuacan',
     direccion: 'Rosales S/N, Col. Corte San Pablo, Chimalhuacán, Estado de México, C.P. 56395',
     lat: 19.3983798, lng: -98.9090567,
-    servicios: ['medicina-general'],
-    horario:   '',
+    servicios: ['medicina-general', 'psicologia', 'nutricion', 'estomatologia'],
+    horario:   '24 horas',
     atencion:  '' },
 
   { nombre:    'San Lorenzo',
@@ -475,9 +475,9 @@ const UNIDADES = [
     lat: 19.40773, lng: -98.9820024,
     ubicacion: 'por-validar',   // coordenada sin corroborar del todo
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS+Bienestar+-+Centro+de+Salud+San+Lorenzo%2C+D%C3%ADaz+Ordaz+y+Venustiano+Carranza+S%2FN%2C+San+Lorenzo%2C+Chimalhuac%C3%A1n%2C+Estado+de+M%C3%A9xico%2C+C.P.+56340&query_place_id=ChIJ8VZLWhDj0YURIc9JbC_62YA',
-    servicios: ['medicina-general'],
+    servicios: ['medicina-general', 'psicologia', 'estomatologia'],
     // ⚠ PENDIENTE DE VALIDAR: la unidad de San Lorenzo está identificada en Maps, pero no se encontró un
-    horario:   '',
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'U. Móvil ISEM San Lorenzo 1',
@@ -504,7 +504,7 @@ const UNIDADES = [
     direccion: 'Calle Calvario S/N, San Agustín Atlapulco, Chimalhuacán, Estado de México, C.P. 56343',
     lat: 19.38914, lng: -98.96054,
     servicios: ['medicina-general'],
-    horario:   '',
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'LAS Palomas',
@@ -517,8 +517,8 @@ const UNIDADES = [
     lat: null, lng: null,   // sin coordenada a propósito: el enlace apuntaba a otra unidad
     ubicacion: 'discrepancia',
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20LAS%20PALOMAS%2C%20Chimalhuacan%2C%20Estado%20de%20Mexico',
-    servicios: ['medicina-general'],
-    horario:   '',
+    servicios: ['medicina-general', 'estomatologia'],
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'Colonia Barrio Plateros',
@@ -530,8 +530,8 @@ const UNIDADES = [
     coordinacion: 'Plateros',
     direccion: 'Izcalli S/N, Barrio Plateros, Chimalhuacán, Estado de México, C.P. 56330',
     lat: 19.427626, lng: -98.977075,
-    servicios: ['medicina-general'],
-    horario:   '',
+    servicios: ['medicina-general', 'estomatologia'],
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'CEAPS Santa Elena',
@@ -543,9 +543,9 @@ const UNIDADES = [
     coordinacion: 'Ceaps Santa Elena',
     direccion: 'Av. Sindicalismo S/N esq. Capulín, Barrio Alfareros, Chimalhuacán, Estado de México',
     lat: 19.4323237, lng: -98.96695476,
-    servicios: ['medicina-general'],
+    servicios: ['medicina-general', 'psicologia', 'estomatologia'],
     telefono:  '5521261222',   // de su coordinación
-    horario:   '',
+    horario:   '24 horas',
     atencion:  '' },
 
   { nombre:    'Colonia Barrio Herreros',
@@ -557,8 +557,8 @@ const UNIDADES = [
     coordinacion: 'Herreros',
     direccion: 'Organización Popular S/N, Col. Herreros, Chimalhuacán, Estado de México, C.P. 56330',
     lat: 19.43435716, lng: -98.94312144,
-    servicios: ['medicina-general'],
-    horario:   '',
+    servicios: ['medicina-general', 'estomatologia'],
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'CEAPS Acuitlapilco',
@@ -570,9 +570,9 @@ const UNIDADES = [
     coordinacion: 'Ceaps Acuitlapilco',
     direccion: 'Av. Arca de Noé S/N, Col. Acuitlapilco, Chimalhuacán, Estado de México, C.P. 56337',
     lat: 19.4379, lng: -98.93185,
-    servicios: ['medicina-general'],
+    servicios: ['medicina-general', 'psicologia', 'nutricion'],
     telefono:  '5510573670',   // de su coordinación
-    horario:   '',
+    horario:   '24 horas',
     atencion:  '' },
 
   { nombre:    'Barrio Fundidores',
@@ -584,8 +584,8 @@ const UNIDADES = [
     coordinacion: 'Fundidores',
     direccion: 'Av. Ejido Colectivo S/N, Barrio Fundidores, Chimalhuacán, Estado de México, C.P. 56334',
     lat: 19.44479332, lng: -98.95195129,
-    servicios: ['medicina-general'],
-    horario:   '',
+    servicios: ['medicina-general', 'estomatologia'],
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'Centro Comunitario de Salud Mental y Adicciones Chimalhuacán',
@@ -613,7 +613,7 @@ const UNIDADES = [
     lat: null, lng: null,   // sin coordenada a propósito: el enlace apuntaba a otra unidad
     ubicacion: 'discrepancia',
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS+Bienestar+-+UNEME+Sorid+Barrio+Transportistas%2C+Av.+Riva+Palacio+esq.+Av.+M%C3%A9xico%2C+Barrio+Transportistas%2C+Chimalhuac%C3%A1n%2C+Estado+de+M%C3%A9xico%2C+C.P.+56335&query_place_id=ChIJ-T5acQDj0YURsk6by2O8jNo',
-    servicios: [],
+    servicios: ['psicologia', 'nutricion'],
     // ⚠ PENDIENTE: Maps muestra un domicilio distinto (Gardenia 65) al directorio/oficial; se dejó sin c
     horario:   '',
     atencion:  '' },
@@ -640,7 +640,7 @@ const UNIDADES = [
     coordinacion: 'H.G. Chimalhuacan',
     lat: 19.4196617, lng: -98.9751505,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20H.G.%20CHIMALHUAC%C3%81N%2C%20Chimalhuacan%2C%20Estado%20de%20Mexico',
-    servicios: ['medicina-general', 'urgencias'],
+    servicios: ['medicina-general', 'urgencias', 'psicologia', 'nutricion', 'estomatologia'],
     horario:   '',
     atencion:  '' },
 
@@ -653,7 +653,7 @@ const UNIDADES = [
     coordinacion: 'Hospital General Chimalhuacán San Agustín',
     lat: 19.3870925, lng: -98.9604154,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20HOSPITAL%20GENERAL%20CHIMALHUAC%C3%81N%20SAN%20AGUST%C3%8DN%2C%20Chimalhuacan%2C%20Estado%20de%20Mexico',
-    servicios: ['medicina-general', 'urgencias'],
+    servicios: ['medicina-general', 'urgencias', 'nutricion', 'estomatologia'],
     horario:   '',
     atencion:  '' },
 
@@ -666,7 +666,7 @@ const UNIDADES = [
     coordinacion: 'Hospital Materno Infantil Vicente Guerrero Chimalhuacán',
     lat: 19.4422896, lng: -98.9730086,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20HOSPITAL%20MATERNO%20INFANTIL%20VICENTE%20GUERRERO%20CHIMALHUAC%C3%81N%2C%20Chimalhuacan%2C%20Estado%20de%20Mexico',
-    servicios: ['medicina-general', 'urgencias'],
+    servicios: ['medicina-general', 'urgencias', 'psicologia', 'nutricion', 'estomatologia'],
     horario:   '',
     atencion:  '' },
 
@@ -680,8 +680,8 @@ const UNIDADES = [
     coordinacion: 'Chiautla',
     lat: 19.5614354, lng: -98.8588554,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20PAPALOTLA%2C%20Papalotla%2C%20Estado%20de%20Mexico',
-    servicios: ['medicina-general'],
-    horario:   '',
+    servicios: ['medicina-general', 'estomatologia'],
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   /* ══ TEPETLAOXTOC (5) ══ */
@@ -696,10 +696,10 @@ const UNIDADES = [
     lat: 19.5756918, lng: -98.8175981,
     ubicacion: 'por-validar',   // coordenada sin corroborar del todo
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS+Bienestar+-+CEAPS+Tepetlaoxtoc%2C+Jolalpan+No.+21%2C+Col.+La+Sant%C3%ADsima%2C+Tepetlaoxtoc%2C+Estado+de+M%C3%A9xico%2C+C.P.+56070&query_place_id=ChIJI0xhspPC0YURFASKflsnnZM',
-    servicios: ['medicina-general'],
+    servicios: ['medicina-general', 'psicologia', 'nutricion', 'estomatologia'],
     telefono:  '5959230932',   // de su coordinación
     // ⚠ PENDIENTE DE VALIDAR: CEAPS Tepetlaoxtoc está identificado en Maps; falta corroborar una coorden
-    horario:   '',
+    horario:   '24 horas',
     atencion:  '' },
 
   { nombre:    'La Concepción Jolalpan',
@@ -712,7 +712,7 @@ const UNIDADES = [
     lat: 19.5841202, lng: -98.8459583,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20LA%20CONCEPCI%C3%93N%20JOLALPAN%2C%20Tepetlaoxtoc%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
-    horario:   '',
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'San Bernardo Tlalmimilolpan',
@@ -725,7 +725,7 @@ const UNIDADES = [
     lat: 19.5614341, lng: -98.7888624,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SAN%20BERNARDO%20TLALMIMILOLPAN%2C%20Tepetlaoxtoc%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
-    horario:   '',
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'San Pedro Chiautzingo',
@@ -738,7 +738,7 @@ const UNIDADES = [
     lat: 19.5681384, lng: -98.7854775,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SAN%20PEDRO%20CHIAUTZINGO%2C%20Tepetlaoxtoc%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
-    horario:   '',
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'Santo Tomás Apipilhuasco',
@@ -751,7 +751,7 @@ const UNIDADES = [
     lat: 19.5416749, lng: -98.7467581,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SANTO%20TOM%C3%81S%20APIPILHUASCO%2C%20Tepetlaoxtoc%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
-    horario:   '',
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   /* ══ TEXCOCO (28) ══ */
@@ -764,8 +764,8 @@ const UNIDADES = [
     coordinacion: 'Texcoco Cabecera',
     direccion: 'Av. Juárez Norte No. 404, Col. Joyas de San Mateo, Texcoco, Estado de México',
     lat: 19.52002, lng: -98.88165,
-    servicios: ['medicina-general'],
-    horario:   '',
+    servicios: ['medicina-general', 'psicologia', 'estomatologia'],
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'Tulantongo',
@@ -777,8 +777,8 @@ const UNIDADES = [
     coordinacion: 'Texcoco Cabecera',
     lat: 19.5324364, lng: -98.8788793,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20TULANTONGO%2C%20Texcoco%2C%20Estado%20de%20Mexico',
-    servicios: ['medicina-general'],
-    horario:   '',
+    servicios: ['medicina-general', 'psicologia'],
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'San Luis Huexotla',
@@ -791,7 +791,7 @@ const UNIDADES = [
     lat: 19.4785865, lng: -98.8620498,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SAN%20LUIS%20HUEXOTLA%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
-    horario:   '',
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'Santa Cruz de Arriba',
@@ -804,7 +804,7 @@ const UNIDADES = [
     lat: 19.5172166, lng: -98.8636525,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SANTA%20CRUZ%20DE%20ARRIBA%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
-    horario:   '',
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'Leyes de Reforma',
@@ -817,7 +817,7 @@ const UNIDADES = [
     lat: 19.4722341, lng: -98.8814765,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20LEYES%20DE%20REFORMA%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
-    horario:   '',
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'La Purificación',
@@ -830,7 +830,7 @@ const UNIDADES = [
     lat: 19.5256778, lng: -98.8189458,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20LA%20PURIFICACION%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
-    horario:   '',
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'San Jeronimo Amanalco',
@@ -843,7 +843,7 @@ const UNIDADES = [
     lat: 19.5188614, lng: -98.7639866,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SAN%20JERONIMO%20AMANALCO%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
-    horario:   '',
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'San Miguel Tlaixpan',
@@ -856,7 +856,7 @@ const UNIDADES = [
     lat: 19.509798, lng: -98.8136798,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SAN%20MIGUEL%20TLAIXPAN%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
-    horario:   '',
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'San Pablo Ixayoc',
@@ -869,7 +869,7 @@ const UNIDADES = [
     lat: 19.4792368, lng: -98.8040814,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SAN%20PABLO%20IXAYOC%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
-    horario:   '',
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'Centro de Salud Santa Catarina DEL Monte',
@@ -882,7 +882,7 @@ const UNIDADES = [
     lat: 19.4956658, lng: -98.7820405,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20CENTRO%20DE%20SALUD%20SANTA%20CATARINA%20DEL%20MONTE%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
-    horario:   '',
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'Tequexquinahuac',
@@ -895,7 +895,7 @@ const UNIDADES = [
     lat: 19.4798896, lng: -98.8188125,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20TEQUEXQUINAHUAC%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
-    horario:   '',
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'San Juan Tezontla',
@@ -908,7 +908,7 @@ const UNIDADES = [
     lat: 19.5419722, lng: -98.8155556,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SAN%20JUAN%20TEZONTLA%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
-    horario:   '',
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'Santa María Nativitas',
@@ -921,7 +921,7 @@ const UNIDADES = [
     lat: 19.4954167, lng: -98.8373056,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SANTA%20MAR%C3%8DA%20NATIVITAS%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
-    horario:   '',
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'Centro de Salud Santa María Tecuanulco',
@@ -934,7 +934,7 @@ const UNIDADES = [
     lat: 19.4998157, lng: -98.7718527,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20CENTRO%20DE%20SALUD%20SANTA%20MAR%C3%8DA%20TECUANULCO%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
-    horario:   '',
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'U. Móvil ISEM San Lorenzo 4',
@@ -975,7 +975,7 @@ const UNIDADES = [
     lat: 19.4769881, lng: -98.8989879,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SAN%20BERNARDINO%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
-    horario:   '',
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'San Miguel Coatlinchan',
@@ -988,7 +988,7 @@ const UNIDADES = [
     direccion: 'Calle 5 de Febrero S/N, San Miguel Coatlinchán, Texcoco, Estado de México',
     lat: 19.45063776, lng: -98.86914813,
     servicios: ['medicina-general'],
-    horario:   '',
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'Santiago Cuautlalpan',
@@ -1001,7 +1001,7 @@ const UNIDADES = [
     lat: 19.43425, lng: -98.8991389,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SANTIAGO%20CUAUTLALPAN%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
-    horario:   '',
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'La Magdalena Panoaya',
@@ -1014,7 +1014,7 @@ const UNIDADES = [
     lat: 19.5360206, lng: -98.9118847,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20LA%20MAGDALENA%20PANOAYA%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
-    horario:   '',
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'San Felipe',
@@ -1027,7 +1027,7 @@ const UNIDADES = [
     lat: 19.5077818, lng: -98.8993052,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SAN%20FELIPE%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
-    horario:   '',
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'San Juan Tocuila',
@@ -1040,7 +1040,7 @@ const UNIDADES = [
     lat: 19.5223424, lng: -98.9067936,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20SAN%20JUAN%20TOCUILA%2C%20Texcoco%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
-    horario:   '',
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'U. Móvil ISEM San Pedro 1',
@@ -1108,7 +1108,7 @@ const UNIDADES = [
     coordinacion: 'Hospital Materno De Texcoco',
     lat: 19.4551377, lng: -98.8725404,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20HOSPITAL%20MATERNO%20DE%20TEXCOCO%2C%20Texcoco%2C%20Estado%20de%20Mexico',
-    servicios: ['medicina-general', 'urgencias'],
+    servicios: ['medicina-general', 'urgencias', 'psicologia', 'nutricion', 'estomatologia'],
     horario:   '',
     atencion:  '' },
 
@@ -1121,7 +1121,7 @@ const UNIDADES = [
     coordinacion: 'H.G. Texcoco Guadalupe Victoria Bicentenario',
     lat: 19.5143605, lng: -98.8717583,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20H.G.%20TEXCOCO%20GUADALUPE%20VICTORIA%20BICENTENARIO%2C%20Texcoco%2C%20Estado%20de%20Mexico',
-    servicios: ['medicina-general', 'urgencias'],
+    servicios: ['medicina-general', 'urgencias', 'psicologia', 'nutricion'],
     horario:   '',
     atencion:  '' },
 
@@ -1136,7 +1136,7 @@ const UNIDADES = [
     lat: 19.6016247, lng: -98.945318,
     maps:      'https://www.google.com/maps/search/?api=1&query=IMSS%20Bienestar%20Centro%20de%20Salud%20C.S.%20TEQUISISTLAN%2C%20Tezoyuca%2C%20Estado%20de%20Mexico',
     servicios: ['medicina-general'],
-    horario:   '',
+    horario:   'Lunes a viernes, 8:00 a 16:00 h',
     atencion:  '' },
 
   { nombre:    'CEAPS Tezoyuca',
@@ -1148,8 +1148,8 @@ const UNIDADES = [
     coordinacion: 'Ceaps Tezoyuca',
     direccion: '20 de Noviembre esq. Independencia, Barrio Santiago, Tezoyuca, Estado de México, C.P. 56000',
     lat: 19.591808, lng: -98.9177189,
-    servicios: ['medicina-general'],
-    horario:   '',
+    servicios: ['medicina-general', 'psicologia', 'nutricion', 'estomatologia'],
+    horario:   '24 horas',
     atencion:  '' },
 
 ];
@@ -1201,10 +1201,16 @@ const UNIDADES = [
   // Unidades que la jurisdicción tiene y esta lista todavía no. Entran sin
   // campos editoriales: aparecen en el directorio, pero sin servicios
   // clasificados hasta que alguien los revise.
+  // Servicios confirmados de unidades que solo llegan por el catálogo.
+  // Psicología, nutrición y estomatología: producción reportada en SIS 2026.
+  var SERVICIOS_CONOCIDOS = {
+    MCIMB012476: ['psicologia', 'nutricion', 'estomatologia']   // Hospital General Atenco
+  };
   JST_DIRECTORIO.unidades.forEach(function (canonica) {
     var llave = canonica.clues || canonica.cluesSSA;
     if (vistas[llave]) return;
-    var nueva = { servicios: [], horario: '', atencion: '', tipo: '' };
+    var nueva = { servicios: (SERVICIOS_CONOCIDOS[canonica.clues] || []).slice(),
+                  horario: '', atencion: '', tipo: '' };
     INSTITUCIONALES.forEach(function (campo) { nueva[campo] = canonica[campo]; });
     nueva.clues = canonica.clues;
     UNIDADES.push(nueva);

@@ -7,26 +7,32 @@
    Las tarjetas se generan solas en index.html y reportes.html.
    ================================================ */
 
+/* Cifras verificables, sep 2026. Unidades y municipios: fuente canónica
+   (JST-AI-WORKSPACE, core/data/jst.sqlite). Talleres, materiales y formularios:
+   conteo de assets/data/recursos.js.
+   Avance de metas: proyecto EVALUACION MENSUAL TRIMESTRAL Y ANUAL,
+   salida/evaluacion_periodo.csv (pares unidad-meta medibles con
+   cumplimiento >= 90 %). Recalcular al cerrar cada mes del SIS. No poner aquí cifras sin fuente. */
 const KPIS = {
 
   /* ── Portal (index.html) ── */
   index: [
-    { numero: 4,    sufijo: "",  etiqueta: "Campañas activas",        color: "crimson",    desc: "Nacionales y estatales 2025" },
-    { numero: 62,   sufijo: "+", etiqueta: "Unidades médicas",         color: "teal",       desc: "Bajo responsabilidad jurisdiccional" },
-    { numero: 9,   sufijo: "",  etiqueta: "Municipios",               color: "gold-dk",    desc: "Atendidos en la jurisdicción" },
-    { numero: 30,   sufijo: "+", etiqueta: "Materiales en biblioteca", color: "purple",     desc: "Lineamientos, manuales y formatos" },
-    { numero: 12,   sufijo: "",  etiqueta: "Certificaciones 2025",     color: "crimson-dk", desc: "Escuelas, ELHT y comunidades" },
-    { numero: 8,    sufijo: "",  etiqueta: "Jornadas programadas",     color: "teal-dk",    desc: "Pendientes en el trimestre" }
+    { numero: 77,  sufijo: "", etiqueta: "Unidades de salud",        color: "teal",       desc: "Catálogo jurisdiccional canónico" },
+    { numero: 9,   sufijo: "", etiqueta: "Municipios",               color: "gold-dk",    desc: "Atendidos en la jurisdicción" },
+    { numero: 9,   sufijo: "", etiqueta: "Determinantes",            color: "crimson",    desc: "24 subtemas de promoción" },
+    { numero: 68,  sufijo: "", etiqueta: "Talleres",                 color: "crimson-dk", desc: "Catálogo por determinante" },
+    { numero: 160, sufijo: "", etiqueta: "Materiales disponibles",   color: "purple",     desc: "Formatos, normas, manuales y talleres" },
+    { numero: 14,  sufijo: "", etiqueta: "Formularios de reporte",   color: "teal-dk",    desc: "Captura mensual por programa" }
   ],
 
   /* ── Tablero (reportes.html) ── */
   reportes: [
-    { numero: 4,    sufijo: "",  etiqueta: "Campañas activas",       color: "crimson",    desc: "Nacionales y estatales 2025" },
-    { numero: 62,   sufijo: "+", etiqueta: "Unidades médicas",        color: "teal",       desc: "Bajo responsabilidad jurisdiccional" },
-    { numero: 9,   sufijo: "",  etiqueta: "Municipios atendidos",    color: "gold-dk",    desc: "Jurisdicción Sanitaria Texcoco" },
-    { numero: 12,   sufijo: "",  etiqueta: "Certificaciones 2025",    color: "purple",     desc: "Escuelas, ELHT y comunidades" },
-    { numero: 320,  sufijo: "+", etiqueta: "Actividades realizadas",  color: "crimson-dk", desc: "Acumulado enero–mayo 2025" },
-    { numero: 8500, sufijo: "+", etiqueta: "Personas beneficiadas",   color: "teal-dk",    desc: "Acumulado enero–mayo 2025" }
+    { numero: 77,  sufijo: "", etiqueta: "Unidades de salud",        color: "teal",       desc: "Catálogo jurisdiccional canónico" },
+    { numero: 22,  sufijo: "", etiqueta: "Coordinaciones",           color: "crimson",    desc: "Estructura administrativa" },
+    { numero: 9,   sufijo: "", etiqueta: "Municipios atendidos",     color: "gold-dk",    desc: "Jurisdicción Sanitaria Texcoco" },
+    { numero: 42,  sufijo: "%", etiqueta: "Metas SIS al 90% o más",  color: "purple",     desc: "Ene–jul 2026 · 10 metas en 59 unidades" },
+    { numero: 68,  sufijo: "", etiqueta: "Talleres",                 color: "crimson-dk", desc: "Catálogo por determinante" },
+    { numero: 160, sufijo: "", etiqueta: "Materiales disponibles",   color: "teal-dk",    desc: "Formatos, normas, manuales y talleres" }
   ]
 
 };
