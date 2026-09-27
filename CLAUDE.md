@@ -622,7 +622,7 @@ con Ctrl+Shift+R.
 
 Ya está en marcha. GitHub Pages sirve la rama `master` desde la raíz:
 
-**https://oscarog23.github.io/Promocion-de-la-salud-JSTexcoco/**
+**https://promocionsaludtexcoco.github.io/**
 
 Desplegar = empujar a `master`. La compilación tarda ~1 minuto.
 
@@ -632,7 +632,7 @@ git commit -m "..."
 git push origin master
 
 # Ver el estado de la compilación
-gh api repos/OscarOG23/Promocion-de-la-salud-JSTexcoco/pages/builds/latest --jq .status
+gh api repos/PromocionSaludTexcoco/promocionsaludtexcoco.github.io/pages/builds/latest --jq .status
 ```
 
 **Ojo con las mayúsculas.** Windows no distingue mayúsculas en los nombres de

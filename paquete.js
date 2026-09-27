@@ -57,7 +57,7 @@
         return JSON.parse(guardado);
       }
       estado.innerHTML = 'No se pudo cargar el índice de acciones. Si abriste el archivo con doble clic, '
-        + 'ábrelo desde <a href="https://oscarog23.github.io/Promocion-de-la-salud-JSTexcoco/paquete-garantizado.html">la página publicada</a> '
+        + 'ábrelo desde <a href="https://promocionsaludtexcoco.github.io/paquete-garantizado.html">la página publicada</a> '
         + 'o con un servidor local: el navegador bloquea la lectura de <code>datos/acciones.json</code> en <code>file://</code>.';
       estado.classList.add('is-error');
       return null;
