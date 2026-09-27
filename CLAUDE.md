@@ -334,7 +334,9 @@ Los de tipo `referencia` son servicios externos y llevan `tema` (`crisis` | `adi
 
 **Leaflet 1.9.4 vive en el repo**, en `assets/vendor/leaflet/` (173 KB), no en
 un CDN: así el mapa no depende de que un tercero responda. Lo único que pide
-red son los mosaicos de OpenStreetMap. Si Leaflet no cargara, el mapa se
+red son los mosaicos de OpenStreetMap, pasados a gris cálido con un `filter`
+CSS. CARTO ya pide clave (devuelve «API KEY REQUIRED»): no usarlo. Los pines son `divIcon` SVG
+(`pinUnidad()` + `PIN_GLIFO`): color por tipo **y** glifo, para no depender del color. Si Leaflet no cargara, el mapa se
 sustituye por un aviso y **la rejilla de abajo sigue funcionando**: el mapa es
 un atajo visual, la lista es la fuente de verdad.
 

@@ -9,7 +9,7 @@
    «no se aplicó» aunque el archivo ya esté corregido.
    Para comprobar qué versión se está viendo: abrir la consola (F12) y
    escribir  PS_VERSION */
-const PS_VERSION = '20260926a';
+const PS_VERSION = '20260926b';
 window.PS_VERSION = PS_VERSION;
 
 // ── Reduced motion preference ──────────────────
@@ -1622,6 +1622,29 @@ const MAPA_TIPOS = {
   'movil':         'Unidad móvil',
 };
 
+/** Glifo blanco dentro del pin, según el tipo de unidad. */
+const PIN_GLIFO = {
+  'hospital':      '<path d="M9 7v10M15 7v10M9 12h6" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>',
+  'ceaps':         '<text x="12" y="15.2" text-anchor="middle" font-size="8" font-weight="700" fill="#fff" font-family="system-ui,sans-serif">24</text>',
+  'jurisdiccion':  '<path d="M7 16V10l5-3 5 3v6M10 16v-3h4v3" stroke="#fff" stroke-width="1.8" fill="none" stroke-linejoin="round"/>',
+  'default':       '<path d="M12 8v8M8 12h8" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>',
+};
+
+/** Pin en forma de gota con el color del tipo: se distingue por forma y glifo, no solo por color. */
+function pinUnidad(tipo, color, grande) {
+  const w = grande ? 36 : 30, h = Math.round(w * 1.3);
+  const glifo = PIN_GLIFO[tipo] || PIN_GLIFO.default;
+  return L.divIcon({
+    className: 'mapa-pin',
+    iconSize: [w, h],
+    iconAnchor: [w / 2, h - 2],
+    popupAnchor: [0, -h + 6],
+    html: `<svg viewBox="0 0 24 31" width="${w}" height="${h}" aria-hidden="true">
+      <path d="M12 30s10-10.2 10-18A10 10 0 0 0 2 12c0 7.8 10 18 10 18z" fill="${color}" stroke="#fff" stroke-width="1.6"/>
+      <g transform="translate(0 0)">${glifo}</g></svg>`,
+  });
+}
+
 /**
  * Dibuja las unidades con coordenada y devuelve un mando para que el
  * filtro de la página mueva el mapa. Si Leaflet no cargó, devuelve null
@@ -1646,6 +1669,10 @@ function initMapaUnidades(unidades) {
     zoomControl: true,
   });
 
+  // Mosaicos de OpenStreetMap: gratuitos y sin clave. El tono apagado y
+  // cálido lo pone CSS (.mapa-lienzo .leaflet-tile-pane), para que los
+  // pines con los colores institucionales sean lo que se lea. CARTO se
+  // probó y pide clave: devuelve mosaicos con «API KEY REQUIRED».
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 18,
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>',
@@ -1654,13 +1681,15 @@ function initMapaUnidades(unidades) {
   const capa = L.layerGroup().addTo(map);
   const marcas = conPunto.map(u => {
     const color = MAPA_COLORES[u.tipo] || MAPA_COLORES['centro-salud'];
-    const m = L.circleMarker([u.lat, u.lng], {
-      radius: u.tipo === 'hospital' || u.tipo === 'jurisdiccion' ? 9 : 7,
-      color: '#fff', weight: 2, opacity: 1,
-      fillColor: color, fillOpacity: .92,
+    const grande = u.tipo === 'hospital' || u.tipo === 'jurisdiccion';
+    const m = L.marker([u.lat, u.lng], {
+      icon: pinUnidad(u.tipo, color, grande),
+      title: u.nombre,          // también es el nombre accesible del pin
+      alt: u.nombre,
+      riseOnHover: true,
     });
-    m.bindPopup(popupUnidad(u), { maxWidth: 280 });
-    m.bindTooltip(u.nombre, { direction: 'top', offset: [0, -8] });
+    m.bindPopup(popupUnidad(u), { maxWidth: 290, className: 'mapa-globo' });
+    m.bindTooltip(u.nombre, { direction: 'top', offset: [0, grande ? -40 : -34], className: 'mapa-etiqueta' });
     return { u, m };
   });
 
@@ -1712,7 +1741,7 @@ function leyendaMapa(unidades) {
   conPunto.forEach(u => { cuenta[u.tipo] = (cuenta[u.tipo] || 0) + 1; });
   const filas = Object.keys(MAPA_COLORES)
     .filter(t => cuenta[t])
-    .map(t => `<li><span class="ml-punto" style="background:${MAPA_COLORES[t]}"></span>
+    .map(t => `<li><svg class="ml-pin" viewBox="0 0 24 31" width="15" height="19" aria-hidden="true"><path d="M12 30s10-10.2 10-18A10 10 0 0 0 2 12c0 7.8 10 18 10 18z" fill="${MAPA_COLORES[t]}"/>${PIN_GLIFO[t] || PIN_GLIFO.default}</svg>
                  ${esc(MAPA_TIPOS[t] || t)} <span class="ml-n">${cuenta[t]}</span></li>`);
   return filas.length
     ? `<ul class="mapa-leyenda">${filas.join('')}</ul>`
