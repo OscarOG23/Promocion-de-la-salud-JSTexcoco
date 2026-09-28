@@ -34,41 +34,15 @@
     <div class="inline-nav-wrap">
       <div class="container">
         <nav class="inline-nav" aria-label="Secciones de Reportes">
-          <a href="#indicadores"  class="inav-link">Tablero KPI</a>
           <a href="#formularios"  class="inav-link">Captura mensual</a>
           <a href="#mensuales"    class="inav-link">Reportes mensuales</a>
           <a href="#descargas"    class="inav-link">Descargas</a>
           <a href="#evidencias"   class="inav-link">Evidencias</a>
+          <a href="#indicadores"  class="inav-link">Indicadores</a>
         </nav>
       </div>
     </div>
 
-    <!-- TABLERO DE INDICADORES -->
-    <section class="section-block" id="indicadores">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-tag crimson">Tablero 2026</div>
-          <h2>Indicadores clave<br>de la jurisdicción</h2>
-          <p>Producción de enero a julio de 2026 en toda la jurisdicción. Fuentes: cubo SIS 2026 y control jurisdiccional de cartillas.</p>
-        </div>
-
-        <h3 class="subsec-group">Promoción de la Salud</h3>
-        <div class="kpi-grid" data-kpis="promocion"></div>
-
-        <h3 class="subsec-group">Cartillas Nacionales de Salud entregadas</h3>
-        <div class="kpi-grid" data-kpis="cartillas"></div>
-
-        <h3 class="subsec-group">Consulta y detección</h3>
-        <div class="kpi-grid" data-kpis="consulta"></div>
-
-        <h3 class="subsec-group">Salud Mental y Adicciones</h3>
-        <div class="kpi-grid" data-kpis="saludMental"></div>
-
-        <h3 class="subsec-group">La jurisdicción</h3>
-        <div class="kpi-grid" data-kpis="reportes"></div>
-
-      </div>
-    </section>
 
     <!-- FORMULARIOS DE CAPTURA MENSUAL -->
     <section class="section-block" id="formularios">
@@ -78,6 +52,26 @@
           <h2>Captura de reporte<br>mensual</h2>
           <p>Formularios oficiales para enviar tu reporte mensual por área.</p>
         </div>
+
+        <!-- El portal de captura va primero: es a lo que viene el personal. -->
+        <article class="eval-card" aria-labelledby="portal-titulo" style="margin-bottom:2.5rem">
+          <div class="ev-cifra">
+            <span class="ev-num">SSOP</span>
+            <span class="ev-leyenda">Portal de captura de productividad</span>
+          </div>
+          <div class="ev-cuerpo">
+            <span class="ev-kicker"><span class="ev-dot"></span>Captura mensual</span>
+            <h3 id="portal-titulo">Portal de captura SSOP</h3>
+            <p>Registra aquí tu productividad del mes. Funciona en el teléfono y guarda tu avance aunque se vaya la señal.</p>
+            <ul class="ev-chips">
+              <li>Promotores</li><li>Entornos laborales</li><li>Eventos PAFF</li>
+            </ul>
+            <div class="ev-acciones">
+              <a class="btn btn-primary" href="https://oscarog23.github.io/ssop-capturador/">Entrar al portal de captura
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </div>
+          </div>
+        </article>
 
         <!-- Un grid por área, alimentado desde el índice único.
              Añadir un formulario = añadir un objeto a recursos.js. -->
@@ -254,6 +248,33 @@
           <p>Las evidencias son fundamentales para los reportes mensuales. Aquí encontrarás cómo documentar correctamente cada actividad.</p>
         </div>
         <div data-evidencias="todos"></div>
+      </div>
+    </section>
+
+    <!-- TABLERO DE INDICADORES -->
+    <section class="section-block" id="indicadores">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag crimson">Tablero 2026</div>
+          <h2>Indicadores clave<br>de la jurisdicción</h2>
+          <p>Producción de enero a julio de 2026 en toda la jurisdicción. Fuentes: cubo SIS 2026 y control jurisdiccional de cartillas.</p>
+        </div>
+
+        <h3 class="subsec-group">Promoción de la Salud</h3>
+        <div class="kpi-grid" data-kpis="promocion"></div>
+
+        <h3 class="subsec-group">Cartillas Nacionales de Salud entregadas</h3>
+        <div class="kpi-grid" data-kpis="cartillas"></div>
+
+        <h3 class="subsec-group">Consulta y detección</h3>
+        <div class="kpi-grid" data-kpis="consulta"></div>
+
+        <h3 class="subsec-group">Salud Mental y Adicciones</h3>
+        <div class="kpi-grid" data-kpis="saludMental"></div>
+
+        <h3 class="subsec-group">La jurisdicción</h3>
+        <div class="kpi-grid" data-kpis="reportes"></div>
+
       </div>
     </section>
 
