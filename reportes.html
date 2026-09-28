@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=20260927b">
+  <link rel="stylesheet" href="style.css?v=20260927c">
 </head>
 <body>
 
@@ -50,45 +50,40 @@
         <div class="section-header">
           <div class="section-tag crimson">Captura en línea</div>
           <h2>Captura de reporte<br>mensual</h2>
-          <p>Formularios oficiales para enviar tu reporte mensual por área.</p>
+          <p>Todo el reporte mensual se captura en un solo lugar: el Portal de Promoción.</p>
         </div>
 
-        <!-- El portal de captura va primero: es a lo que viene el personal. -->
-        <article class="eval-card" aria-labelledby="portal-titulo" style="margin-bottom:2.5rem">
+        <!-- UNA sola puerta de captura: el Portal de Promoción (PortalPromocion,
+             «la máscara»). Aquí NO van enlaces a formularios por área: lo que
+             hay dentro solo se menciona. Para sumar un capturador, se agrega
+             en la hoja DESTINOS del portal, no aquí. -->
+        <article class="eval-card" aria-labelledby="portal-titulo">
           <div class="ev-cifra">
-            <span class="ev-num">SSOP</span>
-            <span class="ev-leyenda">Portal de captura de productividad</span>
+            <span class="ev-num">7</span>
+            <span class="ev-leyenda">capturadores en un solo acceso</span>
           </div>
           <div class="ev-cuerpo">
-            <span class="ev-kicker"><span class="ev-dot"></span>Captura mensual</span>
-            <h3 id="portal-titulo">Portal de captura SSOP</h3>
-            <p>Registra aquí tu productividad del mes. Funciona en el teléfono y guarda tu avance aunque se vaya la señal.</p>
-            <ul class="ev-chips">
-              <li>Promotores</li><li>Entornos laborales</li><li>Eventos PAFF</li>
-            </ul>
+            <span class="ev-kicker"><span class="ev-dot"></span>Acceso con contraseña</span>
+            <h3 id="portal-titulo">Portal de Promoción de la Salud</h3>
+            <p>Coordinaciones, promotores y psicólogos entran con su usuario y contraseña. Desde ahí llegan a cada capturador ya identificados: no hay que buscar formularios sueltos.</p>
             <div class="ev-acciones">
-              <a class="btn btn-primary" href="https://oscarog23.github.io/ssop-capturador/">Entrar al portal de captura
+              <a class="btn btn-primary" href="https://oscarog23.github.io/PortalPromocion/">Entrar al portal
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
             </div>
           </div>
         </article>
 
-        <!-- Un grid por área, alimentado desde el índice único.
-             Añadir un formulario = añadir un objeto a recursos.js. -->
-        <h3 class="subsec-group">Promoción a la Salud</h3>
-        <div class="material-grid" data-recursos data-tipo="formulario" data-programa="promocion"></div>
-
-        <h3 class="subsec-group">Adicciones</h3>
-        <div class="material-grid" data-recursos data-tipo="formulario" data-programa="adicciones"></div>
-
-        <h3 class="subsec-group">Salud Mental</h3>
-        <div class="material-grid" data-recursos data-tipo="formulario" data-programa="salud-mental"></div>
-
-        <h3 class="subsec-group">Entornos Saludables</h3>
-        <div class="material-grid" data-recursos data-tipo="formulario" data-programa="entornos"></div>
-
-        <h3 class="subsec-group">Ferias y jornadas</h3>
-        <div class="material-grid" data-recursos data-tipo="formulario" data-programa="transversal"></div>
+        <h3 class="subsec-group">Qué encuentras dentro del portal</h3>
+        <ul class="portal-dentro">
+              <li><strong>Talleres por Determinantes</strong><span>Promoción</span></li>
+              <li><strong>Reporte Mensual de Coordinación</strong><span>Coordinaciones</span></li>
+              <li><strong>SIPS — Fechas a Conmemorar</strong><span>Promoción</span></li>
+              <li><strong>Reporte de Actividad Física</strong><span>Promoción</span></li>
+              <li><strong>Informe mensual de Atención</strong><span>Psicología</span></li>
+              <li><strong>SSOP — Productividad del promotor</strong><span>Promotores</span></li>
+              <li><strong>Jornadas extramuros</strong><span>Jornadas</span></li>
+        </ul>
+        <p class="portal-nota">¿No tienes usuario o olvidaste tu contraseña? Pídelo a tu coordinación o al Departamento de Promoción a la Salud.</p>
 
         <!-- Recurso destacado: Calendario de Fechas Conmemorables 2026 -->
         <div class="subsec-card" style="margin-top:1.5rem">
@@ -282,9 +277,9 @@
 
   <div id="site-footer"></div>
 
-  <script src="assets/data/kpis.js?v=20260927b"></script>
-  <script src="assets/data/recursos.js?v=20260927b"></script>
-  <script src="components.js?v=20260927b"></script>
-  <script src="script.js?v=20260927b"></script>
+  <script src="assets/data/kpis.js?v=20260927c"></script>
+  <script src="assets/data/recursos.js?v=20260927c"></script>
+  <script src="components.js?v=20260927c"></script>
+  <script src="script.js?v=20260927c"></script>
 </body>
 </html>

@@ -3922,6 +3922,20 @@ html { scroll-behavior: smooth; }
   letter-spacing: -.02em;
 }
 .ev-num small { font-size: .45em; margin-left: 2px; opacity: .85; }
+
+/* Lo que hay dentro del Portal de Promoción: se menciona, no se enlaza */
+.portal-dentro {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: .75rem;
+}
+.portal-dentro li {
+  display: flex; flex-direction: column; gap: .2rem;
+  padding: .9rem 1.1rem; border: 1px solid var(--gray-200, #e5e1da);
+  border-left: 3px solid var(--teal); border-radius: 10px; background: var(--white, #fff);
+}
+.portal-dentro strong { font-weight: 500; color: var(--charcoal); }
+.portal-dentro span { font-size: .8rem; color: var(--gray-500, #7a7671); }
+.portal-nota { margin-top: 1rem; font-size: .88rem; color: var(--gray-500, #7a7671); }
 .ev-barra {
   position: relative; height: 8px; border-radius: 99px;
   background: rgba(255,255,255,.18);

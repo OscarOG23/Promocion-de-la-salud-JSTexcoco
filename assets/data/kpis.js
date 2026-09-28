@@ -22,7 +22,7 @@ const KPIS = {
     { numero: 9,   sufijo: "", etiqueta: "Determinantes",            color: "crimson",    desc: "24 subtemas de promoción" },
     { numero: 68,  sufijo: "", etiqueta: "Talleres",                 color: "crimson-dk", desc: "Catálogo por determinante" },
     { numero: 160, sufijo: "", etiqueta: "Materiales disponibles",   color: "purple",     desc: "Formatos, normas, manuales y talleres" },
-    { numero: 14,  sufijo: "", etiqueta: "Formularios de reporte",   color: "teal-dk",    desc: "Captura mensual por programa" }
+    { numero: 7,   sufijo: "", etiqueta: "Capturadores en el portal", color: "teal-dk",    desc: "Un solo acceso con contraseña" }
   ],
 
   /* ── Tablero (reportes.html) ── */

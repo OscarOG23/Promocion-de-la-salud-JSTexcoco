@@ -9,7 +9,7 @@
    «no se aplicó» aunque el archivo ya esté corregido.
    Para comprobar qué versión se está viendo: abrir la consola (F12) y
    escribir  PS_VERSION */
-const PS_VERSION = '20260927b';
+const PS_VERSION = '20260927c';
 window.PS_VERSION = PS_VERSION;
 
 // ── Reduced motion preference ──────────────────
